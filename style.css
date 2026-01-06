@@ -1,0 +1,115 @@
+.oswald-font {
+  font-family: "Oswald", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+html{
+    font-family: Oswald, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main{
+    flex : 1;
+}
+
+footer{
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+.personal-header{
+    display: flex;
+    justify-content: space-between;     /* push to far edges */
+    align-items: center;
+    background-color: rgb(14, 135, 14);
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-name{
+    font-size: 40px;
+    padding: 10px;
+    padding-left: 100px;
+}
+
+.personal-header-right{
+    padding: 10px;
+    padding-right: 100px;
+}
+
+.header-links{
+    display: flex;
+    list-style: none;       /* removes bullet points from lists */
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+    font-size: 30px;
+}
+
+.header-links a{
+    transition:  color 0.3s ease,     /* "all" - elements in hover, "0.03s" - time, "ease" - pattern*/
+                 text-shadow 0.3s ease;
+}
+
+.header-links a:hover{
+    color: rgb(223, 223, 223);
+    text-shadow: 2px 2px 5px rgb(0, 0, 0)       /* x, y, blur-radius, color*/
+}
+
+
+.personal-footer{
+    padding: 10px;
+    margin: 0;
+    background-color: rgb(14, 135, 14);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 200px;
+    padding-right: 200px;
+    font-size: 20px;
+}
+
+.personal-footer p{
+    margin: 0px;
+}
+
+.footer-links{
+    margin: 0px;
+    list-style: none;
+    display: flex;
+    gap: 40px;
+}
+
+.footer-links a{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+}
+
+.email-link a{
+    transition:  color 0.3s ease, text-shadow 0.3s ease;
+}
+.email-link a:hover{
+    color: rgb(223, 223, 223);
+    text-shadow: 2px 2px 5px rgb(0, 0, 0)       /* x, y, blur-radius, color*/
+}
