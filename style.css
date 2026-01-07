@@ -20,7 +20,21 @@ body{
 }
 
 main{
+    display: flex;
+    flex-direction: column;
     flex : 1;
+    padding: 0;
+    margin: 0;
+}
+
+section{
+    padding: 0;
+    margin: 0;
+}
+
+p{
+    margin: 0;
+    padding: 0;
 }
 
 footer{
@@ -106,10 +120,67 @@ a{
     font-size: 16px;
 }
 
-.email-link a{
+.email-link{
     transition:  color 0.3s ease, text-shadow 0.3s ease;
 }
-.email-link a:hover{
+
+.email-link:hover{
     color: rgb(223, 223, 223);
-    text-shadow: 2px 2px 5px rgb(0, 0, 0)       /* x, y, blur-radius, color*/
+    text-shadow: 2px 2px 5px rgb(0, 0, 0);
+}
+
+.aboutme-section, .skills-section, .project-section{
+    flex: 1;
+}
+
+.aboutme-section{
+    min-height: 500px;
+    display: flex;
+    flex-direction: row;
+}
+
+.aboutme-picture{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 2px solid gray;
+}
+
+.aboutme-picture img{
+    min-width: 100px;
+    min-height: 100px;
+    max-width: 200px;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 20%;
+}
+
+.aboutme-text{
+    flex: 3;
+    display: flex;
+    flex-direction: column; 
+}
+
+.aboutme-text p{
+    flex: 1;
+    border-bottom: 1px dashed gray;
+    padding-left: 10px;
+    padding-top: 15px;
+    font-size: 25px;
+}
+
+.aboutme-text-intro{
+    font-size: 40px;
+    max-height: 50px;
+}
+
+.skills-section{
+    min-height: 100px;
+    max-height: 300px;
+}
+
+.project-section{
+    flex: 2;
+    min-height: 700px;
 }
