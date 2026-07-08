@@ -1,0 +1,14 @@
+.header{
+    border-bottom: solid black 4px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.left-header{
+    background-color: red;
+}
+
+.right-header{
+    background-color: blue;
+}
