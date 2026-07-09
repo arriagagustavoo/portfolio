@@ -11,13 +11,27 @@
     "ELSH" 0;
 }
 
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Geist Pixel", sans-serif;
+}
+
+
 /* default light mode */
 :root{
-    --main-background: #844c4c;
+    --main-background: #ffffff;
     --main-card: #ebebeb;
     --main-text: #000000;
     --secondary-text: #4d4d4d;
     --main-accent: #1e9e45;
+
+    --link-hover: #dcdcdc;
+    --link-active: #cecece;
+
 }
 
 [data-theme = 'dark']{
@@ -28,10 +42,6 @@
     --main-accent: #1e9e45;
 }
 
-html{
-    padding: 0;
-    margin: -8px;
-}
 
 p{
     color: var(--main-text);
