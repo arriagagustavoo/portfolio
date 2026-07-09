@@ -19,7 +19,7 @@ function Header(){
                     <a className="header-link" href="#projects">Projects</a>
                     <a className="header-link" href="#skills">Skills</a>
                     <a className="header-link" href="#services">Services</a>
-                    <a className="header-link contact-link" href="#contact">Contact</a>
+                    <a className="header-link contact" href="#contact">Contact</a>
                 </nav>
             </div>
 
