@@ -1,0 +1,142 @@
+.hero{
+    border-bottom: solid var(--main-text) 4px;
+    background-color: var(--main-background);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    min-height: 80dvh;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+}
+
+.hero-stripes{
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 43%;
+    background-color: var(--main-accent);
+    z-index: -1;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 98% 100%);
+}
+
+.hero-stripes::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--main-background);
+    clip-path: polygon(18% 0%, 24% 0%, 122% 100%, 116% 100%);
+}
+
+p{
+    margin: 0
+}
+
+@media(min-width: 800px){
+    .hero{
+        padding: 2rem;
+    }
+
+    .left-hero-badges{
+        font-size: 1.5rem;
+    }
+}
+
+
+.left-hero-text{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: left;
+    gap: 1rem;
+    font-weight: 400;
+    font-size: 1.5rem;
+}
+
+.intro-1{
+    color: var(--main-accent);
+    font-weight: 300;
+    font-size: 3rem;
+    line-height: 1;
+}
+
+.intro-2{
+    color: var(--main-text);
+    font-size: 6rem;
+    font-family: Geist;
+    font-weight: 900;
+    line-height: .9;
+    letter-spacing: -0.05em;
+    transform: scaleY(1.2);
+    margin-bottom: 1.3rem;
+}
+
+.left-hero-badges{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+    font-size: 1.35rem;
+    font-weight: 400;
+}
+
+.hero-badge-row{
+    display: flex;
+    gap: 1rem;
+}
+
+.hero-badge{
+    position: relative;
+    isolation: isolate;
+    background-color: transparent;
+    color: var(--main-text);
+    padding: .85rem;
+    font-weight: 600;
+}
+
+
+.hero-badge::after{   /* outline layer text color */
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--main-text);
+    clip-path: var(--slanted-shape);
+    z-index: -2;
+}
+
+.hero-badge::before{  /* fill layer, 2px smaller, background color */
+    content: "";
+    position: absolute;
+    inset: 0.14em;
+    background-color: var(--main-background);
+    clip-path: var(--slanted-shape);
+    z-index: -1;
+}
+
+
+
+.left-hero-buttons{
+    display: flex;
+}
+
+.hero-button{
+    background-color: var(--main-accent);
+    color: var(--main-text);
+    padding: 1.5rem;
+    clip-path: var(--slanted-shape);
+    font-weight: 600;
+    font-size: 1.2rem;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.hero-button:hover{
+    background-color: var(--accent-hover);
+}
+
+.hero-button:active{
+    background-color: var(--accent-active);
+}
+

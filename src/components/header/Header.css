@@ -1,5 +1,5 @@
 .header{
-    border-bottom: solid black 4px;
+    border-bottom: solid var(--main-text) 4px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -9,12 +9,15 @@
 }
 
 .left-header{
-    font-size: 2.5rem;
+    font-size: 1.75rem;
     font-weight: 1000;
     color: var(--main-text);
     display: flex;
     align-items: center;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
+
 
 .left-header .header-link{
     padding: 0.5rem 1.5rem;
@@ -46,6 +49,10 @@
 }
 
 @media(min-width: 800px){
+    .left-header{
+        font-size: 2.5rem;
+    }
+    
     .menu-toggle{
         display:none;
     }
@@ -111,7 +118,7 @@
 
 .contact{
     background-color: var(--main-accent);
-    color: var(--main-background);
+    color: var(--main-text);
     font-weight: 700;
     clip-path: var(--slanted-shape);
 }

@@ -11,6 +11,14 @@
     "ELSH" 0;
 }
 
+
+.geist-main {
+  font-family: "Geist", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
 *, *::before, *::after {
     box-sizing: border-box;
 }
