@@ -29,8 +29,12 @@ body {
     --secondary-text: #4d4d4d;
     --main-accent: #1e9e45;
 
-    --link-hover: #dcdcdc;
-    --link-active: #cecece;
+    --link-hover: #e6e4e4;
+    --link-active: #d2d1d1;
+    --accent-hover: #1a883b;
+    --accent-active: #187c36;
+
+    --slanted-shape: polygon(0.75rem 0%, 100% 0%, calc(100% - 0.75rem) 100%, 0% 100%);
 
 }
 
@@ -40,6 +44,9 @@ body {
     --main-text: #ffffff;
     --secondary-text: #b3b3b3;
     --main-accent: #1e9e45;
+
+    --link-hover: #1d1d1d;
+    --link-active: #343434;
 }
 
 
