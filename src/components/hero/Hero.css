@@ -108,7 +108,7 @@
     content: "";
     position: absolute;
     inset: 0.14em;
-    background-color: var(--main-background);
+    background-color: var(--main-card);
     clip-path: var(--slanted-shape);
     z-index: -1;
 }

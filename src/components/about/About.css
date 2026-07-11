@@ -135,7 +135,7 @@ a.about-table-badge:hover .about-badge-icon{
     content: "";
     position: absolute;
     inset: 3px;
-    background-color: var(--main-background);
+    background-color: var(--main-card);
     clip-path: var(--slanted-shape);
     z-index: -1;
 }

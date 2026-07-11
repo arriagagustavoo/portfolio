@@ -1,0 +1,111 @@
+.project-card{
+    background-color: var(--main-card);
+    border: 4px solid var(--main-text);
+    box-shadow: -6px 6px 0 var(--main-accent);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.card-top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.card-title{
+    background-color: var(--main-accent);
+    color: var(--main-text);
+    clip-path: var(--slanted-shape);
+    padding: .5rem 1rem;
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.card-github{
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .5rem 1rem;
+    color: var(--main-text);
+    text-decoration: none;
+}
+
+.card-github-icon{
+    font-size: 1.75rem;
+}
+
+.card-github::after{        /* outline layer */
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--main-text);
+    clip-path: var(--slanted-shape);
+    z-index: -2;
+}
+
+.card-github::before{       /* fill layer — the CARD color, not the page background */
+    content: "";
+    position: absolute;
+    inset: 3px;
+    background-color: var(--main-card);
+    clip-path: var(--slanted-shape);
+    z-index: -1;
+}
+
+.card-github:hover::before{
+    background-color: var(--main-accent);
+}
+
+.card-github:hover{
+    color: var(--main-card);
+}
+
+/*placeholder*/
+.card-photo{
+    aspect-ratio: 16 / 9;
+    background-color: var(--main-background);
+    background-image: var(--diagonal-texture);
+    border: 2px solid var(--secondary-text);
+}
+
+.card-photo img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.card-description{
+    color: var(--secondary-text);
+    font-size: 1.25rem;
+    font-weight: 400;
+}
+
+.card-skills{
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    margin-top: auto;
+}
+
+.card-skill-badge{
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    background-color: var(--main-text);
+    color: var(--main-card);
+    clip-path: var(--slanted-shape);
+    padding: .4rem 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.card-skill-icon{
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
