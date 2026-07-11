@@ -34,6 +34,7 @@
 @media(min-width: 800px){
     .hero{
         padding: 2rem;
+        padding-inline: var(--section-inset);
     }
 
     .left-hero-badges{

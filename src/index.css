@@ -52,6 +52,11 @@ html{
 
     --slanted-shape: polygon(0.75rem 0%, 100% 0%, calc(100% - 0.75rem) 100%, 0% 100%);
 
+    /* desktop only: content caps at --content-max-width and centers,
+       leftover space becomes even side padding. Never less than 3rem. */
+    --content-max-width: 1200px;
+    --section-inset: max(3rem, calc((100% - var(--content-max-width)) / 2));
+
     --texture-line: color-mix(in srgb, var(--main-accent) 10%, transparent);
 
     --diagonal-texture: repeating-linear-gradient(

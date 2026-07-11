@@ -4,7 +4,7 @@ function Hero(){
 
     return(
         <>
-        <div className = "hero" id = "#hero">
+        <div className = "hero" id = "hero">
             <div className = "hero-stripes" aria-hidden="true"></div>
 
             <div className = "left-hero-text">
