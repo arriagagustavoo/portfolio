@@ -4,7 +4,7 @@ function Hero(){
 
     return(
         <>
-        <div className = "hero">
+        <div className = "hero" id = "#hero">
             <div className = "hero-stripes" aria-hidden="true"></div>
 
             <div className = "left-hero-text">
@@ -15,7 +15,7 @@ function Hero(){
                     Gustavo <br></br>Arriaga
                 </p>
                 <p className = "intro-3">
-                    -Undergraduate Computer Science Student @ University of Houston <br/>
+                    -Undergrad Computer Science @ University of Houston <br/>
                     -Learning and working with every aspect Computer Science has to offer<br/>
                     -Open to any freelance work; always willing to refine my skills & services
                 </p>

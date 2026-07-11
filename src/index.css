@@ -28,6 +28,14 @@ body {
     font-family: "Geist Pixel", sans-serif;
 }
 
+html{
+    scroll-behavior: smooth;
+}
+
+#hero, #about, #projects, #skills, #services, #contact {
+    scroll-margin-top: 5rem;
+}
+
 
 /* default light mode */
 :root{
@@ -44,6 +52,14 @@ body {
 
     --slanted-shape: polygon(0.75rem 0%, 100% 0%, calc(100% - 0.75rem) 100%, 0% 100%);
 
+    --texture-line: color-mix(in srgb, var(--main-accent) 10%, transparent);
+
+    --diagonal-texture: repeating-linear-gradient(
+        45deg,
+        transparent 0 14px,
+        var(--texture-line) 14px 16px
+    );
+
 }
 
 [data-theme = 'dark']{
@@ -55,9 +71,12 @@ body {
 
     --link-hover: #1d1d1d;
     --link-active: #343434;
+
+    --texture-line: color-mix(in srgb, var(--main-accent) 14%, transparent);
 }
 
 
 p{
+    margin: 0;
     color: var(--main-text);
 }
