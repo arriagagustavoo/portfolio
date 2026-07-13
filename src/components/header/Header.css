@@ -110,8 +110,10 @@
     clip-path: var(--slanted-shape);
 }
 
-.header-link:hover{
-    background-color: var(--link-hover);
+@media(hover: hover){
+    .header-link:hover{
+        background-color: var(--link-hover);
+    }
 }
 
 .header-link:active{
@@ -125,8 +127,10 @@
     clip-path: var(--slanted-shape);
 }
 
-.contact:hover{
-    background-color: var(--accent-hover);
+@media(hover: hover){
+    .contact:hover{
+        background-color: var(--accent-hover);
+    }
 }
 
 .contact:active{

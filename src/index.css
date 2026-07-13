@@ -85,3 +85,7 @@ p{
     margin: 0;
     color: var(--main-text);
 }
+
+a, button{
+    -webkit-tap-highlight-color: transparent;
+}

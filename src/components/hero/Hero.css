@@ -130,8 +130,10 @@
     text-decoration: none;
 }
 
-.hero-button:hover{
-    background-color: var(--accent-hover);
+@media(hover: hover){
+    .hero-button:hover{
+        background-color: var(--accent-hover);
+    }
 }
 
 .hero-button:active{

@@ -1,10 +1,10 @@
 import "./ProjectCard.css"
 import GithubIcon from "../../icons/GithubIcon";
-import skillIcons from "../../icons/skillIcons"
+import skillIcons from "../../icons/skillIcons/skillIcons"
 
 function ProjectCard({title, repoUrl, description, skills}){
 
-    // projects without a repo show no github badge at all
+    // no repo = no github badge
     let githubBadge;
     if(repoUrl){
         githubBadge = (

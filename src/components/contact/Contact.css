@@ -1,0 +1,119 @@
+.contact-section{
+    background-color: var(--main-background);
+    background-image: var(--diagonal-texture);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 3rem 1rem;
+}
+
+.contact-headline{
+    color: var(--main-text);
+    font-family: Geist;
+    font-size: 4rem;
+    font-weight: 900;
+    line-height: .9;
+    letter-spacing: -0.05em;
+}
+
+.contact-headline-accent{
+    color: var(--main-accent);
+}
+
+.contact-columns{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.contact-column{
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+}
+
+.contact-column-title{
+    color: var(--main-accent);
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1;
+}
+
+.contact-link{
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    color: var(--main-text);
+    font-size: 1.15rem;
+    text-decoration: none;
+    width: fit-content;
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+@media(hover: hover){
+    .contact-link:hover{
+        color: var(--main-accent);
+    }
+}
+
+.contact-icon{
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.contact-toast{
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--main-accent);
+    color: var(--main-background);
+    clip-path: var(--slanted-shape);
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    z-index: 10;
+    animation: toast-in 200ms ease-out;
+}
+
+@keyframes toast-in{
+    from{
+        opacity: 0;
+        transform: translateX(-50%) translateY(1rem);
+    }
+    to{
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+@media(prefers-reduced-motion: reduce){
+    .contact-toast{
+        animation: none;
+    }
+}
+
+@media(min-width: 600px){
+    .contact-section{
+        padding: 4rem 2rem;
+        padding-inline: var(--section-inset);
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 3rem;
+    }
+
+    .contact-headline{
+        font-size: 5rem;
+    }
+
+    .contact-columns{
+        flex-direction: row;
+        gap: 3rem;
+    }
+}

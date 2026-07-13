@@ -110,16 +110,18 @@ a.about-table-badge{
     cursor: pointer;
 }
 
-a.about-table-badge:hover{
-    color: var(--main-background);
-}
+@media(hover: hover){
+    a.about-table-badge:hover{
+        color: var(--main-background);
+    }
 
-a.about-table-badge:hover::before{
-    background-color: var(--main-accent);
-}
+    a.about-table-badge:hover::before{
+        background-color: var(--main-accent);
+    }
 
-a.about-table-badge:hover .about-badge-icon{
-    color: var(--main-background);
+    a.about-table-badge:hover .about-badge-icon{
+        color: var(--main-background);
+    }
 }
 
 .about-table-badge::after{   /* green outline layer */

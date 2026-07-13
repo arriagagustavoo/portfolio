@@ -46,7 +46,7 @@ function About(){
             </div>
 
             <p className = "about-tag">
-                // Current obsessions
+                // Probably busy with
             </p>
 
             <div className = "about-showcase">

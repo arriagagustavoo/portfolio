@@ -57,12 +57,14 @@
     z-index: -1;
 }
 
-.card-github:hover::before{
-    background-color: var(--main-accent);
-}
+@media(hover: hover){
+    .card-github:hover::before{
+        background-color: var(--main-accent);
+    }
 
-.card-github:hover{
-    color: var(--main-card);
+    .card-github:hover{
+        color: var(--main-card);
+    }
 }
 
 /*placeholder*/
@@ -108,4 +110,8 @@
 .card-skill-icon{
     font-size: 1.25rem;
     flex-shrink: 0;
+    /* sizes the png logos like the svg ones */
+    width: 1em;
+    height: 1em;
+    object-fit: contain;
 }
