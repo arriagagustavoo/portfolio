@@ -90,7 +90,7 @@ p{
 a, button{
     -webkit-tap-highlight-color: transparent;
 }
-
+/*
 @keyframes fadeIn {
     from {
         opacity: 0;
