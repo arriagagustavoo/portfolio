@@ -14,7 +14,7 @@ function Header(){
         if(savedTheme){
             return savedTheme;
         }else{
-            return "light"
+            return "dark"
         }
     });
 
