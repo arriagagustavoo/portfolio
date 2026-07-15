@@ -14,7 +14,7 @@ function About(){
         <>
         <div className = "about" id = "about">
             <p className = "about-intro">
-                // About me
+                // Get to know me
             </p>
 
             <div className = "about-main">
@@ -27,7 +27,7 @@ function About(){
                         I'm Gustavo Arriaga, currently studying Comp Sci @ UH with a Capstone in Software Design.<br></br>
                         Playing video games, building custom PCs, and modding those games ate up all my free time growing up.<br></br>
                         Studying Computer Science was the obvious next step.<br></br>
-                        Diving into Software and getting hands-on learning experience only deepend that interest.<br></br>
+                        Diving into Software and getting hands-on learning experience only deepened that interest.<br></br>
                         Realizing I can turn creative ideas into digital or even physical products sparked a drive to learn any skill CS has to offer.<br></br>
                     </p>
                 </div>
@@ -46,7 +46,7 @@ function About(){
             </div>
 
             <p className = "about-tag">
-                // Probably busy with
+                // Some interest of mine
             </p>
 
             <div className = "about-showcase">
