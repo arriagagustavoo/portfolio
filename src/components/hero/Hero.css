@@ -76,7 +76,7 @@
     flex-direction: column;
     gap: 1rem;
     text-align: center;
-    font-size: 1.35rem;
+    font-size: 1.25rem;
     font-weight: 400;
 }
 
@@ -90,7 +90,7 @@
     isolation: isolate;
     background-color: transparent;
     color: var(--main-text);
-    padding: .85rem;
+    padding: .8rem;
     font-weight: 600;
 }
 
@@ -122,10 +122,10 @@
 .hero-button{
     background-color: var(--main-accent);
     color: var(--main-text);
-    padding: 1.5rem;
+    padding: 1.35rem;
     clip-path: var(--slanted-shape);
     font-weight: 600;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     cursor: pointer;
     text-decoration: none;
 }
