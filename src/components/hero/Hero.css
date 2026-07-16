@@ -31,18 +31,6 @@
     clip-path: polygon(18% 0%, 24% 0%, 122% 100%, 116% 100%);
 }
 
-@media(min-width: 800px){
-    .hero{
-        padding: 2rem;
-        padding-inline: var(--section-inset);
-    }
-
-    .left-hero-badges{
-        font-size: 1.5rem;
-    }
-}
-
-
 .left-hero-text{
     display: flex;
     flex-direction: column;
@@ -139,4 +127,25 @@
 .hero-button:active{
     background-color: var(--accent-active);
 }
+
+@media(min-width: 800px){
+    .hero{
+        padding: 2rem;
+        padding-inline: var(--section-inset);
+    }
+
+    .left-hero-badges{
+        font-size: 1.5rem;
+    }
+
+    .hero-badge{
+        padding: .95rem;
+    }
+
+    .hero-button{
+        padding: 1.5rem;
+        font-size: 1.6rem;
+    }
+}
+
 
