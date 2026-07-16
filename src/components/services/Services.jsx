@@ -16,11 +16,6 @@ const services = [
         tag: "Let's talk",
         title: "Open to Anything",
         description: "Reach out for any service listed or not listed.",
-    },
-    {
-        tag: "Service",
-        title: "Handyman",
-        description: "Labor unrelated to software. Houston area.",
     }
 ]
 
