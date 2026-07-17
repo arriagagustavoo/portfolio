@@ -2,6 +2,7 @@ import './App.css'
 import './index.css'
 
 import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/react'
 import Header from './components/header/Header'
 import Hero from './components/hero/Hero'
 import About from "./components/about/About"
@@ -24,6 +25,7 @@ function App() {
         <Contact/>
         <Footer/>
         <Analytics />
+        <SpeedInsights />
     </>
   )
 }
