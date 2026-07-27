@@ -30,8 +30,8 @@ const contactMeLinks = [
         copy: true,
     },
     {
-        label: "linkedin.com/in",
-        href: "https://linkedin.com/",
+        label: "linkedin.com/in/arriagagustavoo",
+        href: "https://www.linkedin.com/in/arriagagustavoo/",
         Icon: LinkedinIcon,
         copy: false,
     },

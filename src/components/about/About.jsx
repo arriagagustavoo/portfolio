@@ -7,6 +7,7 @@ import Weight from "../icons/Weight"
 import ThreeDModel from "../icons/ThreeDModel"
 import Hardware from "../icons/Hardware"
 import uhLogo from "../../assets/uh-logo.svg"
+import CodeIcon from "../icons/CodeIcon"
 
 function About(){
 
@@ -50,18 +51,10 @@ function About(){
             </p>
 
             <div className = "about-showcase">
-                <a className = "about-table-badge" href = "https://anilist.co/anime/21/ONE-PIECE" target = "_blank" rel = "noopener noreferrer">
-                    <Television className = "about-badge-icon"/>
-                    One Piece
-                </a>
-                <a className = "about-table-badge" href = "https://persona.atlus.com/series/portal/us/" target = "_blank" rel = "noopener noreferrer">
-                    <GameController className = "about-badge-icon"/>
-                    Persona
-                </a>
-                <a className = "about-table-badge" href = "https://www.square-enix-games.com/en_US/games/nier-automata" target = "_blank" rel = "noopener noreferrer">
-                    <GameController className = "about-badge-icon"/>
-                    Nier
-                </a>
+                <p className = "about-table-badge">
+                    <CodeIcon className = "about-badge-icon"/>
+                    Coding
+                </p>
                 <p className = "about-table-badge">
                     <Weight className = "about-badge-icon"/>
                     Fitness
@@ -74,6 +67,15 @@ function About(){
                     <Hardware className = "about-badge-icon"/>
                     Hardware
                 </p>
+                <p className = "about-table-badge" href = "https://persona.atlus.com/series/portal/us/" target = "_blank" rel = "noopener noreferrer">
+                    <GameController className = "about-badge-icon"/>
+                    Gaming
+                </p>
+                <p className = "about-table-badge" href = "https://anilist.co/anime/21/ONE-PIECE" target = "_blank" rel = "noopener noreferrer">
+                    <Television className = "about-badge-icon"/>
+                    Anime
+                </p>
+                
             </div>
 
         </div>
