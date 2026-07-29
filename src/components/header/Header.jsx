@@ -2,6 +2,10 @@ import './Header.css'
 import MenuIcon from '../icons/MenuIcon'
 import MoonIcon from '../icons/MoonIcon'
 import SunIcon from '../icons/SunIcon'
+import darkLogoLarge from '../../assets/dark-logo-large.svg'
+import darkLogoSmall from '../../assets/dark-logo-small.svg'
+import lightLogoLarge from '../../assets/light-logo-large.svg'
+import lightLogoSmall from '../../assets/light-logo-small.svg'
 import {useState, useEffect} from 'react'
 
 function Header(){
@@ -29,6 +33,16 @@ function Header(){
         navClassName = "nav nav-open";
     }
 
+    let logoLarge;
+    let logoSmall;
+    if(theme === "dark"){
+        logoLarge = darkLogoLarge;
+        logoSmall = darkLogoSmall;
+    }else{
+        logoLarge = lightLogoLarge;
+        logoSmall = lightLogoSmall;
+    }
+
     // determine what theme icon to show
     let modeIcon;
     if(theme === "light"){      //if light, show moon icon
@@ -54,7 +68,12 @@ function Header(){
         <>
         <div className = "header">
             <div className = "left-header">
-                <a className = "header-link" href = "#hero">Gustavo Arriaga</a>
+                <a className = "header-logo-link" href = "#hero">
+                    <picture key = {theme}>
+                        <source media = "(min-width: 1000px)" srcSet = {logoLarge}/>
+                        <img className = "header-logo" src = {logoSmall} alt = "Gustavo Arriaga"/>
+                    </picture>
+                </a>
             </div>
 
             <div className = "right-header">
