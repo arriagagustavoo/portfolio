@@ -2,7 +2,24 @@ import "./ProjectCard.css"
 import GithubIcon from "../../icons/GithubIcon";
 import skillIcons from "../../icons/skillIcons/skillIcons"
 
-function ProjectCard({title, repoUrl, description, skills}){
+function ProjectCard({title, images, repoUrl, description, skills, onOpenGallery}){
+
+    // no screenshots = plain placeholder, nothing to open
+    let photo;
+    if(images.length > 0){
+        photo = (
+            <button className = "card-photo card-photo-button" type = "button" onClick = {onOpenGallery} aria-label = {"View " + images.length + " screenshots of " + title}>
+                <span className = "card-photo-label">
+                    View Screenshots
+                </span>
+                <span className = "card-photo-count">
+                    {images.length}
+                </span>
+            </button>
+        );
+    }else{
+        photo = <div className = "card-photo"></div>;
+    }
 
     // no repo = no github badge
     let githubBadge;
@@ -46,9 +63,7 @@ function ProjectCard({title, repoUrl, description, skills}){
                 {githubBadge}
             </div>
 
-            <div className = "card-photo"> 
-
-            </div>
+            {photo}
 
             <div className = "card-description">
                 <p>

@@ -1,0 +1,236 @@
+/* same scrim in both themes */
+.lightbox-backdrop{
+    position: fixed;
+    inset: 0;
+    /* above the sticky header, which sits at 100 */
+    z-index: 200;
+    background-color: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    animation: lightbox-fade 150ms ease-out;
+}
+
+/* matches .project-card */
+.lightbox-panel{
+    background-color: var(--main-card);
+    border: 4px solid var(--main-text);
+    box-shadow: -6px 6px 0 var(--main-accent);
+    width: 100%;
+    max-width: var(--content-max-width);
+    max-height: 90dvh;
+    display: flex;
+    flex-direction: column;
+    animation: lightbox-rise 200ms ease-out;
+}
+
+.lightbox-header{
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    padding: 1rem;
+    border-bottom: 4px solid var(--main-text);
+    background-color: var(--main-card);
+    flex: 0 0 auto;
+}
+
+.lightbox-title{
+    background-color: var(--main-accent);
+    color: var(--main-text);
+    clip-path: var(--slanted-shape);
+    padding: .5rem 1rem;
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.lightbox-count{
+    color: var(--secondary-text);
+    font-size: 1rem;
+    /* pushes the close button to the far edge */
+    margin-right: auto;
+}
+
+.lightbox-close{
+    background-color: var(--main-text);
+    color: var(--main-card);
+    clip-path: var(--slanted-shape);
+    border: none;
+    padding: .5rem 1.25rem;
+    font-family: inherit;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+/* only this scrolls, header stays put */
+.lightbox-grid{
+    flex: 1 1 auto;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+    padding: 1rem;
+    background-color: var(--main-background);
+    background-image: var(--diagonal-texture);
+}
+
+.lightbox-figure{
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+/* button, not a div, so it's keyboard reachable */
+.lightbox-thumb{
+    padding: 0;
+    border: 3px solid var(--main-text);
+    background-color: var(--main-card);
+    display: block;
+    width: 100%;
+    cursor: zoom-in;
+    transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+
+.lightbox-image{
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+@media(hover: hover){
+    .lightbox-thumb:hover{
+        border-color: var(--main-accent);
+        box-shadow: -4px 4px 0 var(--main-accent);
+    }
+}
+
+/* ---- expanded single image ---- */
+
+.lightbox-zoom{
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    background-color: rgba(0, 0, 0, 0.94);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    animation: lightbox-fade 150ms ease-out;
+}
+
+.lightbox-zoom-bar{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex: 0 0 auto;
+}
+
+.lightbox-zoom-count{
+    background-color: var(--main-accent);
+    color: var(--main-text);
+    clip-path: var(--slanted-shape);
+    padding: .4rem 1.25rem;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.lightbox-zoom-image{
+    flex: 1 1 auto;
+    min-height: 0;
+    max-width: 100%;
+    object-fit: contain;
+    border: 3px solid var(--main-text);
+    background-color: var(--main-card);
+}
+
+.lightbox-zoom-footer{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex: 0 0 auto;
+}
+
+.lightbox-zoom-caption{
+    color: var(--secondary-text);
+    font-size: .9rem;
+    text-align: center;
+    /* caption gives way first when space is tight */
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.lightbox-nav{
+    background-color: var(--main-text);
+    color: var(--main-card);
+    clip-path: var(--slanted-shape);
+    border: none;
+    padding: .5rem 1.25rem;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+@media(hover: hover){
+    .lightbox-nav:hover{
+        background-color: var(--main-accent);
+        color: var(--main-text);
+    }
+}
+
+.lightbox-caption{
+    color: var(--secondary-text);
+    font-size: .9rem;
+    line-height: 1.4;
+}
+
+@keyframes lightbox-fade{
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes lightbox-rise{
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@media(hover: hover){
+    .lightbox-close:hover{
+        background-color: var(--main-accent);
+        color: var(--main-text);
+    }
+}
+
+@media(min-width: 800px){
+    .lightbox-backdrop{
+        padding: 2rem;
+    }
+
+    .lightbox-grid{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 2rem;
+        padding: 2rem;
+    }
+
+    .lightbox-header{
+        padding: 1rem 2rem;
+    }
+}
+
+@media(prefers-reduced-motion: reduce){
+    .lightbox-backdrop,
+    .lightbox-panel,
+    .lightbox-zoom{
+        animation: none;
+    }
+}
