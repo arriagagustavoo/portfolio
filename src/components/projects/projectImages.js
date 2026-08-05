@@ -25,6 +25,13 @@ import qsAdminReportsCSV from "../../assets/projects/queuesmart/Admin-ReportsCSV
 import qsAdminReportsPDF from "../../assets/projects/queuesmart/Admin-ReportsPDF.webp"
 import qsAdminFeedback from "../../assets/projects/queuesmart/Admin-Feedback.webp"
 
+// maze game
+import mgStart from "../../assets/projects/mazegame/maze-start.png"
+import mgBluePower from "../../assets/projects/mazegame/blue-power.gif"
+import mgGreenPower from "../../assets/projects/mazegame/green-power.gif"
+import mgPinkTrap from "../../assets/projects/mazegame/pink-trap.gif"
+import mgRedTrap from "../../assets/projects/mazegame/red-trap.gif"
+
 // order shown in the grid
 export const queueSmartImages = [
     { src: qsLogin, alt: "Login screen with email and password fields" },
@@ -47,4 +54,12 @@ export const queueSmartImages = [
     { src: qsAdminReportsCSV, alt: "Report exported to CSV and opened in a spreadsheet" },
     { src: qsAdminReportsPDF, alt: "Report exported as a PDF document" },
     { src: qsAdminFeedback, alt: "Admin feedback view with all submissions and average rating" },
+]
+
+export const mazeGameImages = [
+    { src: mgStart, alt: "Starting view of a randomly generated 3D maze" },
+    { src: mgBluePower, alt: "Blue speed boost power-up increasing player movement" },
+    { src: mgGreenPower, alt: "Green high jump power-up giving a birds-eye view of the maze" },
+    { src: mgRedTrap, alt: "Red slow trap reducing player movement" },
+    { src: mgPinkTrap, alt: "Pink spin trap rotating the camera to disorient the player" },
 ]

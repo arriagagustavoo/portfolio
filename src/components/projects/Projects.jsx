@@ -1,6 +1,6 @@
 import ProjectCard from "./projectCards/ProjectCard";
 import Lightbox from "./lightbox/Lightbox";
-import { queueSmartImages } from "./projectImages";
+import { queueSmartImages, mazeGameImages } from "./projectImages";
 import { useState } from "react";
 import "./Projects.css"
 
@@ -11,7 +11,7 @@ const projects = [
         repoUrl: "https://github.com/arriagagustavoo/Interactive-Maze-Game",
         description: "Fully 3D interactive game built using python openGL. Custom algorithm used for randomly generated mazes.",
         skills: ["Python", "OpenGL"],
-        images: [],
+        images: mazeGameImages,
     },
     {
         title: "QueueSmart",
