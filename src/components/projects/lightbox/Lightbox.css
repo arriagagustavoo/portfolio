@@ -141,10 +141,15 @@
     font-weight: 600;
 }
 
+/* flex-grow 0 so small images stay their own size instead of being blown up
+   to fill the height. shrink still applies, so big ones fit. */
 .lightbox-zoom-image{
-    flex: 1 1 auto;
+    flex: 0 1 auto;
     min-height: 0;
+    width: auto;
+    height: auto;
     max-width: 100%;
+    max-height: 100%;
     object-fit: contain;
     border: 3px solid var(--main-text);
     background-color: var(--main-card);
