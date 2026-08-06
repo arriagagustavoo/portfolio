@@ -12,6 +12,7 @@ const projects = [
         description: "Fullstack website. Fully fleshed out functionality for both users and admins. Authentication, real-time interations and database storage.",
         skills: ["React", "Vite", "Express", "Node.js", "MongoDB", "npm"],
         images: queueSmartImages,
+        cover: queueSmartImages[9],
     },
     {
         title: "Freelance Document System",
@@ -19,6 +20,7 @@ const projects = [
         description: "Proposal, contract, and invoice templates that share one dataset. Client details and amounts are typed once and carry across all three, with autosave and print-ready PDF output.",
         skills: ["Figma", "JavaScript", "HTML", "CSS"],
         images: documentSystemImages,
+        cover: documentSystemImages[2],
     },
     {
         title: "RideShare",
@@ -26,6 +28,7 @@ const projects = [
         description: "Fullstack GUI to simulate Relational SQL Database use through transactions and bookings",
         skills: ["PostgreSQL", "Express", "JavaScript", "HTML", "CSS"],
         images: rideShareImages,
+        cover: rideShareImages[1],
     },
     {
         title: "3D Interactive Maze Game",
@@ -47,6 +50,7 @@ const projects = [
         description: "Matlab GUI to simulate a digital MRI through unique parameters and values",
         skills: ["MATLAB"],
         images: mriScannerImages,
+        cover: mriScannerImages[1],
     },
 ]
 
@@ -70,6 +74,7 @@ function Projects(){
                 key = {project.title}
                 title = {project.title}
                 images = {project.images}
+                cover = {project.cover}
                 repoUrl = {project.repoUrl}
                 description = {project.description}
                 skills = {project.skills}

@@ -2,18 +2,31 @@ import "./ProjectCard.css"
 import GithubIcon from "../../icons/GithubIcon";
 import skillIcons from "../../icons/skillIcons/skillIcons"
 
-function ProjectCard({title, images, repoUrl, description, skills, onOpenGallery}){
+function ProjectCard({title, images, cover, repoUrl, description, skills, onOpenGallery}){
 
     // no screenshots = plain placeholder, nothing to open
     let photo;
     if(images.length > 0){
+        // the gallery's first shot is rarely the best thumbnail
+        let coverImage;
+        if(cover){
+            coverImage = cover;
+        }else{
+            coverImage = images[0];
+        }
+
         photo = (
             <button className = "card-photo card-photo-button" type = "button" onClick = {onOpenGallery} aria-label = {"View " + images.length + " screenshots of " + title}>
-                <span className = "card-photo-label">
-                    View Screenshots
+                <img className = "card-photo-img" src = {coverImage.src} alt = {coverImage.alt} loading = "lazy"/>
+
+                <span className = "card-photo-tag">
+                    {images.length} shots
                 </span>
-                <span className = "card-photo-count">
-                    {images.length}
+
+                <span className = "card-photo-wipe">
+                    <span className = "card-photo-wipe-label">
+                        View Gallery
+                    </span>
                 </span>
             </button>
         );

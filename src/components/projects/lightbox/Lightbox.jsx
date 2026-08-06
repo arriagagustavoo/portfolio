@@ -109,29 +109,33 @@ function Lightbox({ title, images, onClose }){
             <div className = "lightbox-zoom" onClick = {handleZoomBackdropClick} role = "dialog" aria-modal = "true" aria-label = {zoomed.alt}>
 
                 <div className = "lightbox-zoom-bar">
-                    <p className = "lightbox-zoom-count">
-                        {zoomedIndex + 1} / {images.length}
-                    </p>
-
                     <button className = "lightbox-close" type = "button" onClick = {handleZoomClose} aria-label = "Close expanded image">
                         ✕
                     </button>
                 </div>
 
-                <img className = "lightbox-zoom-image" src = {zoomed.src} alt = {zoomed.alt}/>
+                <div className = "lightbox-zoom-stage">
+                    <img className = "lightbox-zoom-image" src = {zoomed.src} alt = {zoomed.alt}/>
 
-                <div className = "lightbox-zoom-footer">
-                    <button className = "lightbox-nav" type = "button" onClick = {showPrevious} aria-label = "Previous screenshot">
-                        ‹ Prev
-                    </button>
+                    <div className = "lightbox-zoom-footer">
+                        <p className = "lightbox-zoom-caption">
+                            {zoomed.alt}
+                        </p>
 
-                    <p className = "lightbox-zoom-caption">
-                        {zoomed.alt}
-                    </p>
+                        <div className = "lightbox-zoom-nav">
+                            <button className = "lightbox-nav" type = "button" onClick = {showPrevious} aria-label = "Previous screenshot">
+                                ‹ Prev
+                            </button>
 
-                    <button className = "lightbox-nav" type = "button" onClick = {showNext} aria-label = "Next screenshot">
-                        Next ›
-                    </button>
+                            <p className = "lightbox-zoom-count">
+                                {zoomedIndex + 1} / {images.length}
+                            </p>
+
+                            <button className = "lightbox-nav" type = "button" onClick = {showNext} aria-label = "Next screenshot">
+                                Next ›
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
             </div>

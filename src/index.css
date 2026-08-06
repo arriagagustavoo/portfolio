@@ -53,6 +53,11 @@ html{
 
     --slanted-shape: polygon(0.75rem 0%, 100% 0%, calc(100% - 0.75rem) 100%, 0% 100%);
 
+    /* lightbox scrims. must follow the theme — the nav buttons are
+       --main-text, so a black scrim in light mode hides them. */
+    --overlay-scrim: rgba(215, 215, 215, 0.88);
+    --overlay-scrim-strong: rgba(228, 228, 228, 0.96);
+
     /* desktop only: content caps at --content-max-width and centers,
        leftover space becomes even side padding. Never less than 3rem. */
     --content-max-width: 1200px;
@@ -79,6 +84,9 @@ html{
     --link-active: #343434;
 
     --texture-line: color-mix(in srgb, var(--main-accent) 14%, transparent);
+
+    --overlay-scrim: rgba(0, 0, 0, 0.85);
+    --overlay-scrim-strong: rgba(0, 0, 0, 0.94);
 }
 
 
