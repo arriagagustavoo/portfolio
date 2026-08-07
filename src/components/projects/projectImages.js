@@ -25,6 +25,9 @@ import qsAdminReportsCSV from "../../assets/projects/queuesmart/Admin-ReportsCSV
 import qsAdminReportsPDF from "../../assets/projects/queuesmart/Admin-ReportsPDF.webp"
 import qsAdminFeedback from "../../assets/projects/queuesmart/Admin-Feedback.webp"
 
+// cover art, deliberately not in the gallery array
+import qsCover from "../../assets/projects/queuesmart/QueueSmart-cover.webp"
+
 // maze game
 import mgStart from "../../assets/projects/mazegame/maze-start.png"
 import mgBluePower from "../../assets/projects/mazegame/blue-power.gif"
@@ -32,9 +35,13 @@ import mgGreenPower from "../../assets/projects/mazegame/green-power.gif"
 import mgPinkTrap from "../../assets/projects/mazegame/pink-trap.gif"
 import mgRedTrap from "../../assets/projects/mazegame/red-trap.gif"
 
+import mgCover from "../../assets/projects/mazegame/Labyrinth-cover.webp"
+
 // rideshare
 import rsEmpty from "../../assets/projects/rideshare/Page-empty.webp"
 import rsFilled from "../../assets/projects/rideshare/Page-filled.webp"
+
+import rsCover from "../../assets/projects/rideshare/RideShare-cover.webp"
 
 // unity game
 import ugScene from "../../assets/projects/unitygame/Scene.png"
@@ -46,11 +53,15 @@ import ugEnemyIdle from "../../assets/projects/unitygame/Arriaga_Gustavo_EC_I.gi
 import ugEnemyMove from "../../assets/projects/unitygame/Arriaga_Gustavo_EC_M.gif"
 import ugEnemyAttack from "../../assets/projects/unitygame/Arriaga_Gustavo_EC_A.gif"
 
+import ugCover from "../../assets/projects/unitygame/Faceoff-cover.webp"
+
 // mri scanner
 import mriHomeRect from "../../assets/projects/mriScanner/home-rectangle.png"
 import mriRectCartesian from "../../assets/projects/mriScanner/rectangle-cartesian.png"
 import mriHomeCircle from "../../assets/projects/mriScanner/home-circle.png"
 import mriCircleRadial from "../../assets/projects/mriScanner/circle-radial.png"
+
+import mriCover from "../../assets/projects/mriScanner/MRI-cover.webp"
 
 // freelance document system
 import docPortal1 from "../../assets/projects/documents/Portal_page-0001.jpg"
@@ -61,6 +72,10 @@ import docContract1 from "../../assets/projects/documents/Contract_page-0001.jpg
 import docContract2 from "../../assets/projects/documents/Contract_page-0002.jpg"
 import docInvoice1 from "../../assets/projects/documents/Invoice_page-0001.jpg"
 import docInvoice2 from "../../assets/projects/documents/Invoice_page-0002.jpg"
+
+import docCover from "../../assets/projects/documents/Bracketed-cover.webp"
+
+export const queueSmartCover = { src: qsCover, alt: "QueueSmart title card reading 'smarter way to wait in line'" }
 
 // order shown in the grid
 export const queueSmartImages = [
@@ -86,6 +101,8 @@ export const queueSmartImages = [
     { src: qsAdminFeedback, alt: "Admin feedback view with all submissions and average rating" },
 ]
 
+export const mazeGameCover = { src: mgCover, alt: "Labyrinth title card reading 'Lost in space. Try and escape the labyrinth.'" }
+
 export const mazeGameImages = [
     { src: mgStart, alt: "Starting view of a randomly generated 3D maze" },
     { src: mgBluePower, alt: "Blue speed boost power-up increasing player movement" },
@@ -94,10 +111,14 @@ export const mazeGameImages = [
     { src: mgPinkTrap, alt: "Pink spin trap rotating the camera to disorient the player" },
 ]
 
+export const rideShareCover = { src: rsCover, alt: "RideShare title card reading 'Reliable booking. Safe travels.'" }
+
 export const rideShareImages = [
     { src: rsEmpty, alt: "Booking page before any rides have been entered" },
     { src: rsFilled, alt: "Booking page populated with ride and transaction data" },
 ]
+
+export const unityGameCover = { src: ugCover, alt: "Faceoff title card reading 'frame-by-frame', with the two characters facing off" }
 
 // gameplay first, then the hand-drawn animation cycles
 export const unityGameImages = [
@@ -111,6 +132,8 @@ export const unityGameImages = [
     { src: ugEnemyAttack, alt: "Enemy character attack animation" },
 ]
 
+export const mriScannerCover = { src: mriCover, alt: "MRI Scanner title card reading 'Matlab GUI. Custom data. Accurate results.'" }
+
 // each phantom shown as setup then reconstruction
 export const mriScannerImages = [
     { src: mriHomeRect, alt: "Scanner GUI with the rectangle phantom and Cartesian acquisition set up" },
@@ -118,6 +141,8 @@ export const mriScannerImages = [
     { src: mriHomeCircle, alt: "Scanner GUI with the circle phantom and radial acquisition set up" },
     { src: mriCircleRadial, alt: "Circle phantom, radial reconstruction, and difference map with signal profiles" },
 ]
+
+export const documentSystemCover = { src: docCover, alt: "Bracketed title card reading 'Fill the brackets. Skip the paperwork.'" }
 
 export const documentSystemImages = [
     { src: docPortal1, alt: "Document portal home menu, page 1" },

@@ -1,6 +1,6 @@
 import ProjectCard from "./projectCards/ProjectCard";
 import Lightbox from "./lightbox/Lightbox";
-import { queueSmartImages, mazeGameImages, rideShareImages, unityGameImages, mriScannerImages, documentSystemImages } from "./projectImages";
+import { queueSmartImages, queueSmartCover, mazeGameImages, mazeGameCover, rideShareImages, rideShareCover, unityGameImages, unityGameCover, mriScannerImages, mriScannerCover, documentSystemImages, documentSystemCover } from "./projectImages";
 import { useState } from "react";
 import "./Projects.css"
 
@@ -12,7 +12,7 @@ const projects = [
         description: "Fullstack website. Fully fleshed out functionality for both users and admins. Authentication, real-time interations and database storage.",
         skills: ["React", "Vite", "Express", "Node.js", "MongoDB", "npm"],
         images: queueSmartImages,
-        cover: queueSmartImages[9],
+        cover: queueSmartCover,
     },
     {
         title: "Freelance Document System",
@@ -20,7 +20,7 @@ const projects = [
         description: "Proposal, contract, and invoice templates that share one dataset. Client details and amounts are typed once and carry across all three, with autosave and print-ready PDF output.",
         skills: ["Figma", "JavaScript", "HTML", "CSS"],
         images: documentSystemImages,
-        cover: documentSystemImages[2],
+        cover: documentSystemCover,
     },
     {
         title: "RideShare",
@@ -28,7 +28,7 @@ const projects = [
         description: "Fullstack GUI to simulate Relational SQL Database use through transactions and bookings",
         skills: ["PostgreSQL", "Express", "JavaScript", "HTML", "CSS"],
         images: rideShareImages,
-        cover: rideShareImages[1],
+        cover: rideShareCover,
     },
     {
         title: "3D Interactive Maze Game",
@@ -36,6 +36,7 @@ const projects = [
         description: "Fully 3D interactive game built using python openGL. Custom algorithm used for randomly generated mazes.",
         skills: ["Python", "OpenGL"],
         images: mazeGameImages,
+        cover: mazeGameCover,
     },
     {
         title: "2D Unity Game",
@@ -43,6 +44,7 @@ const projects = [
         description: "Original characters and custom assets. Animations drawn frame-by-frame and put into Unity Game engine and uses keyboard controls.",
         skills: ["Unity", "Clip Studio Paint"],
         images: unityGameImages,
+        cover: unityGameCover,
     },
     {
         title: "MRI Scanner",
@@ -50,7 +52,7 @@ const projects = [
         description: "Matlab GUI to simulate a digital MRI through unique parameters and values",
         skills: ["MATLAB"],
         images: mriScannerImages,
-        cover: mriScannerImages[1],
+        cover: mriScannerCover,
     },
 ]
 
