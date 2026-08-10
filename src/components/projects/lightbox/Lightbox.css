@@ -1,0 +1,262 @@
+.lightbox-backdrop{
+    position: fixed;
+    inset: 0;
+    /* above the sticky header, which sits at 100 */
+    z-index: 200;
+    background-color: var(--overlay-scrim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    animation: lightbox-fade 150ms ease-out;
+}
+
+/* matches .project-card */
+.lightbox-panel{
+    background-color: var(--main-card);
+    border: 4px solid var(--main-text);
+    box-shadow: -6px 6px 0 var(--main-accent);
+    width: 100%;
+    max-width: var(--content-max-width);
+    max-height: 90dvh;
+    display: flex;
+    flex-direction: column;
+    animation: lightbox-rise 200ms ease-out;
+}
+
+.lightbox-header{
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    padding: 1rem;
+    border-bottom: 4px solid var(--main-text);
+    background-color: var(--main-card);
+    flex: 0 0 auto;
+}
+
+.lightbox-title{
+    background-color: var(--main-accent);
+    color: var(--main-text);
+    clip-path: var(--slanted-shape);
+    padding: .5rem 1rem;
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.lightbox-count{
+    color: var(--secondary-text);
+    font-size: 1rem;
+    /* pushes the close button to the far edge */
+    margin-right: auto;
+}
+
+.lightbox-close{
+    background-color: var(--main-text);
+    color: var(--main-card);
+    clip-path: var(--slanted-shape);
+    border: none;
+    padding: .5rem 1.25rem;
+    font-family: inherit;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+/* only this scrolls, header stays put */
+.lightbox-grid{
+    flex: 1 1 auto;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+    padding: 1rem;
+    background-color: var(--main-background);
+    background-image: var(--diagonal-texture);
+}
+
+.lightbox-figure{
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+/* button, not a div, so it's keyboard reachable */
+.lightbox-thumb{
+    padding: 0;
+    border: 3px solid var(--main-text);
+    background-color: var(--main-card);
+    display: block;
+    width: 100%;
+    cursor: zoom-in;
+    transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+
+.lightbox-image{
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+@media(hover: hover){
+    .lightbox-thumb:hover{
+        border-color: var(--main-accent);
+        box-shadow: -4px 4px 0 var(--main-accent);
+    }
+}
+
+/* ---- expanded single image ---- */
+
+.lightbox-zoom{
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    background-color: var(--overlay-scrim-strong);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    animation: lightbox-fade 150ms ease-out;
+}
+
+.lightbox-zoom-bar{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex: 0 0 auto;
+}
+
+.lightbox-zoom-count{
+    background-color: var(--main-accent);
+    color: var(--main-text);
+    clip-path: var(--slanted-shape);
+    padding: .4rem 1.25rem;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+/* image + its controls as one block. fit-content means the stage is exactly
+   as wide as the image, so the footer inside lines up with the image edges.
+   margin-block auto centres the whole group, keeping controls near the image
+   instead of pinned to the bottom of the screen. */
+.lightbox-zoom-stage{
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+    width: fit-content;
+    max-width: 100%;
+    min-height: 0;
+    margin-block: auto;
+}
+
+/* flex-grow 0 so small images stay their own size instead of being blown up
+   to fill the height. the dvh cap leaves room for the bar and the controls. */
+.lightbox-zoom-image{
+    flex: 0 1 auto;
+    min-height: 0;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: calc(100dvh - 13rem);
+    object-fit: contain;
+    border: 3px solid var(--main-text);
+    background-color: var(--main-card);
+}
+
+.lightbox-zoom-footer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5rem;
+    flex: 0 0 auto;
+}
+
+.lightbox-zoom-caption{
+    color: var(--secondary-text);
+    font-size: .9rem;
+    text-align: center;
+}
+
+/* spans the stage, which is the image width — so the buttons sit under the
+   image edges rather than the far corners of the viewport. */
+.lightbox-zoom-nav{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.lightbox-nav{
+    background-color: var(--main-text);
+    color: var(--main-card);
+    clip-path: var(--slanted-shape);
+    border: none;
+    /* ~44px tall, the usual minimum for a comfortable tap target. rem is
+       ~15px on a narrow phone because of the min() on html font-size. */
+    padding: .85rem 1.5rem;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+@media(hover: hover){
+    .lightbox-nav:hover{
+        background-color: var(--main-accent);
+        color: var(--main-text);
+    }
+}
+
+.lightbox-caption{
+    color: var(--secondary-text);
+    font-size: .9rem;
+    line-height: 1.4;
+}
+
+@keyframes lightbox-fade{
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes lightbox-rise{
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@media(hover: hover){
+    .lightbox-close:hover{
+        background-color: var(--main-accent);
+        color: var(--main-text);
+    }
+}
+
+@media(min-width: 800px){
+    .lightbox-backdrop{
+        padding: 2rem;
+    }
+
+    .lightbox-grid{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 2rem;
+        padding: 2rem;
+    }
+
+    .lightbox-header{
+        padding: 1rem 2rem;
+    }
+}
+
+@media(prefers-reduced-motion: reduce){
+    .lightbox-backdrop,
+    .lightbox-panel,
+    .lightbox-zoom{
+        animation: none;
+    }
+}
