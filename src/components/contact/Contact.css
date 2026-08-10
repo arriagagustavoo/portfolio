@@ -103,6 +103,9 @@
         padding: 4rem 2rem;
         padding-inline: var(--section-inset);
         flex-direction: row;
+        /* flex items won't shrink below their content, so without wrapping the
+           row overflows the viewport between 600 and ~1000px */
+        flex-wrap: wrap;
         align-items: center;
         justify-content: space-between;
         gap: 3rem;
@@ -114,6 +117,7 @@
 
     .contact-columns{
         flex-direction: row;
+        flex-wrap: wrap;
         gap: 3rem;
     }
 }

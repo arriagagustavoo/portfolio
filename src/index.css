@@ -63,6 +63,10 @@ html{
     --content-max-width: 1200px;
     --section-inset: max(3rem, calc((100% - var(--content-max-width)) / 2));
 
+    /* fallback only — Header.jsx measures the real header and overwrites this.
+       which child is tallest changes across breakpoints, so it can't be derived */
+    --header-height: 4.75rem;
+
     --texture-line: color-mix(in srgb, var(--main-accent) 10%, transparent);
 
     --diagonal-texture: repeating-linear-gradient(

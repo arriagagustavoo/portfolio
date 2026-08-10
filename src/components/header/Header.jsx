@@ -6,11 +6,12 @@ import darkLogoLarge from '../../assets/dark-logo-large.svg'
 import darkLogoSmall from '../../assets/dark-logo-small.svg'
 import lightLogoLarge from '../../assets/light-logo-large.svg'
 import lightLogoSmall from '../../assets/light-logo-small.svg'
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useRef} from 'react'
 
 function Header(){
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const headerRef = useRef(null);
 
     // should save theme to local storage
     const [theme, setTheme] = useState(() => {
@@ -26,6 +27,24 @@ function Header(){
         document.documentElement.setAttribute('data-theme', theme);
         localStorage.setItem("theme", theme)
     }, [theme]);
+
+    // the hero sizes itself off the header, and which child is tallest
+    // changes across breakpoints, so publish the real height instead of guessing
+    useEffect(() => {
+        const header = headerRef.current;
+        if(!header){
+            return;
+        }
+
+        const observer = new ResizeObserver(() => {
+            const height = header.getBoundingClientRect().height;
+            document.documentElement.style.setProperty('--header-height', `${height}px`);
+        });
+
+        observer.observe(header);
+
+        return () => observer.disconnect();
+    }, []);
 
     // determine burger menu icon class (active/inactive)
     let navClassName = "nav";
@@ -66,7 +85,7 @@ function Header(){
 
     return(
         <>
-        <div className = "header">
+        <div className = "header" ref = {headerRef}>
             <div className = "left-header">
                 <a className = "header-logo-link" href = "#hero">
                     <picture key = {theme}>
