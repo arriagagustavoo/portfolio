@@ -1,7 +1,9 @@
 .hero{
     /* one knob for the whole hero: capped by width so it goes near edge-to-edge,
-       and by height so short phones scale down instead of overflowing */
-    --hero-unit: min(21px, 5.1vw, 2.3svh);
+       and by height so short phones scale down instead of overflowing.
+       lvh not svh — svh is the height with mobile browser chrome showing, which
+       made the height term win on a real iPhone and squeezed the column narrow */
+    --hero-unit: min(21px, 5.1vw, 2.4lvh);
 
     border-bottom: solid var(--main-text) 4px;
     background-color: var(--main-background);
