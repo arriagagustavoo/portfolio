@@ -226,6 +226,10 @@
     margin-bottom: 0.55em;
     font-size: 1.8em;
     letter-spacing: 0.03em;
+    /* height is the only axis left — the row has ~5px of width headroom. anchored
+       top so it grows into the gap below instead of into Arriaga's descenders */
+    transform: scaleY(1.35);
+    transform-origin: top;
 }
 
 /* the stacked cascade pins each word to an edge; in a row that would push
@@ -243,7 +247,7 @@
 .hero-buttons{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 1em;
 }
 
@@ -265,7 +269,6 @@
 .hero-button-secondary{
     position: relative;
     isolation: isolate;
-    margin-left: 1.34em;
     background-color: transparent;
     color: var(--main-text);
 }
@@ -423,10 +426,6 @@
 
     .hero-button{
         font-size: 1.5em;
-    }
-
-    .hero-button-secondary{
-        margin-left: 0;
     }
 
     /* every line right-aligned so the periods stack */
