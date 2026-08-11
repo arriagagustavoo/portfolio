@@ -11,9 +11,9 @@
     background-image: var(--section-texture);
     display: flex;
     flex-direction: column;
-    padding: 0.6rem;
-    /* hero fills exactly what the sticky header leaves behind */
-    min-height: calc(100dvh - var(--header-height));
+    /* no min-height on mobile: the hero is as tall as its content, so the space
+       under the buttons is padding-bottom and not leftover viewport */
+    padding: 1.6rem 0.6rem 2.8rem;
     position: relative;
     isolation: isolate;
     overflow: hidden;
@@ -53,6 +53,25 @@
     color: var(--main-text);
     font-size: 1.25em;
     font-weight: 400;
+}
+
+/* mobile: eyebrow left, badge right. at full size the badge was 87% of the
+   column on its own row — beside the eyebrow it has ~208px to live in */
+.hero-eyebrow-row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5em;
+}
+
+/* 0.7em not 0.8em: 0.8 overflows the row on a 360px phone */
+.hero-status-inline{
+    font-size: 0.7em;
+    white-space: nowrap;
+}
+
+.hero-status-solo{
+    display: none;
 }
 
 .hero-status-dot{
@@ -326,6 +345,9 @@
         --hero-unit: min(30px, calc((100vw - 7rem) / 68), 2.15svh);
         --hero-edge: 3rem;
         padding: min(1.25rem, 1.8svh) 0;
+        /* desktop keeps filling the screen — the grid's align-content needs the
+           spare height to distribute its rows */
+        min-height: calc(100dvh - var(--header-height));
     }
 
     /* matching insets both sides; the status spans the whole grid so it centres
@@ -353,6 +375,19 @@
         grid-column: full-start / full-end;
         justify-self: center;
         font-size: 1.05em;
+    }
+
+    .hero-status-solo{
+        display: flex;
+    }
+
+    .hero-status-inline{
+        display: none;
+    }
+
+    /* the row wrapper only exists for the mobile pairing */
+    .hero-eyebrow-row{
+        display: block;
     }
 
     .hero-intro{

@@ -8,6 +8,16 @@ const services = [
     '3D Models & Prints'
 ]
 
+// desktop centres this on its own row, mobile sits it beside the eyebrow —
+// different parents, so it renders twice and CSS hides one
+const status = (
+    <>
+        <span className = "hero-status-dot" aria-hidden="true"></span>
+        Available for Work
+        <span className = "hero-status-dot" aria-hidden="true"></span>
+    </>
+)
+
 // mobile puts this inline under the name, desktop stacks it in the right
 // column — different parents, so it renders twice and CSS hides one
 const motto = (
@@ -24,16 +34,20 @@ function Hero(){
         <div className = "hero" id = "hero">
             <div className = "hero-inner">
 
-                <p className = "hero-status">
-                    <span className = "hero-status-dot" aria-hidden="true"></span>
-                    Available for Work
-                    <span className = "hero-status-dot" aria-hidden="true"></span>
+                <p className = "hero-status hero-status-solo">
+                    {status}
                 </p>
 
                 <div className = "hero-intro">
-                    <p className = "intro-1">
-                        // Hey, I&apos;m
-                    </p>
+                    <div className = "hero-eyebrow-row">
+                        <p className = "intro-1">
+                            // Hey, I&apos;m
+                        </p>
+
+                        <p className = "hero-status hero-status-inline">
+                            {status}
+                        </p>
+                    </div>
 
                     <p className = "intro-2">
                         Gustavo <br></br>Arriaga
