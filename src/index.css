@@ -75,6 +75,14 @@ html{
         var(--texture-line) 14px 16px
     );
 
+    /* every page section reads its surface from these three, so the page
+       background, texture and divider each change in one place.
+       aliases only — they resolve through the theme-aware values above, so
+       they must NOT be redeclared in the dark block */
+    --section-background: var(--main-background);
+    --section-texture: var(--diagonal-texture);
+    --section-divider: solid var(--main-text) 4px;
+
 }
 
 [data-theme = 'dark']{

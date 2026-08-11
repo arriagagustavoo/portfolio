@@ -8,6 +8,16 @@ const services = [
     '3D Models & Prints'
 ]
 
+// mobile puts this inline under the name, desktop stacks it in the right
+// column — different parents, so it renders twice and CSS hides one
+const motto = (
+    <>
+        <span className = "motto-design">Design.</span>
+        <span className = "motto-build">Build.</span>
+        <span className = "motto-ship">Ship.</span>
+    </>
+)
+
 function Hero(){
 
     return(
@@ -29,6 +39,10 @@ function Hero(){
                         Gustavo <br></br>Arriaga
                     </p>
 
+                    <p className = "hero-motto hero-motto-inline">
+                        {motto}
+                    </p>
+
                     <ul className = "hero-services">
                         {services.map((service) => (
                             <li key = {service}>{service}</li>
@@ -48,10 +62,8 @@ function Hero(){
                     </div>
                 </div>
 
-                <p className = "hero-motto">
-                    <span className = "motto-design">Design.</span>
-                    <span className = "motto-build">Build.</span>
-                    <span className = "motto-ship">Ship.</span>
+                <p className = "hero-motto hero-motto-stack">
+                    {motto}
                 </p>
 
                 <div className = "hero-buttons">

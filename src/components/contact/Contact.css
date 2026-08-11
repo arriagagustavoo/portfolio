@@ -1,6 +1,6 @@
 .contact-section{
-    background-color: var(--main-background);
-    background-image: var(--diagonal-texture);
+    background-color: var(--section-background);
+    background-image: var(--section-texture);
     display: flex;
     flex-direction: column;
     gap: 2rem;
