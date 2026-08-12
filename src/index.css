@@ -26,6 +26,8 @@
 body {
     margin: 0;
     font-family: "Geist Pixel", sans-serif;
+    /* without this the pre-React blank page is browser-default white, even in dark mode */
+    background-color: var(--main-background);
 }
 
 html{
