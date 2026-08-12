@@ -13,11 +13,11 @@ function Header(){
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const headerRef = useRef(null);
 
-    // should save theme to local storage
+    // the inline script in index.html already resolved this before first paint, so read that back
     const [theme, setTheme] = useState(() => {
-        const savedTheme = localStorage.getItem("theme");
-        if(savedTheme){
-            return savedTheme;
+        const appliedTheme = document.documentElement.getAttribute("data-theme");
+        if(appliedTheme){
+            return appliedTheme;
         }else{
             return "dark"
         }

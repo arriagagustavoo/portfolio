@@ -20,7 +20,7 @@ function About(){
 
             <div className = "about-main">
                 <div className = "about-top">
-                    <img className = "about-photo" src = {myPhoto} alt = "Gustavo Arriaga"/>
+                    <img className = "about-photo" src = {myPhoto} alt = "Gustavo Arriaga" loading = "lazy" decoding = "async"/>
                 </div>
 
                 <div className = "about-text">
@@ -41,7 +41,7 @@ function About(){
                 </div>
 
                 <div className = "about-info-item">
-                    <img className = "about-info-logo" src = {uhLogo} alt = "University of Houston logo"/>
+                    <img className = "about-info-logo" src = {uhLogo} alt = "University of Houston logo" loading = "lazy" decoding = "async"/>
                     <p>University of Houston</p>
                 </div>
             </div>

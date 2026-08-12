@@ -31,11 +31,14 @@ body {
 html{
     scroll-behavior: smooth;
     font-size: min(16px, 3.87vw);
+    /* stops iOS Safari inflating text on its own, which DevTools never shows */
+    -webkit-text-size-adjust: 100%;
 }
 
 #hero, #about, #projects, #skills, #services, #contact {
     scroll-margin-top: 5rem;
 }
+
 
 
 /* default light mode */

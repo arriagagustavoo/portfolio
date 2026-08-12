@@ -1,9 +1,7 @@
 .hero{
-    /* type scale: capped by width so it goes near edge-to-edge, and by height so
-       short phones scale down instead of overflowing */
+    /* capped by width and height so short phones scale down instead of overflowing */
     --hero-unit: min(21px, 5.1vw, 2.62lvh);
-    /* width-only twin. real Safari's lvh runs ~10% under the device height, so
-       the height term wins on a phone — the column must not shrink with it */
+    /* width-only twin: real Safari lvh runs ~10% short and would drag the column in */
     --hero-column-unit: min(21px, 5.1vw);
 
     border-bottom: var(--section-divider);
@@ -11,18 +9,25 @@
     background-image: var(--section-texture);
     display: flex;
     flex-direction: column;
-    /* no min-height on mobile: the hero is as tall as its content, so the space
-       under the buttons is padding-bottom and not leftover viewport */
+    /* no min-height on mobile; space under the buttons is padding, not leftover viewport */
     padding: 1.6rem 0.6rem 2.8rem;
     position: relative;
     isolation: isolate;
     overflow: hidden;
+    animation: texture-drift 8s linear infinite;
 }
 
-/* a tilted band of light that crosses the section every 11s. negative z-index
-   sits it above the hero's own background but under the text — which only works
-   because .hero already isolates. the blur is rasterised once into the layer and
-   then only translated, so it isn't repainted per frame */
+/* 16px tile on a 135deg axis = 11.31px each way, or the pattern jumps every loop */
+@keyframes texture-drift{
+    from{
+        background-position: 0 0;
+    }
+    to{
+        background-position: 11.31px 11.31px;
+    }
+}
+
+/* negative z-index puts these above the hero's background but under the text */
 .hero::before,
 .hero::after{
     content: "";
@@ -42,27 +47,73 @@
         transparent
     );
     filter: blur(18px);
-    /* the band starts vertical, so 45deg clockwise lays it on the same NE-SW
-       axis the texture stripes run along. a 135deg gradient puts its bands
-       perpendicular to the gradient line, which is why 45 and not 135 */
+    /* 45 not 135, since a 135deg gradient lays its bands perpendicular to that */
     transform: rotate(45deg);
     will-change: transform;
     animation: hero-streak 11s linear infinite;
 }
 
-/* negative delay starts it already half a cycle in, so a streak crosses every
-   ~5.5s instead of every 11. narrower and dimmer so the pair reads as depth
-   rather than as two copies of the same thing */
+.hero-glow{
+    position: absolute;
+    top: -35%;
+    left: -25%;
+    width: 70%;
+    height: 165%;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(
+        closest-side ellipse,
+        color-mix(in srgb, var(--main-accent) 20%, transparent),
+        transparent 72%
+    );
+    filter: blur(55px);
+    will-change: transform, opacity;
+    animation: hero-bloom 17s ease-in-out infinite;
+}
+
+/* no scale, it would re-rasterise the blurred layer every frame */
+@keyframes hero-bloom{
+    0%, 100%{
+        translate: 0 0;
+        opacity: 0.3;
+    }
+    50%{
+        translate: 58% 16%;
+        opacity: 0.95;
+    }
+}
+
+/* with a pointer it tracks the cursor, so the drift keyframe has to give up translate */
+@media(hover: hover) and (pointer: fine){
+    .hero-glow{
+        top: 0;
+        left: 0;
+        width: 46%;
+        height: 105%;
+        translate: calc(var(--glow-x, 45vw) - 50%) calc(var(--glow-y, 32vh) - 50%);
+        transition: translate 420ms cubic-bezier(0.22, 1, 0.36, 1);
+        animation: hero-bloom-breathe 6s ease-in-out infinite;
+    }
+}
+
+@keyframes hero-bloom-breathe{
+    0%, 100%{
+        opacity: 0.55;
+    }
+    50%{
+        opacity: 0.95;
+    }
+}
+
+/* half a cycle behind the other one, so a streak passes every ~5.5s */
 .hero::before{
     width: 16%;
-    /* dimmed through the filter chain, not opacity — the keyframe owns opacity
-       and would overwrite it */
+    /* dimmed in the filter chain; the keyframe owns opacity */
     filter: blur(22px) opacity(0.6);
     animation-delay: -5.5s;
 }
 
-/* translate resolves before transform, so this slides on screen-x and the
-   rotate stays put. it parks off-screen and invisible for most of the cycle */
+/* parks offscreen and invisible for most of the cycle */
 @keyframes hero-streak{
     0%{
         translate: 0 0;
@@ -84,8 +135,7 @@
     }
 }
 
-/* width-driven, not em — otherwise a short lvh shrinks the type and pulls the
-   side margins out with it (30px gaps on a real iPhone, 11px in DevTools) */
+/* width-driven, not em. a short lvh would shrink the type and pull the margins with it */
 .hero-inner{
     flex: 1;
     width: 100%;
@@ -94,14 +144,12 @@
     font-size: var(--hero-unit);
     display: flex;
     flex-direction: column;
-    /* packed from the top with one even gap. space-between spread the leftover
-       height into the gaps, which made the one under the status badge the widest */
+    /* one even gap. space-between spread the leftover height and widened the top one */
     justify-content: flex-start;
     gap: 1em;
 }
 
-/* eyebrow, name and list read as one block, so they keep their own tight
-   spacing while the leftover height collects under the buttons */
+/* eyebrow, name and list read as one block with their own tighter spacing */
 .hero-intro{
     display: flex;
     flex-direction: column;
@@ -120,8 +168,7 @@
     font-weight: 400;
 }
 
-/* mobile: eyebrow left, badge right. at full size the badge was 87% of the
-   column on its own row — beside the eyebrow it has ~208px to live in */
+/* mobile pairs the badge beside the eyebrow instead of giving it its own row */
 .hero-eyebrow-row{
     display: flex;
     align-items: center;
@@ -129,9 +176,7 @@
     gap: 0.35em;
 }
 
-/* measured at 360px: the eyebrow's full string is 169.5px and the column is
-   339.7px, so the badge has ~164px to live in once the gap is paid. 0.7em came
-   to 168.4 and pushed 7px past the edge */
+/* 0.64em: at 360px the eyebrow takes 169.5 of the 339.7 column, leaving ~164 */
 .hero-status-inline{
     font-size: 0.64em;
     white-space: nowrap;
@@ -149,8 +194,7 @@
     animation: status-pulse 1.4s ease-in-out infinite;
 }
 
-/* the dot breathes as well as ringing — reads as a live indicator rather than
-   a decoration. em not px so the ring tracks the badge's font-size */
+/* em not px so the ring scales with the badge */
 @keyframes status-pulse{
     0%, 100%{
         opacity: 0.35;
@@ -162,31 +206,20 @@
     }
 }
 
-.intro-1{
-    color: var(--main-accent);
-    font-weight: 400;
-    font-size: 1.75em;
-    line-height: 1;
-}
-
 .intro-2{
     color: var(--main-text);
     font-size: 4em;
-    font-family: Geist;
+    /* the fallback is load-bearing: with none, an unloaded Geist drops to Times New Roman */
+    font-family: Geist, sans-serif;
     font-weight: 900;
     line-height: .9;
     letter-spacing: -0.015em;
-    /* stroke in the fill colour is the only way to fatten this — Geist is 900 at
-       the top of its weight axis and has no width axis at all */
+    /* Geist tops out at 900 with no width axis, so a same-colour stroke is the only fattener */
     -webkit-text-stroke: 0.014em var(--main-text);
-    /* origin keeps the stretch off the eyebrow above; the stretch spills 0.36em
-       past the layout box, so margin-bottom can't go below that without overlap.
-       skew is inside transform because CSS has standalone translate/rotate/scale
-       but no standalone skew — the two have to share the shorthand */
+    /* skew shares the shorthand because there's no standalone skew property */
     transform: scaleY(1.2) skewX(-9deg);
     transform-origin: left top;
-    /* origin is the top, so the skew walks the second line leftward — this pays
-       that back so Arriaga doesn't ride into the hero's padding on a phone */
+    /* pays back the leftward walk the skew gives the second line */
     padding-left: 0.2em;
     text-shadow: 0.055em 0.055em 0 var(--main-accent);
     margin-top: 0.05em;
@@ -201,8 +234,14 @@
     padding: 0;
     list-style: none;
     color: var(--main-text);
-    font-size: 1.3em;
+    /* 1.2 not 1.3: at 1.3 the longest line left 5.5px of a 393px column, and real Safari ate it */
+    font-size: 1.2em;
     font-weight: 600;
+}
+
+/* one line always. the size above is what keeps this from overflowing instead */
+.hero-services li{
+    white-space: nowrap;
 }
 
 .hero-services li::before{
@@ -216,9 +255,7 @@
     margin-left: 50%;
     transform: translateX(-50%);
     overflow: hidden;
-    /* the flip swings the badge below its layout box and overflow shears the
-       bottom corner off. padding gives the clip room, the negative margin hands
-       the space back so nothing below moves */
+    /* room for the flip to swing below the box; the negative margin gives the space back */
     padding-block: 1.2em;
     margin-block: -1.2em;
 }
@@ -229,8 +266,7 @@
     animation: badge-scroll 18s linear infinite;
 }
 
-/* starts half-shifted and unwinds to 0, so the row travels left to right. both
-   sets are identical, so -50% and 0 are the same picture and the loop is seamless */
+/* -50% and 0 are the same picture, so unwinding to 0 travels right and still loops */
 @keyframes badge-scroll{
     from{
         transform: translateX(-50%);
@@ -240,8 +276,7 @@
     }
 }
 
-/* spacing lives on the badge, not as a flex gap, so one full set is exactly
-   half the track and -50% loops without a jump */
+/* spacing on the badge, not a flex gap, so one set is exactly half the track */
 .hero-badge{
     position: relative;
     isolation: isolate;
@@ -277,46 +312,56 @@
     display: flex;
     flex-direction: column;
     gap: 0;
-    font-family: Geist;
+    font-family: Geist, sans-serif;
     font-weight: 900;
     font-size: 2.72em;
-    /* under 1 so the line boxes eat the empty space above and below the glyphs —
-       pulls the words together without the ink colliding */
+    /* under 1 so the line boxes eat the empty space above and below the glyphs */
     line-height: .94;
-    /* positive tracking: the stroke is centred on the glyph edge, so half of it
-       grows outward and tight letters end up with their outlines crossing.
-       stroke width is px and this is em, so the two don't scale together —
-       the desktop value is tuned separately */
+    /* the stroke straddles the glyph edge, so tight letters cross outlines */
     letter-spacing: 0.05em;
 }
 
-/* Geist is a variable font, so its glyphs are separate overlapping contours
-   (stem, shoulder, bowl) that only merge when filled. stroking hits every
-   internal seam, so paint the stroke first and let an opaque fill cover the
-   inside — leaves the outer half of the stroke, hence the doubled widths */
+/* stroke first, opaque fill over it, or Geist's internal contour seams show */
 .motto-design,
 .motto-build,
 .motto-ship{
     color: var(--main-background);
     paint-order: stroke fill;
-    animation: motto-cycle 12s ease-in-out var(--motto-delay, 0ms) infinite;
+    transform-origin: top center;
 }
 
-/* the stroke stays green throughout, so cycling only the fill gives three
-   different objects: outlined, solid green, then ink with a green rim.
-   these are the theme aliases, so dark mode plays it black -> green -> white
-   without a second keyframe block */
-/* three equal thirds. each colour holds for 30% and hands over across the next
-   3.34%, so all three words change at the same instant and no two ever land on
-   the same colour */
+/* two animations, safe only because the cycle owns colour and the flip owns transform */
+.hero[data-ready='true'] :is(
+    .motto-design,
+    .motto-build,
+    .motto-ship
+){
+    animation:
+        motto-cycle 7.5s ease-in-out var(--motto-delay, 0ms) infinite,
+        motto-flip 760ms cubic-bezier(0.2, 1.4, 0.35, 1) var(--flip-delay, 0ms) backwards;
+}
+
+/* 900px, not the badges' 260. perspective is absolute and this type is ~5x taller */
+@keyframes motto-flip{
+    from{
+        opacity: 0;
+        transform: perspective(900px) rotateX(90deg);
+    }
+    to{
+        opacity: 1;
+        transform: perspective(900px) rotateX(0deg);
+    }
+}
+
+/* equal thirds, so it runs outlined to solid green to ink and back */
 @keyframes motto-cycle{
-    0%, 30%{
+    0%, 20%{
         color: var(--main-background);
     }
-    33.34%, 63.34%{
+    33.34%, 53.34%{
         color: var(--main-accent);
     }
-    66.67%, 96.67%{
+    66.67%, 86.67%{
         color: var(--main-text);
     }
     100%{
@@ -324,24 +369,23 @@
     }
 }
 
-/* exactly a third of the cycle apart — that spacing is what guarantees one
-   white, one green, one ink at every moment. negative, so all three are already
-   in phase rather than waiting their turn; the motto is transparent until its
-   own entrance at 2250ms, so the early cycling is never seen */
+/* a third apart keeps one of each colour on screen; most negative leads the wave */
 .motto-design{
-    --motto-delay: 0s;
+    --motto-delay: -5s;
+    --flip-delay: 3450ms;
 }
 
 .motto-build{
-    --motto-delay: -4s;
+    --motto-delay: -2.5s;
+    --flip-delay: 3650ms;
 }
 
 .motto-ship{
-    --motto-delay: -8s;
+    --motto-delay: 0s;
+    --flip-delay: 3850ms;
 }
 
-/* each line pins to a different edge of the column, so the cascade holds
-   its shape no matter how wide the words render */
+/* each line pins to a different edge so the cascade holds its shape */
 .motto-design{
     align-self: flex-start;
     -webkit-text-stroke: 4px var(--main-accent);
@@ -361,25 +405,21 @@
 .hero-motto-inline{
     flex-direction: row;
     align-items: baseline;
-    /* tight word gap buys the room the larger font-size needs — at 0.25em the
-       row runs past the column on a 360px phone */
+    /* 0.25em runs past the column on a 360px phone */
     gap: 0.16em;
     margin-top: 0.2em;
     margin-bottom: 0.55em;
     font-size: 1.8em;
     letter-spacing: 0.03em;
-    /* height is the only axis left — the row has ~5px of width headroom. anchored
-       top so it grows into the gap below instead of into Arriaga's descenders */
+    /* height is the only axis left; anchored top so it grows into the gap below */
     transform: scaleY(1.35);
     transform-origin: top;
 }
 
-/* the stacked cascade pins each word to an edge; in a row that would push
-   them apart vertically instead. stroke stays thin here: the painted tittle gap
-   is Geist's gap minus the stroke width, and the gap is only ~2.6px at this size */
+/* 1.5px, not 2. once the fill turns green it stops separating an i's dot from its stem */
 .hero-motto-inline span{
     align-self: auto;
-    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-width: 1.5px;
 }
 
 .hero-motto-stack{
@@ -403,9 +443,7 @@
     transition: translate 0.18s ease, filter 0.18s ease;
 }
 
-/* the fill is a pseudo-element rather than the button itself because clip-path
-   is applied AFTER filter — clipping the element clips its drop-shadow away too.
-   clipping a child instead leaves the parent free to cast one */
+/* fill sits on a child because clip-path runs after filter and would clip the shadow off */
 .hero-button-primary{
     position: relative;
     isolation: isolate;
@@ -447,8 +485,7 @@
     z-index: -1;
 }
 
-/* drop-shadow, not box-shadow: a box-shadow is clipped away by clip-path the
-   same way a border is. drop-shadow traces the clipped silhouette instead */
+/* drop-shadow, not box-shadow. clip-path eats a box-shadow like it eats a border */
 @media(hover: hover){
     .hero-button-primary:hover{
         translate: 0 -3px;
@@ -459,9 +496,33 @@
         translate: 0 -3px;
         filter: drop-shadow(0 6px 0 var(--main-accent));
     }
+
+    /* translate, not transform. badge-fall owns the shorthand */
+    .hero-badge{
+        transition: translate 0.2s ease, color 0.2s ease;
+    }
+
+    .hero-badge:hover{
+        translate: 0 -4px;
+        color: var(--main-background);
+    }
+
+    .hero-badge:hover::before{
+        background-color: var(--main-accent);
+    }
+
+    .hero-services li{
+        transition: translate 0.2s ease, color 0.2s ease;
+        cursor: default;
+    }
+
+    .hero-services li:hover{
+        translate: 0.45em 0;
+        color: var(--main-accent);
+    }
 }
 
-/* press drops the button into its own shadow rather than just undoing the hover */
+/* press drops into the shadow rather than just undoing the hover */
 .hero-button-primary:active{
     translate: 0 1px;
     filter: drop-shadow(0 2px 0 var(--button-shadow));
@@ -472,13 +533,14 @@
     filter: drop-shadow(0 2px 0 var(--main-accent));
 }
 
-/* the ghost is laid out and invisible, the live copy is lifted out of flow on
-   top of it. without this the row is only as wide as what's been typed so far,
-   and space-between walks the status badge left on every keystroke */
+/* the ghost holds the full width so the badge beside it doesn't walk while it types */
 .intro-1{
     position: relative;
-    /* as a flex item the ghost will shrink under its content and break onto a
-       second line, which is what was pushing the row to two lines */
+    color: var(--main-accent);
+    font-weight: 400;
+    font-size: 1.75em;
+    line-height: 1;
+    /* as a flex item it shrinks under its content and wraps without this */
     white-space: nowrap;
 }
 
@@ -498,7 +560,6 @@
     width: 0.44em;
     height: 0.92em;
     margin-left: 0.14em;
-    /* the glyph baseline sits above the box bottom, so nudge it back down */
     vertical-align: -0.1em;
     background-color: currentColor;
     animation: caret-blink 1.05s steps(1) infinite;
@@ -513,74 +574,64 @@
     }
 }
 
-/* entrance sequence. backwards fill holds a delayed element in its first frame —
-   without it a 500ms delay means half a second of the element sitting fully
-   visible before it animates */
-.hero :is(
+/* hidden until the observer says the hero is on screen */
+.hero:not([data-ready='true']) .hero-inner{
+    opacity: 0;
+}
+
+.hero[data-ready='true'] :is(
     .hero-status-solo,
     .hero-eyebrow-row,
     .intro-2,
-    .hero-motto-inline,
-    .hero-motto-stack,
     .hero-services li,
     .hero-button
 ){
-    /* the 1.4 control point is what carries it past its resting spot and lets it
-       settle back — the "bounce into place". raise it for more, 1.0 for none */
+    /* the 1.4 control point is the overshoot; 1.0 for none */
     animation: hero-sweep 720ms cubic-bezier(0.2, 1.4, 0.3, 1) var(--enter-delay, 0ms) backwards;
-    /* holds the compositing layer open for good. without it the layer is torn
-       down when the animation ends and the text jumps from grayscale
-       antialiasing back to subpixel, which reads as the glyphs fattening */
+    /* keeps the layer alive; losing it swaps text AA and looks like the glyphs grow */
     will-change: transform;
 }
 
-/* delays overlap rather than queue — run end to end these effects total ~5.5s.
-   the motto is the deliberate exception: it waits for everything else to finish */
-.hero-status-solo{
+/* eyebrow lands alone and types for ~1.05s, everything else is offset past that */
+.hero-eyebrow-row{
     --enter-delay: 0ms;
 }
 
-.hero-eyebrow-row{
-    --enter-delay: 120ms;
+.hero-status-solo{
+    --enter-delay: 1300ms;
 }
 
 .intro-2{
-    --enter-delay: 260ms;
+    --enter-delay: 1400ms;
+}
+
+/* extra descendant to outbid the :is() rule, which is a point more specific than it looks */
+.hero[data-ready='true'] .hero-intro .intro-2{
+    animation-duration: 1150ms;
 }
 
 .hero-services li:nth-child(1){
-    --enter-delay: 520ms;
+    --enter-delay: 1650ms;
 }
 
 .hero-services li:nth-child(2){
-    --enter-delay: 640ms;
+    --enter-delay: 1770ms;
 }
 
 .hero-services li:nth-child(3){
-    --enter-delay: 760ms;
+    --enter-delay: 1890ms;
 }
 
 .hero-button-primary{
-    --enter-delay: 1120ms;
+    --enter-delay: 2300ms;
 }
 
 .hero-button-secondary{
-    --enter-delay: 1240ms;
+    --enter-delay: 2420ms;
 }
 
-/* deliberately alone — waits for the badges' 820ms tail to finish */
-.hero-motto-inline,
-.hero-motto-stack{
-    --enter-delay: 2250ms;
-}
-
-/* purely horizontal — the reveal edge and the travel both run left to right so
-   they reinforce instead of fighting.
-   translate as its own property, never inside transform: .intro-2, the inline
-   motto and the mobile badge row all already own transform, and a keyframe
-   using the shorthand would wipe what's there.
-   the clip's other three sides sit outside the box on purpose — the name's
-   drop-shadow and skew both spill past it, and inset(0 …) would shear them off */
+/* translate not transform: .intro-2 and the inline motto already own the shorthand */
+/* the clip overruns three sides so the name's shadow and skew aren't sheared off */
 @keyframes hero-sweep{
     from{
         opacity: 0;
@@ -594,22 +645,15 @@
     }
 }
 
-/* perspective lives in the badge's own transform, not on the track — the track
-   slides under the marquee, and a shared vanishing point would slide with it.
-   positive rotateX swings the bottom edge away from the viewer, so the card
-   drops in from behind rather than unfolding toward you. no overshoot here:
-   a bounce on a 3D flip reads as a wobble */
-.hero-badge{
+/* perspective per badge, not on the track; a shared one would slide with the marquee */
+.hero[data-ready='true'] .hero-badge{
     transform-origin: top center;
-    /* expo-out: leaves fast, then a long tail settling in. that tail is what
-       makes the flip read as weight rather than a blink */
+    /* expo-out: the long tail is what reads as weight */
     animation: badge-fall 820ms cubic-bezier(0.16, 1, 0.3, 1) var(--enter-delay, 0ms) backwards;
     will-change: transform;
 }
 
-/* 260px, not 500: perspective is a distance to the viewer, so the SMALLER the
-   value the harder the foreshortening. at 500 a 60px-tall badge barely
-   deforms and the flip just looked like a fade */
+/* smaller perspective = harder foreshortening; at 500 a 60px badge barely deformed */
 @keyframes badge-fall{
     from{
         opacity: 0;
@@ -621,61 +665,57 @@
     }
 }
 
-/* every 4th badge shares a delay so the marquee's duplicate set flips in the
-   same left-to-right order — otherwise whichever copy is on screen at t=0
-   would run the stagger backwards */
+/* every 4th shares a delay so the marquee's duplicate set flips in the same order */
 .hero-badge:nth-child(4n + 1){
-    --enter-delay: 900ms;
+    --enter-delay: 2050ms;
 }
 
 .hero-badge:nth-child(4n + 2){
-    --enter-delay: 1040ms;
+    --enter-delay: 2190ms;
 }
 
 .hero-badge:nth-child(4n + 3){
-    --enter-delay: 1180ms;
+    --enter-delay: 2330ms;
 }
 
 .hero-badge:nth-child(4n + 4){
-    --enter-delay: 1320ms;
+    --enter-delay: 2470ms;
 }
 
-/* replaces hero-sweep once the scramble lands — the name only has one animation
-   slot, and by this point the entrance has finished with it.
-   translate, not transform: .intro-2's scaleY and skew live in the shorthand and
-   a keyframe touching it would erase them */
+/* replaces hero-sweep once the scramble lands; one animation slot per element */
 .hero .intro-2[data-resolved='true']{
-    animation: name-glitch 8s steps(1) infinite;
+    animation: name-glitch 3.5s steps(1) infinite;
 }
 
-/* 96% of the cycle is the resting frame. the whole disturbance is ~320ms out of
-   eight seconds, so you catch it rather than watch it */
+/* burst at 40%, so the first lands ~1.4s after the name resolves, then every 3.5s */
 @keyframes name-glitch{
-    0%, 95%, 100%{
+    0%, 40%, 50%, 100%{
         translate: 0 0;
         text-shadow: 0.055em 0.055em 0 var(--main-accent);
     }
-    95.5%{
+    41%{
         translate: -3px 0;
         text-shadow: 4px 0 var(--main-accent), -4px 0 #ff2f6d;
     }
-    96.5%{
+    43.5%{
         translate: 3px 0;
         text-shadow: -4px 0 var(--main-accent), 4px 0 #ff2f6d;
     }
-    97.5%{
+    46%{
         translate: -2px 0;
         text-shadow: 3px 0 var(--main-accent);
     }
-    98.5%{
+    48.5%{
         translate: 2px 0;
         text-shadow: -3px 0 #ff2f6d;
     }
 }
 
 @media(prefers-reduced-motion: reduce){
+    .hero,
     .hero::before,
     .hero::after,
+    .hero-glow,
     .motto-design,
     .motto-build,
     .motto-ship,
@@ -699,29 +739,21 @@
 
 @media(min-width: 800px){
     .hero{
-        /* same width-and-height cap as mobile, so a landscape phone scales
-           down into this layout instead of overflowing it */
-        /* tied to the column, not raw vw: the edges are a fixed 6rem total, so
-           they eat a bigger share of a narrow screen and a plain vw unit would
-           outgrow the column there */
+        /* tied to the column, not raw vw. the 6rem of edges eat more of a narrow screen */
         --hero-unit: min(30px, calc((100vw - 7rem) / 68), 2.15svh);
         --hero-edge: 3rem;
         padding: min(1.25rem, 1.8svh) 0;
-        /* desktop keeps filling the screen — the grid's align-content needs the
-           spare height to distribute its rows */
+        /* the grid's align-content needs spare height to distribute */
         min-height: calc(100dvh - var(--header-height));
     }
 
-    /* matching insets both sides; the status spans the whole grid so it centres
-       on the page rather than on the text column. the empty fifth row is what
-       lifts the buttons off the bottom and shrinks every other gap with it */
+    /* the status spans the full grid so it centres on the page, not the text column */
     .hero-inner{
         max-width: none;
         display: grid;
         grid-template-columns:
             [full-start] var(--hero-edge)
-            /* left is the wider side: it carries the badge row, which is the
-               longest single thing in the hero */
+            /* left is wider; it carries the badge row, the longest thing here */
             [content-start] minmax(0, 1.08fr)
             [content-end] 1.2em
             [right-start] minmax(0, 0.92fr)
@@ -755,8 +787,7 @@
     .hero-intro{
         grid-row: 2;
         grid-column: content-start / content-end;
-        /* space-between spreads the rows evenly; this claws back part of the
-           gap under the status badge so the eyebrow sits higher */
+        /* claws back part of the gap space-between leaves under the status badge */
         margin-top: -1.2em;
     }
 
@@ -804,7 +835,7 @@
         gap: 0.45em;
     }
 
-    /* no marquee on desktop — all four fit, so drop the duplicate set */
+    /* all four fit, so drop the marquee and its duplicate set */
     .hero-badge-track{
         animation: none;
     }
@@ -813,8 +844,7 @@
         display: none;
     }
 
-    /* tighter chrome so the extra size goes into the text rather than the
-       padding — the badge row is the widest thing in the left column */
+    /* tighter chrome so the extra size goes into the text */
     .hero-badge{
         margin-right: 0.3em;
         padding: 0.45em 0.65em;
@@ -832,9 +862,4 @@
         align-self: flex-end;
         -webkit-text-stroke-width: 4px;
     }
-
-    /* right-aligning puts the g of Design directly over Build's l and d, so
-       this pair needs the descender's depth back. mobile staggers the lines
-       left/centre/right, so the descender clears on its own and gets nothing.
-       tuned so both ink gaps come out equal */
 }

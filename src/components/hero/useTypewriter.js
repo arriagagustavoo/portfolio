@@ -1,9 +1,6 @@
 import { useState, useEffect } from 'react'
 
-// reveals text one character at a time. enabled=false returns the finished
-// string outright, which is what reduced-motion and a replayed session get.
-// that case is derived rather than pushed into state — setting state from an
-// effect body triggers a second render pass for no reason
+// disabled returns the finished string, derived not set: setState in an effect body costs a render
 function useTypewriter(text, speed, startDelay, enabled){
     const [typed, setTyped] = useState('')
 

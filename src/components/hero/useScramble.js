@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 
-// caps and digits only — Geist is proportional, so mixing an i into a slot that
-// resolves to a W makes the whole line wobble as it settles
+// caps and digits only: Geist is proportional, so a narrow glyph makes the line wobble
 const scrambleChars = 'ABCDEFGHKMNOPQRSUVWXYZ0234689'
 
 function randomChar(){
@@ -23,9 +22,7 @@ function scrambleAll(text){
     return text.split('').map(scrambleChar).join('')
 }
 
-// arrives fully scrambled, then locks in left to right while everything to the
-// right of the cursor keeps churning. the first scrambled frame comes from the
-// lazy initial state, not an effect, so nothing is set synchronously on mount
+// locks in left to right while the rest churns. first frame is lazy initial state, not an effect
 function useScramble(text, speed, startDelay, enabled){
     const [display, setDisplay] = useState(() => scrambleAll(text))
 
