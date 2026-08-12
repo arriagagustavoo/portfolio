@@ -70,10 +70,14 @@ html{
     --texture-line: color-mix(in srgb, var(--main-accent) 10%, transparent);
 
     --diagonal-texture: repeating-linear-gradient(
-        45deg,
+        135deg,
         transparent 0 14px,
         var(--texture-line) 14px 16px
     );
+
+    /* alias, so it flips with the theme and stays out of the dark block. a darker
+       green sat under a green button and read as an edge, not a shadow */
+    --button-shadow: var(--main-text);
 
     /* every page section reads its surface from these three, so the page
        background, texture and divider each change in one place.

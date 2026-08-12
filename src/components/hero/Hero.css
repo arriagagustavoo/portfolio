@@ -19,6 +19,71 @@
     overflow: hidden;
 }
 
+/* a tilted band of light that crosses the section every 11s. negative z-index
+   sits it above the hero's own background but under the text — which only works
+   because .hero already isolates. the blur is rasterised once into the layer and
+   then only translated, so it isn't repainted per frame */
+.hero::before,
+.hero::after{
+    content: "";
+    position: absolute;
+    top: -60%;
+    left: -35%;
+    width: 26%;
+    height: 220%;
+    z-index: -1;
+    pointer-events: none;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        color-mix(in srgb, var(--main-accent) 9%, transparent) 35%,
+        color-mix(in srgb, var(--main-accent) 30%, transparent) 50%,
+        color-mix(in srgb, var(--main-accent) 9%, transparent) 65%,
+        transparent
+    );
+    filter: blur(18px);
+    /* the band starts vertical, so 45deg clockwise lays it on the same NE-SW
+       axis the texture stripes run along. a 135deg gradient puts its bands
+       perpendicular to the gradient line, which is why 45 and not 135 */
+    transform: rotate(45deg);
+    will-change: transform;
+    animation: hero-streak 11s linear infinite;
+}
+
+/* negative delay starts it already half a cycle in, so a streak crosses every
+   ~5.5s instead of every 11. narrower and dimmer so the pair reads as depth
+   rather than as two copies of the same thing */
+.hero::before{
+    width: 16%;
+    /* dimmed through the filter chain, not opacity — the keyframe owns opacity
+       and would overwrite it */
+    filter: blur(22px) opacity(0.6);
+    animation-delay: -5.5s;
+}
+
+/* translate resolves before transform, so this slides on screen-x and the
+   rotate stays put. it parks off-screen and invisible for most of the cycle */
+@keyframes hero-streak{
+    0%{
+        translate: 0 0;
+        opacity: 0;
+    }
+    4%{
+        opacity: 1;
+    }
+    26%{
+        opacity: 1;
+    }
+    32%{
+        translate: 175vw 0;
+        opacity: 0;
+    }
+    100%{
+        translate: 175vw 0;
+        opacity: 0;
+    }
+}
+
 /* width-driven, not em — otherwise a short lvh shrinks the type and pulls the
    side margins out with it (30px gaps on a real iPhone, 11px in DevTools) */
 .hero-inner{
@@ -61,12 +126,14 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 0.5em;
+    gap: 0.35em;
 }
 
-/* 0.7em not 0.8em: 0.8 overflows the row on a 360px phone */
+/* measured at 360px: the eyebrow's full string is 169.5px and the column is
+   339.7px, so the badge has ~164px to live in once the gap is paid. 0.7em came
+   to 168.4 and pushed 7px past the edge */
 .hero-status-inline{
-    font-size: 0.7em;
+    font-size: 0.64em;
     white-space: nowrap;
 }
 
@@ -79,18 +146,19 @@
     height: 0.35em;
     border-radius: 50%;
     background-color: var(--main-accent);
-    animation: status-pulse 2.2s ease-out infinite;
+    animation: status-pulse 1.4s ease-in-out infinite;
 }
 
+/* the dot breathes as well as ringing — reads as a live indicator rather than
+   a decoration. em not px so the ring tracks the badge's font-size */
 @keyframes status-pulse{
-    0%{
-        box-shadow: 0 0 0 0 color-mix(in srgb, var(--main-accent) 70%, transparent);
+    0%, 100%{
+        opacity: 0.35;
+        box-shadow: 0 0 0 0 color-mix(in srgb, var(--main-accent) 50%, transparent);
     }
-    70%{
-        box-shadow: 0 0 0 0.35em transparent;
-    }
-    100%{
-        box-shadow: 0 0 0 0 transparent;
+    50%{
+        opacity: 1;
+        box-shadow: 0 0 0 0.4em transparent;
     }
 }
 
@@ -107,11 +175,20 @@
     font-family: Geist;
     font-weight: 900;
     line-height: .9;
-    letter-spacing: -0.05em;
+    letter-spacing: -0.015em;
+    /* stroke in the fill colour is the only way to fatten this — Geist is 900 at
+       the top of its weight axis and has no width axis at all */
+    -webkit-text-stroke: 0.014em var(--main-text);
     /* origin keeps the stretch off the eyebrow above; the stretch spills 0.36em
-       past the layout box, so margin-bottom can't go below that without overlap */
-    transform: scaleY(1.2);
+       past the layout box, so margin-bottom can't go below that without overlap.
+       skew is inside transform because CSS has standalone translate/rotate/scale
+       but no standalone skew — the two have to share the shorthand */
+    transform: scaleY(1.2) skewX(-9deg);
     transform-origin: left top;
+    /* origin is the top, so the skew walks the second line leftward — this pays
+       that back so Arriaga doesn't ride into the hero's padding on a phone */
+    padding-left: 0.2em;
+    text-shadow: 0.055em 0.055em 0 var(--main-accent);
     margin-top: 0.05em;
     margin-bottom: 0.55em;
 }
@@ -139,6 +216,11 @@
     margin-left: 50%;
     transform: translateX(-50%);
     overflow: hidden;
+    /* the flip swings the badge below its layout box and overflow shears the
+       bottom corner off. padding gives the clip room, the negative margin hands
+       the space back so nothing below moves */
+    padding-block: 1.2em;
+    margin-block: -1.2em;
 }
 
 .hero-badge-track{
@@ -147,12 +229,14 @@
     animation: badge-scroll 18s linear infinite;
 }
 
+/* starts half-shifted and unwinds to 0, so the row travels left to right. both
+   sets are identical, so -50% and 0 are the same picture and the loop is seamless */
 @keyframes badge-scroll{
     from{
-        transform: translateX(0);
+        transform: translateX(-50%);
     }
     to{
-        transform: translateX(-50%);
+        transform: translateX(0);
     }
 }
 
@@ -215,6 +299,45 @@
 .motto-ship{
     color: var(--main-background);
     paint-order: stroke fill;
+    animation: motto-cycle 12s ease-in-out var(--motto-delay, 0ms) infinite;
+}
+
+/* the stroke stays green throughout, so cycling only the fill gives three
+   different objects: outlined, solid green, then ink with a green rim.
+   these are the theme aliases, so dark mode plays it black -> green -> white
+   without a second keyframe block */
+/* three equal thirds. each colour holds for 30% and hands over across the next
+   3.34%, so all three words change at the same instant and no two ever land on
+   the same colour */
+@keyframes motto-cycle{
+    0%, 30%{
+        color: var(--main-background);
+    }
+    33.34%, 63.34%{
+        color: var(--main-accent);
+    }
+    66.67%, 96.67%{
+        color: var(--main-text);
+    }
+    100%{
+        color: var(--main-background);
+    }
+}
+
+/* exactly a third of the cycle apart — that spacing is what guarantees one
+   white, one green, one ink at every moment. negative, so all three are already
+   in phase rather than waiting their turn; the motto is transparent until its
+   own entrance at 2250ms, so the early cycling is never seen */
+.motto-design{
+    --motto-delay: 0s;
+}
+
+.motto-build{
+    --motto-delay: -4s;
+}
+
+.motto-ship{
+    --motto-delay: -8s;
 }
 
 /* each line pins to a different edge of the column, so the cascade holds
@@ -277,12 +400,26 @@
     cursor: pointer;
     text-decoration: none;
     white-space: nowrap;
+    transition: translate 0.18s ease, filter 0.18s ease;
 }
 
+/* the fill is a pseudo-element rather than the button itself because clip-path
+   is applied AFTER filter — clipping the element clips its drop-shadow away too.
+   clipping a child instead leaves the parent free to cast one */
 .hero-button-primary{
-    background-color: var(--main-accent);
+    position: relative;
+    isolation: isolate;
+    background-color: transparent;
     color: var(--main-text);
+}
+
+.hero-button-primary::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--main-accent);
     clip-path: var(--slanted-shape);
+    z-index: -1;
 }
 
 .hero-button-secondary{
@@ -310,27 +447,252 @@
     z-index: -1;
 }
 
+/* drop-shadow, not box-shadow: a box-shadow is clipped away by clip-path the
+   same way a border is. drop-shadow traces the clipped silhouette instead */
 @media(hover: hover){
     .hero-button-primary:hover{
-        background-color: var(--accent-hover);
+        translate: 0 -3px;
+        filter: drop-shadow(0 6px 0 var(--button-shadow));
     }
 
-    .hero-button-secondary:hover::before{
-        background-color: var(--link-hover);
+    .hero-button-secondary:hover{
+        translate: 0 -3px;
+        filter: drop-shadow(0 6px 0 var(--main-accent));
     }
 }
 
+/* press drops the button into its own shadow rather than just undoing the hover */
 .hero-button-primary:active{
-    background-color: var(--accent-active);
+    translate: 0 1px;
+    filter: drop-shadow(0 2px 0 var(--button-shadow));
 }
 
-.hero-button-secondary:active::before{
-    background-color: var(--link-active);
+.hero-button-secondary:active{
+    translate: 0 1px;
+    filter: drop-shadow(0 2px 0 var(--main-accent));
+}
+
+/* the ghost is laid out and invisible, the live copy is lifted out of flow on
+   top of it. without this the row is only as wide as what's been typed so far,
+   and space-between walks the status badge left on every keystroke */
+.intro-1{
+    position: relative;
+    /* as a flex item the ghost will shrink under its content and break onto a
+       second line, which is what was pushing the row to two lines */
+    white-space: nowrap;
+}
+
+.intro-1-ghost{
+    visibility: hidden;
+    /* room for the caret, which the ghost doesn't contain */
+    padding-right: 0.6em;
+}
+
+.intro-1-live{
+    position: absolute;
+    inset: 0;
+}
+
+.hero-caret{
+    display: inline-block;
+    width: 0.44em;
+    height: 0.92em;
+    margin-left: 0.14em;
+    /* the glyph baseline sits above the box bottom, so nudge it back down */
+    vertical-align: -0.1em;
+    background-color: currentColor;
+    animation: caret-blink 1.05s steps(1) infinite;
+}
+
+@keyframes caret-blink{
+    0%, 49%{
+        opacity: 1;
+    }
+    50%, 100%{
+        opacity: 0;
+    }
+}
+
+/* entrance sequence. backwards fill holds a delayed element in its first frame —
+   without it a 500ms delay means half a second of the element sitting fully
+   visible before it animates */
+.hero :is(
+    .hero-status-solo,
+    .hero-eyebrow-row,
+    .intro-2,
+    .hero-motto-inline,
+    .hero-motto-stack,
+    .hero-services li,
+    .hero-button
+){
+    /* the 1.4 control point is what carries it past its resting spot and lets it
+       settle back — the "bounce into place". raise it for more, 1.0 for none */
+    animation: hero-sweep 720ms cubic-bezier(0.2, 1.4, 0.3, 1) var(--enter-delay, 0ms) backwards;
+    /* holds the compositing layer open for good. without it the layer is torn
+       down when the animation ends and the text jumps from grayscale
+       antialiasing back to subpixel, which reads as the glyphs fattening */
+    will-change: transform;
+}
+
+/* delays overlap rather than queue — run end to end these effects total ~5.5s.
+   the motto is the deliberate exception: it waits for everything else to finish */
+.hero-status-solo{
+    --enter-delay: 0ms;
+}
+
+.hero-eyebrow-row{
+    --enter-delay: 120ms;
+}
+
+.intro-2{
+    --enter-delay: 260ms;
+}
+
+.hero-services li:nth-child(1){
+    --enter-delay: 520ms;
+}
+
+.hero-services li:nth-child(2){
+    --enter-delay: 640ms;
+}
+
+.hero-services li:nth-child(3){
+    --enter-delay: 760ms;
+}
+
+.hero-button-primary{
+    --enter-delay: 1120ms;
+}
+
+.hero-button-secondary{
+    --enter-delay: 1240ms;
+}
+
+/* deliberately alone — waits for the badges' 820ms tail to finish */
+.hero-motto-inline,
+.hero-motto-stack{
+    --enter-delay: 2250ms;
+}
+
+/* purely horizontal — the reveal edge and the travel both run left to right so
+   they reinforce instead of fighting.
+   translate as its own property, never inside transform: .intro-2, the inline
+   motto and the mobile badge row all already own transform, and a keyframe
+   using the shorthand would wipe what's there.
+   the clip's other three sides sit outside the box on purpose — the name's
+   drop-shadow and skew both spill past it, and inset(0 …) would shear them off */
+@keyframes hero-sweep{
+    from{
+        opacity: 0;
+        translate: -2.2rem 0;
+        clip-path: inset(-25% 100% -25% -25%);
+    }
+    to{
+        opacity: 1;
+        translate: 0 0;
+        clip-path: inset(-25% -15% -25% -25%);
+    }
+}
+
+/* perspective lives in the badge's own transform, not on the track — the track
+   slides under the marquee, and a shared vanishing point would slide with it.
+   positive rotateX swings the bottom edge away from the viewer, so the card
+   drops in from behind rather than unfolding toward you. no overshoot here:
+   a bounce on a 3D flip reads as a wobble */
+.hero-badge{
+    transform-origin: top center;
+    /* expo-out: leaves fast, then a long tail settling in. that tail is what
+       makes the flip read as weight rather than a blink */
+    animation: badge-fall 820ms cubic-bezier(0.16, 1, 0.3, 1) var(--enter-delay, 0ms) backwards;
+    will-change: transform;
+}
+
+/* 260px, not 500: perspective is a distance to the viewer, so the SMALLER the
+   value the harder the foreshortening. at 500 a 60px-tall badge barely
+   deforms and the flip just looked like a fade */
+@keyframes badge-fall{
+    from{
+        opacity: 0;
+        transform: perspective(260px) rotateX(88deg);
+    }
+    to{
+        opacity: 1;
+        transform: perspective(260px) rotateX(0deg);
+    }
+}
+
+/* every 4th badge shares a delay so the marquee's duplicate set flips in the
+   same left-to-right order — otherwise whichever copy is on screen at t=0
+   would run the stagger backwards */
+.hero-badge:nth-child(4n + 1){
+    --enter-delay: 900ms;
+}
+
+.hero-badge:nth-child(4n + 2){
+    --enter-delay: 1040ms;
+}
+
+.hero-badge:nth-child(4n + 3){
+    --enter-delay: 1180ms;
+}
+
+.hero-badge:nth-child(4n + 4){
+    --enter-delay: 1320ms;
+}
+
+/* replaces hero-sweep once the scramble lands — the name only has one animation
+   slot, and by this point the entrance has finished with it.
+   translate, not transform: .intro-2's scaleY and skew live in the shorthand and
+   a keyframe touching it would erase them */
+.hero .intro-2[data-resolved='true']{
+    animation: name-glitch 8s steps(1) infinite;
+}
+
+/* 96% of the cycle is the resting frame. the whole disturbance is ~320ms out of
+   eight seconds, so you catch it rather than watch it */
+@keyframes name-glitch{
+    0%, 95%, 100%{
+        translate: 0 0;
+        text-shadow: 0.055em 0.055em 0 var(--main-accent);
+    }
+    95.5%{
+        translate: -3px 0;
+        text-shadow: 4px 0 var(--main-accent), -4px 0 #ff2f6d;
+    }
+    96.5%{
+        translate: 3px 0;
+        text-shadow: -4px 0 var(--main-accent), 4px 0 #ff2f6d;
+    }
+    97.5%{
+        translate: -2px 0;
+        text-shadow: 3px 0 var(--main-accent);
+    }
+    98.5%{
+        translate: 2px 0;
+        text-shadow: -3px 0 #ff2f6d;
+    }
 }
 
 @media(prefers-reduced-motion: reduce){
+    .hero::before,
+    .hero::after,
+    .motto-design,
+    .motto-build,
+    .motto-ship,
     .hero-status-dot,
-    .hero-badge-track{
+    .hero-badge-track,
+    .hero-caret,
+    .hero .intro-2[data-resolved='true'],
+    .hero :is(
+        .hero-status-solo,
+        .hero-eyebrow-row,
+        .intro-2,
+        .hero-motto-inline,
+        .hero-motto-stack,
+        .hero-services li,
+        .hero-badge,
+        .hero-button
+    ){
         animation: none;
     }
 }

@@ -1,3 +1,6 @@
+import { useState } from 'react'
+import useTypewriter from './useTypewriter'
+import useScramble from './useScramble'
 import './Hero.css'
 
 const badges = ['Freelancer', 'Designer', 'Engineer', 'Builder']
@@ -7,6 +10,17 @@ const services = [
     'End-to-End Products',
     '3D Models & Prints'
 ]
+
+const eyebrowText = "// Hey, I'm"
+const nameText = 'Gustavo\nArriaga'
+
+function prefersReducedMotion(){
+    if (typeof window === 'undefined'){
+        return false
+    }
+
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches
+}
 
 // desktop centres this on its own row, mobile sits it beside the eyebrow —
 // different parents, so it renders twice and CSS hides one
@@ -28,7 +42,23 @@ const motto = (
     </>
 )
 
+// its own component because a hook can't be called from inside a map
+function ServiceLine({ text, delay, typing }){
+    const line = useTypewriter(text, 45, delay, typing)
+
+    return (
+        <li>{line.typed}</li>
+    )
+}
+
 function Hero(){
+    // CSS can switch an animation off, but a JS-driven effect has to be told
+    const [animating] = useState(() => !prefersReducedMotion())
+
+    const eyebrow = useTypewriter(eyebrowText, 95, 250, animating)
+    const name = useScramble(nameText, 85, 400, animating)
+
+    const nameLines = name.display.split('\n')
 
     return(
         <div className = "hero" id = "hero">
@@ -40,8 +70,14 @@ function Hero(){
 
                 <div className = "hero-intro">
                     <div className = "hero-eyebrow-row">
+                        {/* the ghost holds the full width so the status badge
+                            beside it doesn't get shoved along as this types */}
                         <p className = "intro-1">
-                            // Hey, I&apos;m
+                            <span className = "intro-1-ghost" aria-hidden="true">{eyebrowText}</span>
+                            <span className = "intro-1-live">
+                                {eyebrow.typed}
+                                <span className = "hero-caret"></span>
+                            </span>
                         </p>
 
                         <p className = "hero-status hero-status-inline">
@@ -49,8 +85,13 @@ function Hero(){
                         </p>
                     </div>
 
-                    <p className = "intro-2">
-                        Gustavo <br></br>Arriaga
+                    <p className = "intro-2" data-resolved = {name.done}>
+                        {nameLines.map((line, index) => (
+                            <span key = {index}>
+                                {line}
+                                {index < nameLines.length - 1 && <br />}
+                            </span>
+                        ))}
                     </p>
 
                     <p className = "hero-motto hero-motto-inline">
@@ -58,8 +99,13 @@ function Hero(){
                     </p>
 
                     <ul className = "hero-services">
-                        {services.map((service) => (
-                            <li key = {service}>{service}</li>
+                        {services.map((service, index) => (
+                            <ServiceLine
+                                key = {service}
+                                text = {service}
+                                delay = {700 + index * 160}
+                                typing = {animating}
+                            />
                         ))}
                     </ul>
                 </div>
