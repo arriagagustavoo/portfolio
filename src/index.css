@@ -41,6 +41,54 @@ html{
     scroll-margin-top: 5rem;
 }
 
+/* every layout pass was re-laying-out all six of these; skipping them offscreen cut FCP 751ms */
+#about, #projects, #skills, #services, #contact{
+    content-visibility: auto;
+}
+
+/* measured section heights, so the scrollbar and anchor jumps stay honest before a section renders */
+#about{
+    contain-intrinsic-size: auto 1459px;
+}
+
+#projects{
+    contain-intrinsic-size: auto 3210px;
+}
+
+#skills{
+    contain-intrinsic-size: auto 1473px;
+}
+
+#services{
+    contain-intrinsic-size: auto 744px;
+}
+
+#contact{
+    contain-intrinsic-size: auto 479px;
+}
+
+@media(min-width: 800px){
+    #about{
+        contain-intrinsic-size: auto 661px;
+    }
+
+    #projects{
+        contain-intrinsic-size: auto 1950px;
+    }
+
+    #skills{
+        contain-intrinsic-size: auto 809px;
+    }
+
+    #services{
+        contain-intrinsic-size: auto 554px;
+    }
+
+    #contact{
+        contain-intrinsic-size: auto 272px;
+    }
+}
+
 
 
 /* default light mode */
