@@ -683,29 +683,28 @@
 }
 
 /* replaces hero-sweep once the scramble lands; one animation slot per element */
-.hero .intro-2[data-resolved='true']{
-    animation: name-glitch 3.5s steps(1) infinite;
+.hero[data-ready='true'] .hero-intro .intro-2[data-resolved='true']{
+    animation: name-glitch 3s steps(1) infinite;
 }
 
-/* burst at 40%, so the first lands ~1.4s after the name resolves, then every 3.5s */
 @keyframes name-glitch{
-    0%, 40%, 50%, 100%{
+    0%, 15%, 27%, 100%{
         translate: 0 0;
         text-shadow: 0.055em 0.055em 0 var(--main-accent);
     }
-    41%{
+    16%{
         translate: -3px 0;
         text-shadow: 4px 0 var(--main-accent), -4px 0 #ff2f6d;
     }
-    43.5%{
+    19%{
         translate: 3px 0;
         text-shadow: -4px 0 var(--main-accent), 4px 0 #ff2f6d;
     }
-    46%{
+    22%{
         translate: -2px 0;
         text-shadow: 3px 0 var(--main-accent);
     }
-    48.5%{
+    25%{
         translate: 2px 0;
         text-shadow: -3px 0 #ff2f6d;
     }
@@ -722,7 +721,7 @@
     .hero-status-dot,
     .hero-badge-track,
     .hero-caret,
-    .hero .intro-2[data-resolved='true'],
+    .hero[data-ready='true'] .hero-intro .intro-2[data-resolved='true'],
     .hero :is(
         .hero-status-solo,
         .hero-eyebrow-row,
