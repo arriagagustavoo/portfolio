@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
-import useTypewriter from './useTypewriter'
-import useScramble from './useScramble'
+import useTypewriter from '../../hooks/useTypewriter'
+import useScramble from '../../hooks/useScramble'
 import './Hero.css'
 
 const badges = ['Freelancer', 'Designer', 'Engineer', 'Builder']
@@ -117,50 +117,6 @@ function Hero(){
         return () => observer.disconnect()
     }, [reduceMotion, inView])
 
-    // straight to CSS vars, not state. a setState per pointermove would re-render constantly
-    useEffect(() => {
-        const node = heroRef.current
-
-        if (!node){
-            return
-        }
-
-        if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches){
-            return
-        }
-
-        let frame = null
-        let pointerX = 0
-        let pointerY = 0
-
-        const apply = () => {
-            frame = null
-            // read inside the frame so it's one layout read per frame at most
-            const box = node.getBoundingClientRect()
-            node.style.setProperty('--glow-x', `${pointerX - box.left}px`)
-            node.style.setProperty('--glow-y', `${pointerY - box.top}px`)
-        }
-
-        const move = (event) => {
-            pointerX = event.clientX
-            pointerY = event.clientY
-
-            if (frame === null){
-                frame = requestAnimationFrame(apply)
-            }
-        }
-
-        node.addEventListener('pointermove', move)
-
-        return () => {
-            node.removeEventListener('pointermove', move)
-
-            if (frame !== null){
-                cancelAnimationFrame(frame)
-            }
-        }
-    }, [])
-
     // ready gates the CSS, animating gates the JS-driven text effects
     const ready = (inView && fontsSettled) || reduceMotion
     const animating = inView && fontsSettled && !reduceMotion
@@ -172,7 +128,6 @@ function Hero(){
 
     return(
         <div className = "hero" id = "hero" ref = {heroRef} data-ready = {ready}>
-            <div className = "hero-glow" aria-hidden="true"></div>
             <div className = "hero-inner">
 
                 <p className = "hero-status hero-status-solo">

@@ -148,12 +148,36 @@
     transform: scale(1.08);
 }
 
+/* the contact pill is already accent-filled, so it opts out below */
+.header-link[data-active='true']{
+    color: var(--main-accent);
+}
+
+/* sits on the header's own border, which is outside the padding box */
+.header-progress{
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 4px;
+    background-color: var(--main-accent);
+    transform-origin: left center;
+    scale: var(--scroll-progress, 0) 1;
+    pointer-events: none;
+}
+
 .contact{
     background-color: var(--main-accent);
     color: var(--main-text);
     font-weight: 700;
     clip-path: var(--slanted-shape);
 }
+
+/* not redundant: the active rule above outranks .contact, and accent-on-accent is invisible */
+.contact[data-active='true']{
+    color: var(--main-text);
+}
+
 
 @media(hover: hover){
     .contact:hover{

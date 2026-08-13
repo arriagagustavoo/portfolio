@@ -5,134 +5,14 @@
     --hero-column-unit: min(21px, 5.1vw);
 
     border-bottom: var(--section-divider);
-    background-color: var(--section-background);
-    background-image: var(--section-texture);
     display: flex;
     flex-direction: column;
     /* no min-height on mobile; space under the buttons is padding, not leftover viewport */
     padding: 1.6rem 0.6rem 2.8rem;
     position: relative;
+    /* both still load-bearing: the marquee bleeds full-width and the badges use z-index -1 */
     isolation: isolate;
     overflow: hidden;
-    animation: texture-drift 8s linear infinite;
-}
-
-/* 16px tile on a 135deg axis = 11.31px each way, or the pattern jumps every loop */
-@keyframes texture-drift{
-    from{
-        background-position: 0 0;
-    }
-    to{
-        background-position: 11.31px 11.31px;
-    }
-}
-
-/* negative z-index puts these above the hero's background but under the text */
-.hero::before,
-.hero::after{
-    content: "";
-    position: absolute;
-    top: -60%;
-    left: -35%;
-    width: 26%;
-    height: 220%;
-    z-index: -1;
-    pointer-events: none;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        color-mix(in srgb, var(--main-accent) 9%, transparent) 35%,
-        color-mix(in srgb, var(--main-accent) 30%, transparent) 50%,
-        color-mix(in srgb, var(--main-accent) 9%, transparent) 65%,
-        transparent
-    );
-    filter: blur(18px);
-    /* 45 not 135, since a 135deg gradient lays its bands perpendicular to that */
-    transform: rotate(45deg);
-    will-change: transform;
-    animation: hero-streak 11s linear infinite;
-}
-
-.hero-glow{
-    position: absolute;
-    top: -35%;
-    left: -25%;
-    width: 70%;
-    height: 165%;
-    z-index: -1;
-    pointer-events: none;
-    background: radial-gradient(
-        closest-side ellipse,
-        color-mix(in srgb, var(--main-accent) 20%, transparent),
-        transparent 72%
-    );
-    filter: blur(55px);
-    will-change: transform, opacity;
-    animation: hero-bloom 17s ease-in-out infinite;
-}
-
-/* no scale, it would re-rasterise the blurred layer every frame */
-@keyframes hero-bloom{
-    0%, 100%{
-        translate: 0 0;
-        opacity: 0.3;
-    }
-    50%{
-        translate: 58% 16%;
-        opacity: 0.95;
-    }
-}
-
-/* with a pointer it tracks the cursor, so the drift keyframe has to give up translate */
-@media(hover: hover) and (pointer: fine){
-    .hero-glow{
-        top: 0;
-        left: 0;
-        width: 46%;
-        height: 105%;
-        translate: calc(var(--glow-x, 45vw) - 50%) calc(var(--glow-y, 32vh) - 50%);
-        transition: translate 420ms cubic-bezier(0.22, 1, 0.36, 1);
-        animation: hero-bloom-breathe 6s ease-in-out infinite;
-    }
-}
-
-@keyframes hero-bloom-breathe{
-    0%, 100%{
-        opacity: 0.55;
-    }
-    50%{
-        opacity: 0.95;
-    }
-}
-
-/* half a cycle behind the other one, so a streak passes every ~5.5s */
-.hero::before{
-    width: 16%;
-    /* dimmed in the filter chain; the keyframe owns opacity */
-    filter: blur(22px) opacity(0.6);
-    animation-delay: -5.5s;
-}
-
-/* parks offscreen and invisible for most of the cycle */
-@keyframes hero-streak{
-    0%{
-        translate: 0 0;
-        opacity: 0;
-    }
-    4%{
-        opacity: 1;
-    }
-    26%{
-        opacity: 1;
-    }
-    32%{
-        translate: 175vw 0;
-        opacity: 0;
-    }
-    100%{
-        translate: 175vw 0;
-        opacity: 0;
-    }
 }
 
 /* width-driven, not em. a short lvh would shrink the type and pull the margins with it */
@@ -229,6 +109,9 @@
 .hero-services{
     display: flex;
     flex-direction: column;
+    /* stretch is the default, and it made each row's hover reach the empty space
+       to the right of its text. content-width keeps the target on the words */
+    align-items: flex-start;
     gap: 0.4em;
     margin: 0;
     padding: 0;
@@ -710,29 +593,15 @@
     }
 }
 
+/* !important because the rules that apply these animations are all prefixed with
+   [data-ready='true'], which outscored the old selector list and left the whole
+   entrance running. one blanket rule also covers anything added later */
 @media(prefers-reduced-motion: reduce){
     .hero,
-    .hero::before,
-    .hero::after,
-    .hero-glow,
-    .motto-design,
-    .motto-build,
-    .motto-ship,
-    .hero-status-dot,
-    .hero-badge-track,
-    .hero-caret,
-    .hero[data-ready='true'] .hero-intro .intro-2[data-resolved='true'],
-    .hero :is(
-        .hero-status-solo,
-        .hero-eyebrow-row,
-        .intro-2,
-        .hero-motto-inline,
-        .hero-motto-stack,
-        .hero-services li,
-        .hero-badge,
-        .hero-button
-    ){
-        animation: none;
+    .hero *,
+    .hero *::before,
+    .hero *::after{
+        animation: none !important;
     }
 }
 

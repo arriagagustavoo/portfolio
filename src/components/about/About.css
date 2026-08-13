@@ -1,15 +1,21 @@
 .about{
     border-bottom: var(--section-divider);
-    background-color: var(--section-background);
-    background-image: var(--section-texture);
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    padding: 3rem 1rem;
+    padding: var(--section-padding-block) var(--section-padding-inline);
     min-height: 60dvh;
     position: relative;
     isolation: isolate;
     overflow: hidden;
+}
+
+/* the gate wrappers, so each eyebrow times the content under it */
+.about-lead,
+.about-interests{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
 .about-main{
@@ -20,20 +26,6 @@
 
 .about-top{
     display: flex;
-}
-
-.about-intro{
-    color: var(--main-accent);
-    font-weight: 400;
-    font-size: 2rem;
-    line-height: 1;
-}
-
-.about-tag{
-    color: var(--main-accent);
-    font-weight: 500;
-    font-size: 1.5rem;
-    line-height: 1;
 }
 
 .about-info{
@@ -62,17 +54,50 @@
     flex-shrink: 0;
 }
 
+/* clips the wipe; the photo's own border stays on the img */
+.about-photo-frame{
+    --enter-delay: var(--intro-delay, 0ms);
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 320px;
+}
+
 .about-photo{
     display: block;
     width: 100%;
-    max-width: 320px;
     height: auto;
     border: 4px solid var(--main-accent);
+}
+
+/* green curtain covering the photo until the section lands. inset is negative
+   and the panel is skewed, so the slanted edge clears the corners */
+.about-photo-wipe{
+    position: absolute;
+    inset: -10% -25%;
+    background-color: var(--main-accent);
+    transform: translateX(0) skewX(-12deg);
+}
+
+/* waits out the frame's own fade, so the square lands before the curtain moves */
+[data-visible='true'] .about-photo-wipe{
+    animation: about-photo-wipe 720ms cubic-bezier(0.65, 0, 0.35, 1) calc(var(--intro-delay, 0ms) + 430ms) forwards;
+}
+
+@keyframes about-photo-wipe{
+    from{
+        transform: translateX(0) skewX(-12deg);
+    }
+    to{
+        transform: translateX(140%) skewX(-12deg);
+    }
 }
 
 .about-text{
     font-weight: 400;
     font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .about-showcase{
@@ -106,20 +131,21 @@
     flex-shrink: 0;
 }
 
-a.about-table-badge{
-    cursor: pointer;
-}
-
 @media(hover: hover){
-    a.about-table-badge:hover{
+    .about-table-badge{
+        transition: translate 0.2s ease, color 0.2s ease;
+    }
+
+    .about-table-badge:hover{
+        translate: 0 -4px;
         color: var(--main-background);
     }
 
-    a.about-table-badge:hover::before{
+    .about-table-badge:hover::before{
         background-color: var(--main-accent);
     }
 
-    a.about-table-badge:hover .about-badge-icon{
+    .about-table-badge:hover .about-badge-icon{
         color: var(--main-background);
     }
 }
@@ -142,10 +168,73 @@ a.about-table-badge{
     z-index: -1;
 }
 
+/* --intro-delay is the eyebrow's typing time, so content lands as the line finishes */
+.about-bio-line:nth-child(1){
+    --enter-delay: var(--intro-delay, 0ms);
+}
+
+.about-bio-line:nth-child(2){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 80ms);
+}
+
+.about-bio-line:nth-child(3){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 160ms);
+}
+
+.about-bio-line:nth-child(4){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 240ms);
+}
+
+.about-bio-line:nth-child(5){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 320ms);
+}
+
+.about-info-item:nth-child(1){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 420ms);
+}
+
+.about-info-item:nth-child(2){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 500ms);
+}
+
+.about-table-badge:nth-child(1){
+    --enter-delay: var(--intro-delay, 0ms);
+}
+
+.about-table-badge:nth-child(2){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 60ms);
+}
+
+.about-table-badge:nth-child(3){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 120ms);
+}
+
+.about-table-badge:nth-child(4){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 180ms);
+}
+
+.about-table-badge:nth-child(5){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 240ms);
+}
+
+.about-table-badge:nth-child(6){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 300ms);
+}
+
+/* a stalled curtain would sit on the photo forever */
+@media(prefers-reduced-motion: reduce){
+    .about-photo-wipe{
+        display: none;
+    }
+}
+
 @media(min-width: 600px){
     .about{
-        padding: 4rem 2rem;
-        padding-inline: var(--section-inset);
+        gap: 2rem;
+    }
+
+    .about-lead,
+    .about-interests{
         gap: 2rem;
     }
 

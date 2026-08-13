@@ -1,13 +1,18 @@
 .contact-section{
-    background-color: var(--section-background);
-    background-image: var(--section-texture);
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    padding: 3rem 1rem;
+    padding: var(--section-padding-block) var(--section-padding-inline);
+}
+
+.contact-headline-block{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 .contact-headline{
+    position: relative;
     color: var(--main-text);
     font-family: Geist, sans-serif;
     font-size: 4rem;
@@ -16,8 +21,21 @@
     letter-spacing: -0.05em;
 }
 
+.contact-headline-ghost{
+    visibility: hidden;
+}
+
+.contact-headline-live{
+    position: absolute;
+    inset: 0;
+}
+
 .contact-headline-accent{
     color: var(--main-accent);
+}
+
+.contact-headline{
+    --enter-delay: var(--intro-delay, 0ms);
 }
 
 .contact-columns{
@@ -32,11 +50,22 @@
     gap: .75rem;
 }
 
-.contact-column-title{
-    color: var(--main-accent);
-    font-size: 1.5rem;
-    font-weight: 500;
-    line-height: 1;
+.contact-link-list{
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+}
+
+.contact-link:nth-child(1){
+    --enter-delay: var(--intro-delay, 0ms);
+}
+
+.contact-link:nth-child(2){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 90ms);
+}
+
+.contact-link:nth-child(3){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 180ms);
 }
 
 .contact-link{
@@ -56,8 +85,14 @@
 }
 
 @media(hover: hover){
+    /* translate, not transform: reveal-sweep owns the shorthand */
+    .contact-link{
+        transition: translate 200ms ease, color 200ms ease;
+    }
+
     .contact-link:hover{
         color: var(--main-accent);
+        translate: .3rem 0;
     }
 }
 
@@ -96,12 +131,11 @@
     .contact-toast{
         animation: none;
     }
+
 }
 
 @media(min-width: 600px){
     .contact-section{
-        padding: 4rem 2rem;
-        padding-inline: var(--section-inset);
         flex-direction: row;
         /* flex items won't shrink below their content, so without wrapping the
            row overflows the viewport between 600 and ~1000px */

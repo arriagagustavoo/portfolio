@@ -8,6 +8,62 @@
     padding: 1rem;
 }
 
+/* tied to scroll position rather than a one-shot reveal, so a card grows and
+   settles on the way in and lets go on the way out. no JS and no observer.
+   @supports matters: without it an unsupporting browser would run this once on
+   the document timeline and strand the card faded out */
+@supports (animation-timeline: view()){
+    .project-card{
+        /* load-bearing: scaling a card full of screenshots re-rasterises it every
+           frame without this. measured 123 janked frames down to 0 at 6x throttle.
+           six permanent layers is the price */
+        will-change: transform, opacity;
+        animation: card-scroll linear both;
+        animation-timeline: view();
+        animation-range: entry 0% exit 100%;
+    }
+
+    /* the stops have to be this wide to be seen at all. entry->exit is ~1527px of
+       scrolling for a 627px card, so a fade over the first 18% finishes while the
+       card is still below the fold. 35/65 puts it where you are actually looking */
+    @keyframes card-scroll{
+        0%{
+            opacity: 0;
+            scale: 0.88;
+        }
+        35%{
+            opacity: 1;
+            scale: 1;
+        }
+        65%{
+            opacity: 1;
+            scale: 1;
+        }
+        100%{
+            opacity: 0;
+            scale: 0.88;
+        }
+    }
+}
+
+@media(hover: hover){
+    /* translate and box-shadow only: the scroll animation owns scale and opacity */
+    .project-card{
+        transition: translate 200ms ease, box-shadow 200ms ease;
+    }
+
+    .project-card:hover{
+        translate: 0 -4px;
+        box-shadow: -10px 10px 0 var(--main-accent);
+    }
+}
+
+@media(prefers-reduced-motion: reduce){
+    .project-card{
+        animation: none;
+    }
+}
+
 .card-top{
     display: flex;
     align-items: center;
@@ -15,13 +71,25 @@
     gap: 1rem;
 }
 
+/* skewed background instead of --slanted-shape. that token's slant is a fixed 12px
+   regardless of height, so a title that wraps to two lines drops from ~16deg to
+   ~9deg and reads as a rectangle. an angle stays an angle at any line count. */
 .card-title{
-    background-color: var(--main-accent);
+    position: relative;
+    isolation: isolate;
     color: var(--main-text);
-    clip-path: var(--slanted-shape);
     padding: .5rem 1rem;
     font-weight: 600;
     font-size: 1.5rem;
+}
+
+.card-title::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--main-accent);
+    transform: skewX(-14deg);
+    z-index: -1;
 }
 
 .card-github{

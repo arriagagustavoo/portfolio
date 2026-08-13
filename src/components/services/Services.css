@@ -1,18 +1,15 @@
 .services{
     border-bottom: var(--section-divider);
-    background-color: var(--section-background);
-    background-image: var(--section-texture);
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    padding: 3rem 1rem;
+    padding: var(--section-padding-block) var(--section-padding-inline);
 }
 
-.services-intro{
-    color: var(--main-accent);
-    font-weight: 400;
-    font-size: 2rem;
-    line-height: 1;
+.services-lead{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
 .services-grid{
@@ -55,10 +52,35 @@
     margin-top: auto;
 }
 
+.service-card:nth-child(1){
+    --enter-delay: var(--intro-delay, 0ms);
+}
+
+.service-card:nth-child(2){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 110ms);
+}
+
+.service-card:nth-child(3){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 220ms);
+}
+
+@media(hover: hover){
+    .service-card{
+        transition: translate 200ms ease, box-shadow 200ms ease;
+    }
+
+    .service-card:hover{
+        translate: 0 -4px;
+        box-shadow: -10px 10px 0 var(--main-accent);
+    }
+}
+
 @media(min-width: 600px){
     .services{
-        padding: 4rem 2rem;
-        padding-inline: var(--section-inset);
+        gap: 2rem;
+    }
+
+    .services-lead{
         gap: 2rem;
     }
 

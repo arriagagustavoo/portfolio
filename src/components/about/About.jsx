@@ -8,74 +8,99 @@ import ThreeDModel from "../icons/ThreeDModel"
 import Hardware from "../icons/Hardware"
 import uhLogo from "../../assets/uh-logo.svg"
 import CodeIcon from "../icons/CodeIcon"
+import SectionEyebrow from "../sectionEyebrow/SectionEyebrow"
+import { eyebrowDuration } from "../sectionEyebrow/eyebrowTiming"
+import useInView from "../../hooks/useInView"
+
+const leadEyebrow = "// Get to know me"
+const interestsEyebrow = "// Some interest of mine"
+
+// split so each line can stagger in on its own
+const bioLines = [
+    "I'm Gustavo Arriaga, currently studying Comp Sci @ UH with a Capstone in Software Design.",
+    "Playing video games, building custom PCs, and modding those games ate up all my free time growing up.",
+    "Studying Computer Science was the obvious next step.",
+    "Diving into Software and getting hands-on learning experience only deepened that interest.",
+    "Realizing I can turn creative ideas into digital or even physical products sparked a drive to learn any skill CS has to offer.",
+]
+
+const interests = [
+    { label: "Coding", Icon: CodeIcon },
+    { label: "Fitness", Icon: Weight },
+    { label: "Modeling", Icon: ThreeDModel },
+    { label: "Hardware", Icon: Hardware },
+    { label: "Gaming", Icon: GameController },
+    { label: "Anime", Icon: Television },
+]
 
 function About(){
+
+    // one gate per eyebrow, never nested: two data-visible ancestors would tie on specificity
+    const [leadRef, leadVisible] = useInView();
+    const [interestsRef, interestsVisible] = useInView();
+
+    const leadDelay = { "--intro-delay": eyebrowDuration(leadEyebrow) + "ms" };
+    const interestsDelay = { "--intro-delay": eyebrowDuration(interestsEyebrow) + "ms" };
+
+    const bioParagraphs = bioLines.map((line) => {
+        return (
+            <p className = "about-bio-line reveal-sweep" key = {line}>
+                {line}
+            </p>
+        );
+    });
+
+    const interestBadges = interests.map((interest) => {
+        const Icon = interest.Icon;
+
+        return (
+            <p className = "about-table-badge reveal-flip" key = {interest.label}>
+                <Icon className = "about-badge-icon"/>
+                {interest.label}
+            </p>
+        );
+    });
 
     return(
         <>
         <div className = "about" id = "about">
-            <p className = "about-intro">
-                // Get to know me
-            </p>
 
-            <div className = "about-main">
-                <div className = "about-top">
-                    <img className = "about-photo" src = {myPhoto} alt = "Gustavo Arriaga" loading = "lazy" decoding = "async"/>
+            <div className = "about-lead" ref = {leadRef} data-visible = {leadVisible} style = {leadDelay}>
+                <SectionEyebrow text = {leadEyebrow} active = {leadVisible}/>
+
+                <div className = "about-main">
+                    <div className = "about-top">
+                        {/* fade, not sweep: the curtain underneath already moves sideways */}
+                        <div className = "about-photo-frame reveal-fade">
+                            <img className = "about-photo" src = {myPhoto} alt = "Gustavo Arriaga" loading = "lazy" decoding = "async"/>
+                            <span className = "about-photo-wipe" aria-hidden = "true"></span>
+                        </div>
+                    </div>
+
+                    <div className = "about-text">
+                        {bioParagraphs}
+                    </div>
                 </div>
 
-                <div className = "about-text">
-                    <p>
-                        I'm Gustavo Arriaga, currently studying Comp Sci @ UH with a Capstone in Software Design.<br></br>
-                        Playing video games, building custom PCs, and modding those games ate up all my free time growing up.<br></br>
-                        Studying Computer Science was the obvious next step.<br></br>
-                        Diving into Software and getting hands-on learning experience only deepened that interest.<br></br>
-                        Realizing I can turn creative ideas into digital or even physical products sparked a drive to learn any skill CS has to offer.<br></br>
-                    </p>
+                <div className = "about-info">
+                    <div className = "about-info-item reveal-sweep">
+                        <Pin className = "about-info-icon"/>
+                        <p>Houston, Texas</p>
+                    </div>
+
+                    <div className = "about-info-item reveal-sweep">
+                        <img className = "about-info-logo" src = {uhLogo} alt = "University of Houston logo" loading = "lazy" decoding = "async"/>
+                        <p>University of Houston</p>
+                    </div>
                 </div>
             </div>
 
-            <div className = "about-info">
-                <div className = "about-info-item">
-                    <Pin className = "about-info-icon"/>
-                    <p>Houston, Texas</p>
+            <div className = "about-interests" ref = {interestsRef} data-visible = {interestsVisible} style = {interestsDelay}>
+                <SectionEyebrow text = {interestsEyebrow} tag = {true} active = {interestsVisible}/>
+
+                <div className = "about-showcase">
+                    {interestBadges}
                 </div>
-
-                <div className = "about-info-item">
-                    <img className = "about-info-logo" src = {uhLogo} alt = "University of Houston logo" loading = "lazy" decoding = "async"/>
-                    <p>University of Houston</p>
-                </div>
-            </div>
-
-            <p className = "about-tag">
-                // Some interest of mine
-            </p>
-
-            <div className = "about-showcase">
-                <p className = "about-table-badge">
-                    <CodeIcon className = "about-badge-icon"/>
-                    Coding
-                </p>
-                <p className = "about-table-badge">
-                    <Weight className = "about-badge-icon"/>
-                    Fitness
-                </p>
-                <p className = "about-table-badge">
-                    <ThreeDModel className = "about-badge-icon"/>
-                    Modeling
-                </p>
-                <p className = "about-table-badge">
-                    <Hardware className = "about-badge-icon"/>
-                    Hardware
-                </p>
-                <p className = "about-table-badge" href = "https://persona.atlus.com/series/portal/us/" target = "_blank" rel = "noopener noreferrer">
-                    <GameController className = "about-badge-icon"/>
-                    Gaming
-                </p>
-                <p className = "about-table-badge" href = "https://anilist.co/anime/21/ONE-PIECE" target = "_blank" rel = "noopener noreferrer">
-                    <Television className = "about-badge-icon"/>
-                    Anime
-                </p>
-                
             </div>
 
         </div>

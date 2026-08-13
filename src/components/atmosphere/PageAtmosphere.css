@@ -1,0 +1,170 @@
+/* one fixed layer for the whole page. sections are transparent and sit on top of it */
+.atmosphere{
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+    background-color: var(--section-background);
+}
+
+.atmosphere-texture{
+    position: absolute;
+    inset: -30px 0;
+    translate: 0 var(--scroll-shift, 0px);
+}
+
+/* translate, NOT background-position: that one is a paint property, and animating it
+   repainted this full-viewport layer every frame for the whole page */
+.atmosphere-texture-drift{
+    position: absolute;
+    inset: -16px;
+    background-image: var(--section-texture);
+    will-change: transform;
+    animation: texture-drift 8s linear infinite;
+}
+
+/* 16px tile on a 135deg axis = 11.31px each way, or the pattern jumps every loop */
+@keyframes texture-drift{
+    from{
+        translate: 0 0;
+    }
+    to{
+        translate: 11.31px 11.31px;
+    }
+}
+
+/* the extra stops are cheap insurance against banding; the blur below still does the
+   softening, exactly as the hero's version did */
+.atmosphere-streak{
+    position: absolute;
+    top: -60%;
+    left: -35%;
+    height: 220%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        color-mix(in srgb, var(--main-accent) 3%, transparent) 22%,
+        color-mix(in srgb, var(--main-accent) 9%, transparent) 35%,
+        color-mix(in srgb, var(--main-accent) 20%, transparent) 44%,
+        color-mix(in srgb, var(--main-accent) 26%, transparent) 50%,
+        color-mix(in srgb, var(--main-accent) 20%, transparent) 56%,
+        color-mix(in srgb, var(--main-accent) 9%, transparent) 65%,
+        color-mix(in srgb, var(--main-accent) 3%, transparent) 78%,
+        transparent
+    );
+    /* 45 not 135, since a 135deg gradient lays its bands perpendicular to that */
+    transform: rotate(45deg);
+    will-change: transform;
+    animation: atmosphere-streak 11s linear infinite;
+}
+
+.atmosphere-streak-wide{
+    width: 26%;
+    filter: blur(18px);
+}
+
+/* half a cycle behind the other one, so a streak passes every ~5.5s */
+.atmosphere-streak-thin{
+    width: 16%;
+    /* dimmed in the filter chain; the keyframe owns opacity */
+    filter: blur(22px) opacity(0.6);
+    animation-delay: -5.5s;
+}
+
+/* parks offscreen and invisible for most of the cycle */
+@keyframes atmosphere-streak{
+    0%{
+        translate: 0 0;
+        opacity: 0;
+    }
+    4%{
+        opacity: 1;
+    }
+    26%{
+        opacity: 1;
+    }
+    32%{
+        translate: 175vw 0;
+        opacity: 0;
+    }
+    100%{
+        translate: 175vw 0;
+        opacity: 0;
+    }
+}
+
+.atmosphere-glow{
+    position: absolute;
+    top: -35%;
+    left: -25%;
+    width: 70%;
+    height: 165%;
+    background: radial-gradient(
+        closest-side ellipse,
+        color-mix(in srgb, var(--main-accent) 20%, transparent),
+        color-mix(in srgb, var(--main-accent) 15%, transparent) 26%,
+        color-mix(in srgb, var(--main-accent) 9%, transparent) 45%,
+        color-mix(in srgb, var(--main-accent) 4%, transparent) 62%,
+        color-mix(in srgb, var(--main-accent) 1%, transparent) 80%,
+        transparent 92%
+    );
+    will-change: transform, opacity;
+    animation: atmosphere-bloom 17s ease-in-out infinite;
+}
+
+/* no scale, it would re-rasterise the blurred layer every frame */
+@keyframes atmosphere-bloom{
+    0%, 100%{
+        translate: 0 0;
+        opacity: 0.3;
+    }
+    50%{
+        translate: 58% 16%;
+        opacity: 0.95;
+    }
+}
+
+/* with a pointer it tracks the cursor, so the drift keyframe has to give up translate */
+@media(hover: hover) and (pointer: fine){
+    .atmosphere-glow{
+        top: 0;
+        left: 0;
+        width: 46%;
+        height: 105%;
+        translate: calc(var(--glow-x, 45vw) - 50%) calc(var(--glow-y, 32vh) - 50%);
+        transition: translate 420ms cubic-bezier(0.22, 1, 0.36, 1);
+        animation: atmosphere-breathe 6s ease-in-out infinite;
+    }
+}
+
+@keyframes atmosphere-breathe{
+    0%, 100%{
+        opacity: 0.55;
+    }
+    50%{
+        opacity: 0.95;
+    }
+}
+
+@media(prefers-reduced-motion: reduce){
+    .atmosphere-texture-drift,
+    .atmosphere-streak,
+    .atmosphere-glow{
+        animation: none;
+    }
+
+    /* CSS has to win here: the parallax is written from JS as an inline var */
+    .atmosphere-texture{
+        translate: none;
+    }
+
+    /* still tracks the cursor, but lands instead of gliding */
+    .atmosphere-glow{
+        transition: none;
+    }
+
+    .atmosphere-streak{
+        opacity: 0;
+    }
+}

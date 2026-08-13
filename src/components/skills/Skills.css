@@ -1,27 +1,30 @@
 .skills{
     border-bottom: var(--section-divider);
-    background-color: var(--section-background);
-    background-image: var(--section-texture);
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    padding: 3rem 1rem;
+    padding: var(--section-padding-block) var(--section-padding-inline);
 }
 
-.skills-intro{
-    color: var(--main-accent);
-    font-weight: 400;
-    font-size: 2rem;
-    line-height: 1;
+.skills-lead{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
-/* overflow hides the extra track */
 .skills-carousel{
-    overflow: hidden;
+    --enter-delay: var(--intro-delay, 0ms);
     background-color: var(--main-card);
     border: 4px solid var(--main-text);
     box-shadow: -6px 6px 0 var(--main-accent);
     padding-block: 1rem;
+}
+
+/* overflow hides the extra track; the mask dissolves the logos instead of cutting them */
+.carousel-window{
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
 }
 
 .carousel-track{
@@ -40,19 +43,14 @@
     object-fit: contain;
 }
 
-/* track holds the list twice*/
+/* track holds the list twice. -50% and 0 are the same picture, so unwinding
+   to 0 travels left to right and still loops seamlessly */
 @keyframes carousel-scroll{
     from{
-        transform: translateX(0);
-    }
-    to{
         transform: translateX(-50%);
     }
-}
-
-@media(hover: hover){
-    .skills-carousel:hover .carousel-track{
-        animation-play-state: paused;
+    to{
+        transform: translateX(0);
     }
 }
 
@@ -79,14 +77,25 @@
     padding: 1rem;
 }
 
+/* skewed background, not --slanted-shape: these wrap to two lines at 600px and a
+   fixed 12px slant flattens to ~8deg there. an angle holds at any line count */
 .skill-group-label{
-    background-color: var(--main-accent);
+    position: relative;
+    isolation: isolate;
     color: var(--main-text);
-    clip-path: var(--slanted-shape);
     padding: .65rem 1.5rem;
     font-size: 1.4rem;
     font-weight: 700;
     align-self: flex-start;
+}
+
+.skill-group-label::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--main-accent);
+    transform: skewX(-14deg);
+    z-index: -1;
 }
 
 .skill-group-badges{
@@ -96,15 +105,24 @@
 }
 
 .skill-badge{
+    position: relative;
+    isolation: isolate;
     display: flex;
     align-items: center;
     gap: .5rem;
-    background-color: var(--main-text);
     color: var(--main-card);
-    clip-path: var(--slanted-shape);
     padding: .65rem 1.25rem;
     font-size: 1.15rem;
     font-weight: 600;
+}
+
+.skill-badge::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--main-text);
+    transform: skewX(-14deg);
+    z-index: -1;
 }
 
 .skill-badge-icon{
@@ -115,10 +133,89 @@
     object-fit: contain;
 }
 
+@media(hover: hover){
+    /* translate, not transform: reveal-flip owns the shorthand */
+    .skill-badge{
+        transition: translate 200ms ease, color 200ms ease;
+    }
+
+    .skill-badge::before{
+        transition: background-color 200ms ease;
+    }
+
+    .skill-badge:hover{
+        translate: 0 -3px;
+        color: var(--main-text);
+    }
+
+    .skill-badge:hover::before{
+        background-color: var(--main-accent);
+    }
+}
+
+/* every delay is intro (the eyebrow's typing time) + the panel's turn + its own step */
+.skill-group:nth-child(1){
+    --group-delay: 0ms;
+}
+
+.skill-group:nth-child(2){
+    --group-delay: 130ms;
+}
+
+.skill-group:nth-child(3){
+    --group-delay: 260ms;
+}
+
+.skill-group:nth-child(4){
+    --group-delay: 390ms;
+}
+
+.skill-group{
+    --enter-delay: calc(var(--intro-delay, 0ms) + 150ms + var(--group-delay, 0ms));
+}
+
+.skill-group-label{
+    --enter-delay: calc(var(--intro-delay, 0ms) + 300ms + var(--group-delay, 0ms));
+}
+
+.skill-badge:nth-child(1){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 420ms + var(--group-delay, 0ms));
+}
+
+.skill-badge:nth-child(2){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 460ms + var(--group-delay, 0ms));
+}
+
+.skill-badge:nth-child(3){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 500ms + var(--group-delay, 0ms));
+}
+
+.skill-badge:nth-child(4){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 540ms + var(--group-delay, 0ms));
+}
+
+.skill-badge:nth-child(5){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 580ms + var(--group-delay, 0ms));
+}
+
+.skill-badge:nth-child(6){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 620ms + var(--group-delay, 0ms));
+}
+
+.skill-badge:nth-child(7){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 660ms + var(--group-delay, 0ms));
+}
+
+.skill-badge:nth-child(8){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 700ms + var(--group-delay, 0ms));
+}
+
 @media(min-width: 600px){
     .skills{
-        padding: 4rem 2rem;
-        padding-inline: var(--section-inset);
+        gap: 2rem;
+    }
+
+    .skills-lead{
         gap: 2rem;
     }
 

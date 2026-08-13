@@ -1,5 +1,10 @@
 import ProjectCard from "./projectCards/ProjectCard";
 import Lightbox from "./lightbox/Lightbox";
+import SectionEyebrow from "../sectionEyebrow/SectionEyebrow";
+import { eyebrowDuration } from "../sectionEyebrow/eyebrowTiming";
+import useInView from "../../hooks/useInView";
+
+const projectsEyebrow = "// Some of my Work";
 import { queueSmartImages, queueSmartCover, mazeGameImages, mazeGameCover, rideShareImages, rideShareCover, unityGameImages, unityGameCover, mriScannerImages, mriScannerCover, documentSystemImages, documentSystemCover } from "./projectImages";
 import { useState } from "react";
 import "./Projects.css"
@@ -62,6 +67,9 @@ function Projects(){
     // null = closed. lives here so only one gallery can be open at a time
     const [openProject, setOpenProject] = useState(null);
 
+    const [leadRef, leadVisible] = useInView();
+    const leadDelay = { "--intro-delay": eyebrowDuration(projectsEyebrow) + "ms" };
+
     const handleOpenGallery = (project) => {
         setOpenProject(project);
     };
@@ -101,12 +109,13 @@ function Projects(){
     return(
         <>
         <div className = "projects" id = "projects">
-            <p className = "projects-intro">
-                // Some of my Work
-            </p>
+            <div className = "projects-lead" ref = {leadRef} data-visible = {leadVisible} style = {leadDelay}>
+                <SectionEyebrow text = {projectsEyebrow} active = {leadVisible}/>
 
-            <div className = "projects-grid">
-                {projectCards}
+                {/* fade only: the cards inside own their own scroll-driven motion */}
+                <div className = "projects-grid reveal-fade">
+                    {projectCards}
+                </div>
             </div>
 
         </div>

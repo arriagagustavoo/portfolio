@@ -1,25 +1,24 @@
 .projects{
     border-bottom: var(--section-divider);
-    background-color: var(--section-background);
-    background-image: var(--section-texture);
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    padding: 3rem 1rem;
+    padding: var(--section-padding-block) var(--section-padding-inline);
     min-height: 90dvh;
     position: relative;
     isolation: isolate;
-    overflow: hidden;
+    /* no overflow:hidden here. it makes this a scroll container, and the cards'
+       view() timeline then binds to it instead of the page and never advances */
 }
 
-.projects-intro{
-    color: var(--main-accent);
-    font-weight: 400;
-    font-size: 2rem;
-    line-height: 1;
+.projects-lead{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
 .projects-grid{
+    --enter-delay: var(--intro-delay, 0ms);
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     gap: 2rem;
@@ -31,8 +30,10 @@
     }
 
     .projects{
-        padding: 4rem 2rem;
-        padding-inline: var(--section-inset);
+        gap: 2rem;
+    }
+
+    .projects-lead{
         gap: 2rem;
     }
 }
