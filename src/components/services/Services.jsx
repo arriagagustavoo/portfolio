@@ -54,7 +54,7 @@ function Services(){
 
     return(
         <>
-        <div className = "services" id = "services">
+        <section className = "services" id = "services">
             <div className = "services-lead" ref = {leadRef} data-visible = {leadVisible} style = {leadDelay}>
                 <SectionEyebrow text = {servicesEyebrow} active = {leadVisible}/>
 
@@ -62,7 +62,7 @@ function Services(){
                     {serviceCards}
                 </div>
             </div>
-        </div>
+        </section>
         </>
     )
 }

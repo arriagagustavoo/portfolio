@@ -195,7 +195,7 @@ function Header(){
 
     return(
         <>
-        <div className = "header" ref = {headerRef}>
+        <header className = "header" ref = {headerRef}>
             <div className = "left-header">
                 <a className = "header-logo-link" href = "#hero">
                     <picture key = {theme}>
@@ -224,7 +224,7 @@ function Header(){
             </div>
 
             <div className = "header-progress" ref = {progressRef} aria-hidden = "true"></div>
-        </div>
+        </header>
         </>
     )
 }

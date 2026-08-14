@@ -6,7 +6,7 @@ function Footer(){
 
     return(
         <>
-        <div className = "footer">
+        <footer className = "footer">
             <p className = "footer-text">
                 © {year} Gustavo Arriaga
             </p>
@@ -14,7 +14,7 @@ function Footer(){
             <p className = "footer-text">
                 ALL RIGHTS RESERVED
             </p>
-        </div>
+        </footer>
         </>
     )
 }

@@ -127,7 +127,7 @@ function Hero(){
     const nameLines = name.display.split('\n')
 
     return(
-        <div className = "hero" id = "hero" ref = {heroRef} data-ready = {ready}>
+        <section className = "hero" id = "hero" ref = {heroRef} data-ready = {ready}>
             <div className = "hero-inner">
 
                 <p className = "hero-status hero-status-solo">
@@ -201,7 +201,7 @@ function Hero(){
                 </div>
 
             </div>
-        </div>
+        </section>
     )
 }
 

@@ -23,12 +23,14 @@ function App() {
         {/* sibling of the sections on purpose: contain:paint would trap a fixed child */}
         <PageAtmosphere/>
         <Header/>
-        <Hero/>
-        <About/>
-        <Projects/>
-        <Skills/>
-        <Services/>
-        <Contact/>
+        <main>
+            <Hero/>
+            <About/>
+            <Projects/>
+            <Skills/>
+            <Services/>
+            <Contact/>
+        </main>
         <Footer/>
         <Analytics />
         <SpeedInsights />

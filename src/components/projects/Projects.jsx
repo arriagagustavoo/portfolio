@@ -108,7 +108,7 @@ function Projects(){
 
     return(
         <>
-        <div className = "projects" id = "projects">
+        <section className = "projects" id = "projects">
             <div className = "projects-lead" ref = {leadRef} data-visible = {leadVisible} style = {leadDelay}>
                 <SectionEyebrow text = {projectsEyebrow} active = {leadVisible}/>
 
@@ -118,7 +118,7 @@ function Projects(){
                 </div>
             </div>
 
-        </div>
+        </section>
 
         {lightbox}
 

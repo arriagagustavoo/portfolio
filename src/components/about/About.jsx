@@ -63,7 +63,7 @@ function About(){
 
     return(
         <>
-        <div className = "about" id = "about">
+        <section className = "about" id = "about">
 
             <div className = "about-lead" ref = {leadRef} data-visible = {leadVisible} style = {leadDelay}>
                 <SectionEyebrow text = {leadEyebrow} active = {leadVisible}/>
@@ -103,7 +103,7 @@ function About(){
                 </div>
             </div>
 
-        </div>
+        </section>
         </>
     )
 }

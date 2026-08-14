@@ -122,7 +122,7 @@ function Contact(){
 
     return(
         <>
-        <div className = "contact-section" id = "contact">
+        <section className = "contact-section" id = "contact">
             <div className = "contact-headline-block" ref = {leadRef} data-visible = {leadVisible} style = {leadDelay}>
                 <SectionEyebrow text = {leadEyebrow} active = {leadVisible}/>
 
@@ -157,7 +157,7 @@ function Contact(){
             </div>
 
             {toast}
-        </div>
+        </section>
         </>
     )
 }
