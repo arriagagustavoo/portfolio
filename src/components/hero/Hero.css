@@ -1,89 +1,356 @@
 .hero{
-    border-bottom: solid var(--main-text) 4px;
-    background-color: var(--main-background);
-    background-image: var(--diagonal-texture);
+    /* capped by width and height so short phones scale down instead of overflowing */
+    --hero-unit: min(21px, 5.1vw, 2.62lvh);
+    /* width-only twin: real Safari lvh runs ~10% short and would drag the column in */
+    --hero-column-unit: min(21px, 5.1vw);
+
+    border-bottom: var(--section-divider);
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    padding: 1rem;
-    min-height: 80dvh;
+    /* no min-height on mobile; space under the buttons is padding, not leftover viewport */
+    padding: 1.6rem 0.6rem 2.8rem;
     position: relative;
+    /* both still load-bearing: the marquee bleeds full-width and the badges use z-index -1 */
     isolation: isolate;
     overflow: hidden;
 }
 
-.hero-stripes{
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 43%;
-    background-color: var(--main-accent);
-    z-index: -1;
-    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 98% 100%);
-}
-
-.hero-stripes::before{
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-color: var(--main-background);
-    clip-path: polygon(18% 0%, 24% 0%, 122% 100%, 116% 100%);
-}
-
-.left-hero-text{
+/* width-driven, not em. a short lvh would shrink the type and pull the margins with it */
+.hero-inner{
+    flex: 1;
+    width: 100%;
+    max-width: calc(18.5 * var(--hero-column-unit));
+    margin-inline: auto;
+    font-size: var(--hero-unit);
     display: flex;
     flex-direction: column;
-    align-items: left;
-    justify-content: left;
-    gap: 1rem;
-    font-weight: 400;
-    font-size: 1.5rem;
+    /* one even gap. space-between spread the leftover height and widened the top one */
+    justify-content: flex-start;
+    gap: 1em;
 }
 
-.intro-1{
-    color: var(--main-accent);
+/* eyebrow, name and list read as one block with their own tighter spacing */
+.hero-intro{
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-status{
+    position: relative;
+    isolation: isolate;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+    padding: 0.4em 1.1em;
+    color: var(--main-text);
+    font-size: 1.25em;
     font-weight: 400;
-    font-size: 3rem;
-    line-height: 1;
+}
+
+/* mobile pairs the badge beside the eyebrow instead of giving it its own row */
+.hero-eyebrow-row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.35em;
+}
+
+/* 0.64em: at 360px the eyebrow takes 169.5 of the 339.7 column, leaving ~164 */
+.hero-status-inline{
+    font-size: 0.64em;
+    white-space: nowrap;
+}
+
+.hero-status-solo{
+    display: none;
+}
+
+.hero-status-dot{
+    width: 0.35em;
+    height: 0.35em;
+    border-radius: 50%;
+    background-color: var(--main-accent);
+    animation: status-pulse 1.4s ease-in-out infinite;
+}
+
+/* em not px so the ring scales with the badge */
+@keyframes status-pulse{
+    0%, 100%{
+        opacity: 0.35;
+        box-shadow: 0 0 0 0 color-mix(in srgb, var(--main-accent) 50%, transparent);
+    }
+    50%{
+        opacity: 1;
+        box-shadow: 0 0 0 0.4em transparent;
+    }
 }
 
 .intro-2{
     color: var(--main-text);
-    font-size: 6rem;
-    font-family: Geist;
+    font-size: 4em;
+    /* the fallback is load-bearing: with none, an unloaded Geist drops to Times New Roman */
+    font-family: Geist, sans-serif;
     font-weight: 900;
     line-height: .9;
-    letter-spacing: -0.05em;
-    transform: scaleY(1.2);
-    margin-bottom: 1.3rem;
+    letter-spacing: -0.015em;
+    /* Geist tops out at 900 with no width axis, so a same-colour stroke is the only fattener */
+    -webkit-text-stroke: 0.014em var(--main-text);
+    /* skew shares the shorthand because there's no standalone skew property */
+    transform: scaleY(1.2) skewX(-9deg);
+    transform-origin: left top;
+    /* pays back the leftward walk the skew gives the second line */
+    padding-left: 0.2em;
+    text-shadow: 0.055em 0.055em 0 var(--main-accent);
+    margin-top: 0.05em;
+    margin-bottom: 0.55em;
 }
 
-.left-hero-badges{
+.hero-services{
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    text-align: center;
-    font-size: 1.25rem;
-    font-weight: 400;
+    /* stretch is the default, and it made each row's hover reach the empty space
+       to the right of its text. content-width keeps the target on the words */
+    align-items: flex-start;
+    gap: 0.4em;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: var(--main-text);
+    /* 1.2 not 1.3: at 1.3 the longest line left 5.5px of a 393px column, and real Safari ate it */
+    font-size: 1.2em;
+    font-weight: 600;
 }
 
-.hero-badge-row{
+/* one line always. the size above is what keeps this from overflowing instead */
+.hero-services li{
+    white-space: nowrap;
+}
+
+.hero-services li::before{
+    content: "> ";
+    color: var(--main-accent);
+}
+
+/* breaks out of the centered column so the row bleeds off both screen edges */
+.hero-badges{
+    width: 100vw;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    overflow: hidden;
+    /* room for the flip to swing below the box; the negative margin gives the space back */
+    padding-block: 1.2em;
+    margin-block: -1.2em;
+}
+
+.hero-badge-track{
     display: flex;
-    gap: 1rem;
+    width: max-content;
+    animation: badge-scroll 18s linear infinite;
 }
 
+/* -50% and 0 are the same picture, so unwinding to 0 travels right and still loops */
+@keyframes badge-scroll{
+    from{
+        transform: translateX(-50%);
+    }
+    to{
+        transform: translateX(0);
+    }
+}
+
+/* spacing on the badge, not a flex gap, so one set is exactly half the track */
 .hero-badge{
+    position: relative;
+    isolation: isolate;
+    margin-right: 0.5em;
+    padding: 0.35em 1.1em;
+    color: var(--main-text);
+    font-size: 1.3em;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+.hero-status::after,
+.hero-badge::after{   /* green outline layer */
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--main-accent);
+    clip-path: var(--slanted-shape);
+    z-index: -2;
+}
+
+.hero-status::before,
+.hero-badge::before{  /* fill layer, slightly smaller */
+    content: "";
+    position: absolute;
+    inset: 3px;
+    background-color: var(--main-card);
+    clip-path: var(--slanted-shape);
+    z-index: -1;
+}
+
+.hero-motto{
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    font-family: Geist, sans-serif;
+    font-weight: 900;
+    font-size: 2.72em;
+    /* under 1 so the line boxes eat the empty space above and below the glyphs */
+    line-height: .94;
+    /* the stroke straddles the glyph edge, so tight letters cross outlines */
+    letter-spacing: 0.05em;
+}
+
+/* stroke first, opaque fill over it, or Geist's internal contour seams show */
+.motto-design,
+.motto-build,
+.motto-ship{
+    color: var(--main-background);
+    paint-order: stroke fill;
+    transform-origin: top center;
+}
+
+/* two animations, safe only because the cycle owns colour and the flip owns transform */
+.hero[data-ready='true'] :is(
+    .motto-design,
+    .motto-build,
+    .motto-ship
+){
+    animation:
+        motto-cycle 7.5s ease-in-out var(--motto-delay, 0ms) infinite,
+        motto-flip 760ms cubic-bezier(0.2, 1.4, 0.35, 1) var(--flip-delay, 0ms) backwards;
+}
+
+/* 900px, not the badges' 260. perspective is absolute and this type is ~5x taller */
+@keyframes motto-flip{
+    from{
+        opacity: 0;
+        transform: perspective(900px) rotateX(90deg);
+    }
+    to{
+        opacity: 1;
+        transform: perspective(900px) rotateX(0deg);
+    }
+}
+
+/* equal thirds, so it runs outlined to solid green to ink and back */
+@keyframes motto-cycle{
+    0%, 20%{
+        color: var(--main-background);
+    }
+    33.34%, 53.34%{
+        color: var(--main-accent);
+    }
+    66.67%, 86.67%{
+        color: var(--main-text);
+    }
+    100%{
+        color: var(--main-background);
+    }
+}
+
+/* a third apart keeps one of each colour on screen; most negative leads the wave */
+.motto-design{
+    --motto-delay: -5s;
+    --flip-delay: 3450ms;
+}
+
+.motto-build{
+    --motto-delay: -2.5s;
+    --flip-delay: 3650ms;
+}
+
+.motto-ship{
+    --motto-delay: 0s;
+    --flip-delay: 3850ms;
+}
+
+/* each line pins to a different edge so the cascade holds its shape */
+.motto-design{
+    align-self: flex-start;
+    -webkit-text-stroke: 4px var(--main-accent);
+}
+
+.motto-build{
+    align-self: center;
+    -webkit-text-stroke: 4px var(--main-accent);
+}
+
+.motto-ship{
+    align-self: flex-end;
+    -webkit-text-stroke: 4px var(--main-accent);
+}
+
+/* mobile: one line under the name, reading as a tagline */
+.hero-motto-inline{
+    flex-direction: row;
+    align-items: baseline;
+    /* 0.25em runs past the column on a 360px phone */
+    gap: 0.16em;
+    margin-top: 0.2em;
+    margin-bottom: 0.55em;
+    font-size: 1.8em;
+    letter-spacing: 0.03em;
+    /* height is the only axis left; anchored top so it grows into the gap below */
+    transform: scaleY(1.35);
+    transform-origin: top;
+}
+
+/* 1.5px, not 2. once the fill turns green it stops separating an i's dot from its stem */
+.hero-motto-inline span{
+    align-self: auto;
+    -webkit-text-stroke-width: 1.5px;
+}
+
+.hero-motto-stack{
+    display: none;
+}
+
+.hero-buttons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+}
+
+.hero-button{
+    padding: 0.34em 1.62em;
+    font-size: 1.45em;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: translate 0.18s ease, filter 0.18s ease;
+}
+
+/* fill sits on a child because clip-path runs after filter and would clip the shadow off */
+.hero-button-primary{
     position: relative;
     isolation: isolate;
     background-color: transparent;
     color: var(--main-text);
-    padding: .8rem;
-    font-weight: 600;
 }
 
+.hero-button-primary::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--main-accent);
+    clip-path: var(--slanted-shape);
+    z-index: -1;
+}
 
-.hero-badge::after{   /* outline layer text color */
+.hero-button-secondary{
+    position: relative;
+    isolation: isolate;
+    background-color: transparent;
+    color: var(--main-text);
+}
+
+.hero-button-secondary::after{
     content: "";
     position: absolute;
     inset: 0;
@@ -92,60 +359,375 @@
     z-index: -2;
 }
 
-.hero-badge::before{  /* fill layer, 2px smaller, background color */
+.hero-button-secondary::before{
     content: "";
     position: absolute;
-    inset: 0.14em;
-    background-color: var(--main-card);
+    inset: 3px;
+    background-color: var(--main-background);
     clip-path: var(--slanted-shape);
     z-index: -1;
 }
 
-
-
-.left-hero-buttons{
-    display: flex;
-}
-
-.hero-button{
-    background-color: var(--main-accent);
-    color: var(--main-text);
-    padding: 1.35rem;
-    clip-path: var(--slanted-shape);
-    font-weight: 600;
-    font-size: 1.1rem;
-    cursor: pointer;
-    text-decoration: none;
-}
-
+/* drop-shadow, not box-shadow. clip-path eats a box-shadow like it eats a border */
 @media(hover: hover){
-    .hero-button:hover{
-        background-color: var(--accent-hover);
+    .hero-button-primary:hover{
+        translate: 0 -3px;
+        filter: drop-shadow(0 6px 0 var(--button-shadow));
+    }
+
+    .hero-button-secondary:hover{
+        translate: 0 -3px;
+        filter: drop-shadow(0 6px 0 var(--main-accent));
+    }
+
+    /* translate, not transform. badge-fall owns the shorthand */
+    .hero-badge{
+        transition: translate 0.2s ease, color 0.2s ease;
+    }
+
+    .hero-badge:hover{
+        translate: 0 -4px;
+        color: var(--main-background);
+    }
+
+    .hero-badge:hover::before{
+        background-color: var(--main-accent);
+    }
+
+    .hero-services li{
+        transition: translate 0.2s ease, color 0.2s ease;
+        cursor: default;
+    }
+
+    .hero-services li:hover{
+        translate: 0.45em 0;
+        color: var(--main-accent);
     }
 }
 
-.hero-button:active{
-    background-color: var(--accent-active);
+/* press drops into the shadow rather than just undoing the hover */
+.hero-button-primary:active{
+    translate: 0 1px;
+    filter: drop-shadow(0 2px 0 var(--button-shadow));
+}
+
+.hero-button-secondary:active{
+    translate: 0 1px;
+    filter: drop-shadow(0 2px 0 var(--main-accent));
+}
+
+/* the ghost holds the full width so the badge beside it doesn't walk while it types */
+.intro-1{
+    position: relative;
+    color: var(--main-accent);
+    font-weight: 400;
+    font-size: 1.75em;
+    line-height: 1;
+    /* as a flex item it shrinks under its content and wraps without this */
+    white-space: nowrap;
+}
+
+.intro-1-ghost{
+    visibility: hidden;
+    /* room for the caret, which the ghost doesn't contain */
+    padding-right: 0.6em;
+}
+
+.intro-1-live{
+    position: absolute;
+    inset: 0;
+}
+
+.hero-caret{
+    display: inline-block;
+    width: 0.44em;
+    height: 0.92em;
+    margin-left: 0.14em;
+    vertical-align: -0.1em;
+    background-color: currentColor;
+    animation: caret-blink 1.05s steps(1) infinite;
+}
+
+@keyframes caret-blink{
+    0%, 49%{
+        opacity: 1;
+    }
+    50%, 100%{
+        opacity: 0;
+    }
+}
+
+/* hidden until the observer says the hero is on screen */
+.hero:not([data-ready='true']) .hero-inner{
+    opacity: 0;
+}
+
+.hero[data-ready='true'] :is(
+    .hero-status-solo,
+    .hero-eyebrow-row,
+    .intro-2,
+    .hero-services li,
+    .hero-button
+){
+    /* the 1.4 control point is the overshoot; 1.0 for none */
+    animation: hero-sweep 720ms cubic-bezier(0.2, 1.4, 0.3, 1) var(--enter-delay, 0ms) backwards;
+    /* keeps the layer alive; losing it swaps text AA and looks like the glyphs grow */
+    will-change: transform;
+}
+
+/* eyebrow lands alone and types for ~1.05s, everything else is offset past that */
+.hero-eyebrow-row{
+    --enter-delay: 0ms;
+}
+
+.hero-status-solo{
+    --enter-delay: 1300ms;
+}
+
+.intro-2{
+    --enter-delay: 1400ms;
+}
+
+/* extra descendant to outbid the :is() rule, which is a point more specific than it looks */
+.hero[data-ready='true'] .hero-intro .intro-2{
+    animation-duration: 1150ms;
+}
+
+.hero-services li:nth-child(1){
+    --enter-delay: 1650ms;
+}
+
+.hero-services li:nth-child(2){
+    --enter-delay: 1770ms;
+}
+
+.hero-services li:nth-child(3){
+    --enter-delay: 1890ms;
+}
+
+.hero-button-primary{
+    --enter-delay: 2300ms;
+}
+
+.hero-button-secondary{
+    --enter-delay: 2420ms;
+}
+
+/* translate not transform: .intro-2 and the inline motto already own the shorthand */
+/* the clip overruns three sides so the name's shadow and skew aren't sheared off */
+@keyframes hero-sweep{
+    from{
+        opacity: 0;
+        translate: -2.2rem 0;
+        clip-path: inset(-25% 100% -25% -25%);
+    }
+    to{
+        opacity: 1;
+        translate: 0 0;
+        clip-path: inset(-25% -15% -25% -25%);
+    }
+}
+
+/* perspective per badge, not on the track; a shared one would slide with the marquee */
+.hero[data-ready='true'] .hero-badge{
+    transform-origin: top center;
+    /* expo-out: the long tail is what reads as weight */
+    animation: badge-fall 820ms cubic-bezier(0.16, 1, 0.3, 1) var(--enter-delay, 0ms) backwards;
+    will-change: transform;
+}
+
+/* smaller perspective = harder foreshortening; at 500 a 60px badge barely deformed */
+@keyframes badge-fall{
+    from{
+        opacity: 0;
+        transform: perspective(260px) rotateX(88deg);
+    }
+    to{
+        opacity: 1;
+        transform: perspective(260px) rotateX(0deg);
+    }
+}
+
+/* every 4th shares a delay so the marquee's duplicate set flips in the same order */
+.hero-badge:nth-child(4n + 1){
+    --enter-delay: 2050ms;
+}
+
+.hero-badge:nth-child(4n + 2){
+    --enter-delay: 2190ms;
+}
+
+.hero-badge:nth-child(4n + 3){
+    --enter-delay: 2330ms;
+}
+
+.hero-badge:nth-child(4n + 4){
+    --enter-delay: 2470ms;
+}
+
+/* replaces hero-sweep once the scramble lands; one animation slot per element */
+.hero[data-ready='true'] .hero-intro .intro-2[data-resolved='true']{
+    animation: name-glitch 3s steps(1) infinite;
+}
+
+@keyframes name-glitch{
+    0%, 15%, 27%, 100%{
+        translate: 0 0;
+        text-shadow: 0.055em 0.055em 0 var(--main-accent);
+    }
+    16%{
+        translate: -3px 0;
+        text-shadow: 4px 0 var(--main-accent), -4px 0 #ff2f6d;
+    }
+    19%{
+        translate: 3px 0;
+        text-shadow: -4px 0 var(--main-accent), 4px 0 #ff2f6d;
+    }
+    22%{
+        translate: -2px 0;
+        text-shadow: 3px 0 var(--main-accent);
+    }
+    25%{
+        translate: 2px 0;
+        text-shadow: -3px 0 #ff2f6d;
+    }
+}
+
+/* !important because the rules that apply these animations are all prefixed with
+   [data-ready='true'], which outscored the old selector list and left the whole
+   entrance running. one blanket rule also covers anything added later */
+@media(prefers-reduced-motion: reduce){
+    .hero,
+    .hero *,
+    .hero *::before,
+    .hero *::after{
+        animation: none !important;
+    }
 }
 
 @media(min-width: 800px){
     .hero{
-        padding: 2rem;
-        padding-inline: var(--section-inset);
+        /* tied to the column, not raw vw. the 6rem of edges eat more of a narrow screen */
+        --hero-unit: min(30px, calc((100vw - 7rem) / 68), 2.15svh);
+        --hero-edge: 3rem;
+        padding: min(1.25rem, 1.8svh) 0;
+        /* the grid's align-content needs spare height to distribute */
+        min-height: calc(100dvh - var(--header-height));
     }
 
-    .left-hero-badges{
-        font-size: 1.5rem;
+    /* the status spans the full grid so it centres on the page, not the text column */
+    .hero-inner{
+        max-width: none;
+        display: grid;
+        grid-template-columns:
+            [full-start] var(--hero-edge)
+            /* left is wider; it carries the badge row, the longest thing here */
+            [content-start] minmax(0, 1.08fr)
+            [content-end] 1.2em
+            [right-start] minmax(0, 0.92fr)
+            [right-end] var(--hero-edge)
+            [full-end];
+        grid-template-rows: repeat(6, auto);
+        align-content: space-between;
+        gap: 0.5em 0;
     }
 
+    .hero-status{
+        grid-row: 1;
+        grid-column: full-start / full-end;
+        justify-self: center;
+        font-size: 1.05em;
+    }
+
+    .hero-status-solo{
+        display: flex;
+    }
+
+    .hero-status-inline{
+        display: none;
+    }
+
+    /* the row wrapper only exists for the mobile pairing */
+    .hero-eyebrow-row{
+        display: block;
+    }
+
+    .hero-intro{
+        grid-row: 2;
+        grid-column: content-start / content-end;
+        /* claws back part of the gap space-between leaves under the status badge */
+        margin-top: -1.2em;
+    }
+
+    .hero-badges{
+        grid-row: 3;
+        grid-column: content-start / content-end;
+        width: auto;
+        margin-left: 0;
+        transform: none;
+    }
+
+    .hero-buttons{
+        grid-row: 4;
+        grid-column: content-start / content-end;
+        flex-direction: row;
+        gap: 1em;
+    }
+
+    .hero-motto-inline{
+        display: none;
+    }
+
+    .hero-motto-stack{
+        display: flex;
+    }
+
+    .hero-motto{
+        grid-row: 2 / 5;
+        grid-column: right-start / right-end;
+        align-self: end;
+        font-size: 6.9em;
+        letter-spacing: 0.03em;
+    }
+
+    .intro-1{
+        font-size: 1.8em;
+    }
+
+    .intro-2{
+        font-size: 7em;
+    }
+
+    .hero-services{
+        font-size: 1.45em;
+        gap: 0.45em;
+    }
+
+    /* all four fit, so drop the marquee and its duplicate set */
+    .hero-badge-track{
+        animation: none;
+    }
+
+    .hero-badge[aria-hidden="true"]{
+        display: none;
+    }
+
+    /* tighter chrome so the extra size goes into the text */
     .hero-badge{
-        padding: .95rem;
+        margin-right: 0.3em;
+        padding: 0.45em 0.65em;
+        font-size: 1.5em;
     }
 
     .hero-button{
-        padding: 1.5rem;
-        font-size: 1.6rem;
+        font-size: 1.5em;
+    }
+
+    /* every line right-aligned so the periods stack */
+    .motto-design,
+    .motto-build,
+    .motto-ship{
+        align-self: flex-end;
+        -webkit-text-stroke-width: 4px;
     }
 }
-
-

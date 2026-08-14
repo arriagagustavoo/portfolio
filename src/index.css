@@ -26,16 +26,69 @@
 body {
     margin: 0;
     font-family: "Geist Pixel", sans-serif;
+    /* without this the pre-React blank page is browser-default white, even in dark mode */
+    background-color: var(--main-background);
 }
 
 html{
     scroll-behavior: smooth;
     font-size: min(16px, 3.87vw);
+    /* stops iOS Safari inflating text on its own, which DevTools never shows */
+    -webkit-text-size-adjust: 100%;
 }
 
 #hero, #about, #projects, #skills, #services, #contact {
     scroll-margin-top: 5rem;
 }
+
+/* every layout pass was re-laying-out all six of these; skipping them offscreen cut FCP 751ms */
+#about, #projects, #skills, #services, #contact{
+    content-visibility: auto;
+}
+
+/* measured section heights, so the scrollbar and anchor jumps stay honest before a section renders */
+#about{
+    contain-intrinsic-size: auto 974px;
+}
+
+#projects{
+    contain-intrinsic-size: auto 2920px;
+}
+
+#skills{
+    contain-intrinsic-size: auto 1353px;
+}
+
+#services{
+    contain-intrinsic-size: auto 853px;
+}
+
+#contact{
+    contain-intrinsic-size: auto 480px;
+}
+
+@media(min-width: 800px){
+    #about{
+        contain-intrinsic-size: auto 741px;
+    }
+
+    #projects{
+        contain-intrinsic-size: auto 1972px;
+    }
+
+    #skills{
+        contain-intrinsic-size: auto 805px;
+    }
+
+    #services{
+        contain-intrinsic-size: auto 550px;
+    }
+
+    #contact{
+        contain-intrinsic-size: auto 320px;
+    }
+}
+
 
 
 /* default light mode */
@@ -63,14 +116,41 @@ html{
     --content-max-width: 1200px;
     --section-inset: max(3rem, calc((100% - var(--content-max-width)) / 2));
 
+    /* fallback only — Header.jsx measures the real header and overwrites this.
+       which child is tallest changes across breakpoints, so it can't be derived */
+    --header-height: 4.75rem;
+
     --texture-line: color-mix(in srgb, var(--main-accent) 10%, transparent);
 
     --diagonal-texture: repeating-linear-gradient(
-        45deg,
+        135deg,
         transparent 0 14px,
         var(--texture-line) 14px 16px
     );
 
+    /* alias, so it flips with the theme and stays out of the dark block. a darker
+       green sat under a green button and read as an edge, not a shadow */
+    --button-shadow: var(--main-text);
+
+    /* the fixed .atmosphere layer reads these two; sections are transparent over it.
+       aliases only — they resolve through the theme-aware values above, so
+       they must NOT be redeclared in the dark block */
+    --section-background: var(--main-background);
+    --section-texture: var(--diagonal-texture);
+    /* set back to `solid var(--main-text) 4px` to bring the separator bars back */
+    --section-divider: none;
+
+    --section-padding-block: 3rem;
+    --section-padding-inline: 1rem;
+
+}
+
+@media(min-width: 600px){
+    :root{
+        --section-padding-block: 4rem;
+        /* the 100% inside resolves against the section it lands on, not :root */
+        --section-padding-inline: var(--section-inset);
+    }
 }
 
 [data-theme = 'dark']{
@@ -97,4 +177,85 @@ p{
 
 a, button{
     -webkit-tap-highlight-color: transparent;
+}
+
+
+/* scroll reveals. useInView writes data-visible on the section root, and every
+   animated descendant carries one of these classes plus its own --enter-delay */
+[data-visible='false'] :is(.reveal-sweep, .reveal-rise, .reveal-flip, .reveal-fade){
+    opacity: 0;
+}
+
+/* opacity only, for containers whose children do their own moving */
+[data-visible='true'] .reveal-fade{
+    animation: reveal-fade 520ms ease var(--enter-delay, 0ms) backwards;
+}
+
+@keyframes reveal-fade{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+[data-visible='true'] .reveal-sweep{
+    animation: reveal-sweep 620ms cubic-bezier(0.22, 1, 0.36, 1) var(--enter-delay, 0ms) backwards;
+}
+
+[data-visible='true'] .reveal-rise{
+    animation: reveal-rise 560ms cubic-bezier(0.22, 1, 0.36, 1) var(--enter-delay, 0ms) backwards;
+}
+
+[data-visible='true'] .reveal-flip{
+    transform-origin: top center;
+    animation: reveal-flip 640ms cubic-bezier(0.16, 1, 0.3, 1) var(--enter-delay, 0ms) backwards;
+}
+
+/* shorter travel and no overshoot, so the hero stays the loudest thing on the page */
+@keyframes reveal-sweep{
+    from{
+        opacity: 0;
+        translate: -1.6rem 0;
+        clip-path: inset(-25% 100% -25% -25%);
+    }
+    to{
+        opacity: 1;
+        translate: 0 0;
+        clip-path: inset(-25% -15% -25% -25%);
+    }
+}
+
+@keyframes reveal-rise{
+    from{
+        opacity: 0;
+        translate: 0 1.4rem;
+    }
+    to{
+        opacity: 1;
+        translate: 0 0;
+    }
+}
+
+/* 75deg, not the hero badges' 88. perspective is absolute, so this reads softer */
+@keyframes reveal-flip{
+    from{
+        opacity: 0;
+        transform: perspective(320px) rotateX(75deg);
+    }
+    to{
+        opacity: 1;
+        transform: perspective(320px) rotateX(0deg);
+    }
+}
+
+@media(prefers-reduced-motion: reduce){
+    [data-visible='false'] :is(.reveal-sweep, .reveal-rise, .reveal-flip, .reveal-fade){
+        opacity: 1;
+    }
+
+    [data-visible='true'] :is(.reveal-sweep, .reveal-rise, .reveal-flip, .reveal-fade){
+        animation: none;
+    }
 }

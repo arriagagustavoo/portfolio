@@ -1,5 +1,10 @@
 import "./Skills.css"
 import skillIcons from "../icons/skillIcons/skillIcons"
+import SectionEyebrow from "../sectionEyebrow/SectionEyebrow"
+import { eyebrowDuration } from "../sectionEyebrow/eyebrowTiming"
+import useInView from "../../hooks/useInView"
+
+const skillsEyebrow = "// Skills"
 
 const skillGroups = [
     {
@@ -20,7 +25,47 @@ const skillGroups = [
     },
 ]
 
+// no observer of its own: the whole section rides the eyebrow's gate, so the
+// panels cannot land before the line has finished typing
+function SkillGroup({ category, skills }){
+
+    const skillBadges = skills.map((skill) => {
+        const Icon = skillIcons[skill];
+
+        let icon;
+        if(Icon === undefined){
+            icon = null;
+        }else{
+            icon = <Icon className = "skill-badge-icon"/>;
+        }
+
+        return (
+            <p className = "skill-badge reveal-flip" key = {skill}>
+                {icon}
+                {skill}
+            </p>
+        );
+    });
+
+    return (
+        /* the panel arrives the same way the marquee does, then fills itself in */
+        <div className = "skill-group reveal-rise">
+            {/* flip, not sweep: sweep animates clip-path and would clobber the parallelogram */}
+            <p className = "skill-group-label reveal-flip">
+                {category}
+            </p>
+
+            <div className = "skill-group-badges">
+                {skillBadges}
+            </div>
+        </div>
+    );
+}
+
 function Skills(){
+
+    const [leadRef, leadVisible] = useInView();
+    const leadDelay = { "--intro-delay": eyebrowDuration(skillsEyebrow) + "ms" };
 
     // combine all groups to 1 list
     const allSkills = skillGroups.flatMap((group) => group.skills);
@@ -41,53 +86,33 @@ function Skills(){
     });
 
     const groupPanels = skillGroups.map((group) => {
-
-        const skillBadges = group.skills.map((skill) => {
-            const Icon = skillIcons[skill];
-
-            let icon;
-            if(Icon === undefined){
-                icon = null;
-            }else{
-                icon = <Icon className = "skill-badge-icon"/>;
-            }
-
-            return (
-                <p className = "skill-badge" key = {skill}>
-                    {icon}
-                    {skill}
-                </p>
-            );
-        });
-
         return (
-            <div className = "skill-group" key = {group.category}>
-                <p className = "skill-group-label">
-                    {group.category}
-                </p>
-
-                <div className = "skill-group-badges">
-                    {skillBadges}
-                </div>
-            </div>
+            <SkillGroup
+                key = {group.category}
+                category = {group.category}
+                skills = {group.skills}
+            />
         );
     });
 
     return(
         <>
         <div className = "skills" id = "skills">
-            <div className = "skills-intro">
-                // Skills
-            </div>
+            <div className = "skills-lead" ref = {leadRef} data-visible = {leadVisible} style = {leadDelay}>
+                <SectionEyebrow text = {skillsEyebrow} active = {leadVisible}/>
 
-            <div className = "skills-carousel" aria-hidden = "true">
-                <div className = "carousel-track">
-                    {carouselLogos}
+                <div className = "skills-carousel reveal-rise" aria-hidden = "true">
+                    {/* separate from the bordered box, or the mask would fade the border too */}
+                    <div className = "carousel-window">
+                        <div className = "carousel-track">
+                            {carouselLogos}
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div className = "skills-groups">
-                {groupPanels}
+                <div className = "skills-groups">
+                    {groupPanels}
+                </div>
             </div>
         </div>
         </>
