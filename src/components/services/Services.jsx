@@ -9,8 +9,13 @@ const services = [
     {
         tag: "Freelance",
         title: "Software Products",
-        description: "Custom Websites, Graphic Design, Applications, Tools.",
+        description: "Custom Websites, Applications, Tools.",
 
+    },
+    {
+        tag: "Get found",
+        title: "Design & Ads",
+        description: "Branding, graphics, and online marketing.",
     },
     {
         tag: "Made to order",

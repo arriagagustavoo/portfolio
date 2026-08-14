@@ -26,13 +26,14 @@
 
 .about-top{
     display: flex;
+    justify-content: center;
 }
 
 .about-info{
     display: flex;
     flex-direction: column;
     gap: .75rem;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
 }
 
 .about-info-item{
@@ -42,14 +43,14 @@
 }
 
 .about-info-icon{
-    font-size: 2rem;
+    font-size: 1.7rem;
     color: var(--main-accent);
     flex-shrink: 0;
 }
 
 .about-info-logo{
-    width: 2rem;
-    height: 2rem;
+    width: 1.7rem;
+    height: 1.7rem;
     object-fit: contain;
     flex-shrink: 0;
 }
@@ -60,7 +61,7 @@
     position: relative;
     overflow: hidden;
     width: 100%;
-    max-width: 320px;
+    max-width: 260px;
 }
 
 .about-photo{
@@ -95,16 +96,35 @@
 
 .about-text{
     font-weight: 400;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     display: flex;
     flex-direction: column;
+    gap: .5rem;
+}
+
+.about-bio-line{
+    line-height: 1.35;
+}
+
+.about-bio-line:first-child{
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.25;
+    margin-bottom: .35rem;
+}
+
+.about-bio-line:last-child{
+    color: var(--main-accent);
+    font-weight: 600;
+    margin-top: .35rem;
 }
 
 .about-showcase{
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 12rem));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     justify-content: start;
-    gap: 1rem 0;
+    /* no column gap: the parallelogram clip already leaves a diagonal seam between badges */
+    gap: .75rem 0;
 }
 
 .about-table-badge{
@@ -112,21 +132,22 @@
     isolation: isolate;
     background-color: transparent;
     font-weight: 400;
-    font-size: 1.5rem;
+    font-size: .95rem;
     margin: 0;
-    padding: 1rem;
-    aspect-ratio: 4 / 2;
+    padding: .5rem;
+    /* this, not padding, is what sets badge height: the grid sets width, height follows */
+    aspect-ratio: 5 / 2;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: .5rem;
+    gap: .3rem;
     text-align: center;
     color: var(--main-text);
     text-decoration: none;
 }
 
 .about-badge-icon{
-    font-size: 1.75rem;
+    font-size: 1rem;
     color: var(--main-accent);
     flex-shrink: 0;
 }
@@ -243,17 +264,57 @@
         align-items: flex-start;
     }
 
+    /* each line fits on one line at this width, so the gap can close right up */
+    .about-text{
+        font-size: 1.5rem;
+        gap: .3rem;
+    }
+
+    .about-bio-line:first-child{
+        font-size: 2rem;
+        margin-bottom: .55rem;
+    }
+
+    .about-bio-line:last-child{
+        margin-top: .55rem;
+    }
+
     .about-top{
         flex-shrink: 0;
+    }
+
+    .about-photo-frame{
+        max-width: 320px;
     }
 
     .about-info{
         flex-direction: row;
         gap: 2rem;
+        font-size: 1.5rem;
+    }
+
+    .about-info-icon{
+        font-size: 2rem;
+    }
+
+    .about-info-logo{
+        width: 2rem;
+        height: 2rem;
     }
 
     .about-showcase{
         grid-template-columns: repeat(3, minmax(0, 12rem));
+        gap: 1rem 0;
+    }
+
+    .about-table-badge{
+        font-size: 1.5rem;
+        padding: 1rem;
+        gap: .5rem;
+    }
+
+    .about-badge-icon{
+        font-size: 1.75rem;
     }
 }
 

@@ -64,6 +64,10 @@
     --enter-delay: calc(var(--intro-delay, 0ms) + 220ms);
 }
 
+.service-card:nth-child(4){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 330ms);
+}
+
 @media(hover: hover){
     .service-card{
         transition: translate 200ms ease, box-shadow 200ms ease;

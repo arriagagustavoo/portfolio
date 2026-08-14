@@ -7,7 +7,7 @@ const badges = ['Freelancer', 'Designer', 'Engineer', 'Builder']
 
 const services = [
     'Full-stack Custom Software',
-    'End-to-End Products',
+    'Graphic Design & Marketing ',
     '3D Models & Prints'
 ]
 
@@ -26,7 +26,7 @@ function prefersReducedMotion(){
 const status = (
     <>
         <span className = "hero-status-dot" aria-hidden="true"></span>
-        Available for Work
+        Taking New Projects
         <span className = "hero-status-dot" aria-hidden="true"></span>
     </>
 )

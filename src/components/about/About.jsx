@@ -13,15 +13,15 @@ import { eyebrowDuration } from "../sectionEyebrow/eyebrowTiming"
 import useInView from "../../hooks/useInView"
 
 const leadEyebrow = "// Get to know me"
-const interestsEyebrow = "// Some interest of mine"
+const interestsEyebrow = "// Some interests of mine"
 
 // split so each line can stagger in on its own
 const bioLines = [
-    "I'm Gustavo Arriaga, currently studying Comp Sci @ UH with a Capstone in Software Design.",
-    "Playing video games, building custom PCs, and modding those games ate up all my free time growing up.",
-    "Studying Computer Science was the obvious next step.",
-    "Diving into Software and getting hands-on learning experience only deepened that interest.",
-    "Realizing I can turn creative ideas into digital or even physical products sparked a drive to learn any skill CS has to offer.",
+    "Computer Science senior designing, building and shipping complete products to clients.",
+    "Capstone in Software Design & already applying that in the real world.",
+    "I handle everything from the first plan to the finished product & the ads that market it.",
+    "Digital or physical, I'll turn an idea into something real.",
+    "Tell me what your business needs and I'll tell you how I'd build it.",
 ]
 
 const interests = [
