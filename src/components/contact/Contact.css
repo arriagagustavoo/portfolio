@@ -38,6 +38,13 @@
     --enter-delay: var(--intro-delay, 0ms);
 }
 
+.contact-form-block{
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+    width: 100%;
+}
+
 .contact-columns{
     display: flex;
     flex-direction: column;
@@ -54,6 +61,51 @@
     display: flex;
     flex-direction: column;
     gap: .75rem;
+}
+
+/* auto-fit, not a breakpoint: this block's width depends on the headline beside it */
+.contact-link-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: .8rem 1.5rem;
+}
+
+/* without this it inherits 0ms and lands before its own eyebrow has finished typing */
+.contact-email{
+    --enter-delay: var(--intro-delay, 0ms);
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    width: fit-content;
+    max-width: 100%;
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--main-text);
+    font-family: inherit;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    text-align: left;
+    cursor: pointer;
+    overflow-wrap: anywhere;
+}
+
+.contact-email-icon{
+    font-size: 1.7rem;
+    flex-shrink: 0;
+}
+
+@media(hover: hover){
+    /* translate, not transform: reveal-sweep owns the shorthand */
+    .contact-email{
+        transition: translate 200ms ease, color 200ms ease;
+    }
+
+    .contact-email:hover{
+        color: var(--main-accent);
+        translate: .3rem 0;
+    }
 }
 
 .contact-link:nth-child(1){
@@ -101,6 +153,62 @@
     flex-shrink: 0;
 }
 
+/* basis 100% so it takes its own row once the section becomes a wrapping flex row */
+.contact-top-wrap{
+    flex-basis: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* same two-pseudo outline as .hero-badge: a real border would be clipped away */
+.contact-top{
+    position: relative;
+    isolation: isolate;
+    background-color: transparent;
+    border: none;
+    padding: .4rem 2.4rem;
+    color: var(--main-text);
+    font-family: inherit;
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.2;
+    cursor: pointer;
+    animation: contact-top-bounce 1.9s ease-in-out infinite;
+}
+
+.contact-top::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--main-accent);
+    clip-path: var(--slanted-shape);
+    z-index: -2;
+}
+
+.contact-top::before{
+    content: "";
+    position: absolute;
+    inset: 3px;
+    background-color: var(--main-card);
+    clip-path: var(--slanted-shape);
+    z-index: -1;
+}
+
+@keyframes contact-top-bounce{
+    0%, 100%{
+        translate: 0 0;
+    }
+    50%{
+        translate: 0 -0.3rem;
+    }
+}
+
+@media(prefers-reduced-motion: reduce){
+    .contact-top{
+        animation: none;
+    }
+}
+
 .contact-toast{
     position: fixed;
     bottom: 2rem;
@@ -140,7 +248,8 @@
         /* flex items won't shrink below their content, so without wrapping the
            row overflows the viewport between 600 and ~1000px */
         flex-wrap: wrap;
-        align-items: center;
+        /* start, not center: centering floats the two blocks apart so their eyebrows never line up */
+        align-items: flex-start;
         justify-content: space-between;
         gap: 3rem;
     }
@@ -149,9 +258,23 @@
         font-size: 5rem;
     }
 
+    /* full-width row of its own, so the original headline + links row is untouched */
+    .contact-form-block{
+        flex-basis: 100%;
+    }
+
+    /* stays a column: the email is its own row above Find me on. it also has to *grow*,
+       or it stays content-sized at ~380px and the link grid can never form two columns */
     .contact-columns{
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 3rem;
+        flex: 1 1 26rem;
+        gap: 2.5rem;
+    }
+
+    .contact-email{
+        font-size: 1.75rem;
+    }
+
+    .contact-email-icon{
+        font-size: 2rem;
     }
 }

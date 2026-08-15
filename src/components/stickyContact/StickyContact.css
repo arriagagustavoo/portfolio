@@ -1,0 +1,86 @@
+.sticky-contact{
+    position: fixed;
+    right: 1.25rem;
+    bottom: 1.25rem;
+    z-index: 120;
+    /* the negative-z fill needs its own stacking context, and reduced motion drops the filter
+       that would otherwise supply one */
+    isolation: isolate;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    background-color: transparent;
+    color: var(--main-text);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    animation: sticky-nudge 1.9s ease-in-out infinite;
+}
+
+/* the clip lives here so the parent stays free to carry a drop-shadow */
+.sticky-contact::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--main-accent);
+    clip-path: var(--slanted-shape);
+    z-index: -1;
+}
+
+.sticky-contact-icon{
+    font-size: 1.75rem;
+}
+
+/* visibility, not display: it leaves the tab order too, and still fades */
+.sticky-contact[data-showing='false']{
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 200ms ease, visibility 0s linear 200ms;
+}
+
+/* one continuous rise and fall, no rest beat */
+@keyframes sticky-nudge{
+    0%, 100%{
+        translate: 0 0;
+        filter: drop-shadow(0 0 0.15rem var(--main-accent));
+    }
+    50%{
+        translate: 0 -0.4rem;
+        filter: drop-shadow(0 0.3rem 0.7rem var(--main-accent));
+    }
+}
+
+@media(hover: hover){
+    .sticky-contact::before{
+        transition: background-color 160ms ease;
+    }
+
+    .sticky-contact:hover::before{
+        background-color: var(--accent-hover);
+    }
+}
+
+.sticky-contact:active::before{
+    background-color: var(--accent-active);
+}
+
+@media(min-width: 800px){
+    .sticky-contact{
+        right: 2rem;
+        bottom: 2rem;
+        width: 4rem;
+        height: 4rem;
+    }
+
+    .sticky-contact-icon{
+        font-size: 2rem;
+    }
+}
+
+@media(prefers-reduced-motion: reduce){
+    .sticky-contact{
+        animation: none;
+    }
+}

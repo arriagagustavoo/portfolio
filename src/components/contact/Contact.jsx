@@ -4,18 +4,21 @@ import GithubIcon from "../icons/GithubIcon"
 import InstagramIcon from "../icons/InstagramIcon"
 import LinkedinIcon from "../icons/LinkedinIcon"
 import MailIcon from "../icons/MailIcon"
-import PhoneIcon from "../icons/PhoneIcon"
 import SectionEyebrow from "../sectionEyebrow/SectionEyebrow"
+import ContactForm from "./ContactForm"
 import { eyebrowDuration } from "../sectionEyebrow/eyebrowTiming"
 import useInView from "../../hooks/useInView"
 import useScramble from "../../hooks/useScramble"
 import useReducedMotion from "../../hooks/useReducedMotion"
 
 const leadEyebrow = "// Let's work together"
+const formEyebrow = "// Start a project"
 const findEyebrow = "// Find me on"
 const reachEyebrow = "// Contact me"
 
 // copy: true = copy button instead of a link
+const emailAddress = "gus@arriagagustavoo.com"
+
 const findMeLinks = [
     {
         label: "github.com/arriagagustavoo",
@@ -29,26 +32,11 @@ const findMeLinks = [
         Icon: InstagramIcon,
         copy: false,
     },
-]
-
-const contactMeLinks = [
-    {
-        label: "arriagagustavo42@gmail.com",
-        href: "",
-        Icon: MailIcon,
-        copy: true,
-    },
     {
         label: "linkedin.com/in/arriagagustavoo",
         href: "https://www.linkedin.com/in/arriagagustavoo/",
         Icon: LinkedinIcon,
         copy: false,
-    },
-    {
-        label: "832-453-4158",
-        href: "",
-        Icon: PhoneIcon,
-        copy: true,
     },
 ]
 
@@ -78,15 +66,17 @@ function buildLinks(links, onCopy){
 function Contact(){
 
     // empty = no toast
-    const [copiedText, setCopiedText] = useState("");
+    const [toastText, setToastText] = useState("");
 
     const reduceMotion = useReducedMotion();
     const [leadRef, leadVisible] = useInView();
+    const [formRef, formVisible] = useInView();
     const [findRef, findVisible] = useInView();
     const [reachRef, reachVisible] = useInView();
 
     const leadPause = eyebrowDuration(leadEyebrow);
     const leadDelay = { "--intro-delay": leadPause + "ms" };
+    const formDelay = { "--intro-delay": eyebrowDuration(formEyebrow) + "ms" };
     const findDelay = { "--intro-delay": eyebrowDuration(findEyebrow) + "ms" };
     const reachDelay = { "--intro-delay": eyebrowDuration(reachEyebrow) + "ms" };
 
@@ -97,23 +87,40 @@ function Contact(){
     const firstLine = useScramble("LET'S", 70, leadPause + 120, scrambling);
     const secondLine = useScramble("BUILD.", 70, leadPause + 330, scrambling);
 
-    const handleCopy = (value) => {
-        navigator.clipboard.writeText(value);
-        setCopiedText(value);
+    const handleTop = () => {
+        // no behavior key, so it inherits scroll-behavior from index.css
+        window.scrollTo({ top: 0 });
+    };
+
+    const showToast = (message) => {
+        setToastText(message);
 
         setTimeout(() => {
-            setCopiedText("");
-        }, 2000);
+            setToastText("");
+        }, 2400);
+    };
+
+    // absent entirely on an insecure origin, and writeText still rejects if permission is blocked
+    const handleCopy = (value) => {
+        if(!navigator.clipboard){
+            showToast("Couldn't copy. It's " + value);
+            return;
+        }
+
+        navigator.clipboard.writeText(value).then(() => {
+            showToast("Copied " + value);
+        }).catch(() => {
+            showToast("Couldn't copy. It's " + value);
+        });
     };
 
     const findMe = buildLinks(findMeLinks, handleCopy);
-    const contactMe = buildLinks(contactMeLinks, handleCopy);
 
     let toast;
-    if(copiedText){
+    if(toastText){
         toast = (
             <div className = "contact-toast" role = "status">
-                Copied {copiedText}
+                {toastText}
             </div>
         );
     }else{
@@ -122,7 +129,9 @@ function Contact(){
 
     return(
         <>
-        <section className = "contact-section" id = "contact">
+        <section className = "contact-section" id = "contact" aria-labelledby = "contact-heading">
+            <h2 className = "visually-hidden" id = "contact-heading">Contact Gustavo Arriaga</h2>
+
             <div className = "contact-headline-block" ref = {leadRef} data-visible = {leadVisible} style = {leadDelay}>
                 <SectionEyebrow text = {leadEyebrow} active = {leadVisible}/>
 
@@ -139,21 +148,33 @@ function Contact(){
             </div>
 
             <div className = "contact-columns">
-                <div className = "contact-column" ref = {findRef} data-visible = {findVisible} style = {findDelay}>
-                    <SectionEyebrow text = {findEyebrow} tag = {true} active = {findVisible}/>
-
-                    <div className = "contact-link-list">
-                        {findMe}
-                    </div>
-                </div>
-
                 <div className = "contact-column" ref = {reachRef} data-visible = {reachVisible} style = {reachDelay}>
                     <SectionEyebrow text = {reachEyebrow} tag = {true} active = {reachVisible}/>
 
-                    <div className = "contact-link-list">
-                        {contactMe}
+                    <button className = "contact-email reveal-sweep" type = "button" onClick = {() => handleCopy(emailAddress)}>
+                        <MailIcon className = "contact-email-icon"/>
+                        {emailAddress}
+                    </button>
+                </div>
+
+                <div className = "contact-column" ref = {findRef} data-visible = {findVisible} style = {findDelay}>
+                    <SectionEyebrow text = {findEyebrow} tag = {true} active = {findVisible}/>
+
+                    <div className = "contact-link-list contact-link-grid">
+                        {findMe}
                     </div>
                 </div>
+            </div>
+
+            <div className = "contact-form-block" id = "contact-form" ref = {formRef} data-visible = {formVisible} style = {formDelay}>
+                <SectionEyebrow text = {formEyebrow} tag = {true} active = {formVisible}/>
+                <ContactForm/>
+            </div>
+
+            <div className = "contact-top-wrap">
+                <button className = "contact-top" type = "button" onClick = {handleTop} aria-label = "Back to top">
+                    <span aria-hidden = "true">^</span>
+                </button>
             </div>
 
             {toast}

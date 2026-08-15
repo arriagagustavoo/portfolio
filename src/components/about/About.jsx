@@ -63,7 +63,8 @@ function About(){
 
     return(
         <>
-        <section className = "about" id = "about">
+        <section className = "about" id = "about" aria-labelledby = "about-heading">
+            <h2 className = "visually-hidden" id = "about-heading">About Gustavo Arriaga</h2>
 
             <div className = "about-lead" ref = {leadRef} data-visible = {leadVisible} style = {leadDelay}>
                 <SectionEyebrow text = {leadEyebrow} active = {leadVisible}/>

@@ -1,0 +1,102 @@
+.page{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: var(--section-padding-block) var(--section-padding-inline);
+    background-color: var(--section-background);
+    background-image: var(--section-texture);
+    min-height: calc(100lvh - var(--header-height));
+}
+
+.page-title{
+    color: var(--main-text);
+    font-family: Geist, sans-serif;
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: .95;
+    letter-spacing: -0.03em;
+}
+
+.page-updated{
+    color: var(--secondary-text);
+    font-size: .95rem;
+}
+
+.page-body{
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    max-width: 60ch;
+}
+
+.page-heading{
+    color: var(--main-accent);
+    font-size: 1.35rem;
+    font-weight: 700;
+}
+
+.page-text{
+    color: var(--main-text);
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+.page-list{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    margin: 0;
+    padding-left: 1.25rem;
+    color: var(--main-text);
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+.page-back{
+    align-self: flex-start;
+    position: relative;
+    isolation: isolate;
+    color: var(--main-text);
+    padding: .8rem 2.4rem;
+    font-size: 1.15rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+/* clip on the child, so the parent keeps its own box for an outline */
+.page-back::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--main-accent);
+    clip-path: var(--slanted-shape);
+    z-index: -1;
+}
+
+@media(hover: hover){
+    .page-back::before{
+        transition: background-color 160ms ease;
+    }
+
+    .page-back:hover::before{
+        background-color: var(--accent-hover);
+    }
+}
+
+.page-code{
+    color: var(--main-accent);
+    font-family: Geist, sans-serif;
+    font-size: 6rem;
+    font-weight: 900;
+    line-height: 1;
+}
+
+@media(min-width: 600px){
+    .page-title{
+        font-size: 4rem;
+    }
+
+    .page-code{
+        font-size: 9rem;
+    }
+}

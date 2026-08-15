@@ -60,11 +60,11 @@ html{
 }
 
 #services{
-    contain-intrinsic-size: auto 853px;
+    contain-intrinsic-size: auto 1761px;
 }
 
 #contact{
-    contain-intrinsic-size: auto 480px;
+    contain-intrinsic-size: auto 1129px;
 }
 
 @media(min-width: 800px){
@@ -81,11 +81,11 @@ html{
     }
 
     #services{
-        contain-intrinsic-size: auto 550px;
+        contain-intrinsic-size: auto 1320px;
     }
 
     #contact{
-        contain-intrinsic-size: auto 320px;
+        contain-intrinsic-size: auto 957px;
     }
 }
 
@@ -175,8 +175,58 @@ p{
     color: var(--main-text);
 }
 
+/* headings ship UA font-size and margin that <p> does not; components set their own */
+h1, h2{
+    margin: 0;
+    font-size: inherit;
+    font-weight: inherit;
+    color: var(--main-text);
+}
+
 a, button{
     -webkit-tap-highlight-color: transparent;
+}
+
+/* off-screen for sighted users, still read by screen readers and crawlers */
+.visually-hidden{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+/* fixed, not absolute: an absolute one stays at document top and is off-screen once scrolled */
+.skip-link{
+    position: fixed;
+    top: 0.5rem;
+    left: 0.5rem;
+    z-index: 150;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--main-text);
+    color: var(--main-background);
+    font-weight: 600;
+    text-decoration: none;
+    translate: 0 -300%;
+}
+
+.skip-link:focus{
+    translate: 0 0;
+}
+
+/* focus-visible, not focus, so a mouse click never paints a ring */
+:is(a, button, input, textarea, select, summary):focus-visible{
+    outline: 3px solid var(--main-accent);
+    outline-offset: 3px;
+}
+
+/* clip-path clips an outline exactly like it clips a border, so these paint it inside instead */
+:is(.header-link, .menu-toggle, .lightbox-close, .lightbox-nav, .packages-arrow):focus-visible{
+    outline: none;
+    box-shadow: inset 0 0 0 3px var(--main-text);
 }
 
 

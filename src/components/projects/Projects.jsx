@@ -108,7 +108,9 @@ function Projects(){
 
     return(
         <>
-        <section className = "projects" id = "projects">
+        <section className = "projects" id = "projects" aria-labelledby = "projects-heading">
+            <h2 className = "visually-hidden" id = "projects-heading">Web and software development projects</h2>
+
             <div className = "projects-lead" ref = {leadRef} data-visible = {leadVisible} style = {leadDelay}>
                 <SectionEyebrow text = {projectsEyebrow} active = {leadVisible}/>
 
