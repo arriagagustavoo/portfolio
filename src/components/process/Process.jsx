@@ -12,22 +12,22 @@ const steps = [
     {
         number: "01",
         title: "Contact",
-        body: "Tell me what your business needs, in plain words.",
+        body: "Tell me what your business needs, in plain words. I'll draft up a proposal.",
     },
     {
         number: "02",
-        title: "Proposal",
-        body: "You get the scope, the price and the timeline in writing before anything starts.",
+        title: "Documents",
+        body: "You get the scope, the price and the timeline in writing before anything starts. Sign a contract.",
     },
     {
         number: "03",
         title: "Build",
-        body: "I build it and show you progress along the way, so the end is never a surprise.",
+        body: "I build it and show you progress along the way. I maintain communication throughout.",
     },
     {
         number: "04",
         title: "Handoff",
-        body: "Accounts go in your name, I walk you through it, and I stay reachable.",
+        body: "Payment. Accounts go in your name, I walk you through it, and I stay reachable.",
     },
 ]
 
@@ -52,7 +52,7 @@ const guarantees = [
 ]
 
 const paymentPoints = [
-    "A deposit (...%) when you sign, the remainder on delivery.",
+    "A deposit (%) when you sign, the remainder on delivery.",
     "Zelle, bank transfer, or check.",
     "Monthly maintenance is included with every package and starts at launch: uptime, bug fixes and small tweaks. New features are quoted separately.",
 ]
@@ -80,7 +80,7 @@ const faqs = [
     },
     {
         question: "Do I have to pay monthly?",
-        answer: "Yes. It is part of every package rather than an extra you bolt on. A site nobody looks after breaks quietly: forms stop sending, details go stale, and security updates pile up until something gives. The monthly is what stops that happening. It is not a lock-in, though. Either of us can end it on 30 days' notice, and your domain, hosting and accounts are in your name the entire time, so you are never stuck with me to keep your own site.",
+        answer: "Yes. It is part of every package not an extra. A site nobody looks after breaks quietly: forms stop sending, details go stale, and security updates pile up until something gives. The monthly is what stops that happening. It is not a lock-in, though. Either of us can end it on 30 days' notice, and your domain, hosting and accounts are in your name the entire time, so you are never stuck with me to keep your own site.",
     },
     {
         question: "What does the SEO add-on actually do?",
