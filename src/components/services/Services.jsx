@@ -11,49 +11,53 @@ const packagesEyebrow = "// Website packages"
 const packages = [
     {
         name: "Basic",
-        price: "From $...",
-        monthly: "$.../mo",
+        price: "From $600",
+        monthly: "$30/mo",
         summary: "A site that shows people who you are, what you do, and how to reach you.",
         includes: [
-            "Built to match your branding, and it works on a phone as well as a laptop",
-            "A contact form that lands straight in your inbox",
-            "Your site written so Google can read it: sitemap, page titles, and your business details in the code",
-            "Built to load fast on a phone, which Google counts too",
+            "Built to match your branding",
+            "Static public page: no admin pages",
+            "Contact form that lands straight in your inbox",
+            "Your site written so Google can read business details from the code",
+            "Mobile & Desktop responsiveness",
         ],
-        note: "No database. This covers your site itself, done properly. Getting your business onto Google Maps with reviews is the SEO setup below.",
+        note: "No database. Getting your business onto Google Maps with reviews is the SEO setup below.",
         featured: false,
     },
     {
         name: "Standard",
-        price: "From $...",
-        monthly: "$.../mo",
+        price: "From $1500",
+        monthly: "$45/mo",
         summary: "Everything in Basic, and the site starts doing work instead of just sitting there.",
         includes: [
             "Everything in Basic",
-            "A backend, meaning the site stores what comes in instead of only showing pages",
-            "Your own admin page to log into and read it: bookings, orders, messages, sign-ups",
-            "Customer accounts and logins, if you need them",
+            "Public & Private pages",
+            "Admin pages to log into and manage. ex: bookings, orders, messages, sign-ups",
+            "A backend, meaning the site has logic functions and stores data in its own database",
+            "Authentification & Secure access to private info",
         ],
-        note: "This is the step where the site stops being a brochure and starts running part of the business.",
+        note: "This is the step where the site stops being a brochure and becomes part of the business.",
         featured: true,
     },
     {
         name: "Premium",
-        price: "From $...",
-        monthly: "$.../mo",
+        price: "From $2300",
+        monthly: "$70/mo",
         summary: "Everything in Standard, designed from scratch, with the branding and your Google listing handled.",
         includes: [
             "Everything in Standard",
-            "Fully custom design, not a template",
-            "Branding: logo, colours and fonts, plus the files to reuse them anywhere",
-            "The SEO setup below, included: your Google Business Profile claimed and filled in, so you turn up on Maps",
+            "Custom branding across all products as files you'd own",
+            "The SEO setup below",
+            "Custom user accounts and logins",
+            "Connections to outside services",
+            "Priority fixes & communication"
         ],
-        note: "For when the site has to look like nobody else's and reach new people, not just serve the ones you have.",
+        note: "One of a kind website design that reaches new users. Site talks to other tools rather than being fully independent",
         featured: false,
     },
 ]
 
-const packagesNote = "Rough estimates only. Every number below is a starting point, and your real one comes in the proposal before any work begins."
+const packagesNote = "OPTIONS NOT LIMITED TO THESE PACKAGES. Rough estimates only. Determine what you'd need."
 
 const packagesTerms = "Every package includes monthly maintenance from the day you launch: uptime, bug fixes and small tweaks. Your domain, hosting and accounts stay in your name throughout."
 
@@ -61,15 +65,15 @@ const packagesTerms = "Every package includes monthly maintenance from the day y
 const addons = [
     {
         name: "SEO setup",
-        price: "From $...",
+        price: "From $150",
         status: "Already included in Premium",
-        summary: "A one-time job that gets your business onto Google Maps and into local results. I claim and fill in your Google Business Profile, make your name, address and phone match everywhere they appear, and point your reviews at the right place.",
+        summary: "A one-time job that gets your business onto Google Maps and into local results. I claim and fill in your Google Business Profile, make your info match across Google, Yelp, Facebook, and anywhere else you're listed. Allow customers to leave a review with one click.",
     },
     {
         name: "SEO care",
-        price: "$.../mo",
+        price: "$20/mo",
         status: "Not in any package. Add it to any of them.",
-        summary: "The monthly half. I keep your profile current, help you answer reviews, and send you a plain report of the calls, clicks and directions it brought in. No article writing and no link buying, and nobody can honestly promise you a position on Google.",
+        summary: "Recurring monthly. I keep your profile current, help you answer reviews, and send you a plain report of the calls, clicks and directions it brought in. No article writing and no link buying, and nobody can honestly promise you a position on Google.",
     },
 ]
 

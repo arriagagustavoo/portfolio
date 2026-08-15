@@ -419,7 +419,8 @@
         gap: 2rem;
     }
 
-    /* the 70ch cap left-skews it under a full-width tier row */
+    /* the 70ch cap left-skews them under a full-width tier row */
+    .packages-note,
     .packages-terms{
         max-width: none;
     }
