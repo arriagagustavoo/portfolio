@@ -42,7 +42,65 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Geist:ital,wght@0,100..900;1,100..900&family=Geist+Pixel:ELSH@0..100&display=swap" rel="stylesheet">
 
-    
+    <!-- no price, phone, rating or review fields: every one of those would be fabricated today -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://arriagagustavoo.com/#gustavo",
+          "name": "Gustavo Arriaga",
+          "url": "https://arriagagustavoo.com/",
+          "email": "gus@arriagagustavoo.com",
+          "jobTitle": "Web Developer and Designer",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Houston",
+            "addressRegion": "TX",
+            "addressCountry": "US"
+          },
+          "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Houston"
+          },
+          "knowsAbout": ["Web Development", "Full Stack Software", "Graphic Design", "Online Advertising", "3D Modeling"],
+          "sameAs": [
+            "https://github.com/arriagagustavoo",
+            "https://www.linkedin.com/in/arriagagustavoo/",
+            "https://instagram.com/arriagagustavoo"
+          ]
+        },
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://arriagagustavoo.com/#service",
+          "name": "Gustavo Arriaga - Web Development and Design",
+          "url": "https://arriagagustavoo.com/",
+          "email": "gus@arriagagustavoo.com",
+          "description": "Freelance web development, design and 3D printing for small businesses in Houston, Texas.",
+          "founder": { "@id": "https://arriagagustavoo.com/#gustavo" },
+          "areaServed": {
+            "@type": "City",
+            "name": "Houston",
+            "containedInPlace": { "@type": "State", "name": "Texas" }
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Houston",
+            "addressRegion": "TX",
+            "addressCountry": "US"
+          },
+          "makesOffer": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Website design and development" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Full stack web applications" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Branding, graphics and online advertising" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "3D modeling and printing" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Monthly website maintenance" } }
+          ]
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>

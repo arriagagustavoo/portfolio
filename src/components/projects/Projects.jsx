@@ -7,6 +7,7 @@ import useInView from "../../hooks/useInView";
 const projectsEyebrow = "// Some of my Work";
 import { queueSmartImages, queueSmartCover, mazeGameImages, mazeGameCover, rideShareImages, rideShareCover, unityGameImages, unityGameCover, mriScannerImages, mriScannerCover, documentSystemImages, documentSystemCover } from "./projectImages";
 import { useState } from "react";
+import { track } from "@vercel/analytics";
 import "./Projects.css"
 
 //project card info data
@@ -71,6 +72,7 @@ function Projects(){
     const leadDelay = { "--intro-delay": eyebrowDuration(projectsEyebrow) + "ms" };
 
     const handleOpenGallery = (project) => {
+        track("gallery_open", { project: project.title });
         setOpenProject(project);
     };
 

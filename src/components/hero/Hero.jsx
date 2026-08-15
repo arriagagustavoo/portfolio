@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { track } from '@vercel/analytics'
 import useTypewriter from '../../hooks/useTypewriter'
 import useScramble from '../../hooks/useScramble'
 import './Hero.css'
@@ -198,10 +199,12 @@ function Hero(){
                 </p>
 
                 <div className = "hero-buttons">
-                    <a className = "hero-button hero-button-primary" href = "/#projects">
+                    <a className = "hero-button hero-button-primary" href = "/#projects"
+                    onClick = {() => track("cta_hero_work")}>
                         Check out my work
                     </a>
-                    <a className = "hero-button hero-button-secondary" href = "/#contact">
+                    <a className = "hero-button hero-button-secondary" href = "/#contact"
+                    onClick = {() => track("cta_hero_contact")}>
                         Contact Me
                     </a>
                 </div>

@@ -91,12 +91,22 @@
     .services-grid{
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+
+    .packages-head{
+        gap: .8rem;
+    }
+
+    .packages-note-flag{
+        padding: .3rem 1.1rem;
+        font-size: .95rem;
+        letter-spacing: .04em;
+    }
 }
 
 .packages-lead{
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1.15rem;
 }
 
 .packages-carousel{
@@ -178,14 +188,87 @@
     line-height: 1.1;
 }
 
-.package-price{
-    align-self: flex-start;
+/* the badge rides the eyebrow's line. at 360px the pair needs 336px of a 332px row,
+   so the gap is the 4px being reclaimed; wrap stays as the escape hatch */
+.packages-head{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .4rem;
+}
+
+/* sized to share a 332px phone line with the eyebrow; it wrapped at .95rem */
+.packages-note-flag{
+    --enter-delay: calc(var(--intro-delay, 0ms) + 60ms);
     background-color: var(--main-accent);
     color: var(--main-text);
     clip-path: var(--slanted-shape);
-    padding: .4rem 1.25rem;
-    font-size: 1.15rem;
+    padding: .25rem .7rem;
+    font-size: .78rem;
     font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    white-space: nowrap;
+}
+
+/* its own wrapper so the caption hugs the eyebrow instead of taking the section's rhythm gap */
+.packages-intro{
+    display: flex;
+    flex-direction: column;
+    gap: .35rem;
+}
+
+.packages-note{
+    --enter-delay: calc(var(--intro-delay, 0ms) + 120ms);
+    max-width: 70ch;
+    color: var(--secondary-text);
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+/* nowrap plus the tight mobile sizing below: the two badges have to share one line
+   inside a 196px carousel card, and they stacked at the desktop size */
+.package-prices{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: .4rem;
+}
+
+.package-price{
+    background-color: var(--main-accent);
+    color: var(--main-text);
+    clip-path: var(--slanted-shape);
+    padding: .3rem .8rem;
+    font-size: .95rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* outlined instead of filled, so the build price stays the louder of the two */
+.package-monthly{
+    position: relative;
+    isolation: isolate;
+    background-color: transparent;
+    font-size: .9rem;
+}
+
+.package-monthly::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--main-accent);
+    clip-path: var(--slanted-shape);
+    z-index: -2;
+}
+
+.package-monthly::before{
+    content: "";
+    position: absolute;
+    inset: 3px;
+    background-color: var(--main-card);
+    clip-path: var(--slanted-shape);
+    z-index: -1;
 }
 
 .package-summary{
@@ -253,7 +336,7 @@
 /* 900, not 800: three tiers of bullet copy below this just wrap into towers */
 @media(min-width: 900px){
     .packages-lead{
-        gap: 2rem;
+        gap: 1.5rem;
     }
 
     /* the carousel becomes a plain grid: no scrolling, no snap, no dimming, no arrows */
@@ -287,6 +370,19 @@
 
     .package-featured .package-name{
         font-size: 2.1rem;
+    }
+
+    .package-prices{
+        gap: .5rem;
+    }
+
+    .package-price{
+        padding: .4rem 1.25rem;
+        font-size: 1.15rem;
+    }
+
+    .package-monthly{
+        font-size: 1rem;
     }
 
     .package-addon-head{

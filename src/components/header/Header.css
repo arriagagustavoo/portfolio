@@ -194,3 +194,17 @@
     align-items: center;
     gap: .5rem;
 }
+
+/* must live after the base .header-link rule, which is later in this file and would
+   otherwise win on source order. six links overran the viewport at 1000-1010px. */
+@media(min-width: 1000px){
+    .header-link{
+        padding-inline: .55rem;
+    }
+}
+
+@media(min-width: 1200px){
+    .header-link{
+        padding-inline: 1rem;
+    }
+}

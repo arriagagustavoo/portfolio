@@ -13,10 +13,11 @@ const navLinks = [
     { label: "Projects", id: "projects" },
     { label: "Skills", id: "skills" },
     { label: "Services", id: "services" },
+    { label: "Process", id: "process" },
     { label: "Contact", id: "contact" },
 ]
 
-const sectionIds = ["hero", "about", "projects", "skills", "services", "contact"]
+const sectionIds = ["hero", "about", "projects", "skills", "services", "process", "contact"]
 
 function Header(){
 

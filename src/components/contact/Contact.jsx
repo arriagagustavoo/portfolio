@@ -1,5 +1,6 @@
 import "./Contact.css"
 import { useState } from "react"
+import { track } from "@vercel/analytics"
 import GithubIcon from "../icons/GithubIcon"
 import InstagramIcon from "../icons/InstagramIcon"
 import LinkedinIcon from "../icons/LinkedinIcon"
@@ -108,6 +109,7 @@ function Contact(){
         }
 
         navigator.clipboard.writeText(value).then(() => {
+            track("email_copied");
             showToast("Copied " + value);
         }).catch(() => {
             showToast("Couldn't copy. It's " + value);

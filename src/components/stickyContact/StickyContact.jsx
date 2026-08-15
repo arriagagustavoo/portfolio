@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { track } from "@vercel/analytics"
 import ContactIcon from "../icons/ContactIcon"
 import "./StickyContact.css"
 
@@ -26,6 +27,8 @@ function StickyContact(){
     }, []);
 
     const handleClick = () => {
+        track("cta_sticky_contact");
+
         const form = document.getElementById("contact-form");
 
         if(!form){

@@ -37,12 +37,12 @@ html{
     -webkit-text-size-adjust: 100%;
 }
 
-#hero, #about, #projects, #skills, #services, #contact {
+#hero, #about, #projects, #skills, #services, #process, #contact {
     scroll-margin-top: 5rem;
 }
 
-/* every layout pass was re-laying-out all six of these; skipping them offscreen cut FCP 751ms */
-#about, #projects, #skills, #services, #contact{
+/* every layout pass was re-laying-out all of these; skipping them offscreen cut FCP 751ms */
+#about, #projects, #skills, #services, #process, #contact{
     content-visibility: auto;
 }
 
@@ -60,7 +60,11 @@ html{
 }
 
 #services{
-    contain-intrinsic-size: auto 1761px;
+    contain-intrinsic-size: auto 1801px;
+}
+
+#process{
+    contain-intrinsic-size: auto 2557px;
 }
 
 #contact{
@@ -81,7 +85,11 @@ html{
     }
 
     #services{
-        contain-intrinsic-size: auto 1320px;
+        contain-intrinsic-size: auto 1356px;
+    }
+
+    #process{
+        contain-intrinsic-size: auto 1565px;
     }
 
     #contact{

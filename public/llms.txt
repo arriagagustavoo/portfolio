@@ -1,0 +1,41 @@
+# Gustavo Arriaga
+
+> Freelance web developer and designer based in Houston, Texas. Builds websites, custom
+> software, branding and advertising, and 3D models and prints for small businesses.
+
+Computer Science senior at the University of Houston, taking on freelance client work.
+Contact is through the form on the site or by email at gus@arriagagustavoo.com.
+There is no phone number listed.
+
+## Services
+
+- **Software products** — custom websites, web applications and internal tools, full stack.
+- **Design and ads** — branding, graphics, and Google and Facebook ad campaigns.
+- **3D modeling and printing** — CAD design, prototypes and finished custom prints.
+
+## Website packages
+
+Three tiers, priced from a starting figure and settled in a written proposal:
+
+- **Basic** — an informational site: branded pages, a contact form, set up to be found on Google.
+  No database and no advertising.
+- **Standard** — adds a backend, so the site stores what comes in and the owner gets a private
+  admin page to read bookings, orders, messages and sign-ups. Customer accounts optional.
+- **Premium** — adds fully custom design, full branding, and ad campaigns.
+
+Ads and marketing can be added to any package. Monthly maintenance is optional and covers
+uptime, bug fixes and small tweaks; new features are quoted separately.
+
+## Working terms
+
+- A deposit on signing, the remainder on delivery. Zelle, bank transfer or check.
+- Domain and hosting are registered in the client's name, on the client's payment method.
+- Out-of-scope work is quoted in writing and needs approval before it starts.
+- Either party can end the arrangement on 30 days' notice, with accounts and data handed over.
+- Clients own the data their site collects and the documents it generates, and receive a
+  licence to the application.
+
+## Pages
+
+- [Home](https://arriagagustavoo.com/) — about, projects, skills, services, packages, process, contact
+- [Privacy policy](https://arriagagustavoo.com/privacy) — what the contact form collects and who processes it

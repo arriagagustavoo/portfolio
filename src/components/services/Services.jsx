@@ -12,7 +12,8 @@ const packagesEyebrow = "// Website packages"
 const packages = [
     {
         name: "Basic",
-        price: "$...",
+        price: "From $...",
+        monthly: "$.../mo",
         summary: "A website that shows people who you are, what you do, and how to reach you.",
         includes: [
             "Built to match your branding, on phones and desktop",
@@ -24,7 +25,8 @@ const packages = [
     },
     {
         name: "Standard",
-        price: "$...",
+        price: "From $...",
+        monthly: "$.../mo",
         summary: "Everything in Basic, and the site starts doing work instead of just sitting there.",
         includes: [
             "Everything in Basic",
@@ -37,7 +39,8 @@ const packages = [
     },
     {
         name: "Premium",
-        price: "$...",
+        price: "From $...",
+        monthly: "$.../mo",
         summary: "Everything in Standard, designed from scratch, with the branding and advertising to match.",
         includes: [
             "Everything in Standard",
@@ -50,9 +53,12 @@ const packages = [
     },
 ]
 
+const packagesNote = "Rough estimates only. Every number below is a starting point, and your real one comes in the proposal before any work begins."
+
 const addon = {
     name: "Add ads & marketing to any package",
-    price: "$...",
+    price: "From $...",
+    monthly: "$.../mo",
     summary: "Google and Facebook ads, so you show up when someone nearby searches for what you sell. Includes writing the ads, setting up the account, and the tracking that shows what each one did.",
 }
 
@@ -152,7 +158,12 @@ function Services(){
         return (
             <div className = {className} key = {pack.name} data-package = {pack.name} data-active = {activePackage === pack.name}>
                 <p className = "package-name">{pack.name}</p>
-                <p className = "package-price">{pack.price}</p>
+
+                <div className = "package-prices">
+                    <p className = "package-price">{pack.price}</p>
+                    <p className = "package-price package-monthly">{pack.monthly}</p>
+                </div>
+
                 <p className = "package-summary">{pack.summary}</p>
 
                 <ul className = "package-list">
@@ -196,7 +207,14 @@ function Services(){
             </div>
 
             <div className = "packages-lead" ref = {packagesRef} data-visible = {packagesVisible} style = {packagesDelay}>
-                <SectionEyebrow text = {packagesEyebrow} tag = {true} active = {packagesVisible}/>
+                <div className = "packages-intro">
+                    <div className = "packages-head">
+                        <SectionEyebrow text = {packagesEyebrow} tag = {true} active = {packagesVisible}/>
+                        <p className = "packages-note-flag reveal-sweep">Starting from</p>
+                    </div>
+
+                    <p className = "packages-note reveal-sweep">{packagesNote}</p>
+                </div>
 
                 <div className = "packages-carousel">
                     <div className = "packages-track" ref = {trackRef}>
@@ -217,7 +235,11 @@ function Services(){
                 <div className = "package-card package-addon reveal-rise">
                     <div className = "package-addon-head">
                         <p className = "package-name">{addon.name}</p>
-                        <p className = "package-price">{addon.price}</p>
+
+                        <div className = "package-prices">
+                            <p className = "package-price">{addon.price}</p>
+                            <p className = "package-price package-monthly">{addon.monthly}</p>
+                        </div>
                     </div>
 
                     <p className = "package-summary">{addon.summary}</p>

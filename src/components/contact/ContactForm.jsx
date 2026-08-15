@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { track } from "@vercel/analytics"
 import "./ContactForm.css"
 
 // public by design: it ships in the bundle and is restricted by domain in the Web3Forms dashboard
@@ -111,8 +112,10 @@ function ContactForm(){
             return response.json();
         }).then((data) => {
             if(data.success){
+                track("contact_form_sent", { projectType: values.projectType });
                 setStatus("sent");
             }else{
+                track("contact_form_failed");
                 setStatus("failed");
                 setFailMessage("That didn't go through. You can reach me at gus@arriagagustavoo.com instead.");
             }
