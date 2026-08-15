@@ -1,0 +1,64 @@
+.boundary{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    min-height: 100lvh;
+    justify-content: center;
+    background-color: var(--main-background);
+    background-image: var(--diagonal-texture);
+    padding: 2rem 1rem;
+}
+
+.boundary-code{
+    color: var(--main-accent);
+    font-family: Geist, sans-serif;
+    font-size: 6rem;
+    font-weight: 900;
+    line-height: 1;
+}
+
+.boundary-title{
+    color: var(--main-text);
+    font-family: Geist, sans-serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    line-height: .95;
+    letter-spacing: -0.03em;
+}
+
+.boundary-text{
+    max-width: 60ch;
+    color: var(--secondary-text);
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+.boundary-back{
+    position: relative;
+    isolation: isolate;
+    color: var(--main-text);
+    padding: .8rem 2.4rem;
+    font-size: 1.15rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.boundary-back::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--main-accent);
+    clip-path: var(--slanted-shape);
+    z-index: -1;
+}
+
+@media(min-width: 600px){
+    .boundary{
+        padding-inline: var(--section-inset);
+    }
+
+    .boundary-title{
+        font-size: 3.5rem;
+    }
+}

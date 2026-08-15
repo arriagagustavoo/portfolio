@@ -7,6 +7,7 @@ import useInView from "../../hooks/useInView";
 const projectsEyebrow = "// Some of my Work";
 import { queueSmartImages, queueSmartCover, mazeGameImages, mazeGameCover, rideShareImages, rideShareCover, unityGameImages, unityGameCover, mriScannerImages, mriScannerCover, documentSystemImages, documentSystemCover } from "./projectImages";
 import { useState } from "react";
+import { track } from "@vercel/analytics";
 import "./Projects.css"
 
 //project card info data
@@ -71,6 +72,7 @@ function Projects(){
     const leadDelay = { "--intro-delay": eyebrowDuration(projectsEyebrow) + "ms" };
 
     const handleOpenGallery = (project) => {
+        track("gallery_open", { project: project.title });
         setOpenProject(project);
     };
 
@@ -108,7 +110,9 @@ function Projects(){
 
     return(
         <>
-        <div className = "projects" id = "projects">
+        <section className = "projects" id = "projects" aria-labelledby = "projects-heading">
+            <h2 className = "visually-hidden" id = "projects-heading">Web and software development projects</h2>
+
             <div className = "projects-lead" ref = {leadRef} data-visible = {leadVisible} style = {leadDelay}>
                 <SectionEyebrow text = {projectsEyebrow} active = {leadVisible}/>
 
@@ -118,7 +122,7 @@ function Projects(){
                 </div>
             </div>
 
-        </div>
+        </section>
 
         {lightbox}
 

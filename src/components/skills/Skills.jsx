@@ -97,7 +97,9 @@ function Skills(){
 
     return(
         <>
-        <div className = "skills" id = "skills">
+        <section className = "skills" id = "skills" aria-labelledby = "skills-heading">
+            <h2 className = "visually-hidden" id = "skills-heading">Skills and technologies</h2>
+
             <div className = "skills-lead" ref = {leadRef} data-visible = {leadVisible} style = {leadDelay}>
                 <SectionEyebrow text = {skillsEyebrow} active = {leadVisible}/>
 
@@ -114,7 +116,7 @@ function Skills(){
                     {groupPanels}
                 </div>
             </div>
-        </div>
+        </section>
         </>
     )
 }

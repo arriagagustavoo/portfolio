@@ -3,6 +3,9 @@
   <head>
     <meta charset="UTF-8" />
 
+    <!-- above the script that rewrites it -->
+    <meta name="theme-color" content="#000000" />
+
     <!-- must stay above every stylesheet: a script after one waits for it, and the theme would paint late -->
     <script>
       (function(){
@@ -16,18 +19,29 @@
           saved = 'dark';
         }
         document.documentElement.setAttribute('data-theme', saved);
+
+        var themeColor = document.querySelector('meta[name="theme-color"]');
+        if (themeColor) {
+          if (saved === 'light') {
+            themeColor.setAttribute('content', '#ffffff');
+          } else {
+            themeColor.setAttribute('content', '#000000');
+          }
+        }
       })();
     </script>
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/dark-logo-small-apple.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gustavo Arriaga</title>
-    <meta name="description" content = "Gustavo Arriaga Personal Portfolio. Computer Science student & freelancer. Software, 3D modeling, and more">
+    <title>Gustavo Arriaga — Web Developer & Designer in Houston</title>
+    <meta name="description" content="Houston freelance web developer and designer. Websites, custom software, branding and local SEO, and 3D modeling and printing for small businesses.">
+    <link rel="canonical" href="https://arriagagustavoo.com/">
 
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Gustavo Arriaga — Portfolio">
-    <meta property="og:description" content="Computer Science student & freelancer. Software, 3D modeling, and more.">
-    <meta property="og:url" content="https://arriagagustavoo.com">
+    <meta property="og:title" content="Gustavo Arriaga — Web Developer & Designer in Houston">
+    <meta property="og:description" content="Houston freelance web developer and designer. Websites, custom software, branding and local SEO, and 3D modeling and printing for small businesses.">
+    <meta property="og:url" content="https://arriagagustavoo.com/">
     <meta property="og:image" content="https://arriagagustavoo.com/og-image.png">
     <meta name="twitter:card" content="summary_large_image">
 
@@ -41,7 +55,66 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Geist:ital,wght@0,100..900;1,100..900&family=Geist+Pixel:ELSH@0..100&display=swap" rel="stylesheet">
 
-    
+    <!-- no price, phone, rating or review fields: every one of those would be fabricated today -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://arriagagustavoo.com/#gustavo",
+          "name": "Gustavo Arriaga",
+          "url": "https://arriagagustavoo.com/",
+          "email": "gus@arriagagustavoo.com",
+          "jobTitle": "Web Developer and Designer",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Houston",
+            "addressRegion": "TX",
+            "addressCountry": "US"
+          },
+          "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Houston"
+          },
+          "knowsAbout": ["Web Development", "Full Stack Software", "Graphic Design", "Local SEO", "3D Modeling"],
+          "sameAs": [
+            "https://github.com/arriagagustavoo",
+            "https://www.linkedin.com/in/arriagagustavoo/",
+            "https://instagram.com/arriagagustavoo"
+          ]
+        },
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://arriagagustavoo.com/#service",
+          "name": "Gustavo Arriaga - Web Development and Design",
+          "url": "https://arriagagustavoo.com/",
+          "email": "gus@arriagagustavoo.com",
+          "description": "Freelance web development, design and 3D printing for small businesses in Houston, Texas.",
+          "founder": { "@id": "https://arriagagustavoo.com/#gustavo" },
+          "areaServed": {
+            "@type": "City",
+            "name": "Houston",
+            "containedInPlace": { "@type": "State", "name": "Texas" }
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Houston",
+            "addressRegion": "TX",
+            "addressCountry": "US"
+          },
+          "makesOffer": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Website design and development" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Full stack web applications" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Branding, graphics and local SEO" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "3D modeling and printing" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Monthly website maintenance" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Google Business Profile and local SEO setup" } }
+          ]
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>

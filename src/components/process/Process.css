@@ -1,0 +1,283 @@
+.process{
+    border-bottom: var(--section-divider);
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    padding: var(--section-padding-block) var(--section-padding-inline);
+}
+
+.process-block{
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.process-steps{
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+}
+
+/* same card as .service-card: 4px rim and the offset accent shadow */
+.process-step{
+    background-color: var(--main-card);
+    border: 4px solid var(--main-text);
+    box-shadow: -6px 6px 0 var(--main-accent);
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+    padding: 1rem;
+}
+
+.process-step-number{
+    align-self: flex-start;
+    background-color: var(--main-accent);
+    color: var(--main-text);
+    clip-path: var(--slanted-shape);
+    padding: .4rem 1.25rem;
+    font-family: Geist, sans-serif;
+    font-size: 1rem;
+    font-weight: 900;
+}
+
+.process-step-title{
+    color: var(--main-text);
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.process-step-body{
+    color: var(--secondary-text);
+    font-size: 1.15rem;
+    line-height: 1.45;
+    margin-top: auto;
+}
+
+.process-guarantees{
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+}
+
+.process-guarantee{
+    background-color: var(--main-card);
+    border: 4px solid var(--main-text);
+    box-shadow: -6px 6px 0 var(--main-accent);
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    padding: 1rem;
+}
+
+/* the tick is decorative, so it stays in CSS rather than becoming an icon file */
+.process-guarantee-title{
+    position: relative;
+    color: var(--main-text);
+    font-size: 1.35rem;
+    font-weight: 700;
+    line-height: 1.2;
+    padding-left: 1.8rem;
+}
+
+.process-guarantee-title::before{
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--main-accent);
+    font-weight: 900;
+}
+
+.process-guarantee-body{
+    color: var(--secondary-text);
+    font-size: 1.15rem;
+    line-height: 1.5;
+    padding-left: 1.8rem;
+}
+
+/* the hero services list, same green marker and weight */
+.process-payment{
+    --enter-delay: var(--intro-delay, 0ms);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .6rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: var(--main-text);
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.45;
+}
+
+.process-payment li::before{
+    content: "> ";
+    color: var(--main-accent);
+}
+
+.process-faqs{
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+}
+
+.process-faq{
+    background-color: var(--main-card);
+    border: 4px solid var(--main-text);
+    box-shadow: -6px 6px 0 var(--main-accent);
+    padding: .9rem 1rem;
+}
+
+.process-faq-question{
+    position: relative;
+    color: var(--main-text);
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.35;
+    cursor: pointer;
+    /* the default triangle sits outside the padding box and cannot be positioned */
+    list-style: none;
+    padding-right: 2.2rem;
+}
+
+.process-faq-question::-webkit-details-marker{
+    display: none;
+}
+
+.process-faq-question::after{
+    content: "+";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    translate: 0 -50%;
+    color: var(--main-accent);
+    font-size: 1.7rem;
+    font-weight: 900;
+    line-height: 1;
+}
+
+.process-faq[open] .process-faq-question::after{
+    content: "−";
+}
+
+.process-faq-answer{
+    color: var(--secondary-text);
+    font-size: 1.05rem;
+    line-height: 1.55;
+    margin-top: .7rem;
+    padding-top: .7rem;
+    border-top: 3px solid var(--main-text);
+}
+
+@media(hover: hover){
+    .process-step, .process-guarantee, .process-faq{
+        transition: translate 200ms ease, box-shadow 200ms ease;
+    }
+
+    .process-step:hover, .process-guarantee:hover, .process-faq:hover{
+        translate: 0 -4px;
+        box-shadow: -10px 10px 0 var(--main-accent);
+    }
+
+    .process-faq-question{
+        transition: color 160ms ease;
+    }
+
+    .process-faq-question:hover{
+        color: var(--main-accent);
+    }
+}
+
+.process-step:nth-child(1){
+    --enter-delay: var(--intro-delay, 0ms);
+}
+
+.process-step:nth-child(2){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 90ms);
+}
+
+.process-step:nth-child(3){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 180ms);
+}
+
+.process-step:nth-child(4){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 270ms);
+}
+
+.process-guarantee:nth-child(1){
+    --enter-delay: var(--intro-delay, 0ms);
+}
+
+.process-guarantee:nth-child(2){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 90ms);
+}
+
+.process-guarantee:nth-child(3){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 180ms);
+}
+
+.process-guarantee:nth-child(4){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 270ms);
+}
+
+.process-faq:nth-child(1){
+    --enter-delay: var(--intro-delay, 0ms);
+}
+
+.process-faq:nth-child(2){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 70ms);
+}
+
+.process-faq:nth-child(3){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 140ms);
+}
+
+.process-faq:nth-child(4){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 210ms);
+}
+
+.process-faq:nth-child(5){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 280ms);
+}
+
+.process-faq:nth-child(6){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 350ms);
+}
+
+.process-faq:nth-child(7){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 420ms);
+}
+
+@media(min-width: 600px){
+    .process{
+        gap: 3rem;
+    }
+
+    .process-block{
+        gap: 1.5rem;
+    }
+
+    .process-guarantees{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 2rem;
+    }
+
+    .process-payment{
+        font-size: 1.4rem;
+    }
+}
+
+@media(min-width: 900px){
+    .process-steps{
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 2rem;
+    }
+
+    /* start, or an opened answer would stretch its whole row's cards to match */
+    .process-faqs{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: start;
+        gap: 1.5rem 2rem;
+    }
+}

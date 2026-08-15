@@ -13,10 +13,11 @@ const navLinks = [
     { label: "Projects", id: "projects" },
     { label: "Skills", id: "skills" },
     { label: "Services", id: "services" },
+    { label: "Process", id: "process" },
     { label: "Contact", id: "contact" },
 ]
 
-const sectionIds = ["hero", "about", "projects", "skills", "services", "contact"]
+const sectionIds = ["hero", "about", "projects", "skills", "services", "process", "contact"]
 
 function Header(){
 
@@ -38,6 +39,14 @@ function Header(){
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', theme);
         localStorage.setItem("theme", theme)
+
+        // index.html hardcodes this pre-paint, before any stylesheet has loaded the token
+        const themeColor = document.querySelector('meta[name="theme-color"]');
+        if(themeColor){
+            const styles = getComputedStyle(document.documentElement);
+            const background = styles.getPropertyValue('--main-background').trim();
+            themeColor.setAttribute("content", background);
+        }
     }, [theme]);
 
     // the hero sizes itself off the header, and which child is tallest
@@ -186,7 +195,7 @@ function Header(){
         }
 
         return (
-            <a className = {className} key = {link.id} href = {"#" + link.id}
+            <a className = {className} key = {link.id} href = {"/#" + link.id}
             data-active = {activeSection === link.id} onClick = {closeMenu}>
                 {link.label}
             </a>
@@ -195,9 +204,9 @@ function Header(){
 
     return(
         <>
-        <div className = "header" ref = {headerRef}>
+        <header className = "header" ref = {headerRef}>
             <div className = "left-header">
-                <a className = "header-logo-link" href = "#hero">
+                <a className = "header-logo-link" href = "/#hero">
                     <picture key = {theme}>
                         <source media = "(min-width: 1000px)" srcSet = {logoLarge}/>
                         <img className = "header-logo" src = {logoSmall} alt = "Gustavo Arriaga"/>
@@ -224,7 +233,7 @@ function Header(){
             </div>
 
             <div className = "header-progress" ref = {progressRef} aria-hidden = "true"></div>
-        </div>
+        </header>
         </>
     )
 }

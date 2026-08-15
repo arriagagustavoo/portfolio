@@ -91,4 +91,337 @@
     .services-grid{
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+
+    .packages-head{
+        gap: .8rem;
+    }
+
+    .packages-note-flag{
+        padding: .3rem 1.1rem;
+        font-size: .95rem;
+        letter-spacing: .04em;
+    }
+}
+
+.packages-lead{
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+}
+
+.packages-carousel{
+    position: relative;
+}
+
+/* mobile is a snap carousel; the 900px block turns this same element into the 3-up grid */
+.packages-track{
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    /* room for the card's -6px/6px shadow and the active card's scale */
+    padding: .5rem .4rem 1rem;
+    scrollbar-width: none;
+}
+
+.packages-track::-webkit-scrollbar{
+    display: none;
+}
+
+.packages-track > .package-card{
+    flex: 0 0 76%;
+    scroll-snap-align: center;
+    transition: opacity 260ms ease, scale 260ms ease;
+}
+
+/* scoped under data-visible='true', or it outranks the reveal rule and the dimmed
+   cards show at 0.45 before the section has animated in */
+[data-visible='true'] .packages-track > .package-card[data-active='false']{
+    opacity: .45;
+    scale: .94;
+}
+
+.packages-arrow{
+    position: absolute;
+    top: 50%;
+    translate: 0 -50%;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    background-color: var(--main-text);
+    color: var(--main-background);
+    clip-path: var(--slanted-shape);
+    border: none;
+    padding: 0;
+    font-family: inherit;
+    font-size: 1.25rem;
+    font-weight: 900;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.packages-arrow-prev{
+    left: -.4rem;
+}
+
+.packages-arrow-next{
+    right: -.4rem;
+}
+
+.package-card{
+    background-color: var(--main-card);
+    border: 4px solid var(--main-text);
+    box-shadow: -6px 6px 0 var(--main-accent);
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+    padding: 1.25rem;
+}
+
+.package-name{
+    color: var(--main-text);
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+/* the badge rides the eyebrow's line. at 360px the pair needs 336px of a 332px row,
+   so the gap is the 4px being reclaimed; wrap stays as the escape hatch */
+.packages-head{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .4rem;
+}
+
+/* sized to share a 332px phone line with the eyebrow; it wrapped at .95rem */
+.packages-note-flag{
+    --enter-delay: calc(var(--intro-delay, 0ms) + 60ms);
+    background-color: var(--main-accent);
+    color: var(--main-text);
+    clip-path: var(--slanted-shape);
+    padding: .25rem .7rem;
+    font-size: .78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    white-space: nowrap;
+}
+
+/* its own wrapper so the caption hugs the eyebrow instead of taking the section's rhythm gap */
+.packages-intro{
+    display: flex;
+    flex-direction: column;
+    gap: .35rem;
+}
+
+.packages-note{
+    --enter-delay: calc(var(--intro-delay, 0ms) + 120ms);
+    max-width: 70ch;
+    color: var(--secondary-text);
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+/* sits under the tiers, so it lands after the cards rather than with the intro */
+.packages-terms{
+    --enter-delay: calc(var(--intro-delay, 0ms) + 420ms);
+    max-width: 70ch;
+    color: var(--secondary-text);
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+/* nowrap plus the tight mobile sizing below: the two badges have to share one line
+   inside a 196px carousel card, and they stacked at the desktop size */
+.package-prices{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: .4rem;
+}
+
+.package-price{
+    background-color: var(--main-accent);
+    color: var(--main-text);
+    clip-path: var(--slanted-shape);
+    padding: .3rem .8rem;
+    font-size: .95rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* outlined instead of filled, so the build price stays the louder of the two */
+.package-monthly{
+    position: relative;
+    isolation: isolate;
+    background-color: transparent;
+    font-size: .9rem;
+}
+
+.package-monthly::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--main-accent);
+    clip-path: var(--slanted-shape);
+    z-index: -2;
+}
+
+.package-monthly::before{
+    content: "";
+    position: absolute;
+    inset: 3px;
+    background-color: var(--main-card);
+    clip-path: var(--slanted-shape);
+    z-index: -1;
+}
+
+.package-summary{
+    color: var(--main-text);
+    font-size: 1.05rem;
+    line-height: 1.5;
+}
+
+.package-list{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    margin: 0;
+    padding-left: 1.15rem;
+    color: var(--secondary-text);
+    font-size: 1rem;
+    line-height: 1.45;
+}
+
+/* margin-top auto pins it to the card foot, so the three tiers line their notes up */
+.package-note{
+    margin-top: auto;
+    padding-top: .75rem;
+    border-top: 2px solid var(--main-text);
+    color: var(--secondary-text);
+    font-size: .95rem;
+    line-height: 1.45;
+}
+
+.package-addon-head{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+}
+
+.packages-track > .package-card:nth-child(1){
+    --enter-delay: var(--intro-delay, 0ms);
+}
+
+.packages-track > .package-card:nth-child(2){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 110ms);
+}
+
+.packages-track > .package-card:nth-child(3){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 220ms);
+}
+
+.packages-addons{
+    display: grid;
+    gap: 1rem;
+}
+
+/* the add-ons live outside the track, so the track's nth-child can't reach them */
+.packages-addons > .package-addon:nth-child(1){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 330ms);
+}
+
+.packages-addons > .package-addon:nth-child(2){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 440ms);
+}
+
+/* accent, because it answers the question the card raises: do I already have this */
+.package-addon-status{
+    color: var(--main-accent);
+    font-size: .9rem;
+    font-weight: 700;
+}
+
+@media(hover: hover){
+    .package-card{
+        transition: translate 200ms ease, box-shadow 200ms ease;
+    }
+
+    .package-card:hover{
+        translate: 0 -4px;
+        box-shadow: -10px 10px 0 var(--main-accent);
+    }
+}
+
+/* 900, not 800: three tiers of bullet copy below this just wrap into towers */
+@media(min-width: 900px){
+    .packages-lead{
+        gap: 1.5rem;
+    }
+
+    /* the carousel becomes a plain grid: no scrolling, no snap, no dimming, no arrows */
+    .packages-track{
+        display: grid;
+        grid-template-columns: 1fr 1.25fr 1fr;
+        gap: 2rem;
+        overflow: visible;
+        padding: 0;
+    }
+
+    .packages-track > .package-card{
+        flex: initial;
+    }
+
+    [data-visible='true'] .packages-track > .package-card[data-active='false']{
+        opacity: 1;
+        scale: 1;
+    }
+
+    .packages-arrow{
+        display: none;
+    }
+
+    /* taller than its neighbours on both edges, which is what marks it as the pick.
+       -1rem against a 2rem row gap, so it never reaches the add-on card below */
+    .package-featured{
+        margin-block: -1rem;
+        padding: 1.75rem 1.5rem;
+    }
+
+    .package-featured .package-name{
+        font-size: 2.1rem;
+    }
+
+    .package-prices{
+        gap: .5rem;
+    }
+
+    .package-price{
+        padding: .4rem 1.25rem;
+        font-size: 1.15rem;
+    }
+
+    .package-monthly{
+        font-size: 1rem;
+    }
+
+    .package-addon-head{
+        justify-content: space-between;
+    }
+
+    .packages-addons{
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+
+    /* the 70ch cap left-skews them under a full-width tier row */
+    .packages-note,
+    .packages-terms{
+        max-width: none;
+    }
 }

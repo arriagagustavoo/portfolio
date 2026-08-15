@@ -19,7 +19,7 @@ const interestsEyebrow = "// Some interests of mine"
 const bioLines = [
     "Computer Science senior designing, building and shipping complete products to clients.",
     "Capstone in Software Design & already applying that in the real world.",
-    "I handle everything from the first plan to the finished product & the ads that market it.",
+    "I handle everything from the first plan to the finished product & getting it found on Google.",
     "Digital or physical, I'll turn an idea into something real.",
     "Tell me what your business needs and I'll tell you how I'd build it.",
 ]
@@ -63,7 +63,8 @@ function About(){
 
     return(
         <>
-        <div className = "about" id = "about">
+        <section className = "about" id = "about" aria-labelledby = "about-heading">
+            <h2 className = "visually-hidden" id = "about-heading">About Gustavo Arriaga</h2>
 
             <div className = "about-lead" ref = {leadRef} data-visible = {leadVisible} style = {leadDelay}>
                 <SectionEyebrow text = {leadEyebrow} active = {leadVisible}/>
@@ -103,7 +104,7 @@ function About(){
                 </div>
             </div>
 
-        </div>
+        </section>
         </>
     )
 }

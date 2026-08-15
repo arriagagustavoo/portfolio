@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { track } from '@vercel/analytics'
 import useTypewriter from '../../hooks/useTypewriter'
 import useScramble from '../../hooks/useScramble'
 import './Hero.css'
@@ -7,12 +8,13 @@ const badges = ['Freelancer', 'Designer', 'Engineer', 'Builder']
 
 const services = [
     'Full-stack Custom Software',
-    'Graphic Design & Marketing ',
+    'Graphic Design & SEO ',
     '3D Models & Prints'
 ]
 
 const eyebrowText = "// Hey, I'm"
 const nameText = 'Gustavo\nArriaga'
+const headingText = nameText.replace('\n', ' ') + ' — Websites, Software, Design & 3D Printing in Houston'
 
 function prefersReducedMotion(){
     if (typeof window === 'undefined'){
@@ -127,7 +129,7 @@ function Hero(){
     const nameLines = name.display.split('\n')
 
     return(
-        <div className = "hero" id = "hero" ref = {heroRef} data-ready = {ready}>
+        <section className = "hero" id = "hero" ref = {heroRef} data-ready = {ready} aria-labelledby = "hero-heading">
             <div className = "hero-inner">
 
                 <p className = "hero-status hero-status-solo">
@@ -150,14 +152,19 @@ function Hero(){
                         </p>
                     </div>
 
-                    <p className = "intro-2" data-resolved = {name.done}>
-                        {nameLines.map((line, index) => (
-                            <span key = {index}>
-                                {line}
-                                {index < nameLines.length - 1 && <br />}
-                            </span>
-                        ))}
-                    </p>
+                    <h1 className = "intro-2" id = "hero-heading" data-resolved = {name.done}>
+                        <span className = "visually-hidden">{headingText}</span>
+
+                        {/* the visible copy spends 3s scrambled, so AT and crawlers read the hidden one */}
+                        <span aria-hidden = "true">
+                            {nameLines.map((line, index) => (
+                                <span key = {index}>
+                                    {line}
+                                    {index < nameLines.length - 1 && <br />}
+                                </span>
+                            ))}
+                        </span>
+                    </h1>
 
                     <p className = "hero-motto hero-motto-inline">
                         {motto}
@@ -192,16 +199,18 @@ function Hero(){
                 </p>
 
                 <div className = "hero-buttons">
-                    <a className = "hero-button hero-button-primary" href = "#projects">
+                    <a className = "hero-button hero-button-primary" href = "/#projects"
+                    onClick = {() => track("cta_hero_work")}>
                         Check out my work
                     </a>
-                    <a className = "hero-button hero-button-secondary" href = "#contact">
+                    <a className = "hero-button hero-button-secondary" href = "/#contact"
+                    onClick = {() => track("cta_hero_contact")}>
                         Contact Me
                     </a>
                 </div>
 
             </div>
-        </div>
+        </section>
     )
 }
 
