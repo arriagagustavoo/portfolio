@@ -7,20 +7,20 @@ import useInView from "../../hooks/useInView"
 const servicesEyebrow = "// Services"
 const packagesEyebrow = "// Website packages"
 
-// plain language on purpose: a client who does not write software has to be able to
-// tell what the extra money buys without asking what a backend is
+// plain language on purpose: the client has to see what the extra money buys
 const packages = [
     {
         name: "Basic",
         price: "From $...",
         monthly: "$.../mo",
-        summary: "A website that shows people who you are, what you do, and how to reach you.",
+        summary: "A site that shows people who you are, what you do, and how to reach you.",
         includes: [
-            "Built to match your branding, on phones and desktop",
+            "Built to match your branding, and it works on a phone as well as a laptop",
             "A contact form that lands straight in your inbox",
-            "Set up so you turn up on Google",
+            "Your site written so Google can read it: sitemap, page titles, and your business details in the code",
+            "Built to load fast on a phone, which Google counts too",
         ],
-        note: "No database and no advertising. Best when you mainly need to look real and be findable.",
+        note: "No database. This covers your site itself, done properly. Getting your business onto Google Maps with reviews is the SEO setup below.",
         featured: false,
     },
     {
@@ -41,26 +41,37 @@ const packages = [
         name: "Premium",
         price: "From $...",
         monthly: "$.../mo",
-        summary: "Everything in Standard, designed from scratch, with the branding and advertising to match.",
+        summary: "Everything in Standard, designed from scratch, with the branding and your Google listing handled.",
         includes: [
             "Everything in Standard",
             "Fully custom design, not a template",
             "Branding: logo, colours and fonts, plus the files to reuse them anywhere",
-            "Google and Facebook ad campaigns set up and running",
+            "The SEO setup below, included: your Google Business Profile claimed and filled in, so you turn up on Maps",
         ],
-        note: "For when the site has to look like nobody else's and bring in new people, not just serve the ones you have.",
+        note: "For when the site has to look like nobody else's and reach new people, not just serve the ones you have.",
         featured: false,
     },
 ]
 
 const packagesNote = "Rough estimates only. Every number below is a starting point, and your real one comes in the proposal before any work begins."
 
-const addon = {
-    name: "Add ads & marketing to any package",
-    price: "From $...",
-    monthly: "$.../mo",
-    summary: "Google and Facebook ads, so you show up when someone nearby searches for what you sell. Includes writing the ads, setting up the account, and the tracking that shows what each one did.",
-}
+const packagesTerms = "Every package includes monthly maintenance from the day you launch: uptime, bug fixes and small tweaks. Your domain, hosting and accounts stay in your name throughout."
+
+// one price each, and a status line, because the single two-price card read as a word dump
+const addons = [
+    {
+        name: "SEO setup",
+        price: "From $...",
+        status: "Already included in Premium",
+        summary: "A one-time job that gets your business onto Google Maps and into local results. I claim and fill in your Google Business Profile, make your name, address and phone match everywhere they appear, and point your reviews at the right place.",
+    },
+    {
+        name: "SEO care",
+        price: "$.../mo",
+        status: "Not in any package. Add it to any of them.",
+        summary: "The monthly half. I keep your profile current, help you answer reviews, and send you a plain report of the calls, clicks and directions it brought in. No article writing and no link buying, and nobody can honestly promise you a position on Google.",
+    },
+]
 
 const services = [
     {
@@ -71,8 +82,8 @@ const services = [
     },
     {
         tag: "Get found",
-        title: "Design & Ads",
-        description: "Branding, graphics, and online marketing.",
+        title: "Design & SEO",
+        description: "Branding, graphics, and local SEO.",
     },
     {
         tag: "Made to order",
@@ -175,6 +186,21 @@ function Services(){
         );
     });
 
+    const addonCards = addons.map((item) => {
+        return (
+            <div className = "package-card package-addon reveal-rise" key = {item.name}>
+                <div className = "package-addon-head">
+                    <p className = "package-name">{item.name}</p>
+                    <p className = "package-price">{item.price}</p>
+                </div>
+
+                <p className = "package-addon-status">{item.status}</p>
+
+                <p className = "package-summary">{item.summary}</p>
+            </div>
+        );
+    });
+
     const serviceCards = services.map((service) => {
         return (
             <div className = "service-card reveal-rise" key = {service.title}>
@@ -210,7 +236,7 @@ function Services(){
                 <div className = "packages-intro">
                     <div className = "packages-head">
                         <SectionEyebrow text = {packagesEyebrow} tag = {true} active = {packagesVisible}/>
-                        <p className = "packages-note-flag reveal-sweep">Starting from</p>
+                        <p className = "packages-note-flag reveal-rise">Starting from</p>
                     </div>
 
                     <p className = "packages-note reveal-sweep">{packagesNote}</p>
@@ -232,17 +258,10 @@ function Services(){
                     </button>
                 </div>
 
-                <div className = "package-card package-addon reveal-rise">
-                    <div className = "package-addon-head">
-                        <p className = "package-name">{addon.name}</p>
+                <p className = "packages-terms reveal-sweep">{packagesTerms}</p>
 
-                        <div className = "package-prices">
-                            <p className = "package-price">{addon.price}</p>
-                            <p className = "package-price package-monthly">{addon.monthly}</p>
-                        </div>
-                    </div>
-
-                    <p className = "package-summary">{addon.summary}</p>
+                <div className = "packages-addons">
+                    {addonCards}
                 </div>
             </div>
         </section>

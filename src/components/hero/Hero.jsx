@@ -8,7 +8,7 @@ const badges = ['Freelancer', 'Designer', 'Engineer', 'Builder']
 
 const services = [
     'Full-stack Custom Software',
-    'Graphic Design & Marketing ',
+    'Graphic Design & SEO ',
     '3D Models & Prints'
 ]
 

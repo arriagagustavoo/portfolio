@@ -39,6 +39,14 @@ function Header(){
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', theme);
         localStorage.setItem("theme", theme)
+
+        // index.html hardcodes this pre-paint, before any stylesheet has loaded the token
+        const themeColor = document.querySelector('meta[name="theme-color"]');
+        if(themeColor){
+            const styles = getComputedStyle(document.documentElement);
+            const background = styles.getPropertyValue('--main-background').trim();
+            themeColor.setAttribute("content", background);
+        }
     }, [theme]);
 
     // the hero sizes itself off the header, and which child is tallest

@@ -2,12 +2,12 @@ import { useState } from "react"
 import { track } from "@vercel/analytics"
 import "./ContactForm.css"
 
-// public by design: it ships in the bundle and is restricted by domain in the Web3Forms dashboard
+// public by design: it ships in the bundle, and domain restriction is Web3Forms Pro only
 const accessKey = "0fc04ae8-b271-4e9f-a6a4-b89234a02aea"
 
 const projectTypes = [
     "Software Products",
-    "Design & Ads",
+    "Design & SEO",
     "3D Modeling & Printing",
     "Something else",
 ]

@@ -226,6 +226,15 @@
     line-height: 1.4;
 }
 
+/* sits under the tiers, so it lands after the cards rather than with the intro */
+.packages-terms{
+    --enter-delay: calc(var(--intro-delay, 0ms) + 420ms);
+    max-width: 70ch;
+    color: var(--secondary-text);
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
 /* nowrap plus the tight mobile sizing below: the two badges have to share one line
    inside a 196px carousel card, and they stacked at the desktop size */
 .package-prices{
@@ -317,9 +326,25 @@
     --enter-delay: calc(var(--intro-delay, 0ms) + 220ms);
 }
 
-/* the add-on lives outside the track, so nth-child can't reach it */
-.package-addon{
+.packages-addons{
+    display: grid;
+    gap: 1rem;
+}
+
+/* the add-ons live outside the track, so the track's nth-child can't reach them */
+.packages-addons > .package-addon:nth-child(1){
     --enter-delay: calc(var(--intro-delay, 0ms) + 330ms);
+}
+
+.packages-addons > .package-addon:nth-child(2){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 440ms);
+}
+
+/* accent, because it answers the question the card raises: do I already have this */
+.package-addon-status{
+    color: var(--main-accent);
+    font-size: .9rem;
+    font-weight: 700;
 }
 
 @media(hover: hover){
@@ -387,5 +412,15 @@
 
     .package-addon-head{
         justify-content: space-between;
+    }
+
+    .packages-addons{
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+
+    /* the 70ch cap left-skews it under a full-width tier row */
+    .packages-terms{
+        max-width: none;
     }
 }

@@ -4,7 +4,6 @@ import { eyebrowDuration } from "../sectionEyebrow/eyebrowTiming"
 import useInView from "../../hooks/useInView"
 
 const leadEyebrow = "// How this works"
-const stepsEyebrow = "// The process"
 const guaranteeEyebrow = "// What you're guaranteed"
 const paymentEyebrow = "// Payment"
 const faqEyebrow = "// Common questions"
@@ -55,7 +54,7 @@ const guarantees = [
 const paymentPoints = [
     "A deposit (...%) when you sign, the remainder on delivery.",
     "Zelle, bank transfer, or check.",
-    "Monthly maintenance is optional and starts at launch: uptime, bug fixes and small tweaks. New features are quoted separately.",
+    "Monthly maintenance is included with every package and starts at launch: uptime, bug fixes and small tweaks. New features are quoted separately.",
 ]
 
 const faqs = [
@@ -77,7 +76,15 @@ const faqs = [
     },
     {
         question: "What happens after it launches?",
-        answer: "The site keeps running. Monthly maintenance is optional and covers uptime, bug fixes and small tweaks. Without it nothing breaks, you just pay per change instead.",
+        answer: "It keeps running, and I keep looking after it. The monthly covers uptime, bug fixes and small tweaks, and it starts the day you go live. You are not on your own with it, and you are not chasing me either.",
+    },
+    {
+        question: "Do I have to pay monthly?",
+        answer: "Yes. It is part of every package rather than an extra you bolt on. A site nobody looks after breaks quietly: forms stop sending, details go stale, and security updates pile up until something gives. The monthly is what stops that happening. It is not a lock-in, though. Either of us can end it on 30 days' notice, and your domain, hosting and accounts are in your name the entire time, so you are never stuck with me to keep your own site.",
+    },
+    {
+        question: "What does the SEO add-on actually do?",
+        answer: "It gets you onto Google Maps and into local results. I claim and fill in your Google Business Profile, make sure your name, address and phone match everywhere they appear, and point your reviews at the right place. Month to month I keep it current and send you a plain report of the calls, clicks and directions it brought in. What it does not include is writing articles or buying links, and nobody can honestly promise you a particular position on Google.",
     },
     {
         question: "Can I add things later?",
@@ -98,7 +105,6 @@ function Process(){
     const [paymentRef, paymentVisible] = useInView();
     const [faqRef, faqVisible] = useInView();
 
-    const stepsDelay = { "--intro-delay": eyebrowDuration(stepsEyebrow) + "ms" };
     const guaranteeDelay = { "--intro-delay": eyebrowDuration(guaranteeEyebrow) + "ms" };
     const paymentDelay = { "--intro-delay": eyebrowDuration(paymentEyebrow) + "ms" };
     const faqDelay = { "--intro-delay": eyebrowDuration(faqEyebrow) + "ms" };
@@ -146,9 +152,7 @@ function Process(){
                 <SectionEyebrow text = {leadEyebrow} active = {leadVisible}/>
             </div>
 
-            <div className = "process-block" ref = {stepsRef} data-visible = {stepsVisible} style = {stepsDelay}>
-                <SectionEyebrow text = {stepsEyebrow} tag = {true} active = {stepsVisible}/>
-
+            <div className = "process-block" ref = {stepsRef} data-visible = {stepsVisible}>
                 <div className = "process-steps">
                     {stepCards}
                 </div>

@@ -1,7 +1,7 @@
 # Gustavo Arriaga
 
 > Freelance web developer and designer based in Houston, Texas. Builds websites, custom
-> software, branding and advertising, and 3D models and prints for small businesses.
+> software, branding and local SEO, and 3D models and prints for small businesses.
 
 Computer Science senior at the University of Houston, taking on freelance client work.
 Contact is through the form on the site or by email at gus@arriagagustavoo.com.
@@ -10,21 +10,28 @@ There is no phone number listed.
 ## Services
 
 - **Software products** — custom websites, web applications and internal tools, full stack.
-- **Design and ads** — branding, graphics, and Google and Facebook ad campaigns.
+- **Design and SEO** — branding, graphics, and local SEO: Google Business Profile, the map
+  listing, reviews, and the on-page setup that lets Google read the site.
 - **3D modeling and printing** — CAD design, prototypes and finished custom prints.
 
 ## Website packages
 
 Three tiers, priced from a starting figure and settled in a written proposal:
 
-- **Basic** — an informational site: branded pages, a contact form, set up to be found on Google.
-  No database and no advertising.
+- **Basic** — an informational site: branded pages, a contact form, and the technical SEO baked in
+  (sitemap, page titles, schema, speed and mobile checks). No database and no Business Profile work.
 - **Standard** — adds a backend, so the site stores what comes in and the owner gets a private
   admin page to read bookings, orders, messages and sign-ups. Customer accounts optional.
-- **Premium** — adds fully custom design, full branding, and ad campaigns.
+- **Premium** — adds fully custom design, full branding, and Google Business Profile setup.
 
-Ads and marketing can be added to any package. Monthly maintenance is optional and covers
-uptime, bug fixes and small tweaks; new features are quoted separately.
+Every package includes monthly maintenance from launch: uptime, bug fixes and small tweaks.
+It is part of the package, not optional, but either party can end it on 30 days' notice.
+New features are quoted separately.
+
+SEO setup (one-time) and SEO care (monthly) can be added to any package. Setup covers the Google
+Business Profile, name/address/phone consistency and review setup; SEO care covers keeping the
+profile current, review replies and a monthly report. It does not include content writing or
+link building, and no ranking position is promised.
 
 ## Working terms
 

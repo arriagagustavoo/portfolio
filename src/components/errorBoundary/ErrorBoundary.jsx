@@ -1,4 +1,5 @@
 import { Component } from "react"
+import { track } from "@vercel/analytics"
 import "./ErrorBoundary.css"
 
 // a class, because getDerivedStateFromError has no hook equivalent
@@ -15,6 +16,9 @@ class ErrorBoundary extends Component {
 
     componentDidCatch(error, info){
         console.error("Render failed:", error, info);
+
+        // deliberately not an error service: this reuses the analytics already on the page
+        track("render_crash", { message: String(error).slice(0, 200) });
     }
 
     render(){
