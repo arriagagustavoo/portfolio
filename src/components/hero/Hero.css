@@ -731,3 +731,8 @@
         -webkit-text-stroke-width: 4px;
     }
 }
+
+/* spanish eyebrow runs a character longer, and the row's width budget had no slack */
+[data-lang='es'] .hero-status-inline{
+    font-size: 0.58em;
+}

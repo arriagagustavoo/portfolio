@@ -11,11 +11,7 @@ import { eyebrowDuration } from "../sectionEyebrow/eyebrowTiming"
 import useInView from "../../hooks/useInView"
 import useScramble from "../../hooks/useScramble"
 import useReducedMotion from "../../hooks/useReducedMotion"
-
-const leadEyebrow = "// Let's work together"
-const formEyebrow = "// Start a project"
-const findEyebrow = "// Find me on"
-const reachEyebrow = "// Contact me"
+import { useCopy } from "../../i18n/languageContext"
 
 // copy: true = copy button instead of a link
 const emailAddress = "gus@arriagagustavoo.com"
@@ -66,6 +62,12 @@ function buildLinks(links, onCopy){
 
 function Contact(){
 
+    const copy = useCopy();
+    const leadEyebrow = copy.contact.leadEyebrow;
+    const formEyebrow = copy.contact.formEyebrow;
+    const findEyebrow = copy.contact.findEyebrow;
+    const reachEyebrow = copy.contact.reachEyebrow;
+
     // empty = no toast
     const [toastText, setToastText] = useState("");
 
@@ -85,8 +87,8 @@ function Contact(){
 
     // two hooks, not one: the second line is a different colour and lands after the first
     // both wait out the eyebrow, same as every other section's content
-    const firstLine = useScramble("LET'S", 70, leadPause + 120, scrambling);
-    const secondLine = useScramble("BUILD.", 70, leadPause + 330, scrambling);
+    const firstLine = useScramble(copy.contact.headlineFirst, 70, leadPause + 120, scrambling);
+    const secondLine = useScramble(copy.contact.headlineSecond, 70, leadPause + 330, scrambling);
 
     const handleTop = () => {
         // no behavior key, so it inherits scroll-behavior from index.css
@@ -104,15 +106,15 @@ function Contact(){
     // absent entirely on an insecure origin, and writeText still rejects if permission is blocked
     const handleCopy = (value) => {
         if(!navigator.clipboard){
-            showToast("Couldn't copy. It's " + value);
+            showToast(copy.contact.copyFailed(value));
             return;
         }
 
         navigator.clipboard.writeText(value).then(() => {
             track("email_copied");
-            showToast("Copied " + value);
+            showToast(copy.contact.copied(value));
         }).catch(() => {
-            showToast("Couldn't copy. It's " + value);
+            showToast(copy.contact.copyFailed(value));
         });
     };
 
@@ -132,7 +134,7 @@ function Contact(){
     return(
         <>
         <section className = "contact-section" id = "contact" aria-labelledby = "contact-heading">
-            <h2 className = "visually-hidden" id = "contact-heading">Contact Gustavo Arriaga</h2>
+            <h2 className = "visually-hidden" id = "contact-heading">{copy.contact.heading}</h2>
 
             <div className = "contact-headline-block" ref = {leadRef} data-visible = {leadVisible} style = {leadDelay}>
                 <SectionEyebrow text = {leadEyebrow} active = {leadVisible}/>
@@ -140,7 +142,7 @@ function Contact(){
                 <p className = "contact-headline reveal-rise">
                     {/* ghost holds the box: scrambled caps are not the width of the real ones */}
                     <span className = "contact-headline-ghost" aria-hidden = "true">
-                        LET'S <br></br> BUILD.
+                        {copy.contact.headlineFirst} <br></br> {copy.contact.headlineSecond}
                     </span>
                     <span className = "contact-headline-live">
                         {firstLine.display} <br></br>
@@ -174,7 +176,7 @@ function Contact(){
             </div>
 
             <div className = "contact-top-wrap">
-                <button className = "contact-top" type = "button" onClick = {handleTop} aria-label = "Back to top">
+                <button className = "contact-top" type = "button" onClick = {handleTop} aria-label = {copy.contact.backToTop}>
                     <span aria-hidden = "true">^</span>
                 </button>
             </div>

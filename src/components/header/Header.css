@@ -33,7 +33,7 @@
     display: block;
 }
 
-.menu-toggle, .mode-toggle{
+.menu-toggle, .mode-toggle, .language-toggle{
     display: flex;
     align-items: center;
     align-content: center;
@@ -61,6 +61,29 @@
 }
 
 .mode-toggle:active{
+    transform: scale(1.08);
+}
+
+.language-toggle{
+    gap: .1em;
+    text-decoration: none;
+    transition: transform 120ms ease;
+}
+
+/* the globe says "language", the code says which one you land on */
+.language-code{
+    font-size: .45em;
+    font-weight: 700;
+    line-height: 1;
+}
+
+@media(hover: hover){
+    .language-toggle:hover{
+        transform: scale(1.2);
+    }
+}
+
+.language-toggle:active{
     transform: scale(1.08);
 }
 
@@ -206,5 +229,41 @@
 @media(min-width: 1200px){
     .header-link{
         padding-inline: 1rem;
+    }
+}
+
+/* six links leave about 70px spare at 1000px, so the toggle has to pay its own way there */
+@media(min-width: 1000px){
+    .language-toggle{
+        padding-inline: 0;
+        gap: 0;
+    }
+
+    .language-code{
+        font-size: .4em;
+    }
+}
+
+/* the six spanish labels run 111px wider than the english ones, which overran 1000-1200 */
+@media(min-width: 1000px){
+    [data-lang='es'] .right-header{
+        font-size: 1.15rem;
+    }
+
+    /* nowrap because Sobre mí is the only two-word label and it stacked.
+       padding stays near the english .55rem, or the slant clips the glyphs */
+    [data-lang='es'] .header-link{
+        padding-inline: .5rem;
+        white-space: nowrap;
+    }
+}
+
+@media(min-width: 1200px){
+    [data-lang='es'] .right-header{
+        font-size: 1.5rem;
+    }
+
+    [data-lang='es'] .header-link{
+        padding-inline: .6rem;
     }
 }

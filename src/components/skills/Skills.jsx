@@ -3,24 +3,24 @@ import skillIcons from "../icons/skillIcons/skillIcons"
 import SectionEyebrow from "../sectionEyebrow/SectionEyebrow"
 import { eyebrowDuration } from "../sectionEyebrow/eyebrowTiming"
 import useInView from "../../hooks/useInView"
+import { useCopy } from "../../i18n/languageContext"
 
-const skillsEyebrow = "// Skills"
-
+// the names are exact-match keys into skillIcons, so only the category label is translated
 const skillGroups = [
     {
-        category: "Languages",
+        id: "languages",
         skills: ["Python", "C++", "C#", "JavaScript", "HTML", "CSS", "MATLAB"],
     },
     {
-        category: "Web Dev",
+        id: "web",
         skills: ["React", "Vite", "Express", "Node.js", "MongoDB", "PostgreSQL"],
     },
     {
-        category: "Creative Work",
+        id: "creative",
         skills: ["Autodesk Fusion", "Figma", "Unity", "OpenGL", "Clip Studio Paint"],
     },
     {
-        category: "Tools & Libraries",
+        id: "tools",
         skills: ["Git", "GitHub", "Jenkins", "Ubuntu", "VS Code", "npm", "OpenCV", "NumPy"],
     },
 ]
@@ -64,6 +64,9 @@ function SkillGroup({ category, skills }){
 
 function Skills(){
 
+    const copy = useCopy();
+    const skillsEyebrow = copy.skills.eyebrow;
+
     const [leadRef, leadVisible] = useInView();
     const leadDelay = { "--intro-delay": eyebrowDuration(skillsEyebrow) + "ms" };
 
@@ -88,8 +91,8 @@ function Skills(){
     const groupPanels = skillGroups.map((group) => {
         return (
             <SkillGroup
-                key = {group.category}
-                category = {group.category}
+                key = {group.id}
+                category = {copy.skills.categories[group.id]}
                 skills = {group.skills}
             />
         );
@@ -98,7 +101,7 @@ function Skills(){
     return(
         <>
         <section className = "skills" id = "skills" aria-labelledby = "skills-heading">
-            <h2 className = "visually-hidden" id = "skills-heading">Skills and technologies</h2>
+            <h2 className = "visually-hidden" id = "skills-heading">{copy.skills.heading}</h2>
 
             <div className = "skills-lead" ref = {leadRef} data-visible = {leadVisible} style = {leadDelay}>
                 <SectionEyebrow text = {skillsEyebrow} active = {leadVisible}/>

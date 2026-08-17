@@ -10,12 +10,15 @@ import Footer from "./components/footer/Footer"
 import Home from './pages/Home'
 import Privacy from './pages/Privacy'
 import NotFound from './pages/NotFound'
+import { useCopy } from './i18n/languageContext'
 
 function App() {
 
+  const copy = useCopy()
+
   return (
     <>
-        <a className = "skip-link" href = "#main">Skip to content</a>
+        <a className = "skip-link" href = "#main">{copy.app.skipLink}</a>
 
         {/* sibling of the sections on purpose: contain:paint would trap a fixed child */}
         <PageAtmosphere/>
@@ -24,6 +27,8 @@ function App() {
             <Routes>
                 <Route path = "/" element = {<Home/>}/>
                 <Route path = "/privacy" element = {<Privacy/>}/>
+                <Route path = "/es" element = {<Home/>}/>
+                <Route path = "/es/privacy" element = {<Privacy/>}/>
                 <Route path = "*" element = {<NotFound/>}/>
             </Routes>
         </main>

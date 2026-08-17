@@ -1,8 +1,11 @@
 import "./ProjectCard.css"
 import GithubIcon from "../../icons/GithubIcon";
 import skillIcons from "../../icons/skillIcons/skillIcons"
+import { useCopy } from "../../../i18n/languageContext"
 
 function ProjectCard({title, images, cover, repoUrl, description, skills, onOpenGallery}){
+
+    const copy = useCopy();
 
     // no screenshots = plain placeholder, nothing to open
     let photo;
@@ -16,16 +19,16 @@ function ProjectCard({title, images, cover, repoUrl, description, skills, onOpen
         }
 
         photo = (
-            <button className = "card-photo card-photo-button" type = "button" onClick = {onOpenGallery} aria-label = {"View " + images.length + " screenshots of " + title}>
+            <button className = "card-photo card-photo-button" type = "button" onClick = {onOpenGallery} aria-label = {copy.projects.galleryButtonLabel(images.length, title)}>
                 <img className = "card-photo-img" src = {coverImage.src} alt = {coverImage.alt} loading = "lazy"/>
 
                 <span className = "card-photo-tag">
-                    {images.length} shots
+                    {copy.projects.shots(images.length)}
                 </span>
 
                 <span className = "card-photo-wipe">
                     <span className = "card-photo-wipe-label">
-                        View Gallery
+                        {copy.projects.viewGallery}
                     </span>
                 </span>
             </button>
@@ -38,7 +41,7 @@ function ProjectCard({title, images, cover, repoUrl, description, skills, onOpen
     let githubBadge;
     if(repoUrl){
         githubBadge = (
-            <a className = "card-github" href = {repoUrl} target = "_blank" rel = "noopener noreferrer" aria-label = {"GitHub repository for " + title}>
+            <a className = "card-github" href = {repoUrl} target = "_blank" rel = "noopener noreferrer" aria-label = {copy.projects.githubLabel(title)}>
                 <GithubIcon className = "card-github-icon"/>
             </a>
         );

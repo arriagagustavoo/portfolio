@@ -1,26 +1,28 @@
-import { useEffect } from "react"
 import { Link } from "react-router-dom"
 import "./Page.css"
+import useDocumentMeta from "../hooks/useDocumentMeta"
+import { useCopy, useLanguage } from "../i18n/languageContext"
 
 function NotFound(){
 
-    useEffect(() => {
-        document.title = "Page not found — Gustavo Arriaga"
-    }, []);
+    const copy = useCopy();
+    const { basePath } = useLanguage();
+
+    // null: a 404 has no canonical url and no twin to translate to
+    useDocumentMeta(copy.meta.notFound, null);
 
     return (
         <section className = "page" aria-labelledby = "notfound-heading">
             <p className = "page-code" aria-hidden = "true">404</p>
-            <h1 className = "page-title" id = "notfound-heading">This page doesn't exist.</h1>
+            <h1 className = "page-title" id = "notfound-heading">{copy.notFound.title}</h1>
 
             <div className = "page-body">
                 <p className = "page-text">
-                    The link is either wrong or something that used to be here has moved.
-                    Nothing on the site links to this address, so it was most likely mistyped.
+                    {copy.notFound.body}
                 </p>
             </div>
 
-            <Link className = "page-back" to = "/">Back to the site</Link>
+            <Link className = "page-back" to = {basePath + "/"}>{copy.notFound.back}</Link>
         </section>
     )
 }

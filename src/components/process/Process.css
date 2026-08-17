@@ -281,3 +281,10 @@
         gap: 1.5rem 2rem;
     }
 }
+
+/* Documentos and Desarrollo are 10 characters into a column sized for 9 */
+@media(min-width: 900px){
+    [data-lang='es'] .process-step-title{
+        font-size: 1.5rem;
+    }
+}

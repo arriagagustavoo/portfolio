@@ -7,6 +7,9 @@ Computer Science senior at the University of Houston, taking on freelance client
 Contact is through the form on the site or by email at gus@arriagagustavoo.com.
 There is no phone number listed.
 
+The site is available in English and Spanish. The Spanish version lives at
+https://arriagagustavoo.com/es and is described in https://arriagagustavoo.com/llms-es.txt.
+
 ## Services
 
 - **Software products** — custom websites, web applications and internal tools, full stack.
@@ -46,3 +49,4 @@ link building, and no ranking position is promised.
 
 - [Home](https://arriagagustavoo.com/) — about, projects, skills, services, packages, process, contact
 - [Privacy policy](https://arriagagustavoo.com/privacy) — what the contact form collects and who processes it
+- [Versión en español](https://arriagagustavoo.com/es) — the same site in Spanish

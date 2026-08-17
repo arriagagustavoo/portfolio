@@ -1,0 +1,56 @@
+# Gustavo Arriaga
+
+> Desarrollador y diseñador web freelance en Houston, Texas. Hace sitios web, software a
+> medida, branding y SEO local, y modelos e impresión 3D para pequeños negocios.
+
+Estudiante de último año de Ciencias de la Computación en la Universidad de Houston, que toma
+trabajo freelance. El contacto es por el formulario del sitio o por correo a
+gus@arriagagustavoo.com. No hay número de teléfono publicado.
+
+El sitio está en inglés y en español. La versión en español vive en
+https://arriagagustavoo.com/es y es una traducción del mismo contenido.
+
+## Servicios
+
+- **Productos de software** — sitios web, aplicaciones y herramientas internas a medida, full stack.
+- **Diseño y SEO** — branding, gráficos y SEO local: Perfil de Negocio de Google, la ficha del
+  mapa, reseñas, y la configuración en la página que permite a Google leer el sitio.
+- **Modelado e impresión 3D** — diseño CAD, prototipos e impresiones terminadas a medida.
+
+## Paquetes web
+
+Tres niveles, con un precio inicial y cerrados en una propuesta por escrito:
+
+- **Básico** — un sitio informativo: páginas con tu marca, formulario de contacto y el SEO técnico
+  incluido (sitemap, títulos de página, schema, velocidad y móvil). Sin base de datos y sin
+  trabajo de Perfil de Negocio.
+- **Estándar** — agrega un backend, así el sitio guarda lo que llega y el dueño tiene una página
+  de administración privada para ver reservaciones, pedidos, mensajes y registros. Cuentas de
+  usuario opcionales.
+- **Premium** — agrega diseño totalmente a medida, branding completo, y la configuración del
+  Perfil de Negocio de Google.
+
+Todos los paquetes incluyen mantenimiento mensual desde el lanzamiento: disponibilidad,
+corrección de errores y ajustes pequeños. Es parte del paquete, no es opcional, pero cualquiera
+de las dos partes puede terminarlo con 30 días de aviso. Las funciones nuevas se cotizan aparte.
+
+La configuración SEO (única) y el cuidado SEO (mensual) se pueden agregar a cualquier paquete.
+La configuración cubre el Perfil de Negocio de Google, la consistencia de nombre, dirección y
+teléfono, y la preparación de reseñas; el cuidado SEO cubre mantener el perfil al día, responder
+reseñas y un reporte mensual. No incluye redacción de contenido ni compra de enlaces, y no se
+promete ninguna posición en Google.
+
+## Condiciones de trabajo
+
+- Un anticipo al firmar, el resto contra entrega. Zelle, transferencia bancaria o cheque.
+- El dominio y el hosting se registran a nombre del cliente, con su método de pago.
+- El trabajo fuera del alcance se cotiza por escrito y requiere aprobación antes de empezar.
+- Cualquiera de las dos partes puede terminar con 30 días de aviso, entregando cuentas y datos.
+- El cliente es dueño de los datos que recopila su sitio y de los documentos que genera, y
+  recibe una licencia sobre la aplicación.
+
+## Páginas
+
+- [Inicio](https://arriagagustavoo.com/es) — sobre mí, proyectos, habilidades, servicios, paquetes, proceso, contacto
+- [Política de privacidad](https://arriagagustavoo.com/es/privacy) — qué recopila el formulario y quién lo procesa
+- [English version](https://arriagagustavoo.com/) — the same site in English
