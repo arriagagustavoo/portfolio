@@ -19,6 +19,8 @@ function Process(){
     const [paymentRef, paymentVisible] = useInView();
     const [faqRef, faqVisible] = useInView();
 
+    // the steps have no eyebrow of their own, so they wait out the lead's
+    const stepsDelay = { "--intro-delay": eyebrowDuration(leadEyebrow) + "ms" };
     const guaranteeDelay = { "--intro-delay": eyebrowDuration(guaranteeEyebrow) + "ms" };
     const paymentDelay = { "--intro-delay": eyebrowDuration(paymentEyebrow) + "ms" };
     const faqDelay = { "--intro-delay": eyebrowDuration(faqEyebrow) + "ms" };
@@ -50,8 +52,11 @@ function Process(){
 
     // details/summary, so it opens without JS and is keyboard operable for free
     const faqItems = copy.process.faqs.map((item, index) => {
+        // staggered here, not in CSS, so the delay can never run out of cards
+        const stagger = { "--enter-delay": "calc(var(--intro-delay, 0ms) + " + index * 70 + "ms)" };
+
         return (
-            <details className = "process-faq reveal-sweep" key = {index}>
+            <details className = "process-faq reveal-sweep" key = {index} style = {stagger}>
                 <summary className = "process-faq-question">{item.question}</summary>
                 <p className = "process-faq-answer">{item.answer}</p>
             </details>
@@ -66,7 +71,7 @@ function Process(){
                 <SectionEyebrow text = {leadEyebrow} active = {leadVisible}/>
             </div>
 
-            <div className = "process-block" ref = {stepsRef} data-visible = {stepsVisible}>
+            <div className = "process-block" ref = {stepsRef} data-visible = {stepsVisible} style = {stepsDelay}>
                 <div className = "process-steps">
                     {stepCards}
                 </div>
