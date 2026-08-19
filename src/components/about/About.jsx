@@ -1,5 +1,5 @@
 import "./About.css"
-import myPhoto from "../../assets/luffy.jpg"
+import myPhoto from "../../assets/image0.jpeg"
 import Pin from "../icons/Pin"
 import Television from "../icons/Television"
 import GameController from "../icons/GameController"
