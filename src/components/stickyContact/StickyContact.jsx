@@ -2,9 +2,11 @@ import { useEffect, useState } from "react"
 import { track } from "@vercel/analytics"
 import ContactIcon from "../icons/ContactIcon"
 import "./StickyContact.css"
+import { useCopy } from "../../i18n/languageContext"
 
 function StickyContact(){
 
+    const copy = useCopy();
     const [footerShowing, setFooterShowing] = useState(false);
 
     // the button is fixed, so nothing but hiding it stops it sitting on top of the footer
@@ -45,7 +47,7 @@ function StickyContact(){
             type = "button"
             onClick = {handleClick}
             data-showing = {!footerShowing}
-            aria-label = "Go to the contact form"
+            aria-label = {copy.stickyContact.label}
         >
             <ContactIcon className = "sticky-contact-icon" aria-hidden = "true"/>
         </button>

@@ -1,7 +1,10 @@
 import "./Lightbox.css"
 import { useCallback, useEffect, useState } from "react"
+import { useCopy } from "../../../i18n/languageContext"
 
 function Lightbox({ title, images, onClose }){
+
+    const copy = useCopy();
 
     // null = grid only, nothing expanded
     const [zoomedIndex, setZoomedIndex] = useState(null);
@@ -90,7 +93,7 @@ function Lightbox({ title, images, onClose }){
     const imageCards = images.map((image, index) => {
         return (
             <figure className = "lightbox-figure" key = {image.src}>
-                <button className = "lightbox-thumb" type = "button" onClick = {() => handleZoomOpen(index)} aria-label = {"Expand: " + image.alt}>
+                <button className = "lightbox-thumb" type = "button" onClick = {() => handleZoomOpen(index)} aria-label = {copy.lightbox.expandLabel(image.alt)}>
                     <img className = "lightbox-image" src = {image.src} alt = {image.alt} loading = "lazy"/>
                 </button>
                 <figcaption className = "lightbox-caption">
@@ -109,7 +112,7 @@ function Lightbox({ title, images, onClose }){
             <div className = "lightbox-zoom" onClick = {handleZoomBackdropClick} role = "dialog" aria-modal = "true" aria-label = {zoomed.alt}>
 
                 <div className = "lightbox-zoom-bar">
-                    <button className = "lightbox-close" type = "button" onClick = {handleZoomClose} aria-label = "Close expanded image">
+                    <button className = "lightbox-close" type = "button" onClick = {handleZoomClose} aria-label = {copy.lightbox.closeExpanded}>
                         ✕
                     </button>
                 </div>
@@ -123,16 +126,16 @@ function Lightbox({ title, images, onClose }){
                         </p>
 
                         <div className = "lightbox-zoom-nav">
-                            <button className = "lightbox-nav" type = "button" onClick = {showPrevious} aria-label = "Previous screenshot">
-                                ‹ Prev
+                            <button className = "lightbox-nav" type = "button" onClick = {showPrevious} aria-label = {copy.lightbox.previous}>
+                                {copy.lightbox.previousLabel}
                             </button>
 
                             <p className = "lightbox-zoom-count">
                                 {zoomedIndex + 1} / {images.length}
                             </p>
 
-                            <button className = "lightbox-nav" type = "button" onClick = {showNext} aria-label = "Next screenshot">
-                                Next ›
+                            <button className = "lightbox-nav" type = "button" onClick = {showNext} aria-label = {copy.lightbox.next}>
+                                {copy.lightbox.nextLabel}
                             </button>
                         </div>
                     </div>
@@ -146,7 +149,7 @@ function Lightbox({ title, images, onClose }){
 
     return(
         <>
-        <div className = "lightbox-backdrop" onClick = {handleBackdropClick} role = "dialog" aria-modal = "true" aria-label = {title + " screenshots"}>
+        <div className = "lightbox-backdrop" onClick = {handleBackdropClick} role = "dialog" aria-modal = "true" aria-label = {copy.lightbox.galleryLabel(title)}>
             <div className = "lightbox-panel">
 
                 <div className = "lightbox-header">
@@ -155,10 +158,10 @@ function Lightbox({ title, images, onClose }){
                     </p>
 
                     <p className = "lightbox-count">
-                        {images.length} shots
+                        {copy.lightbox.shots(images.length)}
                     </p>
 
-                    <button className = "lightbox-close" type = "button" onClick = {onClose} aria-label = "Close gallery">
+                    <button className = "lightbox-close" type = "button" onClick = {onClose} aria-label = {copy.lightbox.closeGallery}>
                         ✕
                     </button>
                 </div>

@@ -2,19 +2,13 @@ import { useState, useEffect, useRef } from 'react'
 import { track } from '@vercel/analytics'
 import useTypewriter from '../../hooks/useTypewriter'
 import useScramble from '../../hooks/useScramble'
+import { useLanguage } from '../../i18n/languageContext'
 import './Hero.css'
 
-const badges = ['Freelancer', 'Designer', 'Engineer', 'Builder']
-
-const services = [
-    'Full-stack Custom Software',
-    'Graphic Design & SEO ',
-    '3D Models & Prints'
-]
-
-const eyebrowText = "// Hey, I'm"
 const nameText = 'Gustavo\nArriaga'
-const headingText = nameText.replace('\n', ' ') + ' — Websites, Software, Design & 3D Printing in Houston'
+
+// each word owns a class the colour cycle keys off, so the copy has to stay three words
+const mottoClasses = ['motto-design', 'motto-build', 'motto-ship']
 
 function prefersReducedMotion(){
     if (typeof window === 'undefined'){
@@ -23,24 +17,6 @@ function prefersReducedMotion(){
 
     return window.matchMedia('(prefers-reduced-motion: reduce)').matches
 }
-
-// rendered twice, CSS hides one: desktop and mobile need it in different parents
-const status = (
-    <>
-        <span className = "hero-status-dot" aria-hidden="true"></span>
-        Taking New Projects
-        <span className = "hero-status-dot" aria-hidden="true"></span>
-    </>
-)
-
-// same deal: inline under the name on mobile, stacked in the right column on desktop
-const motto = (
-    <>
-        <span className = "motto-design">Design.</span>
-        <span className = "motto-build">Build.</span>
-        <span className = "motto-ship">Ship.</span>
-    </>
-)
 
 // its own component because a hook can't be called from inside a map
 function ServiceLine({ text, delay, typing }){
@@ -52,6 +28,10 @@ function ServiceLine({ text, delay, typing }){
 }
 
 function Hero(){
+    const { copy, basePath } = useLanguage()
+    const eyebrowText = copy.hero.eyebrow
+    const headingText = nameText.replace('\n', ' ') + copy.hero.headingSuffix
+
     const [reduceMotion] = useState(prefersReducedMotion)
     // the hero is the first section, so a top-of-page load is already looking at it. waiting on the
     // observer costs a whole extra frame, and that frame sits behind the first full paint
@@ -128,6 +108,24 @@ function Hero(){
 
     const nameLines = name.display.split('\n')
 
+    // rendered twice, CSS hides one: desktop and mobile need it in different parents
+    const status = (
+        <>
+            <span className = "hero-status-dot" aria-hidden="true"></span>
+            {copy.hero.status}
+            <span className = "hero-status-dot" aria-hidden="true"></span>
+        </>
+    )
+
+    // same deal: inline under the name on mobile, stacked in the right column on desktop
+    const motto = (
+        <>
+            {copy.hero.motto.map((word, index) => (
+                <span className = {mottoClasses[index]} key = {index}>{word}</span>
+            ))}
+        </>
+    )
+
     return(
         <section className = "hero" id = "hero" ref = {heroRef} data-ready = {ready} aria-labelledby = "hero-heading">
             <div className = "hero-inner">
@@ -171,9 +169,9 @@ function Hero(){
                     </p>
 
                     <ul className = "hero-services">
-                        {services.map((service, index) => (
+                        {copy.hero.services.map((service, index) => (
                             <ServiceLine
-                                key = {service}
+                                key = {index}
                                 text = {service}
                                 delay = {1800 + index * 160}
                                 typing = {animating}
@@ -184,12 +182,12 @@ function Hero(){
 
                 <div className = "hero-badges">
                     <div className = "hero-badge-track">
-                        {badges.map((badge) => (
-                            <p className = "hero-badge" key = {badge}>{badge}</p>
+                        {copy.hero.badges.map((badge, index) => (
+                            <p className = "hero-badge" key = {index}>{badge}</p>
                         ))}
                         {/* second set is what makes the loop seamless */}
-                        {badges.map((badge) => (
-                            <p className = "hero-badge" key = {`${badge}-loop`} aria-hidden="true">{badge}</p>
+                        {copy.hero.badges.map((badge, index) => (
+                            <p className = "hero-badge" key = {`loop-${index}`} aria-hidden="true">{badge}</p>
                         ))}
                     </div>
                 </div>
@@ -199,13 +197,13 @@ function Hero(){
                 </p>
 
                 <div className = "hero-buttons">
-                    <a className = "hero-button hero-button-primary" href = "/#projects"
+                    <a className = "hero-button hero-button-primary" href = {basePath + "/#projects"}
                     onClick = {() => track("cta_hero_work")}>
-                        Check out my work
+                        {copy.hero.primaryCta}
                     </a>
-                    <a className = "hero-button hero-button-secondary" href = "/#contact"
+                    <a className = "hero-button hero-button-secondary" href = {basePath + "/#contact"}
                     onClick = {() => track("cta_hero_contact")}>
-                        Contact Me
+                        {copy.hero.secondaryCta}
                     </a>
                 </div>
 

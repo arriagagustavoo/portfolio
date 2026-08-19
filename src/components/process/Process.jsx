@@ -2,101 +2,15 @@ import "./Process.css"
 import SectionEyebrow from "../sectionEyebrow/SectionEyebrow"
 import { eyebrowDuration } from "../sectionEyebrow/eyebrowTiming"
 import useInView from "../../hooks/useInView"
-
-const leadEyebrow = "// How this works"
-const guaranteeEyebrow = "// What you're guaranteed"
-const paymentEyebrow = "// Payment"
-const faqEyebrow = "// Common questions"
-
-const steps = [
-    {
-        number: "01",
-        title: "Contact",
-        body: "Tell me what your business needs, in plain words. I'll draft up a proposal.",
-    },
-    {
-        number: "02",
-        title: "Documents",
-        body: "You get the scope, the price and the timeline in writing before anything starts. Sign a contract.",
-    },
-    {
-        number: "03",
-        title: "Build",
-        body: "I build it and show you progress along the way. I maintain communication throughout.",
-    },
-    {
-        number: "04",
-        title: "Handoff",
-        body: "Payment. Accounts go in your name, I walk you through it, and I stay reachable.",
-    },
-]
-
-// every line here comes from the signed contract, not from marketing copy
-const guarantees = [
-    {
-        title: "The domain and hosting are yours",
-        body: "Registered in your name, on your payment method. I hold admin access to do the work, but the accounts belong to you.",
-    },
-    {
-        title: "No surprise charges",
-        body: "Anything outside what we agreed is quoted in writing first, and no work on it starts until you approve.",
-    },
-    {
-        title: "You can leave with everything",
-        body: "Either of us can end it with 30 days' notice. Your accounts, data exports and records get handed over.",
-    },
-    {
-        title: "Your data stays yours",
-        body: "The information your site collects and the documents it generates belong to you.",
-    },
-]
-
-const paymentPoints = [
-    "A deposit (%) when you sign, the remainder on delivery.",
-    "Zelle, bank transfer, or check.",
-    "Monthly maintenance is included with every package and starts at launch: uptime, bug fixes and small tweaks. New features are quoted separately.",
-]
-
-const faqs = [
-    {
-        question: "Do I need to know anything technical?",
-        answer: "No. If you can describe what your business does and what you want people to be able to do on the site, that is enough. I handle the rest, and explain any part of it you want explained.",
-    },
-    {
-        question: "How long does it take?",
-        answer: "It depends on the package and on how quickly content comes back from you. You get a timeline in the proposal before any work begins, so you are never left guessing.",
-    },
-    {
-        question: "What if I already have a domain?",
-        answer: "Then we use it. If you do not have one yet, it gets registered in your name rather than mine.",
-    },
-    {
-        question: "Do you only work with businesses in Houston?",
-        answer: "No. Houston is where I am and local businesses are who I work with most, but the work itself is remote either way.",
-    },
-    {
-        question: "What happens after it launches?",
-        answer: "It keeps running, and I keep looking after it. The monthly covers uptime, bug fixes and small tweaks, and it starts the day you go live. You are not on your own with it, and you are not chasing me either.",
-    },
-    {
-        question: "Do I have to pay monthly?",
-        answer: "Yes. It is part of every package not an extra. A site nobody looks after breaks quietly: forms stop sending, details go stale, and security updates pile up until something gives. The monthly is what stops that happening. It is not a lock-in, though. Either of us can end it on 30 days' notice, and your domain, hosting and accounts are in your name the entire time, so you are never stuck with me to keep your own site.",
-    },
-    {
-        question: "What does the SEO add-on actually do?",
-        answer: "It gets you onto Google Maps and into local results. I claim and fill in your Google Business Profile, make sure your name, address and phone match everywhere they appear, and point your reviews at the right place. Month to month I keep it current and send you a plain report of the calls, clicks and directions it brought in. What it does not include is writing articles or buying links, and nobody can honestly promise you a particular position on Google.",
-    },
-    {
-        question: "Can I add things later?",
-        answer: "Yes. New features are quoted separately, so you decide whether one is worth it rather than finding it on an invoice.",
-    },
-    {
-        question: "What do you need from me to start?",
-        answer: "What your business does, any branding you already have, and the text and images you want on the site. If you do not have those, producing them is part of what the higher packages cover.",
-    },
-]
+import { useCopy } from "../../i18n/languageContext"
 
 function Process(){
+
+    const copy = useCopy();
+    const leadEyebrow = copy.process.leadEyebrow;
+    const guaranteeEyebrow = copy.process.guaranteeEyebrow;
+    const paymentEyebrow = copy.process.paymentEyebrow;
+    const faqEyebrow = copy.process.faqEyebrow;
 
     // one gate per eyebrow, never nested: two data-visible ancestors would tie on specificity
     const [leadRef, leadVisible] = useInView();
@@ -105,11 +19,13 @@ function Process(){
     const [paymentRef, paymentVisible] = useInView();
     const [faqRef, faqVisible] = useInView();
 
+    // the steps have no eyebrow of their own, so they wait out the lead's
+    const stepsDelay = { "--intro-delay": eyebrowDuration(leadEyebrow) + "ms" };
     const guaranteeDelay = { "--intro-delay": eyebrowDuration(guaranteeEyebrow) + "ms" };
     const paymentDelay = { "--intro-delay": eyebrowDuration(paymentEyebrow) + "ms" };
     const faqDelay = { "--intro-delay": eyebrowDuration(faqEyebrow) + "ms" };
 
-    const stepCards = steps.map((step) => {
+    const stepCards = copy.process.steps.map((step) => {
         return (
             <div className = "process-step reveal-rise" key = {step.number}>
                 <p className = "process-step-number">{step.number}</p>
@@ -119,25 +35,28 @@ function Process(){
         );
     });
 
-    const guaranteeCards = guarantees.map((item) => {
+    const guaranteeCards = copy.process.guarantees.map((item, index) => {
         return (
-            <div className = "process-guarantee reveal-sweep" key = {item.title}>
+            <div className = "process-guarantee reveal-sweep" key = {index}>
                 <p className = "process-guarantee-title">{item.title}</p>
                 <p className = "process-guarantee-body">{item.body}</p>
             </div>
         );
     });
 
-    const paymentList = paymentPoints.map((point) => {
+    const paymentList = copy.process.paymentPoints.map((point, index) => {
         return (
-            <li key = {point}>{point}</li>
+            <li key = {index}>{point}</li>
         );
     });
 
     // details/summary, so it opens without JS and is keyboard operable for free
-    const faqItems = faqs.map((item) => {
+    const faqItems = copy.process.faqs.map((item, index) => {
+        // staggered here, not in CSS, so the delay can never run out of cards
+        const stagger = { "--enter-delay": "calc(var(--intro-delay, 0ms) + " + index * 70 + "ms)" };
+
         return (
-            <details className = "process-faq reveal-sweep" key = {item.question}>
+            <details className = "process-faq reveal-sweep" key = {index} style = {stagger}>
                 <summary className = "process-faq-question">{item.question}</summary>
                 <p className = "process-faq-answer">{item.answer}</p>
             </details>
@@ -146,13 +65,13 @@ function Process(){
 
     return(
         <section className = "process" id = "process" aria-labelledby = "process-heading">
-            <h2 className = "visually-hidden" id = "process-heading">How working together goes, guarantees, payment terms and common questions</h2>
+            <h2 className = "visually-hidden" id = "process-heading">{copy.process.heading}</h2>
 
             <div className = "process-lead" ref = {leadRef} data-visible = {leadVisible}>
                 <SectionEyebrow text = {leadEyebrow} active = {leadVisible}/>
             </div>
 
-            <div className = "process-block" ref = {stepsRef} data-visible = {stepsVisible}>
+            <div className = "process-block" ref = {stepsRef} data-visible = {stepsVisible} style = {stepsDelay}>
                 <div className = "process-steps">
                     {stepCards}
                 </div>

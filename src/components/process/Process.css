@@ -221,34 +221,6 @@
     --enter-delay: calc(var(--intro-delay, 0ms) + 270ms);
 }
 
-.process-faq:nth-child(1){
-    --enter-delay: var(--intro-delay, 0ms);
-}
-
-.process-faq:nth-child(2){
-    --enter-delay: calc(var(--intro-delay, 0ms) + 70ms);
-}
-
-.process-faq:nth-child(3){
-    --enter-delay: calc(var(--intro-delay, 0ms) + 140ms);
-}
-
-.process-faq:nth-child(4){
-    --enter-delay: calc(var(--intro-delay, 0ms) + 210ms);
-}
-
-.process-faq:nth-child(5){
-    --enter-delay: calc(var(--intro-delay, 0ms) + 280ms);
-}
-
-.process-faq:nth-child(6){
-    --enter-delay: calc(var(--intro-delay, 0ms) + 350ms);
-}
-
-.process-faq:nth-child(7){
-    --enter-delay: calc(var(--intro-delay, 0ms) + 420ms);
-}
-
 @media(min-width: 600px){
     .process{
         gap: 3rem;
@@ -279,5 +251,12 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
         align-items: start;
         gap: 1.5rem 2rem;
+    }
+}
+
+/* Documentos and Desarrollo are 10 characters into a column sized for 9 */
+@media(min-width: 900px){
+    [data-lang='es'] .process-step-title{
+        font-size: 1.5rem;
     }
 }

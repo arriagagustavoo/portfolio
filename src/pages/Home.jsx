@@ -7,18 +7,15 @@ import Process from "../components/process/Process"
 import Contact from "../components/contact/Contact"
 import StickyContact from "../components/stickyContact/StickyContact"
 import useHashScroll from "../hooks/useHashScroll"
-import { useEffect } from "react"
-
-// matches index.html, so coming back from /privacy restores the tab title
-const homeTitle = "Gustavo Arriaga — Web Developer & Designer in Houston"
+import useDocumentMeta from "../hooks/useDocumentMeta"
+import { useCopy } from "../i18n/languageContext"
 
 function Home(){
 
-    useHashScroll();
+    const copy = useCopy();
 
-    useEffect(() => {
-        document.title = homeTitle
-    }, []);
+    useHashScroll();
+    useDocumentMeta(copy.meta.home, "");
 
     return (
         <>

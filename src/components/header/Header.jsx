@@ -2,24 +2,21 @@ import './Header.css'
 import MenuIcon from '../icons/MenuIcon'
 import MoonIcon from '../icons/MoonIcon'
 import SunIcon from '../icons/SunIcon'
+import TranslateIcon from '../icons/TranslateIcon'
 import darkLogoLarge from '../../assets/dark-logo-large.svg'
 import darkLogoSmall from '../../assets/dark-logo-small.svg'
 import lightLogoLarge from '../../assets/light-logo-large.svg'
 import lightLogoSmall from '../../assets/light-logo-small.svg'
 import {useState, useEffect, useRef} from 'react'
-
-const navLinks = [
-    { label: "About", id: "about" },
-    { label: "Projects", id: "projects" },
-    { label: "Skills", id: "skills" },
-    { label: "Services", id: "services" },
-    { label: "Process", id: "process" },
-    { label: "Contact", id: "contact" },
-]
+import { Link } from 'react-router-dom'
+import { useLanguage } from '../../i18n/languageContext'
 
 const sectionIds = ["hero", "about", "projects", "skills", "services", "process", "contact"]
 
 function Header(){
+
+    const { copy, basePath, otherBasePath, neutralPath } = useLanguage();
+    const navLinks = copy.header.nav;
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState("");
@@ -195,21 +192,32 @@ function Header(){
         }
 
         return (
-            <a className = {className} key = {link.id} href = {"/#" + link.id}
+            <a className = {className} key = {link.id} href = {basePath + "/#" + link.id}
             data-active = {activeSection === link.id} onClick = {closeMenu}>
                 {link.label}
             </a>
         );
     });
 
+    // off the home page there is no section to hold, so the twin page is the whole target
+    let languageTarget = otherBasePath + neutralPath;
+    if(neutralPath === ''){
+        let anchor = activeSection;
+        if(!anchor){
+            anchor = "hero";
+        }
+
+        languageTarget = otherBasePath + "/#" + anchor;
+    }
+
     return(
         <>
         <header className = "header" ref = {headerRef}>
             <div className = "left-header">
-                <a className = "header-logo-link" href = "/#hero">
+                <a className = "header-logo-link" href = {basePath + "/#hero"}>
                     <picture key = {theme}>
                         <source media = "(min-width: 1000px)" srcSet = {logoLarge}/>
-                        <img className = "header-logo" src = {logoSmall} alt = "Gustavo Arriaga"/>
+                        <img className = "header-logo" src = {logoSmall} alt = {copy.header.logoAlt}/>
                     </picture>
                 </a>
             </div>
@@ -222,14 +230,21 @@ function Header(){
 
             <div className = "header-buttons">
                 <button className = "menu-toggle" onClick = {() => setIsMenuOpen(!isMenuOpen)}
-                aria-label="Toggle menu"aria-expanded={isMenuOpen}>
+                aria-label={copy.header.menuLabel} aria-expanded={isMenuOpen}>
                     <MenuIcon/>
                 </button>
-                
+
                 <button className = "mode-toggle" onClick = {toggleTheme}
-                aria-label = "Toggle mode">
+                aria-label = {copy.header.themeLabel}>
                     {modeIcon}
                 </button>
+
+                {/* a link, not a button, so the other language is a real url a crawler can follow */}
+                <Link className = "language-toggle" to = {languageTarget}
+                aria-label = {copy.header.languageLabel} onClick = {closeMenu}>
+                    <TranslateIcon/>
+                    <span className = "language-code">{copy.header.languageCode}</span>
+                </Link>
             </div>
 
             <div className = "header-progress" ref = {progressRef} aria-hidden = "true"></div>

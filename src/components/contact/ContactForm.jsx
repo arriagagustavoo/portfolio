@@ -1,48 +1,49 @@
 import { useState } from "react"
 import { track } from "@vercel/analytics"
 import "./ContactForm.css"
+import { useCopy } from "../../i18n/languageContext"
 
 // public by design: it ships in the bundle, and domain restriction is Web3Forms Pro only
 const accessKey = "0fc04ae8-b271-4e9f-a6a4-b89234a02aea"
 
-const projectTypes = [
-    "Software Products",
-    "Design & SEO",
-    "3D Modeling & Printing",
-    "Something else",
-]
+// the submitted value, so the email that lands in the inbox stays english
+const defaultProjectType = "Software Products"
 
 const emptyForm = {
     name: "",
     email: "",
     phone: "",
-    projectType: projectTypes[0],
+    projectType: defaultProjectType,
     message: "",
 }
 
-function validate(values){
+// not a hook, so the messages have to be handed in
+function validate(values, messages){
     const found = {};
 
     if(!values.name.trim()){
-        found.name = "Tell me what to call you.";
+        found.name = messages.nameEmpty;
     }
 
     if(!values.email.trim()){
-        found.email = "I need an email to reply to.";
+        found.email = messages.emailEmpty;
     }else if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email.trim())){
-        found.email = "That doesn't look like an email address.";
+        found.email = messages.emailInvalid;
     }
 
     if(!values.message.trim()){
-        found.message = "Tell me a bit about the project.";
+        found.message = messages.messageEmpty;
     }else if(values.message.trim().length < 10){
-        found.message = "A few more words helps me give you a real answer.";
+        found.message = messages.messageShort;
     }
 
     return found;
 }
 
 function ContactForm(){
+
+    const copy = useCopy();
+    const form = copy.contactForm;
 
     const [values, setValues] = useState(emptyForm);
     const [errors, setErrors] = useState({});
@@ -60,19 +61,19 @@ function ContactForm(){
 
         // only re-check a field the user has already left, or it complains while they're still typing
         if(touched[field]){
-            setErrors(validate(next));
+            setErrors(validate(next, form.errors));
         }
     };
 
     const handleBlur = (event) => {
         setTouched({ ...touched, [event.target.name]: true });
-        setErrors(validate(values));
+        setErrors(validate(values, form.errors));
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        const found = validate(values);
+        const found = validate(values, form.errors);
 
         setErrors(found);
         setTouched({ name: true, email: true, message: true });
@@ -117,11 +118,11 @@ function ContactForm(){
             }else{
                 track("contact_form_failed");
                 setStatus("failed");
-                setFailMessage("That didn't go through. You can reach me at gus@arriagagustavoo.com instead.");
+                setFailMessage(form.failSend);
             }
         }).catch(() => {
             setStatus("failed");
-            setFailMessage("That didn't send. Check your connection, or email gus@arriagagustavoo.com.");
+            setFailMessage(form.failNetwork);
         });
     };
 
@@ -162,17 +163,17 @@ function ContactForm(){
 
         return (
             <div className = "contact-form-success reveal-rise" role = "status">
-                <p className = "contact-form-success-title">Message sent.</p>
+                <p className = "contact-form-success-title">{form.successTitle}</p>
                 <p className = "contact-form-success-line">
-                    Thanks {firstName}. I reply within 24 hours.
+                    {form.successLine(firstName)}
                 </p>
             </div>
         );
     }
 
-    let submitLabel = "Send it";
+    let submitLabel = form.submit;
     if(status === "sending"){
-        submitLabel = "Sending...";
+        submitLabel = form.sending;
     }
 
     let failNote = null;
@@ -184,9 +185,9 @@ function ContactForm(){
         );
     }
 
-    const typeOptions = projectTypes.map((type) => {
+    const typeOptions = form.projectTypes.map((type) => {
         return (
-            <option value = {type} key = {type}>{type}</option>
+            <option value = {type.id} key = {type.id}>{type.label}</option>
         );
     });
 
@@ -195,7 +196,7 @@ function ContactForm(){
 
             <div className = "contact-form-row contact-form-row-a reveal-sweep">
                 <div className = "contact-form-field">
-                    <label className = "contact-form-label" htmlFor = "contact-name">Name</label>
+                    <label className = "contact-form-label" htmlFor = "contact-name">{form.nameLabel}</label>
                     <input
                         className = "contact-form-input"
                         id = "contact-name"
@@ -212,7 +213,7 @@ function ContactForm(){
                 </div>
 
                 <div className = "contact-form-field">
-                    <label className = "contact-form-label" htmlFor = "contact-email">Email</label>
+                    <label className = "contact-form-label" htmlFor = "contact-email">{form.emailLabel}</label>
                     <input
                         className = "contact-form-input"
                         id = "contact-email"
@@ -232,7 +233,7 @@ function ContactForm(){
             <div className = "contact-form-row contact-form-row-b reveal-sweep">
                 <div className = "contact-form-field">
                     <label className = "contact-form-label" htmlFor = "contact-phone">
-                        Phone <span className = "contact-form-optional">optional</span>
+                        {form.phoneLabel} <span className = "contact-form-optional">{form.phoneOptional}</span>
                     </label>
                     <input
                         className = "contact-form-input"
@@ -247,7 +248,7 @@ function ContactForm(){
                 </div>
 
                 <div className = "contact-form-field">
-                    <label className = "contact-form-label" htmlFor = "contact-type">Project type</label>
+                    <label className = "contact-form-label" htmlFor = "contact-type">{form.typeLabel}</label>
                     <select
                         className = "contact-form-input contact-form-select"
                         id = "contact-type"
@@ -261,7 +262,7 @@ function ContactForm(){
             </div>
 
             <div className = "contact-form-field contact-form-message reveal-sweep">
-                <label className = "contact-form-label" htmlFor = "contact-message">Message</label>
+                <label className = "contact-form-label" htmlFor = "contact-message">{form.messageLabel}</label>
                 <textarea
                     className = "contact-form-input contact-form-textarea"
                     id = "contact-message"
@@ -293,7 +294,7 @@ function ContactForm(){
                 {submitLabel}
             </button>
 
-            <p className = "contact-form-promise reveal-sweep">I reply within 24 hours.</p>
+            <p className = "contact-form-promise reveal-sweep">{form.promise}</p>
 
             {failNote}
         </form>
