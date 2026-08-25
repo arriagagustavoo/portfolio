@@ -100,8 +100,9 @@
         font-size: 2.5rem;
     }
 
+    /* flat, not a clamp, so the header is the same 72px at every desktop width */
     .header-logo{
-        height: clamp(3rem, 5vw, 4.5rem);
+        height: 3.25rem;
     }
 
     .menu-toggle{
@@ -222,6 +223,7 @@
    otherwise win on source order. six links overran the viewport at 1000-1010px. */
 @media(min-width: 1000px){
     .header-link{
+        padding-block: .5rem;
         padding-inline: .55rem;
     }
 }
@@ -251,9 +253,11 @@
     }
 
     /* nowrap because Sobre mí is the only two-word label and it stacked.
-       padding stays near the english .55rem, or the slant clips the glyphs */
+       padding stays near the english .55rem, or the slant clips the glyphs.
+       smaller es text here, so it needs more block padding to reach the same 47px */
     [data-lang='es'] .header-link{
-        padding-inline: .5rem;
+        padding-block: .75rem;
+        padding-inline: .55rem;
         white-space: nowrap;
     }
 }
@@ -263,7 +267,9 @@
         font-size: 1.5rem;
     }
 
+    /* es text is back to 24px here, so the block padding drops back to english's */
     [data-lang='es'] .header-link{
-        padding-inline: .6rem;
+        padding-block: .5rem;
+        padding-inline: .75rem;
     }
 }
