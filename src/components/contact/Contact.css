@@ -120,6 +120,10 @@
     --enter-delay: calc(var(--intro-delay, 0ms) + 180ms);
 }
 
+.contact-link:nth-child(4){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 270ms);
+}
+
 .contact-link{
     display: flex;
     align-items: center;

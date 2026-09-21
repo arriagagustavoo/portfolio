@@ -1,6 +1,7 @@
 import "./Contact.css"
 import { useState } from "react"
 import { track } from "@vercel/analytics"
+import FacebookIcon from "../icons/FacebookIcon"
 import GithubIcon from "../icons/GithubIcon"
 import InstagramIcon from "../icons/InstagramIcon"
 import LinkedinIcon from "../icons/LinkedinIcon"
@@ -33,6 +34,12 @@ const findMeLinks = [
         label: "linkedin.com/in/arriagagustavoo",
         href: "https://www.linkedin.com/in/arriagagustavoo/",
         Icon: LinkedinIcon,
+        copy: false,
+    },
+    {
+        label: "facebook.com/arriagagustavoo",
+        href: "https://www.facebook.com/arriagagustavoo",
+        Icon: FacebookIcon,
         copy: false,
     },
 ]
