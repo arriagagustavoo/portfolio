@@ -5,13 +5,13 @@ export default {
     },
 
     header: {
-        // id is the section anchor and never translates
+        // id is the section anchor and never translates. `to` makes it a route instead
         nav: [
             { id: "about", label: "Sobre mí" },
-            { id: "projects", label: "Proyectos" },
-            { id: "skills", label: "Habilidades" },
+            { id: "projects", label: "Trabajo" },
             { id: "services", label: "Servicios" },
             { id: "process", label: "Proceso" },
+            { id: "dev", label: "Dev", to: "/dev" },
             { id: "contact", label: "Contacto" },
         ],
         logoAlt: "Gustavo Arriaga",
@@ -26,6 +26,10 @@ export default {
         home: {
             title: "Gustavo Arriaga — Desarrollador y diseñador web en Houston",
             description: "Desarrollador y diseñador web freelance en Houston. Sitios web, software a medida, branding y SEO local, y modelado e impresión 3D para pequeños negocios.",
+        },
+        dev: {
+            title: "Dev — Gustavo Arriaga",
+            description: "El lado técnico: el stack completo con el que construyo, más los proyectos de escuela y personales detrás del trabajo con clientes.",
         },
         privacy: {
             title: "Política de Privacidad — Gustavo Arriaga",
@@ -57,25 +61,57 @@ export default {
     about: {
         heading: "Sobre Gustavo Arriaga",
         leadEyebrow: "// Conóceme",
+        whyEyebrow: "// Por qué trabajar conmigo",
         interestsEyebrow: "// Algunos de mis intereses",
         photoAlt: "Gustavo Arriaga",
         // split so each line can stagger in on its own
         bioLines: [
-            "Estudiante de último año de Ciencias de la Computación que diseña, construye y entrega productos completos a sus clientes.",
-            "Proyecto final en Diseño de Software y ya lo aplico en el mundo real.",
-            "Me encargo de todo, desde el primer plan hasta el producto terminado y que aparezca en Google.",
-            "Digital o físico, convierto una idea en algo real.",
-            "Dime qué necesita tu negocio y te digo cómo lo construiría.",
+            "Construyo sitios web y software a la medida para negocios del área de Houston.",
+            "Trabajo con clientes donde sea. Me enorgullece poder entregar mi trabajo en inglés y español, a distancia.",
+            "En la universidad disfrutaba los proyectos prácticos que se parecían a cómo se hacen las cosas en el mundo real, pero nunca me gustó que solo estaba persiguiendo una calificación y que el trabajo nunca se usara.",
+            "Así que empecé a construir cosas que la gente sí usara, y construí mi propio portal de clientes, contratos y facturación para operar en forma.",
+            "Lo que me importa es que funcione, y que no acabes pagándole a alguien más para arreglarlo después.",
+            "Sea digital o físico, dime qué necesita tu negocio y te digo cómo lo construiría.",
         ],
+        freelancing: "Freelance desde 2026",
         location: "Houston, Texas",
         school: "Universidad de Houston",
+        degree: "Lic. en Ciencias de la Computación, Diseño de Software",
         schoolLogoAlt: "Logo de la Universidad de Houston",
-        interests: ["Código", "Fitness", "Modelado", "Hardware", "Juegos", "Anime"],
+        quote: {
+            text: "Mientras esté vivo, tengo infinitas oportunidades.",
+            source: "— Monkey D. Luffy, One Piece",
+        },
+        reasons: [
+            {
+                title: "Una sola persona, de principio a fin",
+                body: "El trabajo se queda entre tú y yo. No tienes que preocuparte por terceros.",
+            },
+            {
+                title: "Uso mi propio software",
+                body: "Construí mi propio portal de clientes seguro y mis documentos personalizados para usarlos en mi negocio.",
+            },
+            {
+                title: "Trabajo totalmente a la medida",
+                body: "Trabajo hecho para tu negocio. Construido desde cero para lo que necesitas.",
+            },
+            {
+                title: "Bilingüe y basado en Houston",
+                body: "Entiendo al público y puedo adaptar todo para usuarios en inglés y español.",
+            },
+        ],
+        interests: ["Código", "Diseño", "Fitness", "Modelado", "Hardware", "Juegos", "Anime"],
     },
 
     projects: {
-        heading: "Proyectos de desarrollo web y software",
-        eyebrow: "// Algo de mi trabajo",
+        work: {
+            heading: "Proyectos de desarrollo web y software",
+            eyebrow: "// Algo de mi trabajo",
+        },
+        dev: {
+            heading: "Proyectos de software personales y de escuela",
+            eyebrow: "// Fuera del trabajo con clientes",
+        },
         viewGallery: "Ver galería",
         shots: (count) => count + " capturas",
         galleryButtonLabel: (count, title) => "Ver " + count + " capturas de " + title,
@@ -205,6 +241,14 @@ export default {
         next: "Captura siguiente",
         previousLabel: "‹ Anterior",
         nextLabel: "Siguiente ›",
+    },
+
+    dev: {
+        eyebrow: "// El lado dev",
+        title: "El lado técnico",
+        lead: "Todo lo que sostiene el trabajo con clientes: el stack con el que construyo, y los proyectos de escuela y personales donde lo aprendí.",
+        outro: "¿Lo quieres aplicado a tu negocio?",
+        back: "Ver lo que ofrezco",
     },
 
     skills: {

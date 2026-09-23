@@ -37,12 +37,12 @@ html{
     -webkit-text-size-adjust: 100%;
 }
 
-#hero, #about, #projects, #skills, #services, #process, #contact {
+#hero, #about, #projects, #dev, #dev-projects, #skills, #services, #process, #contact {
     scroll-margin-top: 5rem;
 }
 
 /* every layout pass was re-laying-out all of these; skipping them offscreen cut FCP 751ms */
-#about, #projects, #skills, #services, #process, #contact{
+#about, #projects, #dev-projects, #skills, #services, #process, #contact{
     content-visibility: auto;
 }
 
@@ -51,8 +51,13 @@ html{
     contain-intrinsic-size: auto 1058px;
 }
 
+/* estimates off the old 7-card measurement, pending a re-measure once the pages settle */
 #projects{
-    contain-intrinsic-size: auto 3560px;
+    contain-intrinsic-size: auto 1550px;
+}
+
+#dev-projects{
+    contain-intrinsic-size: auto 1900px;
 }
 
 #skills{
@@ -77,7 +82,11 @@ html{
     }
 
     #projects{
-        contain-intrinsic-size: auto 2609px;
+        contain-intrinsic-size: auto 1300px;
+    }
+
+    #dev-projects{
+        contain-intrinsic-size: auto 1250px;
     }
 
     #skills{
@@ -120,8 +129,9 @@ html{
     --overlay-scrim-strong: rgba(228, 228, 228, 0.96);
 
     /* desktop only: content caps at --content-max-width and centers,
-       leftover space becomes even side padding. Never less than 3rem. */
-    --content-max-width: 1200px;
+       leftover space becomes even side padding. Never less than 3rem.
+       2450 = the hero's own width at 2560, so sections match it instead of sitting narrower */
+    --content-max-width: 2450px;
     --section-inset: max(3rem, calc((100% - var(--content-max-width)) / 2));
 
     /* fallback only — Header.jsx measures the real header and overwrites this.

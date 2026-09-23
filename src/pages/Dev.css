@@ -1,0 +1,59 @@
+.dev-intro{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: var(--section-padding-block) var(--section-padding-inline);
+}
+
+.dev-title{
+    --enter-delay: var(--intro-delay, 0ms);
+    color: var(--main-text);
+    font-family: Geist, sans-serif;
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: .95;
+    letter-spacing: -0.03em;
+}
+
+.dev-lead{
+    --enter-delay: calc(var(--intro-delay, 0ms) + 140ms);
+    max-width: 60ch;
+    color: var(--secondary-text);
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+.dev-outro{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: var(--section-padding-block) var(--section-padding-inline);
+}
+
+.dev-outro-text{
+    color: var(--main-text);
+    font-size: 1.35rem;
+    font-weight: 700;
+}
+
+/* the dev cards are the secondary set, so they run denser and quieter than the work ones */
+.projects[data-group='dev'] .card-title{
+    font-size: 1.25rem;
+}
+
+.projects[data-group='dev'] .card-description{
+    font-size: .95rem;
+}
+
+@media(min-width: 600px){
+    .dev-title{
+        font-size: 4rem;
+    }
+}
+
+@media(min-width: 1000px){
+    .projects[data-group='dev'] .projects-grid{
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}

@@ -1,7 +1,6 @@
 import Hero from "../components/hero/Hero"
 import About from "../components/about/About"
 import Projects from "../components/projects/Projects"
-import Skills from "../components/skills/Skills"
 import Services from "../components/services/Services"
 import Process from "../components/process/Process"
 import Contact from "../components/contact/Contact"
@@ -21,8 +20,7 @@ function Home(){
         <>
             <Hero/>
             <About/>
-            <Projects/>
-            <Skills/>
+            <Projects group = "work"/>
             <Services/>
             <Process/>
             <Contact/>

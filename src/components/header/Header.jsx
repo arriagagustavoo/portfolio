@@ -11,11 +11,12 @@ import {useState, useEffect, useRef} from 'react'
 import { Link } from 'react-router-dom'
 import { useLanguage } from '../../i18n/languageContext'
 
-const sectionIds = ["hero", "about", "projects", "skills", "services", "process", "contact"]
+const sectionIds = ["hero", "about", "projects", "services", "process", "contact"]
 
 function Header(){
 
     const { copy, basePath, otherBasePath, neutralPath } = useLanguage();
+    const isHome = neutralPath === '';
     const navLinks = copy.header.nav;
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -191,9 +192,19 @@ function Header(){
             className = "header-link contact";
         }
 
+        // a link to its own page, so the route decides whether it is lit, not the scroll position
+        if(link.to){
+            return (
+                <Link className = {className} key = {link.id} to = {basePath + link.to}
+                data-active = {neutralPath === link.to} onClick = {closeMenu}>
+                    {link.label}
+                </Link>
+            );
+        }
+
         return (
             <a className = {className} key = {link.id} href = {basePath + "/#" + link.id}
-            data-active = {activeSection === link.id} onClick = {closeMenu}>
+            data-active = {isHome && activeSection === link.id} onClick = {closeMenu}>
                 {link.label}
             </a>
         );
@@ -201,7 +212,7 @@ function Header(){
 
     // off the home page there is no section to hold, so the twin page is the whole target
     let languageTarget = otherBasePath + neutralPath;
-    if(neutralPath === ''){
+    if(isHome){
         let anchor = activeSection;
         if(!anchor){
             anchor = "hero";

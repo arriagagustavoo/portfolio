@@ -4,70 +4,16 @@ import SectionEyebrow from "../sectionEyebrow/SectionEyebrow";
 import { eyebrowDuration } from "../sectionEyebrow/eyebrowTiming";
 import useInView from "../../hooks/useInView";
 import { useCopy } from "../../i18n/languageContext";
-import { clientPortalImages, clientPortalCover, queueSmartImages, queueSmartCover, mazeGameImages, mazeGameCover, rideShareImages, rideShareCover, unityGameImages, unityGameCover, mriScannerImages, mriScannerCover, documentSystemImages, documentSystemCover } from "./projectImages";
+import { workProjects, devProjects } from "./projectsData";
 import { useState } from "react";
 import { track } from "@vercel/analytics";
 import "./Projects.css"
 
-// titles and skills stay english: they are product names and skillIcons lookup keys
-const projects = [
-    {
-        id: "clientportal",
-        title: "Client Portal",
-        repoUrl: "",
-        skills: ["Next.js", "TypeScript", "React", "Supabase", "PostgreSQL", "JWT", "Zod", "Puppeteer", "Playwright"],
-        images: clientPortalImages,
-        cover: clientPortalCover,
-    },
-    {
-        id: "queuesmart",
-        title: "QueueSmart",
-        repoUrl: "https://github.com/Fifer-code/Software-Design",
-        skills: ["React", "Vite", "Express", "Node.js", "MongoDB", "npm"],
-        images: queueSmartImages,
-        cover: queueSmartCover,
-    },
-    {
-        id: "documents",
-        title: "Freelance Document System",
-        repoUrl: "",
-        skills: ["Figma", "JavaScript", "HTML", "CSS"],
-        images: documentSystemImages,
-        cover: documentSystemCover,
-    },
-    {
-        id: "rideshare",
-        title: "RideShare",
-        repoUrl: "https://github.com/arriagagustavoo/rideshare",
-        skills: ["PostgreSQL", "Express", "JavaScript", "HTML", "CSS"],
-        images: rideShareImages,
-        cover: rideShareCover,
-    },
-    {
-        id: "maze",
-        title: "3D Interactive Maze Game",
-        repoUrl: "https://github.com/arriagagustavoo/Interactive-Maze-Game",
-        skills: ["Python", "OpenGL"],
-        images: mazeGameImages,
-        cover: mazeGameCover,
-    },
-    {
-        id: "unity",
-        title: "2D Unity Game",
-        repoUrl: "",
-        skills: ["Unity", "Clip Studio Paint"],
-        images: unityGameImages,
-        cover: unityGameCover,
-    },
-    {
-        id: "mri",
-        title: "MRI Scanner",
-        repoUrl: "",
-        skills: ["MATLAB"],
-        images: mriScannerImages,
-        cover: mriScannerCover,
-    },
-]
+// ids never translate, so which section is which lives here and not in the dictionaries
+const sections = {
+    work: { id: "projects", projects: workProjects },
+    dev: { id: "dev-projects", projects: devProjects },
+}
 
 // falls back to the english alt if a translated list is short or missing
 function pickAlt(list, index, fallback){
@@ -78,10 +24,13 @@ function pickAlt(list, index, fallback){
     }
 }
 
-function Projects(){
+function Projects({ group }){
 
     const copy = useCopy();
-    const projectsEyebrow = copy.projects.eyebrow;
+    const section = sections[group];
+    const sectionCopy = copy.projects[group];
+    const projectsEyebrow = sectionCopy.eyebrow;
+    const headingId = section.id + "-heading";
 
     // null = closed. lives here so only one gallery can be open at a time
     const [openProject, setOpenProject] = useState(null);
@@ -99,7 +48,7 @@ function Projects(){
     };
 
     // the captions are translated, so the image list is rebuilt against the active language
-    const localizedProjects = projects.map((project) => {
+    const localizedProjects = section.projects.map((project) => {
         const text = copy.projects.items[project.id];
 
         const images = project.images.map((image, index) => {
@@ -147,8 +96,8 @@ function Projects(){
 
     return(
         <>
-        <section className = "projects" id = "projects" aria-labelledby = "projects-heading">
-            <h2 className = "visually-hidden" id = "projects-heading">{copy.projects.heading}</h2>
+        <section className = "projects" id = {section.id} data-group = {group} aria-labelledby = {headingId}>
+            <h2 className = "visually-hidden" id = {headingId}>{sectionCopy.heading}</h2>
 
             <div className = "projects-lead" ref = {leadRef} data-visible = {leadVisible} style = {leadDelay}>
                 <SectionEyebrow text = {projectsEyebrow} active = {leadVisible}/>

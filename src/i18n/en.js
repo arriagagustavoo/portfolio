@@ -5,13 +5,13 @@ export default {
     },
 
     header: {
-        // id is the section anchor and never translates
+        // id is the section anchor and never translates. `to` makes it a route instead
         nav: [
             { id: "about", label: "About" },
-            { id: "projects", label: "Projects" },
-            { id: "skills", label: "Skills" },
+            { id: "projects", label: "Work" },
             { id: "services", label: "Services" },
             { id: "process", label: "Process" },
+            { id: "dev", label: "Dev", to: "/dev" },
             { id: "contact", label: "Contact" },
         ],
         logoAlt: "Gustavo Arriaga",
@@ -26,6 +26,10 @@ export default {
         home: {
             title: "Gustavo Arriaga — Web Developer & Designer in Houston",
             description: "Houston freelance web developer and designer. Websites, custom software, branding and local SEO, and 3D modeling and printing for small businesses.",
+        },
+        dev: {
+            title: "Dev — Gustavo Arriaga",
+            description: "The engineering side: the full stack I build with, plus the coursework and personal projects behind the client work.",
         },
         privacy: {
             title: "Privacy Policy — Gustavo Arriaga",
@@ -57,25 +61,57 @@ export default {
     about: {
         heading: "About Gustavo Arriaga",
         leadEyebrow: "// Get to know me",
+        whyEyebrow: "// Why work with me",
         interestsEyebrow: "// Some interests of mine",
         photoAlt: "Gustavo Arriaga",
         // split so each line can stagger in on its own
         bioLines: [
-            "Computer Science senior designing, building and shipping complete products to clients.",
-            "Capstone in Software Design & already applying that in the real world.",
-            "I handle everything from the first plan to the finished product & getting it found on Google.",
-            "Digital or physical, I'll turn an idea into something real.",
-            "Tell me what your business needs and I'll tell you how I'd build it.",
+            "I build custom websites & software for businesses based in the Houston area.",
+            "I work with clients anywhere. I take pride in being able to provide my work in English and Spanish, remotely.",
+            "Throughout university I enjoyed hands-on projects that mirrored how things are done in the real world, but I never liked that I was only chasing a grade and the work never got used.",
+            "So I started building things people would actually use, and built my own client portal, contracts and invoicing to run it properly.",
+            "What I care about is that it works, and that you're not paying someone else to fix it later.",
+            "Whether it's digital or physical, tell me what your business needs and I'll tell you how I'd build it.",
         ],
+        freelancing: "Freelancing since 2026",
         location: "Houston, Texas",
         school: "University of Houston",
+        degree: "B.S. Computer Science, Software Design",
         schoolLogoAlt: "University of Houston logo",
-        interests: ["Coding", "Fitness", "Modeling", "Hardware", "Gaming", "Anime"],
+        quote: {
+            text: "As long as I'm alive, I have infinite chances.",
+            source: "— Monkey D. Luffy, One Piece",
+        },
+        reasons: [
+            {
+                title: "One person, start to finish",
+                body: "The work stays between you and me. No need to worry about other parties.",
+            },
+            {
+                title: "I use my own software",
+                body: "Built my own secure client portal and custom documents to use with my business.",
+            },
+            {
+                title: "Fully custom work",
+                body: "Tailored work for your business. Built from scratch to meet your needs.",
+            },
+            {
+                title: "Bilingual + Houston based",
+                body: "I understand the audience and can tailor to both English and Spanish users.",
+            },
+        ],
+        interests: ["Coding", "Designing", "Fitness", "Modeling", "Hardware", "Gaming", "Anime"],
     },
 
     projects: {
-        heading: "Web and software development projects",
-        eyebrow: "// Some of my Work",
+        work: {
+            heading: "Web and software development projects",
+            eyebrow: "// Some of my Work",
+        },
+        dev: {
+            heading: "Personal and coursework software projects",
+            eyebrow: "// Outside of client work",
+        },
         viewGallery: "View Gallery",
         shots: (count) => count + " shots",
         galleryButtonLabel: (count, title) => "View " + count + " screenshots of " + title,
@@ -205,6 +241,14 @@ export default {
         next: "Next screenshot",
         previousLabel: "‹ Prev",
         nextLabel: "Next ›",
+    },
+
+    dev: {
+        eyebrow: "// The dev side",
+        title: "The engineering side",
+        lead: "Everything sitting under the client work: the stack I actually build with, and the coursework and personal projects where I learned it.",
+        outro: "Want this pointed at your business?",
+        back: "See what I offer",
     },
 
     skills: {
