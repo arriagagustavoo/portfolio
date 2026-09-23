@@ -143,7 +143,7 @@
     border: 2px solid var(--secondary-text);
 }
 
-/* same box as .card-photo, but opens the gallery */
+/* same box as .card-photo, but opens the gallery, or links to the case study */
 .card-photo-button{
     position: relative;
     isolation: isolate;
@@ -152,6 +152,7 @@
     width: 100%;
     padding: 0;
     font-family: inherit;
+    text-decoration: none;
     cursor: pointer;
     transition: border-color 120ms ease;
 }

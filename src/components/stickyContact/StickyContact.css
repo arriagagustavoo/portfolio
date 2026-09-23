@@ -1,7 +1,7 @@
 .sticky-contact{
     position: fixed;
     right: 1.25rem;
-    bottom: 1.25rem;
+    bottom: calc(1.25rem + var(--sticky-lift, 0px));
     z-index: 120;
     /* the negative-z fill needs its own stacking context, and reduced motion drops the filter
        that would otherwise supply one */
@@ -69,7 +69,7 @@
 @media(min-width: 800px){
     .sticky-contact{
         right: 2rem;
-        bottom: 2rem;
+        bottom: calc(2rem + var(--sticky-lift, 0px));
         width: 4rem;
         height: 4rem;
     }

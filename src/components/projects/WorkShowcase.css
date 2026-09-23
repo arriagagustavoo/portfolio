@@ -1,0 +1,408 @@
+.showcase{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.feature,
+.support{
+    background-color: var(--main-card);
+    border: 4px solid var(--main-text);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.25rem;
+    padding: 1rem;
+    /* without a standing layer the hover lift promotes one mid-hover, and clipped shapes inside flash unclipped */
+    will-change: translate;
+}
+
+.feature{
+    --enter-delay: var(--intro-delay, 0ms);
+    /* the tab hangs off the top edge and is positioned against this */
+    position: relative;
+    box-shadow: -12px 12px 0 var(--main-accent);
+    /* room under the tab, so it never touches the cover on a phone */
+    padding-top: 1.5rem;
+}
+
+.support{
+    box-shadow: -6px 6px 0 var(--main-accent);
+}
+
+.supports{
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+}
+
+.support:nth-child(1){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 120ms);
+}
+
+.support:nth-child(2){
+    --enter-delay: calc(var(--intro-delay, 0ms) + 240ms);
+}
+
+.feature-copy,
+.support-copy{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.feature-copy{
+    max-width: 46rem;
+}
+
+/* a tab straddling the card's top edge. the clip sits on ::before, so the text is never the clipped, promoted thing */
+.feature-tag{
+    position: absolute;
+    top: 0;
+    left: 1.25rem;
+    z-index: 3;
+    isolation: isolate;
+    translate: 0 -50%;
+    color: var(--main-text);
+    padding: .4rem 1.4rem;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+}
+
+.feature-tag::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--main-accent);
+    clip-path: var(--slanted-shape);
+    z-index: -1;
+}
+
+.feature-title{
+    margin: 0;
+    color: var(--main-text);
+    font-family: Geist, sans-serif;
+    font-size: 2.75rem;
+    font-weight: 900;
+    line-height: .95;
+    letter-spacing: -0.03em;
+    /* the same offset shadow as the hero name */
+    text-shadow: .05em .05em 0 var(--main-accent);
+}
+
+/* only the featured card lists these, and only where there is room */
+.feature-points{
+    display: none;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    flex-direction: column;
+    gap: .5rem;
+    color: var(--main-text);
+    font-size: 1.1rem;
+    line-height: 1.35;
+}
+
+.feature-points li{
+    display: flex;
+    gap: .7rem;
+}
+
+.feature-points li::before{
+    content: "✓";
+    flex-shrink: 0;
+    color: var(--main-accent);
+    font-weight: 900;
+}
+
+.support-head{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.support-title{
+    margin: 0;
+    color: var(--main-text);
+    font-family: Geist, sans-serif;
+    font-size: 1.9rem;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.02em;
+}
+
+.showcase-pitch{
+    color: var(--secondary-text);
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+.showcase-pitch-lead{
+    font-size: 1.25rem;
+}
+
+.showcase-skills{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .5rem;
+}
+
+.showcase-badge{
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    color: var(--main-card);
+    padding: .4rem 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.showcase-badge::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--main-text);
+    clip-path: var(--slanted-shape);
+    z-index: -1;
+}
+
+.showcase-badge-icon{
+    font-size: 1.25rem;
+    flex-shrink: 0;
+    /* sizes the png logos like the svg ones */
+    width: 1em;
+    height: 1em;
+    object-fit: contain;
+}
+
+.showcase-more{
+    padding-left: .25rem;
+    color: var(--secondary-text);
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.feature-side{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+}
+
+/* the hero's primary button shape, one step down from the case study page's */
+.showcase-button{
+    position: relative;
+    isolation: isolate;
+    padding: .45em 1.5em;
+    color: var(--main-text);
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.showcase-button::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--main-accent);
+    clip-path: var(--slanted-shape);
+    z-index: -1;
+}
+
+.showcase-link{
+    align-self: flex-start;
+    color: var(--main-accent);
+    font-size: 1.15rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.showcase-link::after{
+    content: " ›";
+}
+
+.showcase-repo{
+    display: flex;
+    color: var(--secondary-text);
+}
+
+.showcase-repo-icon{
+    font-size: 1.75rem;
+}
+
+.showcase-media-wide{
+    /* the cover is a title card, so it keeps its full frame */
+    width: 100%;
+}
+
+@media(hover: hover){
+    .feature,
+    .support{
+        transition: translate 200ms ease, box-shadow 200ms ease;
+    }
+
+    .feature:hover{
+        translate: 0 -4px;
+        box-shadow: -16px 16px 0 var(--main-accent);
+    }
+
+    .support:hover{
+        translate: 0 -4px;
+        box-shadow: -10px 10px 0 var(--main-accent);
+    }
+
+    .showcase-badge{
+        transition: translate 200ms ease, color 200ms ease;
+    }
+
+    .showcase-badge::before{
+        transition: background-color 200ms ease;
+    }
+
+    .showcase-badge:hover{
+        translate: 0 -3px;
+        color: var(--main-text);
+    }
+
+    .showcase-badge:hover::before{
+        background-color: var(--main-accent);
+    }
+
+    .showcase-button{
+        transition: translate 180ms ease;
+    }
+
+    .showcase-button:hover{
+        translate: 0 -3px;
+    }
+
+    .showcase-button:hover::before{
+        background-color: var(--accent-hover);
+    }
+
+    .showcase-link{
+        transition: translate 180ms ease;
+    }
+
+    .showcase-link:hover{
+        translate: 4px 0;
+    }
+
+    .showcase-repo{
+        transition: color 160ms ease;
+    }
+
+    .showcase-repo:hover{
+        color: var(--main-text);
+    }
+}
+
+@media(min-width: 800px){
+    .supports{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .feature,
+    .support{
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+
+    .feature-title{
+        font-size: 3.5rem;
+    }
+
+    .support-title{
+        font-size: 2.1rem;
+    }
+}
+
+/* text on one side and the image on the other, once each column has room to breathe */
+@media(min-width: 1000px){
+    .feature{
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+        gap: 1.5rem 3rem;
+        padding: 2rem;
+    }
+
+    /* the cover spans the copy and the checklist under it */
+    .feature .showcase-media{
+        grid-row: 1 / span 2;
+        align-self: center;
+    }
+
+    .feature-title{
+        font-size: 4.25rem;
+    }
+
+    .showcase-pitch-lead{
+        font-size: 1.4rem;
+    }
+
+    .feature-points{
+        display: flex;
+    }
+
+    .feature-tag{
+        left: 2rem;
+    }
+}
+
+/* each card is half the page, so the image only fits beside the text on a wide screen.
+   there the section also fits the screen: the cover is sized off the viewport height,
+   and 830px is everything else in it (header, padding, eyebrow, gaps, the two cards below, some slack) */
+@media(min-width: 1900px){
+    /* cover, copy, then the checklist and button as their own column */
+    .feature{
+        grid-template-columns: auto minmax(0, 44rem) minmax(0, 28rem);
+        justify-content: center;
+        align-items: center;
+        gap: 3.5rem;
+    }
+
+    .feature .showcase-media{
+        grid-row: 1;
+    }
+
+    .feature-copy{
+        max-width: none;
+    }
+
+    .feature-side{
+        gap: 1.75rem;
+    }
+
+    .feature-side .showcase-button{
+        align-self: flex-end;
+    }
+
+    .feature-title{
+        font-size: 5.25rem;
+    }
+
+    .showcase-pitch-lead{
+        font-size: 1.6rem;
+    }
+
+    .feature-points{
+        font-size: 1.25rem;
+        gap: .65rem;
+    }
+
+    .showcase-media-wide{
+        width: clamp(560px, calc((100dvh - 830px) * 16 / 9), 1250px);
+    }
+
+    .support{
+        grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+        gap: 1.75rem;
+        padding: 1.75rem;
+    }
+}

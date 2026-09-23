@@ -47,6 +47,10 @@ link building, and no ranking position is promised.
 
 ## Pages
 
-- [Home](https://arriagagustavoo.com/) — about, projects, skills, services, packages, process, contact
+- [Home](https://arriagagustavoo.com/) — about, work, services, packages, process, contact
+- [Client Portal case study](https://arriagagustavoo.com/work/client-portal) — a client portal built to run this freelance practice: proposals, contracts, invoices and progress in one place, with one project brief feeding every document
+- [QueueSmart case study](https://arriagagustavoo.com/work/queuesmart) — a queue management web app from a university Software Design course, built by a team of four; the admin side was built by Gustavo. Coursework, not client work
+- [Bracketed case study](https://arriagagustavoo.com/work/bracketed) — the proposal, contract and invoice templates used for client work: plain HTML, fill-in-the-blank, printing to clean PDFs
+- [Dev](https://arriagagustavoo.com/dev) — the full skills list and the coursework and personal projects
 - [Privacy policy](https://arriagagustavoo.com/privacy) — what the contact form collects and who processes it
 - [Versión en español](https://arriagagustavoo.com/es) — the same site in Spanish

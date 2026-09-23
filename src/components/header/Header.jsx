@@ -95,6 +95,11 @@ function Header(){
                 ratio = y / maxScroll;
             }
 
+            // maxScroll is cached, and past 1 the full-width bar overflows and adds a horizontal scrollbar
+            if(ratio > 1){
+                ratio = 1;
+            }
+
             // sections tile the page, so the active one is the last to pass the probe line
             let current = "";
             tops.forEach((top, index) => {

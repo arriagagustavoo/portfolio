@@ -1,0 +1,464 @@
+.case{
+    --case-padding-top: 2rem;
+    /* the sticky button rests in the last ~96px above the footer, so the last block has to end above it */
+    --case-padding-bottom: 7rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: var(--case-padding-top) var(--section-padding-inline) var(--case-padding-bottom);
+}
+
+.case-top{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.case-lead{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.case-title{
+    --enter-delay: var(--intro-delay, 0ms);
+    color: var(--main-text);
+    font-family: Geist, sans-serif;
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: .95;
+    letter-spacing: -0.03em;
+}
+
+.case-summary{
+    --enter-delay: calc(var(--intro-delay, 0ms) + 120ms);
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+}
+
+.case-summary p{
+    color: var(--secondary-text);
+    font-size: 1.15rem;
+    line-height: 1.6;
+}
+
+/* sits in the header-to-eyebrow padding, so adding it moved nothing */
+.case-back{
+    position: absolute;
+    top: .45rem;
+    left: var(--section-padding-inline);
+    color: var(--secondary-text);
+    font-size: .9rem;
+    text-decoration: none;
+}
+
+.case-back::before{
+    content: "‹ ";
+    color: var(--main-accent);
+}
+
+.case-cta{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: .75rem 1.5rem;
+    padding-block: .25rem;
+}
+
+.case-cta-text{
+    color: var(--main-text);
+    font-size: 1.7rem;
+    font-weight: 700;
+}
+
+/* the hero's primary button, larger */
+.case-cta-button{
+    position: relative;
+    isolation: isolate;
+    padding: .4em 1.4em;
+    color: var(--main-text);
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.case-cta-button::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--main-accent);
+    clip-path: var(--slanted-shape);
+    z-index: -1;
+}
+
+.case-stack{
+    --enter-delay: calc(var(--intro-delay, 0ms) + 320ms);
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+}
+
+.case-stack-heading{
+    color: var(--main-accent);
+    font-size: .9rem;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+}
+
+.case-stack-badges{
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+}
+
+.case-stack-badge{
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    color: var(--main-background);
+    padding: .5rem 1.25rem;
+    font-size: 1.1rem;
+}
+
+.case-stack-badge::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--main-text);
+    clip-path: var(--slanted-shape);
+    z-index: -1;
+}
+
+.case-stack-icon{
+    font-size: 1.35rem;
+}
+
+.case-gallery{
+    --enter-delay: calc(var(--intro-delay, 0ms) + 320ms);
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+    width: 100%;
+}
+
+.case-cover{
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 4px solid var(--main-text);
+    box-shadow: -6px 6px 0 var(--main-accent);
+    background: none;
+    cursor: pointer;
+}
+
+.case-cover-img{
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.case-cover-tag{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background-color: var(--main-accent);
+    color: var(--main-background);
+    padding: .5rem 1.25rem;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.case-gallery-note{
+    color: var(--secondary-text);
+    font-size: .9rem;
+}
+
+/* columns, not a grid: a grid row is as tall as its tallest card and leaves a hole under the short one */
+.case-sections{
+    column-gap: 1.5rem;
+    width: 100%;
+}
+
+.case-section{
+    background-color: var(--main-card);
+    border: 4px solid var(--main-text);
+    box-shadow: -6px 6px 0 var(--main-accent);
+    break-inside: avoid;
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+    margin-bottom: 1.5rem;
+    padding: 1.25rem;
+}
+
+.case-section:nth-child(1){
+    --enter-delay: 0ms;
+}
+
+.case-section:nth-child(2){
+    --enter-delay: 80ms;
+}
+
+.case-section:nth-child(3){
+    --enter-delay: 160ms;
+}
+
+.case-section:nth-child(4){
+    --enter-delay: 240ms;
+}
+
+.case-section:nth-child(5){
+    --enter-delay: 320ms;
+}
+
+.case-heading{
+    color: var(--main-text);
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.case-body{
+    color: var(--secondary-text);
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.case-points{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    margin: 0;
+    padding-left: 1.5rem;
+    color: var(--secondary-text);
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+.case-points li::marker{
+    color: var(--main-accent);
+}
+
+/* the gate is the flex child, so the alignment goes on it rather than on the link */
+.case-next-gate{
+    align-self: flex-end;
+}
+
+.case-next{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: .25rem;
+    text-align: right;
+    text-decoration: none;
+}
+
+.case-next-label{
+    color: var(--main-accent);
+    font-size: .9rem;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+}
+
+.case-next-title{
+    color: var(--main-text);
+    font-family: Geist, sans-serif;
+    font-size: 2rem;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+}
+
+.case-next-title::after{
+    content: " ›";
+    color: var(--main-accent);
+}
+
+.case-linked{
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.case-linked .case-section{
+    margin-bottom: 0;
+}
+
+.case-linked-copy{
+    --enter-delay: 0ms;
+}
+
+.case-shot{
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+}
+
+.case-shot:nth-child(2){
+    --enter-delay: 80ms;
+}
+
+.case-shot:nth-child(3){
+    --enter-delay: 160ms;
+}
+
+.case-shot:nth-child(4){
+    --enter-delay: 240ms;
+}
+
+.case-shot-button{
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 4px solid var(--main-text);
+    box-shadow: -6px 6px 0 var(--main-accent);
+    background: none;
+    cursor: pointer;
+}
+
+.case-shot-img{
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* the sheet sits left of centre with its record panel beside it, so the empty dark either side is cropped away */
+.case-shot-img-crop{
+    object-fit: cover;
+    object-position: 38% top;
+}
+
+.case-shot-label{
+    color: var(--main-accent);
+    font-size: .9rem;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+}
+
+@media(hover: hover){
+    /* the same lift and green fill as the badges on the dev page */
+    .case-stack-badge{
+        transition: translate 200ms ease, color 200ms ease;
+    }
+
+    .case-stack-badge::before{
+        transition: background-color 200ms ease;
+    }
+
+    .case-stack-badge:hover{
+        translate: 0 -3px;
+        color: var(--main-text);
+    }
+
+    .case-stack-badge:hover::before{
+        background-color: var(--main-accent);
+    }
+
+    .case-next{
+        transition: translate 180ms ease;
+    }
+
+    .case-next:hover{
+        translate: -6px 0;
+    }
+
+    .case-shot-button{
+        transition: translate 200ms ease, box-shadow 200ms ease;
+    }
+
+    .case-shot-button:hover{
+        translate: 0 -4px;
+        box-shadow: -10px 10px 0 var(--main-accent);
+    }
+
+    .case-back{
+        transition: color 160ms ease;
+    }
+
+    .case-back:hover{
+        color: var(--main-text);
+    }
+
+    .case-cta-button{
+        transition: translate 180ms ease;
+    }
+
+    .case-cta-button:hover{
+        translate: 0 -3px;
+    }
+
+    .case-cta-button:hover::before{
+        background-color: var(--accent-hover);
+    }
+
+    .case-cover{
+        transition: translate 200ms ease, box-shadow 200ms ease;
+    }
+
+    .case-cover:hover{
+        translate: 0 -4px;
+        box-shadow: -10px 10px 0 var(--main-accent);
+    }
+}
+
+@media(min-width: 600px){
+    .case{
+        gap: 2.5rem;
+    }
+
+    .case-title{
+        font-size: 4rem;
+    }
+
+    .case-summary p{
+        font-size: 1.35rem;
+    }
+
+    .case-stack-badge{
+        gap: .6rem;
+        padding: .6rem 1.5rem;
+        font-size: 1.3rem;
+    }
+
+    .case-stack-icon{
+        font-size: 1.6rem;
+    }
+}
+
+/* the cover moves beside the lead rather than under it, which is what kills the scrolling */
+@media(min-width: 1000px){
+    .case-top{
+        display: grid;
+        grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+        align-items: start;
+        gap: 2.5rem;
+    }
+
+    .case-sections{
+        column-count: 2;
+        column-gap: 2rem;
+    }
+
+    .case-section{
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+    }
+
+    .case-linked{
+        grid-template-columns: minmax(0, .7fr) repeat(var(--shots, 2), minmax(0, 1fr));
+        gap: 2rem;
+    }
+}

@@ -1,9 +1,11 @@
 import ProjectCard from "./projectCards/ProjectCard";
+import WorkShowcase from "./WorkShowcase";
 import Lightbox from "./lightbox/Lightbox";
 import SectionEyebrow from "../sectionEyebrow/SectionEyebrow";
 import { eyebrowDuration } from "../sectionEyebrow/eyebrowTiming";
 import useInView from "../../hooks/useInView";
-import { useCopy } from "../../i18n/languageContext";
+import { useCopy, useLanguage } from "../../i18n/languageContext";
+import { Link } from "react-router-dom";
 import { workProjects, devProjects } from "./projectsData";
 import { useState } from "react";
 import { track } from "@vercel/analytics";
@@ -27,6 +29,7 @@ function pickAlt(list, index, fallback){
 function Projects({ group }){
 
     const copy = useCopy();
+    const { basePath } = useLanguage();
     const section = sections[group];
     const sectionCopy = copy.projects[group];
     const projectsEyebrow = sectionCopy.eyebrow;
@@ -63,10 +66,18 @@ function Projects({ group }){
             cover = null;
         }
 
-        return { ...project, description: text.description, images: images, cover: cover };
+        return { ...project, description: text.description, pitch: text.pitch, points: text.points, images: images, cover: cover };
     });
 
     const projectCards = localizedProjects.map((project) => {
+        // no slug = no case study written yet, so the card keeps its own gallery
+        let caseStudyUrl;
+        if(project.slug){
+            caseStudyUrl = basePath + "/work/" + project.slug;
+        }else{
+            caseStudyUrl = null;
+        }
+
         return (
             <ProjectCard
                 key = {project.id}
@@ -76,10 +87,26 @@ function Projects({ group }){
                 repoUrl = {project.repoUrl}
                 description = {project.description}
                 skills = {project.skills}
+                caseStudyUrl = {caseStudyUrl}
                 onOpenGallery = {() => handleOpenGallery(project)}
             />
         );
     });
+
+    // the homepage set leads with one featured project, the dev page keeps the plain grid
+    let content;
+    let moreLink;
+    if(group === "work"){
+        content = <WorkShowcase projects = {localizedProjects} basePath = {basePath}/>;
+        moreLink = <Link className = "projects-more reveal-fade" to = {basePath + "/dev"}>{copy.projects.moreWork}</Link>;
+    }else{
+        moreLink = null;
+        content = (
+            <div className = "projects-grid reveal-fade">
+                {projectCards}
+            </div>
+        );
+    }
 
     let lightbox;
     if(openProject){
@@ -100,12 +127,14 @@ function Projects({ group }){
             <h2 className = "visually-hidden" id = {headingId}>{sectionCopy.heading}</h2>
 
             <div className = "projects-lead" ref = {leadRef} data-visible = {leadVisible} style = {leadDelay}>
-                <SectionEyebrow text = {projectsEyebrow} active = {leadVisible}/>
+                {/* the link shares the eyebrow's row, so it adds no height */}
+                <div className = "projects-head">
+                    <SectionEyebrow text = {projectsEyebrow} active = {leadVisible}/>
 
-                {/* fade only: the cards inside own their own scroll-driven motion */}
-                <div className = "projects-grid reveal-fade">
-                    {projectCards}
+                    {moreLink}
                 </div>
+
+                {content}
             </div>
 
         </section>

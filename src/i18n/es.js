@@ -96,7 +96,7 @@ export default {
                 body: "Trabajo hecho para tu negocio. Construido desde cero para lo que necesitas.",
             },
             {
-                title: "Bilingüe y basado en Houston",
+                title: "Bilingüe",
                 body: "Entiendo al público y puedo adaptar todo para usuarios en inglés y español.",
             },
         ],
@@ -113,12 +113,25 @@ export default {
             eyebrow: "// Fuera del trabajo con clientes",
         },
         viewGallery: "Ver galería",
+        readCaseStudy: "Ver caso de estudio",
+        featured: "Destacado",
+        moreWork: "Mira más de mi trabajo",
+        caseStudyButton: "Ver caso de estudio",
+        moreSkills: (count) => "+" + count + " más",
         shots: (count) => count + " capturas",
         galleryButtonLabel: (count, title) => "Ver " + count + " capturas de " + title,
+        caseStudyLabel: (title) => "Leer el caso de estudio de " + title,
         githubLabel: (title) => "Repositorio de GitHub de " + title,
         // keyed by the project id in Projects.jsx, titles stay English as product names
         items: {
             clientportal: {
+                pitch: "Propuestas, contratos, facturas y avances en un solo lugar, con cada documento tomado de una sola ficha de proyecto.",
+                points: [
+                    "Los clientes aprueban propuestas y firman contratos con su nombre escrito",
+                    "Avances con fotos, archivos y mensajes en un solo lugar",
+                    "Un lado administrativo para proyectos, pagos y las cuentas",
+                    "El lado del cliente se lee en inglés o español",
+                ],
                 description: "Un portal donde entran mis clientes de freelance. Aprueban propuestas, firman contratos, pagan facturas, ven el avance y envían archivos en un solo lugar, y el lado de administración detrás lleva los proyectos, los documentos, los pagos y la contabilidad.",
                 coverAlt: "Portada de Client Portal que dice 'Makes running a business easy.'",
                 alts: [
@@ -148,6 +161,7 @@ export default {
                 ],
             },
             queuesmart: {
+                pitch: "Una aplicación web de gestión de filas hecha por un equipo de cuatro. Yo construí el lado administrativo: el panel, las filas y los servicios.",
                 description: "Sitio web fullstack. Funcionalidad completa tanto para usuarios como para administradores. Autenticación, interacciones en tiempo real y almacenamiento en base de datos.",
                 coverAlt: "Portada de QueueSmart que dice 'smarter way to wait in line'",
                 alts: [
@@ -172,6 +186,7 @@ export default {
                 ],
             },
             documents: {
+                pitch: "La propuesta, el contrato y la factura que envío a mis clientes, como páginas para llenar que se imprimen como PDF limpios.",
                 description: "Plantillas de propuesta, contrato y factura que comparten un solo conjunto de datos. Los datos del cliente y los montos se escriben una vez y se llevan a las tres, con autoguardado y salida en PDF lista para imprimir.",
                 coverAlt: "Portada de Bracketed que dice 'Fill the brackets. Skip the paperwork.'",
                 alts: [
@@ -241,6 +256,159 @@ export default {
         next: "Captura siguiente",
         previousLabel: "‹ Anterior",
         nextLabel: "Siguiente ›",
+    },
+
+    caseStudy: {
+        eyebrow: "// Caso de estudio",
+        back: "Volver al trabajo",
+        next: "Siguiente caso de estudio",
+        stackHeading: "Construido con",
+        galleryCta: (count) => "Ver las " + count + " capturas",
+        // the shots are seeded with invented businesses, and saying so keeps the page honest
+        galleryNote: "Las capturas usan negocios ficticios de demostración, no datos de clientes reales.",
+        ctaText: "¿Te interesa algo así?",
+        ctaLabel: "Empezar un proyecto",
+        items: {
+            documents: {
+                meta: {
+                    title: "Bracketed — Caso de estudio — Gustavo Arriaga",
+                    description: "Bracketed es la propuesta, el contrato y la factura que envío a mis clientes: plantillas para llenar en HTML simple que se imprimen como PDF limpios.",
+                },
+                linked: {
+                    heading: "Llena los corchetes",
+                    body: "La propuesta, el contrato y la factura como empiezan. Cada [ corchete ] es un campo donde haces clic y escribes encima. Los que significan lo mismo en los tres, como el nombre del cliente y el precio, están marcados para llenarse desde un archivo guardado.",
+                    labels: ["Propuesta", "Contrato", "Factura"],
+                },
+                summary: [
+                    "Bracketed es la propuesta, el contrato y la factura que envío a mis clientes. Cada uno es una página para llenar: haces clic en un [ corchete ] y escribes encima, agregas o quitas líneas, y lo imprimes como PDF tamaño carta. Lo diseñé en Figma y lo construí para que coincida.",
+                    "También es donde empezó la idea detrás de mi portal de clientes. Los tres documentos comparten campos, así que los datos del cliente y el precio se escriben una vez, se guardan en un archivo y se cargan en el siguiente documento. El portal después lo hizo automático. Lo construí yo solo, es para mi propio uso y no está publicado en ningún lado.",
+                ],
+                sections: [
+                    {
+                        heading: "Por qué lo construí",
+                        body: "Todo cliente necesita los mismos tres documentos. Quería que se vieran como mi trabajo, que llenarlos tomara minutos, y que salieran como un PDF limpio cada vez.",
+                    },
+                    {
+                        heading: "Cómo se usa",
+                        body: "No hay nada que instalar. Se abre en un navegador.",
+                        points: [
+                            "Abres un documento y haces clic en cualquier [ corchete ] para escribir encima",
+                            "Agregas o quitas líneas con los botones en pantalla",
+                            "Guardas los datos del cliente y los cargas en el siguiente documento",
+                            "Imprimes a PDF y se lo envías al cliente",
+                        ],
+                    },
+                    {
+                        heading: "Lo que trae",
+                        body: "Tres documentos y un menú de inicio que los enlaza, más algunas cosas que lo hacen práctico.",
+                        points: [
+                            "Autoguardado, para que recargar la página no borre el formulario",
+                            "El texto fijo, como los términos del contrato y los datos bancarios, se edita ahí mismo y se guarda de vuelta en el archivo",
+                            "Páginas tamaño carta o una sola página larga al imprimir",
+                        ],
+                    },
+                    {
+                        heading: "Qué significa para ti",
+                        body: "Tus documentos se ven igual cada vez y llegan como un PDF limpio. Los números de tu propuesta y de tu factura coinciden, porque salieron del mismo lugar.",
+                    },
+                    {
+                        heading: "Cómo está construido",
+                        body: "HTML, CSS y JavaScript simples. Sin framework, sin paso de compilación, sin instalar nada. Un script compartido de unas 800 líneas maneja la edición, el guardado y la impresión. Los tamaños están en puntos para que el diseño coincida uno a uno con el de Figma. El diseño de impresión usa una tabla para que el encabezado y el pie se repitan en cada página y nunca tapen texto.",
+                    },
+                ],
+            },
+            queuesmart: {
+                meta: {
+                    title: "QueueSmart — Caso de estudio — Gustavo Arriaga",
+                    description: "Una aplicación web de gestión de filas construida por un equipo de cuatro para un curso de Diseño de Software. Yo construí el lado administrativo: el panel, la gestión de filas y la de servicios.",
+                },
+                linked: {
+                    heading: "El lado administrativo",
+                    body: "El panel y la tabla de gestión de filas, que son las partes que construí. Desde aquí un administrador puede abrir, pausar o cerrar una fila, atender a la siguiente persona, o gestionar a alguien que ya está esperando.",
+                    labels: ["Panel", "Gestión de filas"],
+                },
+                summary: [
+                    "Una aplicación web de gestión de filas de mi curso de Diseño de Software en la Universidad de Houston, construida por un equipo de cuatro. Las personas se forman en una fila para un servicio, ven su posición y el tiempo estimado de espera, y reciben avisos. Los administradores manejan las filas detrás.",
+                    "Yo construí el lado administrativo: el panel, la gestión de filas y la de servicios, la API detrás de ellos, los datos de demostración y la mayoría de las pruebas de las rutas de filas y servicios. Mis compañeros construyeron las cuentas, el lado del usuario, el cálculo del tiempo de espera y la mayor parte del diseño visual. Es un trabajo de la escuela, no de un cliente, y no está publicado.",
+                ],
+                sections: [
+                    {
+                        heading: "La tarea",
+                        body: "Nos dieron una aplicación de filas para construir y nos pidieron que funcionara por completo con tecnologías reales, no una maqueta. Así que tiene cuentas reales, una base de datos real, una API real y un conjunto de pruebas detrás.",
+                    },
+                    {
+                        heading: "Lo que hacen los usuarios",
+                        body: "Cualquiera puede registrarse e iniciar sesión, y usar la fila como lo haría un cliente.",
+                        points: [
+                            "Formarse en una fila para cualquier servicio disponible",
+                            "Ver su posición y el tiempo estimado de espera, actualizado cada 5 segundos",
+                            "Recibir avisos del administrador",
+                            "Salirse de la fila si lo necesitan",
+                            "Calificar su visita después, y revisar su historial",
+                        ],
+                    },
+                    {
+                        heading: "Lo que hacen los administradores",
+                        body: "Este es el lado en el que trabajé.",
+                        points: [
+                            "Vigilar todas las filas desde un solo panel",
+                            "Atender a la siguiente persona, subir o bajar a alguien, o quitarlo",
+                            "Abrir, pausar o cerrar una fila",
+                            "Crear, editar y borrar los servicios para los que la gente se forma",
+                        ],
+                    },
+                    {
+                        heading: "Por qué está en esta página",
+                        body: "No es trabajo de un cliente y no voy a fingir que lo es. Sí muestra lo que necesitan la mayoría de las herramientas de un negocio pequeño: cuentas, un administrador que puede cambiar datos en vivo con seguridad, y pruebas para que un cambio no rompa lo que ya funciona.",
+                    },
+                    {
+                        heading: "Cómo está construido",
+                        body: "React y Vite en el front end. Node y Express con MongoDB detrás. Las cuentas usan JWT y bcrypt, y la API revisa el rol del usuario antes de cada ruta, así que las acciones de administrador son solo para administradores. Jest y Supertest corren 63 pruebas contra una base de datos en memoria.",
+                    },
+                ],
+            },
+            clientportal: {
+                meta: {
+                    title: "Client Portal — Caso de estudio — Gustavo Arriaga",
+                    description: "Un portal de clientes construido para operar mi propio negocio freelance: propuestas, contratos, facturas, avance y archivos en un solo lugar, sobre Next.js y Supabase.",
+                },
+                linked: {
+                    heading: "Una ficha, todos los documentos",
+                    body: "Un proyecto de demostración, visto en dos documentos. El cliente, el precio de $2,800, el anticipo de $1,200 y el plan mensual de $150 se escribieron una sola vez, en el proyecto. La propuesta y el contrato los tomaron de ahí.",
+                    labels: ["Propuesta", "Contrato"],
+                },
+                summary: [
+                    "El software que construí para operar mi negocio freelance. Los clientes entran para aprobar propuestas y contratos, seguir su proyecto y ver lo que llevan pagado. El lado administrativo maneja los proyectos, los documentos, los pagos y las cuentas.",
+                    "Lo importante es que todo está conectado. Cada proyecto tiene una sola ficha, y la propuesta, el contrato, la factura y el documento de entrega toman sus datos de ahí. Escribes un precio, una fecha o los datos del cliente una vez y se llena en todos lados. Si lo cambias en un documento, todos los borradores sin enviar se actualizan. Cuando se envía un documento se guarda como versión, así que nada de lo que el cliente ya vio cambia a sus espaldas.",
+                ],
+                sections: [
+                    {
+                        heading: "Por qué lo construí",
+                        body: "Tener un negocio significa papeleo. Propuestas, contratos, facturas, archivos, avances. Llevar todo eso por correo se vuelve un desorden rápido, y el cliente se queda adivinando en qué va su proyecto. Escribir el mismo precio en tres documentos distintos también es como se cometen errores. Quería un solo lugar para todo, así que lo construí.",
+                    },
+                    {
+                        heading: "Lo que ve un cliente",
+                        body: "Entra con un código por correo, así que no hay contraseña que recordar, y todo lo de su proyecto está en un solo panel.",
+                        points: [
+                            "Un recorrido del proyecto paso a paso, y lo pagado contra lo pendiente",
+                            "Propuestas y contratos para aprobar con su nombre escrito, o devolver con cambios",
+                            "Facturas, y un PDF firmado de todo lo que aprueba",
+                            "Avances con fotos, y un lugar para subir archivos",
+                            "Mensajes guardados junto al proyecto",
+                            "Todo el portal en inglés o español, a su elección",
+                        ],
+                    },
+                    {
+                        heading: "Qué significa para ti",
+                        body: "Siempre sabes en qué va tu proyecto, y no andas buscando un contrato o una factura en el correo. Tus datos se escriben una vez, así que los números de tu propuesta, contrato y factura siempre coinciden. También es la prueba más clara que te puedo mostrar de lo que sé construir.",
+                    },
+                    {
+                        heading: "Cómo está construido",
+                        body: "Next.js y TypeScript sobre Supabase y Postgres. Sesiones con JWT, validación con Zod en cada entrada, PDFs firmados generados con Puppeteer, y 43 pruebas de punta a punta con Playwright sobre los dos lados. Alrededor de cuarenta rutas entre el lado del cliente y el administrativo.",
+                    },
+                ],
+            },
+        },
     },
 
     dev: {

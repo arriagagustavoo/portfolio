@@ -1,15 +1,40 @@
 import "./ProjectCard.css"
+import { Link } from "react-router-dom";
 import GithubIcon from "../../icons/GithubIcon";
 import skillIcons from "../../icons/skillIcons/skillIcons"
 import { useCopy } from "../../../i18n/languageContext"
 
-function ProjectCard({title, images, cover, repoUrl, description, skills, onOpenGallery}){
+function ProjectCard({title, images, cover, repoUrl, description, skills, caseStudyUrl, onOpenGallery}){
 
     const copy = useCopy();
 
     // no screenshots = plain placeholder, nothing to open
     let photo;
-    if(images.length > 0){
+    if(images.length > 0 && caseStudyUrl){
+        let coverImage;
+        if(cover){
+            coverImage = cover;
+        }else{
+            coverImage = images[0];
+        }
+
+        // the gallery moved onto the case study page, so the card leads there instead
+        photo = (
+            <Link className = "card-photo card-photo-button" to = {caseStudyUrl} aria-label = {copy.projects.caseStudyLabel(title)}>
+                <img className = "card-photo-img" src = {coverImage.src} alt = {coverImage.alt} loading = "lazy"/>
+
+                <span className = "card-photo-tag">
+                    {copy.projects.shots(images.length)}
+                </span>
+
+                <span className = "card-photo-wipe">
+                    <span className = "card-photo-wipe-label">
+                        {copy.projects.readCaseStudy}
+                    </span>
+                </span>
+            </Link>
+        );
+    }else if(images.length > 0){
         // the gallery's first shot is rarely the best thumbnail
         let coverImage;
         if(cover){

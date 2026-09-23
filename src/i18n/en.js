@@ -96,7 +96,7 @@ export default {
                 body: "Tailored work for your business. Built from scratch to meet your needs.",
             },
             {
-                title: "Bilingual + Houston based",
+                title: "Bilingual",
                 body: "I understand the audience and can tailor to both English and Spanish users.",
             },
         ],
@@ -113,12 +113,25 @@ export default {
             eyebrow: "// Outside of client work",
         },
         viewGallery: "View Gallery",
+        readCaseStudy: "Read Case Study",
+        featured: "Featured",
+        moreWork: "Check out more of my work",
+        caseStudyButton: "Read case study",
+        moreSkills: (count) => "+" + count + " more",
         shots: (count) => count + " shots",
         galleryButtonLabel: (count, title) => "View " + count + " screenshots of " + title,
+        caseStudyLabel: (title) => "Read the " + title + " case study",
         githubLabel: (title) => "GitHub repository for " + title,
         // keyed by the project id in Projects.jsx, titles stay English as product names
         items: {
             clientportal: {
+                pitch: "Proposals, contracts, invoices and progress in one place, with every document drawn from a single project brief.",
+                points: [
+                    "Clients approve proposals and sign contracts with a typed name",
+                    "Progress updates with photos, files and messages in one place",
+                    "An admin side for projects, payments and the books",
+                    "The client side reads in English or Spanish",
+                ],
                 description: "A portal my freelance clients sign into. They approve proposals, sign contracts, pay invoices, watch the build and send files in one place, and the admin side behind it runs the projects, documents, payments and books.",
                 coverAlt: "Client Portal title card reading 'Makes running a business easy.'",
                 alts: [
@@ -148,6 +161,7 @@ export default {
                 ],
             },
             queuesmart: {
+                pitch: "A queue management web app built by a team of four. I built the admin side: the dashboard, queues and services.",
                 description: "Fullstack website. Fully fleshed out functionality for both users and admins. Authentication, real-time interations and database storage.",
                 coverAlt: "QueueSmart title card reading 'smarter way to wait in line'",
                 alts: [
@@ -172,6 +186,7 @@ export default {
                 ],
             },
             documents: {
+                pitch: "The proposal, contract and invoice I send clients, as fill-in-the-blank pages that print to clean PDFs.",
                 description: "Proposal, contract, and invoice templates that share one dataset. Client details and amounts are typed once and carry across all three, with autosave and print-ready PDF output.",
                 coverAlt: "Bracketed title card reading 'Fill the brackets. Skip the paperwork.'",
                 alts: [
@@ -241,6 +256,159 @@ export default {
         next: "Next screenshot",
         previousLabel: "‹ Prev",
         nextLabel: "Next ›",
+    },
+
+    caseStudy: {
+        eyebrow: "// Case study",
+        back: "Back to work",
+        next: "Next case study",
+        stackHeading: "Built with",
+        galleryCta: (count) => "See all " + count + " screenshots",
+        // the shots are seeded with invented businesses, and saying so keeps the page honest
+        galleryNote: "Screenshots use fictional demo businesses, not real client data.",
+        ctaText: "Interested in something like this?",
+        ctaLabel: "Start a project",
+        items: {
+            documents: {
+                meta: {
+                    title: "Bracketed — Case study — Gustavo Arriaga",
+                    description: "Bracketed is the proposal, contract and invoice I send clients: fill-in-the-blank templates in plain HTML that print to clean PDFs.",
+                },
+                linked: {
+                    heading: "Fill the brackets",
+                    body: "The proposal, contract and invoice as they start out. Every [ bracket ] is a field you click and type over. The ones that mean the same thing on all three, like the client's name and the price, are tagged so they fill in from a saved file.",
+                    labels: ["Proposal", "Contract", "Invoice"],
+                },
+                summary: [
+                    "Bracketed is the proposal, contract and invoice I send to clients. Each one is a fill-in-the-blank page: click a [ bracket ] and type over it, add or remove line items, then print to a letter size PDF. I designed it in Figma and built it to match.",
+                    "It's also where the idea behind my client portal started. The three documents share fields, so the client's details and the price get typed once, saved to a file and loaded into the next document. The portal later made that automatic. I built this on my own, it's for my own use, and it isn't hosted anywhere.",
+                ],
+                sections: [
+                    {
+                        heading: "Why I built it",
+                        body: "Every client needs the same three documents. I wanted them to look like my work, take minutes to fill in, and come out as a clean PDF every time.",
+                    },
+                    {
+                        heading: "How it's used",
+                        body: "There's nothing to install. It opens in a browser.",
+                        points: [
+                            "Open a document and click any [ bracket ] to type over it",
+                            "Add or remove line items with the on-screen buttons",
+                            "Save the client's details, then load them into the next document",
+                            "Print to PDF and send it to the client",
+                        ],
+                    },
+                    {
+                        heading: "What's inside",
+                        body: "Three documents and a home menu that links to them, plus a few things that make it practical.",
+                        points: [
+                            "Autosave, so a refresh doesn't wipe the form",
+                            "Fixed wording, like contract terms and bank details, editable in place and saved back to the file",
+                            "Letter pages or one long page when printing",
+                        ],
+                    },
+                    {
+                        heading: "What it means for you",
+                        body: "Your paperwork looks the same every time and arrives as a clean PDF. The numbers on your proposal and your invoice match, because they came from the same place.",
+                    },
+                    {
+                        heading: "How it's built",
+                        body: "Plain HTML, CSS and JavaScript. No framework, no build step, no install. One shared script of about 800 lines handles the editing, saving and printing. Sizes are in points so the layout matches the Figma design one to one. The print layout is built on a table so the header and footer repeat on every page and never cover text.",
+                    },
+                ],
+            },
+            queuesmart: {
+                meta: {
+                    title: "QueueSmart — Case study — Gustavo Arriaga",
+                    description: "A queue management web app built by a team of four for a Software Design course. I built the admin side: the dashboard, queue management and service management.",
+                },
+                linked: {
+                    heading: "The admin side",
+                    body: "The dashboard and the queue management table, which are the parts I built. From here an admin can open, pause or close a queue, serve the next person, or manage someone who's already waiting.",
+                    labels: ["Dashboard", "Queue management"],
+                },
+                summary: [
+                    "A queue management web app from my Software Design course at the University of Houston, built by a team of four. People join a queue for a service, see their position and estimated wait, and get notified. Admins run the queues behind it.",
+                    "I built the admin side: the dashboard, queue management and service management, the API behind them, the demo data, and most of the tests for the queue and service routes. My teammates built the accounts, the user side, the wait time estimate and most of the styling. It's coursework, not client work, and it isn't deployed.",
+                ],
+                sections: [
+                    {
+                        heading: "The assignment",
+                        body: "We were given a queue app to build and told to make it fully functional with real technologies, not a mockup. So it has real accounts, a real database, a real API and a test suite behind it.",
+                    },
+                    {
+                        heading: "What users do",
+                        body: "Anyone can register and sign in, then use the queue like a customer would.",
+                        points: [
+                            "Join a queue for any available service",
+                            "See their position and estimated wait, refreshed every 5 seconds",
+                            "Get notifications from the admin",
+                            "Leave the queue if they need to",
+                            "Rate their visit afterward, and look back at their history",
+                        ],
+                    },
+                    {
+                        heading: "What admins do",
+                        body: "This is the side I worked on.",
+                        points: [
+                            "Watch every queue from one dashboard",
+                            "Serve the next person, move someone up or down, or remove them",
+                            "Open, pause or close a queue",
+                            "Create, edit and delete the services people can queue for",
+                        ],
+                    },
+                    {
+                        heading: "Why it's on this page",
+                        body: "It isn't client work and I won't pretend it is. It does show what most small business tools need: accounts, an admin who can change live data safely, and tests so a change doesn't break what already works.",
+                    },
+                    {
+                        heading: "How it's built",
+                        body: "React and Vite on the front end. Node and Express with MongoDB behind it. Accounts use JWT and bcrypt, and the API checks a user's role before every route, so admin actions are admin only. Jest and Supertest run 63 tests against an in-memory database.",
+                    },
+                ],
+            },
+            clientportal: {
+                meta: {
+                    title: "Client Portal — Case study — Gustavo Arriaga",
+                    description: "A client portal built to run my own freelance practice: proposals, contracts, invoices, progress and files in one place, on Next.js and Supabase.",
+                },
+                linked: {
+                    heading: "One brief, every document",
+                    body: "A demo project, shown on two documents. The client, the $2,800 build price, the $1,200 deposit and the $150 monthly plan were entered once, on the project. The proposal and the contract both pulled them in.",
+                    labels: ["Proposal", "Contract"],
+                },
+                summary: [
+                    "The software I built to run my freelance business. Clients sign in to approve proposals and contracts, follow their project and see what's been paid. The admin side handles the projects, documents, payments and books.",
+                    "The important part is that everything is connected. Each project has one brief, and the proposal, contract, invoice and handover document all pull from it. Type a price, a date or the client's details once and it fills in everywhere. Change it on one document and every unsent draft updates to match. Once a document is sent it's saved as a version, so nothing the client has already seen changes behind their back.",
+                ],
+                sections: [
+                    {
+                        heading: "Why I built it",
+                        body: "Running a business means paperwork. Proposals, contracts, invoices, files, updates. Handling all of that over email gets messy fast, and the client is left guessing where their project is. Typing the same price into three different documents is also how mistakes happen. I wanted one place for all of it, so I built one.",
+                    },
+                    {
+                        heading: "What a client sees",
+                        body: "They sign in with an email code, so there's no password to remember, and everything for their project is on one dashboard.",
+                        points: [
+                            "A step by step project track, and what's paid against what's due",
+                            "Proposals and contracts to approve with a typed name, or send back with changes",
+                            "Invoices, and a signed PDF of everything they approve",
+                            "Progress updates with photos, and a place to upload files",
+                            "Messages kept with the project",
+                            "The whole portal in English or Spanish, their choice",
+                        ],
+                    },
+                    {
+                        heading: "What it means for you",
+                        body: "You always know where your project is, and you're not digging through email for a contract or an invoice. Your details are entered once, so the numbers on your proposal, contract and invoice always match. It's also the clearest proof I can show of what I can build.",
+                    },
+                    {
+                        heading: "How it's built",
+                        body: "Next.js and TypeScript on Supabase and Postgres. JWT sessions, Zod validation on every input, signed PDFs generated with Puppeteer, and 43 end to end Playwright tests over both sides. About forty routes between the client side and the admin side.",
+                    },
+                ],
+            },
+        },
     },
 
     dev: {

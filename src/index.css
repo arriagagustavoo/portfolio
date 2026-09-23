@@ -41,6 +41,21 @@ html{
     scroll-margin-top: 5rem;
 }
 
+/* an anchor jump lands the first eyebrow 30px under the header:
+   the header, plus 30, minus the padding that sits above that eyebrow.
+   contact is left out, it is last and the page can't scroll far enough */
+#about{
+    scroll-margin-top: calc(var(--header-height) + 30px - var(--about-padding-top));
+}
+
+#projects{
+    scroll-margin-top: calc(var(--header-height) + 30px - var(--projects-padding-top));
+}
+
+#services, #process{
+    scroll-margin-top: calc(var(--header-height) + 30px - var(--section-padding-block));
+}
+
 /* every layout pass was re-laying-out all of these; skipping them offscreen cut FCP 751ms */
 #about, #projects, #dev-projects, #skills, #services, #process, #contact{
     content-visibility: auto;
@@ -51,9 +66,9 @@ html{
     contain-intrinsic-size: auto 1058px;
 }
 
-/* estimates off the old 7-card measurement, pending a re-measure once the pages settle */
+/* #projects is measured (375px wide: 1674); #dev-projects is still an estimate */
 #projects{
-    contain-intrinsic-size: auto 1550px;
+    contain-intrinsic-size: auto 1690px;
 }
 
 #dev-projects{
@@ -82,7 +97,7 @@ html{
     }
 
     #projects{
-        contain-intrinsic-size: auto 1300px;
+        contain-intrinsic-size: auto 1240px;
     }
 
     #dev-projects{
