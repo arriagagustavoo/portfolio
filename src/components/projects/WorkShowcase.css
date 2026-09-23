@@ -279,6 +279,10 @@
         transition: translate 180ms ease;
     }
 
+    .showcase-button::before{
+        transition: background-color 180ms ease;
+    }
+
     .showcase-button:hover{
         translate: 0 -3px;
     }

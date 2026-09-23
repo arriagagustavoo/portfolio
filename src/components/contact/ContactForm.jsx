@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { track } from "@vercel/analytics"
 import "./ContactForm.css"
 import { useCopy } from "../../i18n/languageContext"
@@ -52,6 +52,31 @@ function ContactForm(){
     const [status, setStatus] = useState("idle");
     const [failMessage, setFailMessage] = useState("");
     const [botField, setBotField] = useState("");
+
+    // a package or service button elsewhere on the page sets the type, and a first line if the message is empty
+    useEffect(() => {
+        const handlePrefill = (event) => {
+            const detail = event.detail;
+
+            setValues((current) => {
+                const next = { ...current };
+
+                if(detail.projectType){
+                    next.projectType = detail.projectType;
+                }
+
+                if(detail.message && !current.message.trim()){
+                    next.message = detail.message;
+                }
+
+                return next;
+            });
+        };
+
+        window.addEventListener("contact-prefill", handlePrefill);
+
+        return () => window.removeEventListener("contact-prefill", handlePrefill);
+    }, []);
 
     const handleChange = (event) => {
         const field = event.target.name;

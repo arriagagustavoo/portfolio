@@ -245,6 +245,15 @@
         transition: translate 0.2s ease, color 0.2s ease;
     }
 
+    /* the fill and the icon are separate paint layers, and a hover swaps both colours */
+    .about-table-badge::before{
+        transition: background-color 0.2s ease;
+    }
+
+    .about-badge-icon{
+        transition: color 0.2s ease;
+    }
+
     .about-table-badge:hover{
         translate: 0 -4px;
         color: var(--main-background);
