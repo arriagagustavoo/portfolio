@@ -4,13 +4,21 @@ import SectionEyebrow from "../sectionEyebrow/SectionEyebrow";
 import { eyebrowDuration } from "../sectionEyebrow/eyebrowTiming";
 import useInView from "../../hooks/useInView";
 import { useCopy } from "../../i18n/languageContext";
-import { queueSmartImages, queueSmartCover, mazeGameImages, mazeGameCover, rideShareImages, rideShareCover, unityGameImages, unityGameCover, mriScannerImages, mriScannerCover, documentSystemImages, documentSystemCover } from "./projectImages";
+import { clientPortalImages, clientPortalCover, queueSmartImages, queueSmartCover, mazeGameImages, mazeGameCover, rideShareImages, rideShareCover, unityGameImages, unityGameCover, mriScannerImages, mriScannerCover, documentSystemImages, documentSystemCover } from "./projectImages";
 import { useState } from "react";
 import { track } from "@vercel/analytics";
 import "./Projects.css"
 
 // titles and skills stay english: they are product names and skillIcons lookup keys
 const projects = [
+    {
+        id: "clientportal",
+        title: "Client Portal",
+        repoUrl: "",
+        skills: ["Next.js", "TypeScript", "React", "Supabase", "PostgreSQL", "JWT", "Zod", "Puppeteer", "Playwright"],
+        images: clientPortalImages,
+        cover: clientPortalCover,
+    },
     {
         id: "queuesmart",
         title: "QueueSmart",
@@ -98,7 +106,13 @@ function Projects(){
             return { src: image.src, alt: pickAlt(text.alts, index, image.alt) };
         });
 
-        const cover = { src: project.cover.src, alt: pickAlt([text.coverAlt], 0, project.cover.alt) };
+        // no cover = the card falls back to the first screenshot
+        let cover;
+        if(project.cover){
+            cover = { src: project.cover.src, alt: pickAlt([text.coverAlt], 0, project.cover.alt) };
+        }else{
+            cover = null;
+        }
 
         return { ...project, description: text.description, images: images, cover: cover };
     });

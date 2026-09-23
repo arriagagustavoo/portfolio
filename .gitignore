@@ -26,3 +26,4 @@ dist-ssr
 # additional
 /docs/
 CLAUDE.md
+.claude/

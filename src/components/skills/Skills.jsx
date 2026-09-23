@@ -9,11 +9,11 @@ import { useCopy } from "../../i18n/languageContext"
 const skillGroups = [
     {
         id: "languages",
-        skills: ["Python", "C++", "C#", "JavaScript", "HTML", "CSS", "MATLAB"],
+        skills: ["Python", "C++", "C#", "Swift", "JavaScript", "TypeScript", "HTML", "CSS", "MATLAB", "R"],
     },
     {
         id: "web",
-        skills: ["React", "Vite", "Express", "Node.js", "MongoDB", "PostgreSQL"],
+        skills: ["React", "Next.js", "Vite", "Express", "Node.js", "MongoDB", "PostgreSQL", "Supabase", "JWT", "Zod"],
     },
     {
         id: "creative",
@@ -21,7 +21,7 @@ const skillGroups = [
     },
     {
         id: "tools",
-        skills: ["Git", "GitHub", "Jenkins", "Ubuntu", "VS Code", "npm", "OpenCV", "NumPy"],
+        skills: ["Git", "GitHub", "Jenkins", "Ubuntu", "VS Code", "Claude", "npm", "OpenCV", "NumPy", "Playwright", "Puppeteer", "Vercel"],
     },
 ]
 

@@ -55,6 +55,34 @@ import ugEnemyAttack from "../../assets/projects/unitygame/Arriaga_Gustavo_EC_A.
 
 import ugCover from "../../assets/projects/unitygame/Faceoff-cover.webp"
 
+// client portal
+import cpSignIn from "../../assets/projects/clientportal/Client-SignIn.webp"
+import cpClientDashboard from "../../assets/projects/clientportal/Client-Dashboard.webp"
+import cpClientProposal from "../../assets/projects/clientportal/Client-Proposal.webp"
+import cpClientContract from "../../assets/projects/clientportal/Client-Contract.webp"
+import cpClientInvoice from "../../assets/projects/clientportal/Client-Invoice.webp"
+import cpClientProgress from "../../assets/projects/clientportal/Client-Progress.webp"
+import cpClientMessages from "../../assets/projects/clientportal/Client-Messages.webp"
+import cpClientFiles from "../../assets/projects/clientportal/Client-Files.webp"
+import cpClientLaunch from "../../assets/projects/clientportal/Client-Launch.webp"
+import cpClientMaintenance from "../../assets/projects/clientportal/Client-Maintenance.webp"
+
+import cpAdminDashboard from "../../assets/projects/clientportal/Admin-Dashboard.webp"
+import cpAdminProject from "../../assets/projects/clientportal/Admin-Project.webp"
+import cpAdminDocuments from "../../assets/projects/clientportal/Admin-Documents.webp"
+import cpAdminEditorProposal from "../../assets/projects/clientportal/Admin-Editor-Proposal.webp"
+import cpAdminEditorContract from "../../assets/projects/clientportal/Admin-Editor-Contract.webp"
+import cpAdminProgress from "../../assets/projects/clientportal/Admin-Progress.webp"
+import cpAdminMessages from "../../assets/projects/clientportal/Admin-Messages.webp"
+import cpAdminFiles from "../../assets/projects/clientportal/Admin-Files.webp"
+import cpAdminFinances from "../../assets/projects/clientportal/Admin-Finances.webp"
+import cpAdminLaunch from "../../assets/projects/clientportal/Admin-Launch.webp"
+import cpAdminBooks from "../../assets/projects/clientportal/Admin-Books.webp"
+import cpAdminAudit from "../../assets/projects/clientportal/Admin-Audit.webp"
+import cpAdminNewProject from "../../assets/projects/clientportal/Admin-NewProject.webp"
+
+import cpCover from "../../assets/projects/clientportal/ClientPortal-cover.webp"
+
 // mri scanner
 import mriHomeRect from "../../assets/projects/mriScanner/home-rectangle.png"
 import mriRectCartesian from "../../assets/projects/mriScanner/rectangle-cartesian.png"
@@ -153,4 +181,33 @@ export const documentSystemImages = [
     { src: docContract2, alt: "Client contract, page 2" },
     { src: docInvoice1, alt: "Invoice, page 1" },
     { src: docInvoice2, alt: "Invoice, page 2" },
+]
+
+export const clientPortalCover = { src: cpCover, alt: "Client Portal title card reading 'Makes running a business easy.'" }
+
+// sign in, then the client's side, then the admin side behind it
+export const clientPortalImages = [
+    { src: cpSignIn, alt: "Client sign in screen asking for the email the project was shared with" },
+    { src: cpClientDashboard, alt: "Client dashboard with the project stage, amounts paid and due, documents, progress and messages" },
+    { src: cpClientProposal, alt: "Proposal as the client reads it, with the approve and request changes controls" },
+    { src: cpClientContract, alt: "Signed service agreement showing both parties and the approval record" },
+    { src: cpClientInvoice, alt: "Invoice as the client sees it, with the amount due and how to pay" },
+    { src: cpClientProgress, alt: "Progress feed of build screenshots, each with a reaction and a comment box" },
+    { src: cpClientMessages, alt: "Message thread between the client and me" },
+    { src: cpClientFiles, alt: "Files the client has sent, against the checklist items they answer" },
+    { src: cpClientLaunch, alt: "Launch checklist showing what is done and what is still waiting" },
+    { src: cpClientMaintenance, alt: "Maintenance page with the monthly plan and its invoice history" },
+    { src: cpAdminDashboard, alt: "Admin dashboard of every active project, recent activity and what needs a reply" },
+    { src: cpAdminProject, alt: "Admin overview of a single project" },
+    { src: cpAdminDocuments, alt: "Every document on a project with its status and version" },
+    { src: cpAdminEditorProposal, alt: "Proposal editor beside a live preview of the document it renders" },
+    { src: cpAdminEditorContract, alt: "Contract editor beside its live preview" },
+    { src: cpAdminProgress, alt: "Posting a progress update with several photos attached" },
+    { src: cpAdminMessages, alt: "Admin side of the message thread" },
+    { src: cpAdminFiles, alt: "Files the client uploaded, from the admin side" },
+    { src: cpAdminFinances, alt: "Payments, invoices, expenses and recurring costs on one project" },
+    { src: cpAdminLaunch, alt: "Launch checklist and handover preparation on the admin side" },
+    { src: cpAdminBooks, alt: "Books across every project, with money in and money out" },
+    { src: cpAdminAudit, alt: "Audit log of every action taken on every project" },
+    { src: cpAdminNewProject, alt: "The form that creates a new project and its client access" },
 ]

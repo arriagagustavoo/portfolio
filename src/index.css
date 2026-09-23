@@ -48,48 +48,48 @@ html{
 
 /* measured section heights, so the scrollbar and anchor jumps stay honest before a section renders */
 #about{
-    contain-intrinsic-size: auto 974px;
+    contain-intrinsic-size: auto 1058px;
 }
 
 #projects{
-    contain-intrinsic-size: auto 2920px;
+    contain-intrinsic-size: auto 3560px;
 }
 
 #skills{
-    contain-intrinsic-size: auto 1353px;
+    contain-intrinsic-size: auto 1629px;
 }
 
 #services{
-    contain-intrinsic-size: auto 1801px;
+    contain-intrinsic-size: auto 2151px;
 }
 
 #process{
-    contain-intrinsic-size: auto 2557px;
+    contain-intrinsic-size: auto 2726px;
 }
 
 #contact{
-    contain-intrinsic-size: auto 1129px;
+    contain-intrinsic-size: auto 1161px;
 }
 
 @media(min-width: 800px){
     #about{
-        contain-intrinsic-size: auto 741px;
+        contain-intrinsic-size: auto 845px;
     }
 
     #projects{
-        contain-intrinsic-size: auto 1972px;
+        contain-intrinsic-size: auto 2609px;
     }
 
     #skills{
-        contain-intrinsic-size: auto 805px;
+        contain-intrinsic-size: auto 964px;
     }
 
     #services{
-        contain-intrinsic-size: auto 1356px;
+        contain-intrinsic-size: auto 1546px;
     }
 
     #process{
-        contain-intrinsic-size: auto 1565px;
+        contain-intrinsic-size: auto 1602px;
     }
 
     #contact{
