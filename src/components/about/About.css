@@ -168,6 +168,17 @@
     padding: 1rem;
 }
 
+@media(hover: hover){
+    .about-reason{
+        transition: translate 200ms ease, box-shadow 200ms ease;
+    }
+
+    .about-reason:hover{
+        translate: 0 -4px;
+        box-shadow: -10px 10px 0 var(--main-accent);
+    }
+}
+
 .about-reason-title{
     color: var(--main-text);
     font-size: 1.35rem;
@@ -378,7 +389,9 @@
         display: none;
     }
 
-    .about-info::after{
+    /* [data-visible] too, or the entrance rule outranks this and the line still animates */
+    .about-info::after,
+    [data-visible='true'] .about-info::after{
         scale: 1 1;
         animation: none;
     }

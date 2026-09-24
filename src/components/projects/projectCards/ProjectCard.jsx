@@ -4,7 +4,7 @@ import GithubIcon from "../../icons/GithubIcon";
 import skillIcons from "../../icons/skillIcons/skillIcons"
 import { useCopy } from "../../../i18n/languageContext"
 
-function ProjectCard({title, images, cover, repoUrl, description, skills, caseStudyUrl, onOpenGallery}){
+function ProjectCard({title, images, cover, repoUrl, description, skills, caseStudyUrl, onOpenGallery, revealStyle}){
 
     const copy = useCopy();
 
@@ -96,7 +96,7 @@ function ProjectCard({title, images, cover, repoUrl, description, skills, caseSt
 
     return(
         <>
-        <div className = "project-card">
+        <div className = "project-card reveal-rise" style = {revealStyle}>
             <div className = "card-top">
                 <p className = "card-title">
                     {title}

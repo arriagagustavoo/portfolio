@@ -43,7 +43,7 @@ html{
 
 /* an anchor jump lands the first eyebrow 30px under the header:
    the header, plus 30, minus the padding that sits above that eyebrow.
-   contact is left out, it is last and the page can't scroll far enough */
+   the page has always been able to scroll far enough for contact too */
 #about{
     scroll-margin-top: calc(var(--header-height) + 30px - var(--about-padding-top));
 }
@@ -52,7 +52,7 @@ html{
     scroll-margin-top: calc(var(--header-height) + 30px - var(--projects-padding-top));
 }
 
-#services, #process{
+#services, #process, #contact{
     scroll-margin-top: calc(var(--header-height) + 30px - var(--section-padding-block));
 }
 
@@ -61,14 +61,19 @@ html{
     content-visibility: auto;
 }
 
-/* measured section heights, so the scrollbar and anchor jumps stay honest before a section renders */
-#about{
-    contain-intrinsic-size: auto 1058px;
+/* usePrimeSections adds this for two frames after load, so every section renders once and
+   remembers its real height. it wins on specificity (id + class beats id) */
+.priming-sections :is(#about, #projects, #dev-projects, #skills, #services, #process, #contact){
+    content-visibility: visible;
 }
 
-/* #projects is measured (375px wide: 1674); #dev-projects is still an estimate */
+/* first guesses only, exact at the width they were measured at and wrong elsewhere until the section has rendered */
+#about{
+    contain-intrinsic-size: auto 2173px;
+}
+
 #projects{
-    contain-intrinsic-size: auto 1690px;
+    contain-intrinsic-size: auto 1666px;
 }
 
 #dev-projects{
@@ -80,24 +85,24 @@ html{
 }
 
 #services{
-    contain-intrinsic-size: auto 2151px;
+    contain-intrinsic-size: auto 2660px;
 }
 
 #process{
-    contain-intrinsic-size: auto 2726px;
+    contain-intrinsic-size: auto 2611px;
 }
 
 #contact{
-    contain-intrinsic-size: auto 1161px;
+    contain-intrinsic-size: auto 1541px;
 }
 
 @media(min-width: 800px){
     #about{
-        contain-intrinsic-size: auto 845px;
+        contain-intrinsic-size: auto 1298px;
     }
 
     #projects{
-        contain-intrinsic-size: auto 1240px;
+        contain-intrinsic-size: auto 1359px;
     }
 
     #dev-projects{
@@ -109,15 +114,15 @@ html{
     }
 
     #services{
-        contain-intrinsic-size: auto 1546px;
+        contain-intrinsic-size: auto 1900px;
     }
 
     #process{
-        contain-intrinsic-size: auto 1602px;
+        contain-intrinsic-size: auto 1382px;
     }
 
     #contact{
-        contain-intrinsic-size: auto 957px;
+        contain-intrinsic-size: auto 1105px;
     }
 }
 
@@ -340,5 +345,28 @@ a, button{
 
     [data-visible='true'] :is(.reveal-sweep, .reveal-rise, .reveal-flip, .reveal-fade){
         animation: none;
+    }
+}
+
+/* small standalone links: a bigger hit area on phones and tablets without moving anything */
+@media(max-width: 1024px){
+    :is(.footer-social, .showcase-repo){
+        padding: .55rem;
+        margin: -.55rem;
+    }
+
+    :is(.footer-privacy, .projects-more, .showcase-link, .service-link){
+        padding-block: .5rem;
+        margin-block: -.5rem;
+    }
+
+    :is(.dev-back, .case-back){
+        padding: .6rem .5rem;
+        margin: -.6rem -.5rem;
+    }
+
+    .packages-arrow{
+        min-width: 40px;
+        min-height: 40px;
     }
 }

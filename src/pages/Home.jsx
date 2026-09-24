@@ -6,6 +6,7 @@ import Process from "../components/process/Process"
 import Contact from "../components/contact/Contact"
 import StickyContact from "../components/stickyContact/StickyContact"
 import useHashScroll from "../hooks/useHashScroll"
+import usePrimeSections from "../hooks/usePrimeSections"
 import useDocumentMeta from "../hooks/useDocumentMeta"
 import { useCopy } from "../i18n/languageContext"
 
@@ -14,6 +15,7 @@ function Home(){
     const copy = useCopy();
 
     useHashScroll();
+    usePrimeSections();
     useDocumentMeta(copy.meta.home, "");
 
     return (

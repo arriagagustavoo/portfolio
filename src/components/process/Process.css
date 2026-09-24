@@ -12,14 +12,16 @@
     gap: 1.25rem;
 }
 
+/* the tall gap leaves room for the chevron between stacked cards */
 .process-steps{
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: 1.5rem;
+    gap: 2.5rem;
 }
 
 /* same card as .service-card: 4px rim and the offset accent shadow */
 .process-step{
+    position: relative;
     background-color: var(--main-card);
     border: 4px solid var(--main-text);
     box-shadow: -6px 6px 0 var(--main-accent);
@@ -29,15 +31,18 @@
     padding: 1rem;
 }
 
-.process-step-number{
-    align-self: flex-start;
+/* points down while the cards stack. 19px = 4px border + 6px shadow + half the slack left in the gap */
+.process-step:not(:last-child)::after{
+    content: "";
+    position: absolute;
+    top: calc(100% + 19px);
+    left: 50%;
+    translate: -50% 0;
+    width: 3.25rem;
+    height: 1rem;
     background-color: var(--main-accent);
-    color: var(--main-text);
-    clip-path: var(--slanted-shape);
-    padding: .4rem 1.25rem;
-    font-family: Geist, sans-serif;
-    font-size: 1rem;
-    font-weight: 900;
+    clip-path: polygon(0 0, 50% 55%, 100% 0, 100% 45%, 50% 100%, 0 45%);
+    pointer-events: none;
 }
 
 .process-step-title{
@@ -51,7 +56,6 @@
     color: var(--secondary-text);
     font-size: 1.15rem;
     line-height: 1.45;
-    margin-top: auto;
 }
 
 .process-guarantees{
@@ -95,27 +99,6 @@
     padding-left: 1.8rem;
 }
 
-/* the hero services list, same green marker and weight */
-.process-payment{
-    --enter-delay: var(--intro-delay, 0ms);
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: .6rem;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    color: var(--main-text);
-    font-size: 1.25rem;
-    font-weight: 600;
-    line-height: 1.45;
-}
-
-.process-payment li::before{
-    content: "> ";
-    color: var(--main-accent);
-}
-
 .process-faqs{
     display: grid;
     grid-template-columns: minmax(0, 1fr);
@@ -126,7 +109,6 @@
     background-color: var(--main-card);
     border: 4px solid var(--main-text);
     box-shadow: -6px 6px 0 var(--main-accent);
-    padding: .9rem 1rem;
 }
 
 .process-faq-question{
@@ -138,7 +120,12 @@
     cursor: pointer;
     /* the default triangle sits outside the padding box and cannot be positioned */
     list-style: none;
-    padding-right: 2.2rem;
+    /* the card's padding lives here, so the whole row is the tap target */
+    padding: .9rem 3.2rem .9rem 1rem;
+}
+
+.process-faq[open] .process-faq-question{
+    padding-bottom: .7rem;
 }
 
 .process-faq-question::-webkit-details-marker{
@@ -148,7 +135,7 @@
 .process-faq-question::after{
     content: "+";
     position: absolute;
-    right: 0;
+    right: 1rem;
     top: 50%;
     translate: 0 -50%;
     color: var(--main-accent);
@@ -165,7 +152,7 @@
     color: var(--secondary-text);
     font-size: 1.05rem;
     line-height: 1.55;
-    margin-top: .7rem;
+    margin: 0 1rem .9rem;
     padding-top: .7rem;
     border-top: 3px solid var(--main-text);
 }
@@ -234,16 +221,22 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 2rem;
     }
-
-    .process-payment{
-        font-size: 1.4rem;
-    }
 }
 
 @media(min-width: 900px){
     .process-steps{
         grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 2rem;
+    }
+
+    /* tall and narrow, in the 26px of gap the next card's shadow leaves clear */
+    .process-step:not(:last-child)::after{
+        top: 50%;
+        left: calc(100% + 8px);
+        translate: 0 -50%;
+        width: 1.1rem;
+        height: 4.5rem;
+        clip-path: polygon(0 0, 45% 0, 100% 50%, 45% 100%, 0 100%, 55% 50%);
     }
 
     /* start, or an opened answer would stretch its whole row's cards to match */
@@ -258,5 +251,53 @@
 @media(min-width: 900px){
     [data-lang='es'] .process-step-title{
         font-size: 1.5rem;
+    }
+}
+
+.process-closing, .process-note{
+    --enter-delay: calc(var(--intro-delay, 0ms) + 700ms);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: .5rem 1.25rem;
+    margin-top: .5rem;
+}
+
+/* the note shares the eyebrow's row, so it is not pushed down like the closing line */
+.process-block-head{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: .5rem 1.5rem;
+}
+
+.process-note{
+    --enter-delay: var(--intro-delay, 0ms);
+    margin-top: 0;
+}
+
+/* a flex item stretches, which would make the whole row of the card a link */
+.process-step .service-link{
+    align-self: flex-start;
+}
+
+.process-closing-text{
+    color: var(--main-text);
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+/* same four columns as the steps above them */
+@media(min-width: 1200px){
+    .process-guarantees{
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+/* nine questions in three columns keep the section to the same height */
+@media(min-width: 1900px){
+    .process-faqs{
+        grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 }

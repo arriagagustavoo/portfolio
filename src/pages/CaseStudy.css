@@ -400,6 +400,10 @@
         translate: 0 -3px;
     }
 
+    .case-cta-button::before{
+        transition: background-color 160ms ease;
+    }
+
     .case-cta-button:hover::before{
         background-color: var(--accent-hover);
     }
@@ -460,5 +464,17 @@
     .case-linked{
         grid-template-columns: minmax(0, .7fr) repeat(var(--shots, 2), minmax(0, 1fr));
         gap: 2rem;
+    }
+}
+
+/* the standard card lift, same as every other card */
+@media(hover: hover){
+    .case-section{
+        transition: translate 200ms ease, box-shadow 200ms ease;
+    }
+
+    .case-section:hover{
+        translate: 0 -4px;
+        box-shadow: -10px 10px 0 var(--main-accent);
     }
 }

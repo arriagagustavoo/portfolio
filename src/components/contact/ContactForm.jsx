@@ -7,7 +7,7 @@ import { useCopy } from "../../i18n/languageContext"
 const accessKey = "0fc04ae8-b271-4e9f-a6a4-b89234a02aea"
 
 // the submitted value, so the email that lands in the inbox stays english
-const defaultProjectType = "Software Products"
+const defaultProjectType = "Website or software"
 
 const emptyForm = {
     name: "",

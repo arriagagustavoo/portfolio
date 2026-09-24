@@ -15,7 +15,7 @@ const sectionIds = ["hero", "about", "projects", "services", "process", "contact
 
 function Header(){
 
-    const { copy, basePath, otherBasePath, neutralPath } = useLanguage();
+    const { copy, basePath, sectionHref, otherBasePath, neutralPath } = useLanguage();
     const isHome = neutralPath === '';
     const navLinks = copy.header.nav;
 
@@ -208,7 +208,7 @@ function Header(){
         }
 
         return (
-            <a className = {className} key = {link.id} href = {basePath + "/#" + link.id}
+            <a className = {className} key = {link.id} href = {sectionHref(link.id)}
             data-active = {isHome && activeSection === link.id} onClick = {closeMenu}>
                 {link.label}
             </a>
@@ -230,7 +230,7 @@ function Header(){
         <>
         <header className = "header" ref = {headerRef}>
             <div className = "left-header">
-                <a className = "header-logo-link" href = {basePath + "/#hero"}>
+                <a className = "header-logo-link" href = {sectionHref("hero")}>
                     <picture key = {theme}>
                         <source media = "(min-width: 1000px)" srcSet = {logoLarge}/>
                         <img className = "header-logo" src = {logoSmall} alt = {copy.header.logoAlt}/>

@@ -28,7 +28,7 @@ function ServiceLine({ text, delay, typing }){
 }
 
 function Hero(){
-    const { copy, basePath } = useLanguage()
+    const { copy, sectionHref } = useLanguage()
     const eyebrowText = copy.hero.eyebrow
     const headingText = nameText.replace('\n', ' ') + copy.hero.headingSuffix
 
@@ -197,11 +197,11 @@ function Hero(){
                 </p>
 
                 <div className = "hero-buttons">
-                    <a className = "hero-button hero-button-primary" href = {basePath + "/#projects"}
+                    <a className = "hero-button hero-button-primary" href = {sectionHref("projects")}
                     onClick = {() => track("cta_hero_work")}>
                         {copy.hero.primaryCta}
                     </a>
-                    <a className = "hero-button hero-button-secondary" href = {basePath + "/#contact"}
+                    <a className = "hero-button hero-button-secondary" href = {sectionHref("contact")}
                     onClick = {() => track("cta_hero_contact")}>
                         {copy.hero.secondaryCta}
                     </a>

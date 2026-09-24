@@ -413,10 +413,52 @@ export default {
 
     dev: {
         eyebrow: "// El lado dev",
-        title: "El lado técnico",
-        lead: "Todo lo que sostiene el trabajo con clientes: el stack con el que construyo, y los proyectos de escuela y personales donde lo aprendí.",
-        outro: "¿Lo quieres aplicado a tu negocio?",
-        back: "Ver lo que ofrezco",
+        title: "Desarrollador de software full-stack",
+        bio: [
+            "Soy estudiante de último año de Ciencias de la Computación en la Universidad de Houston, con enfoque en desarrollo web full-stack. Construyo aplicaciones web con React, Next.js y Node, respaldadas por PostgreSQL, MongoDB o Supabase. Fuera de la web he escrito en Python, C++, C# y Swift.",
+            "Abajo están mis proyectos de escuela y personales, las herramientas que uso y las clases detrás de todo, desde algoritmos y sistemas operativos hasta gráficos e imágenes médicas.",
+        ],
+        crumb: "Volver al inicio",
+        outro: "¿Tienes un proyecto en mente?",
+        back: "Ver mis servicios",
+    },
+
+    coursework: {
+        heading: "Educación en ciencias de la computación y matemáticas",
+        eyebrow: "// Educación",
+        groups: {
+            theory: "Teoría",
+            math: "Matemáticas",
+            systems: "Sistemas y software",
+            graphics: "Gráficos e imágenes",
+        },
+        // class names, keyed like the groups above. these are translated, unlike the skill names
+        courses: {
+            theory: [
+                "Algoritmos y estructuras de datos",
+                "Autómatas y computabilidad",
+                "Lenguajes y paradigmas de programación",
+            ],
+            math: [
+                "Matemáticas discretas",
+                "Álgebra lineal",
+                "Estadística",
+            ],
+            systems: [
+                "Sistemas operativos",
+                "Bases de datos",
+                "Organización y arquitectura de computadoras",
+                "Ingeniería de software",
+                "Diseño de software",
+                "Cómputo ubicuo (desarrollo de apps para iOS)",
+            ],
+            graphics: [
+                "Gráficos interactivos por computadora",
+                "Procesamiento digital de imágenes",
+                "Imágenes médicas",
+                "Arte y animación para videojuegos",
+            ],
+        },
     },
 
     skills: {
@@ -436,6 +478,8 @@ export default {
         eyebrow: "// Servicios",
         packagesEyebrow: "// Paquetes web",
         startingFrom: "Desde",
+        // on the packages eyebrow row, for the visitor the three tiers did not settle
+        packagesCta: "¿Necesidades específicas? Hablemos",
         packagesNote: "Estos precios son un punto de partida. Cada proyecto recibe primero una cotización por escrito, para que sepas el costo antes de empezar.",
         packagesTerms: "Todos los paquetes incluyen mantenimiento mensual desde el día del lanzamiento: disponibilidad, corrección de errores y ajustes pequeños. Tu dominio, hosting y cuentas quedan a tu nombre todo el tiempo.",
         previousPackage: "Paquete anterior",
@@ -445,19 +489,16 @@ export default {
         recommended: "Recomendado",
         cards: [
             {
-                tag: "Sitios web y software",
                 title: "Sitio web o herramienta hecho para tu negocio",
                 description: "Un sitio que presenta tu negocio, o software que se encarga del trabajo manual: reservaciones, pedidos, registros de clientes, papeleo.",
                 link: "Ver un ejemplo",
             },
             {
-                tag: "Marca y Google",
                 title: "Que te noten, y que te encuentren",
                 description: "Un logo y una marca que se vean como tú, más tu ficha de Google y tus reseñas configuradas, para que la gente cerca te encuentre.",
                 link: "Pregúntame",
             },
             {
-                tag: "Impresión 3D",
                 title: "Hecho a pedido en 3D",
                 description: "Modelado en CAD e impreso a pedido: prototipos, piezas y productos terminados a medida.",
                 link: "Pregúntame",
@@ -484,8 +525,8 @@ export default {
             {
                 id: "basic",
                 name: "Básico",
-                price: "Desde $600",
-                monthly: "$30/mes",
+                price: "Desde $750",
+                monthly: "$45/mes",
                 goodFor: "Un negocio que necesita que lo encuentren en internet.",
                 summary: "Un sitio que le muestra a la gente quién eres, qué haces y cómo contactarte.",
                 cta: "Empezar con Básico",
@@ -493,8 +534,8 @@ export default {
             {
                 id: "standard",
                 name: "Estándar",
-                price: "Desde $1500",
-                monthly: "$45/mes",
+                price: "Desde $2200",
+                monthly: "$65/mes",
                 goodFor: "Un negocio que recibe reservaciones, pedidos o mensajes por su sitio.",
                 inherits: "Todo lo del Básico",
                 summary: "El sitio empieza a trabajar en lugar de solo estar ahí.",
@@ -503,8 +544,8 @@ export default {
             {
                 id: "premium",
                 name: "Premium",
-                price: "Desde $2300",
-                monthly: "$70/mes",
+                price: "Desde $3800",
+                monthly: "$95/mes",
                 goodFor: "Un negocio que quiere un sitio único conectado a sus otras herramientas.",
                 inherits: "Todo lo del Estándar",
                 summary: "Diseñado desde cero, con tu marca y tu ficha de Google resueltas.",
@@ -516,7 +557,7 @@ export default {
             {
                 id: "seo-setup",
                 name: "Configuración SEO",
-                price: "Desde $100",
+                price: "Desde $250",
                 status: "Ya incluido en Premium",
                 tagline: "Un trabajo único para aparecer en Google Maps",
                 points: [
@@ -529,7 +570,7 @@ export default {
             {
                 id: "seo-care",
                 name: "Cuidado SEO",
-                price: "$15/mes",
+                price: "$75/mes",
                 status: "No viene en ningún paquete. Agrégalo a cualquiera.",
                 tagline: "Cuidado mensual de tu ficha de Google",
                 points: [
@@ -541,6 +582,25 @@ export default {
                 cta: "Pregunta por el cuidado SEO",
             },
         ],
+        // one card, sold as a custom build: a single starting price and a monthly, like the tiers
+        portal: {
+            eyebrow: "// Portal de clientes",
+            name: "Portal a medida",
+            price: "Desde $3500",
+            monthly: "$120/mes",
+            tagline: "Un acceso privado donde tus propios clientes ven todo sobre su proyecto",
+            status: "El mismo portal con el que opero mi propio negocio",
+            points: [
+                "Tus clientes ven propuestas, contratos y facturas en un solo lugar, y aprueban o firman con su nombre escrito",
+                "Avances con fotos, archivos y mensajes, para que nada viva en una cadena de correos",
+                "Un lado administrativo para ti: proyectos, documentos, pagos y las cuentas",
+                "Tus clientes pueden leerlo en inglés o en español",
+            ],
+            caveat: "El mensual cubre disponibilidad, correcciones y ajustes pequeños. Los pagos con tarjeta, las integraciones y las funciones nuevas se cotizan aparte.",
+            cta: "Pregunta por un portal",
+            seeLink: "Ver el portal",
+            message: "Quiero un portal de clientes a medida para mi negocio.",
+        },
         startMessage: (name) => "Quiero empezar con el paquete " + name + ".",
         addonMessage: (name) => "Quiero agregar " + name + ".",
     },
@@ -550,30 +610,30 @@ export default {
         heading: "Cómo trabajamos juntos, garantías, formas de pago y preguntas frecuentes",
         leadEyebrow: "// Cómo funciona",
         guaranteeEyebrow: "// Lo que se te garantiza",
-        paymentEyebrow: "// Pagos",
         faqEyebrow: "// Preguntas frecuentes",
         steps: [
             {
-                number: "01",
                 title: "Contacto",
-                body: "Dime qué necesita tu negocio, en palabras sencillas. Yo armo la propuesta.",
+                body: "Dime qué necesita tu negocio, en palabras sencillas. Respondo en menos de 24 horas y armo una propuesta.",
             },
             {
-                number: "02",
-                title: "Documentos",
-                body: "Recibes el alcance, el precio y el plazo por escrito antes de empezar. Se firma un contrato.",
+                title: "Arranque",
+                body: "Te configuro en mi portal de cliente. Revisas el alcance, el precio y el plazo por escrito, firmas el contrato y pagas un anticipo. Luego arrancamos.",
+                link: "Ver el portal",
             },
             {
-                number: "03",
                 title: "Desarrollo",
-                body: "Lo construyo y te voy mostrando el avance. Mantengo la comunicación en todo momento.",
+                body: "Lo construyo y te voy mostrando el avance. La mayoría de los sitios quedan listos unas dos semanas después de que me llega tu contenido.",
             },
             {
-                number: "04",
                 title: "Entrega",
-                body: "Pago. Las cuentas quedan a tu nombre, te explico todo y sigo disponible.",
+                body: "Pagas el resto. Las cuentas quedan a tu nombre, te explico todo y sigo disponible.",
             },
         ],
+        guaranteeNote: {
+            text: "Cada una de estas es una cláusula de mi contrato.",
+            link: "Ver el contrato",
+        },
         // every line here comes from the signed contract, not from marketing copy
         guarantees: [
             {
@@ -593,49 +653,48 @@ export default {
                 body: "La información que recopila tu sitio y los documentos que genera te pertenecen.",
             },
         ],
-        paymentPoints: [
-            "Un anticipo (%) al firmar, el resto contra entrega.",
-            "Zelle, transferencia bancaria o cheque.",
-            "El mantenimiento mensual viene incluido en todos los paquetes y empieza en el lanzamiento: disponibilidad, corrección de errores y ajustes pequeños. Las funciones nuevas se cotizan aparte.",
-        ],
         faqs: [
             {
                 question: "¿Necesito saber algo técnico?",
                 answer: "No. Si puedes describir qué hace tu negocio y qué quieres que la gente pueda hacer en el sitio, con eso basta. Yo me encargo del resto, y te explico la parte que quieras entender.",
             },
             {
+                question: "¿Qué necesitas de mí para empezar?",
+                answer: "Qué hace tu negocio, el branding que ya tengas, y el texto e imágenes que quieres en el sitio. Si no los tienes, producirlos es parte de lo que cubren los paquetes más altos.",
+            },
+            {
                 question: "¿Cuánto tiempo toma?",
-                answer: "Depende del paquete y de qué tan rápido me llegue el contenido de tu parte. Recibes un plazo en la propuesta antes de empezar, así que nunca te quedas adivinando.",
+                answer: "La mayoría de los sitios salen en vivo unas dos semanas después de que me llega tu contenido, así que mientras antes me llegue, antes sales. Los proyectos más grandes toman más. De cualquier forma, la propuesta trae el plazo por escrito antes de empezar, así que nunca te quedas adivinando.",
+            },
+            {
+                question: "¿Y si no me gusta cómo se ve?",
+                answer: "Lo ves mientras se construye, no solo al final, así que podemos cambiar de rumbo cuando todavía es fácil. Los cambios dentro de lo acordado son parte del trabajo. Lo que quede fuera de ese alcance se cotiza por escrito primero, así tú decides si vale la pena.",
+            },
+            {
+                question: "¿Puedo ver cómo va?",
+                answer: "Sí. Recibes un acceso a mi portal de cliente, donde viven los avances con capturas, tu propuesta, tu contrato, tus facturas y tus mensajes. No tienes que buscar entre correos para saber en qué punto va todo.",
+            },
+            {
+                question: "¿Cómo funcionan los pagos?",
+                answer: "En dos partes: un anticipo al firmar y el resto contra entrega, por Zelle, transferencia bancaria o cheque. El mantenimiento mensual se cobra desde el día del lanzamiento. Si dos partes no te funcionan por tu presupuesto, dime y buscamos una opción.",
+            },
+            {
+                question: "¿Tengo que pagar mensualmente?",
+                answer: "Sí. El mantenimiento es parte de todos los paquetes, no un extra, y empieza el día que sales en vivo: disponibilidad, corrección de errores y ajustes pequeños. Las funciones nuevas se cotizan aparte. Un sitio que nadie cuida se descompone en silencio: los formularios dejan de enviar, los datos se quedan viejos y las actualizaciones de seguridad se acumulan hasta que algo falla. Aun así no es un amarre. Cualquiera de los dos puede terminar con 30 días de aviso, y tu dominio, hosting y cuentas están a tu nombre todo el tiempo, así que nunca dependes de mí para conservar tu propio sitio.",
+            },
+            {
+                question: "¿Y si desapareces?",
+                answer: "Nada de tu sitio depende de que yo esté presente. Tu dominio, hosting y cuentas están a tu nombre, y cualquiera de los dos puede terminar con 30 días de aviso, y en ese momento te entrego tus cuentas, exportaciones de datos y registros.",
             },
             {
                 question: "¿Y si ya tengo un dominio?",
                 answer: "Entonces lo usamos. Si todavía no tienes uno, se registra a tu nombre y no al mío.",
             },
-            {
-                question: "¿Solo trabajas con negocios en Houston?",
-                answer: "No. Houston es donde estoy y con los negocios locales es con quien más trabajo, pero el trabajo en sí es remoto de todos modos.",
-            },
-            {
-                question: "¿Qué pasa después del lanzamiento?",
-                answer: "Sigue funcionando, y yo lo sigo cuidando. El mensual cubre disponibilidad, corrección de errores y ajustes pequeños, y empieza el día que sales en vivo. No te quedas solo con el sitio, ni tampoco andas persiguiéndome.",
-            },
-            {
-                question: "¿Tengo que pagar mensualmente?",
-                answer: "Sí. Es parte de todos los paquetes, no un extra. Un sitio que nadie cuida se descompone en silencio: los formularios dejan de enviar, los datos se quedan viejos y las actualizaciones de seguridad se acumulan hasta que algo falla. El mensual es lo que evita eso. Aun así no es un amarre. Cualquiera de los dos puede terminar con 30 días de aviso, y tu dominio, hosting y cuentas están a tu nombre todo el tiempo, así que nunca dependes de mí para conservar tu propio sitio.",
-            },
-            {
-                question: "¿Qué hace realmente el complemento de SEO?",
-                answer: "Te pone en Google Maps y en los resultados locales. Reclamo y lleno tu Perfil de Negocio de Google, me aseguro de que tu nombre, dirección y teléfono coincidan en todos lados, y dirijo tus reseñas al lugar correcto. Mes a mes lo mantengo al día y te mando un reporte claro de las llamadas, clics e indicaciones que generó. Lo que no incluye es escribir artículos ni comprar enlaces, y nadie te puede prometer honestamente una posición específica en Google.",
-            },
-            {
-                question: "¿Puedo agregar cosas después?",
-                answer: "Sí. Las funciones nuevas se cotizan aparte, así tú decides si vale la pena en vez de encontrártela en una factura.",
-            },
-            {
-                question: "¿Qué necesitas de mí para empezar?",
-                answer: "Qué hace tu negocio, el branding que ya tengas, y el texto e imágenes que quieres en el sitio. Si no los tienes, producirlos es parte de lo que cubren los paquetes más altos.",
-            },
         ],
+        closing: {
+            text: "¿Listo para el paso uno?",
+            link: "Cuéntame de tu negocio",
+        },
     },
 
     contact: {
@@ -644,6 +703,7 @@ export default {
         formEyebrow: "// Empieza un proyecto",
         findEyebrow: "// Encuéntrame en",
         reachEyebrow: "// Contáctame",
+        copyHint: "Toca para copiar",
         // two lines, scrambled separately, and a literal ghost copy holds the box width
         headlineFirst: "VAMOS A",
         headlineSecond: "CREAR.",
@@ -661,7 +721,7 @@ export default {
         messageLabel: "Mensaje",
         // id is what gets emailed, so the inbox stays english whatever the visitor reads
         projectTypes: [
-            { id: "Software Products", label: "Productos de software" },
+            { id: "Website or software", label: "Sitio web o software" },
             { id: "Design & SEO", label: "Diseño y SEO" },
             { id: "3D Modeling & Printing", label: "Modelado e impresión 3D" },
             { id: "Something else", label: "Otra cosa" },

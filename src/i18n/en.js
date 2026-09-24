@@ -413,10 +413,52 @@ export default {
 
     dev: {
         eyebrow: "// The dev side",
-        title: "The engineering side",
-        lead: "Everything sitting under the client work: the stack I actually build with, and the coursework and personal projects where I learned it.",
-        outro: "Want this pointed at your business?",
-        back: "See what I offer",
+        title: "Full-stack software developer",
+        bio: [
+            "I'm a computer science senior at the University of Houston, focused on full-stack web development. I build web applications with React, Next.js and Node, backed by PostgreSQL, MongoDB or Supabase. Outside the web I have written Python, C++, C# and Swift.",
+            "Below are my coursework and personal projects, the tools I use, and the classes behind them, from algorithms and operating systems to graphics and medical imaging.",
+        ],
+        crumb: "Back to homepage",
+        outro: "Have a project in mind?",
+        back: "See my services",
+    },
+
+    coursework: {
+        heading: "Education in computer science and mathematics",
+        eyebrow: "// Education",
+        groups: {
+            theory: "Theory",
+            math: "Math",
+            systems: "Systems and software",
+            graphics: "Graphics and imaging",
+        },
+        // class names, keyed like the groups above. these are translated, unlike the skill names
+        courses: {
+            theory: [
+                "Algorithms and Data Structures",
+                "Automata and Computability",
+                "Programming Languages and Paradigms",
+            ],
+            math: [
+                "Discrete Mathematics",
+                "Linear Algebra",
+                "Statistics",
+            ],
+            systems: [
+                "Operating Systems",
+                "Database Systems",
+                "Computer Organization and Architecture",
+                "Software Engineering",
+                "Software Design",
+                "Ubiquitous Computing (iOS App Development)",
+            ],
+            graphics: [
+                "Interactive Computer Graphics",
+                "Digital Image Processing",
+                "Medical Imaging",
+                "Gaming Art and Animation",
+            ],
+        },
     },
 
     skills: {
@@ -436,6 +478,8 @@ export default {
         eyebrow: "// Services",
         packagesEyebrow: "// Website packages",
         startingFrom: "Starting from",
+        // on the packages eyebrow row, for the visitor the three tiers did not settle
+        packagesCta: "Got specific needs? Let's talk",
         packagesNote: "These prices are starting points. Every project gets a written quote first, so you know the cost before we start.",
         packagesTerms: "Every package includes monthly maintenance from the day you launch: uptime, bug fixes and small tweaks. Your domain, hosting and accounts stay in your name throughout.",
         previousPackage: "Previous package",
@@ -446,19 +490,16 @@ export default {
         // the keys the contact form's project type select submits, so they stay english
         cards: [
             {
-                tag: "Websites and software",
                 title: "Website or tool built for your business",
                 description: "A site that shows your business off, or software that takes over the manual work: bookings, orders, client records, paperwork.",
                 link: "See an example",
             },
             {
-                tag: "Branding and Google",
                 title: "Get noticed, and get found",
                 description: "A logo and brand that look like you, plus your Google listing and reviews set up, so people nearby can find you.",
                 link: "Ask about this",
             },
             {
-                tag: "3D printing",
                 title: "Made to order in 3D",
                 description: "Modeled in CAD and printed to order: prototypes, parts, and finished custom pieces.",
                 link: "Ask about this",
@@ -486,8 +527,8 @@ export default {
             {
                 id: "basic",
                 name: "Basic",
-                price: "From $600",
-                monthly: "$30/mo",
+                price: "From $750",
+                monthly: "$45/mo",
                 goodFor: "A business that needs to be found online.",
                 summary: "A site that shows people who you are, what you do, and how to reach you.",
                 cta: "Start with Basic",
@@ -495,8 +536,8 @@ export default {
             {
                 id: "standard",
                 name: "Standard",
-                price: "From $1500",
-                monthly: "$45/mo",
+                price: "From $2200",
+                monthly: "$65/mo",
                 goodFor: "A business that takes bookings, orders or messages through its site.",
                 inherits: "Everything in Basic",
                 summary: "The site starts doing work instead of just sitting there.",
@@ -505,8 +546,8 @@ export default {
             {
                 id: "premium",
                 name: "Premium",
-                price: "From $2300",
-                monthly: "$70/mo",
+                price: "From $3800",
+                monthly: "$95/mo",
                 goodFor: "A business that wants a one-of-a-kind site connected to its other tools.",
                 inherits: "Everything in Standard",
                 summary: "Designed from scratch, with your branding and Google listing handled.",
@@ -518,7 +559,7 @@ export default {
             {
                 id: "seo-setup",
                 name: "SEO setup",
-                price: "From $100",
+                price: "From $250",
                 status: "Already included in Premium",
                 tagline: "A one-time job to get onto Google Maps",
                 points: [
@@ -531,7 +572,7 @@ export default {
             {
                 id: "seo-care",
                 name: "SEO care",
-                price: "$15/mo",
+                price: "$75/mo",
                 status: "Not in any package. Add it to any of them.",
                 tagline: "Monthly care for your Google listing",
                 points: [
@@ -543,6 +584,25 @@ export default {
                 cta: "Ask about SEO care",
             },
         ],
+        // one card, sold as a custom build: a single starting price and a monthly, like the tiers
+        portal: {
+            eyebrow: "// Client portal",
+            name: "Custom portal",
+            price: "From $3500",
+            monthly: "$120/mo",
+            tagline: "A private login where your own clients see everything about their project",
+            status: "The same portal I run my own business on",
+            points: [
+                "Clients see proposals, contracts and invoices in one place, and approve or sign with a typed name",
+                "Progress updates with photos, files and messages, so nothing lives in an email thread",
+                "An admin side for you: projects, documents, payments and the books",
+                "Your clients can read it in English or Spanish",
+            ],
+            caveat: "The monthly covers uptime, fixes and small tweaks. Card payments, integrations and new features are quoted separately.",
+            cta: "Ask about a portal",
+            seeLink: "See the portal",
+            message: "I'd like a custom client portal for my business.",
+        },
         startMessage: (name) => "I'd like to start with the " + name + " package.",
         addonMessage: (name) => "I'd like to add " + name + ".",
     },
@@ -552,30 +612,30 @@ export default {
         heading: "How working together goes, guarantees, payment terms and common questions",
         leadEyebrow: "// How this works",
         guaranteeEyebrow: "// What you're guaranteed",
-        paymentEyebrow: "// Payment",
         faqEyebrow: "// Common questions",
         steps: [
             {
-                number: "01",
                 title: "Contact",
-                body: "Tell me what your business needs, in plain words. I'll draft up a proposal.",
+                body: "Tell me what your business needs, in plain words. I reply within 24 hours and put a proposal together.",
             },
             {
-                number: "02",
-                title: "Documents",
-                body: "You get the scope, the price and the timeline in writing before anything starts. Sign a contract.",
+                title: "Onboarding",
+                body: "I set you up in my client portal. You review the scope, price and timeline in writing, sign the contract and pay a deposit. Then we kick things off.",
+                link: "See the portal",
             },
             {
-                number: "03",
                 title: "Build",
-                body: "I build it and show you progress along the way. I maintain communication throughout.",
+                body: "I build it and show you progress along the way. Most sites are ready about two weeks after I have your content.",
             },
             {
-                number: "04",
                 title: "Handoff",
-                body: "Payment. Accounts go in your name, I walk you through it, and I stay reachable.",
+                body: "You pay the rest. Accounts go in your name, I walk you through it, and I stay reachable.",
             },
         ],
+        guaranteeNote: {
+            text: "Each of these is a clause in my contract.",
+            link: "See the contract",
+        },
         // every line here comes from the signed contract, not from marketing copy
         guarantees: [
             {
@@ -595,49 +655,48 @@ export default {
                 body: "The information your site collects and the documents it generates belong to you.",
             },
         ],
-        paymentPoints: [
-            "A deposit (%) when you sign, the remainder on delivery.",
-            "Zelle, bank transfer, or check.",
-            "Monthly maintenance is included with every package and starts at launch: uptime, bug fixes and small tweaks. New features are quoted separately.",
-        ],
         faqs: [
             {
                 question: "Do I need to know anything technical?",
                 answer: "No. If you can describe what your business does and what you want people to be able to do on the site, that is enough. I handle the rest, and explain any part of it you want explained.",
             },
             {
+                question: "What do you need from me to start?",
+                answer: "What your business does, any branding you already have, and the text and images you want on the site. If you do not have those, producing them is part of what the higher packages cover.",
+            },
+            {
                 question: "How long does it take?",
-                answer: "It depends on the package and on how quickly content comes back from you. You get a timeline in the proposal before any work begins, so you are never left guessing.",
+                answer: "Most sites launch about two weeks after I have your content, so the sooner it reaches me, the sooner you are live. Bigger builds take longer. Either way the proposal gives you a timeline in writing before any work begins, so you are never left guessing.",
+            },
+            {
+                question: "What if I don't like how it looks?",
+                answer: "You see it as it is built, not only at the end, so we can change direction while that is still easy. Changes within what we agreed are part of the job. Anything beyond that scope is quoted in writing first, so you decide whether it is worth it.",
+            },
+            {
+                question: "Can I see how it is going?",
+                answer: "Yes. You get a login to my client portal, where progress updates with screenshots, your proposal, contract, invoices and messages all live. You never have to dig through an email thread to find where things stand.",
+            },
+            {
+                question: "How do payments work?",
+                answer: "In two parts: a deposit when you sign and the remainder on delivery, by Zelle, bank transfer or check. Monthly maintenance is billed from the day you launch. If two parts doesn't work for your budget, tell me and we'll work something out.",
+            },
+            {
+                question: "Do I have to pay monthly?",
+                answer: "Yes. Maintenance is part of every package, not an extra, and it starts the day you go live: uptime, bug fixes and small tweaks. New features are quoted separately. A site nobody looks after breaks quietly: forms stop sending, details go stale, and security updates pile up until something gives. It is not a lock-in, though. Either of us can end it on 30 days' notice, and your domain, hosting and accounts are in your name the entire time, so you are never stuck with me to keep your own site.",
+            },
+            {
+                question: "What if you disappear?",
+                answer: "Nothing about your site depends on me being around. Your domain, hosting and accounts are in your name, and either of us can end things on 30 days' notice, at which point I hand over your accounts, data exports and records.",
             },
             {
                 question: "What if I already have a domain?",
                 answer: "Then we use it. If you do not have one yet, it gets registered in your name rather than mine.",
             },
-            {
-                question: "Do you only work with businesses in Houston?",
-                answer: "No. Houston is where I am and local businesses are who I work with most, but the work itself is remote either way.",
-            },
-            {
-                question: "What happens after it launches?",
-                answer: "It keeps running, and I keep looking after it. The monthly covers uptime, bug fixes and small tweaks, and it starts the day you go live. You are not on your own with it, and you are not chasing me either.",
-            },
-            {
-                question: "Do I have to pay monthly?",
-                answer: "Yes. It is part of every package not an extra. A site nobody looks after breaks quietly: forms stop sending, details go stale, and security updates pile up until something gives. The monthly is what stops that happening. It is not a lock-in, though. Either of us can end it on 30 days' notice, and your domain, hosting and accounts are in your name the entire time, so you are never stuck with me to keep your own site.",
-            },
-            {
-                question: "What does the SEO add-on actually do?",
-                answer: "It gets you onto Google Maps and into local results. I claim and fill in your Google Business Profile, make sure your name, address and phone match everywhere they appear, and point your reviews at the right place. Month to month I keep it current and send you a plain report of the calls, clicks and directions it brought in. What it does not include is writing articles or buying links, and nobody can honestly promise you a particular position on Google.",
-            },
-            {
-                question: "Can I add things later?",
-                answer: "Yes. New features are quoted separately, so you decide whether one is worth it rather than finding it on an invoice.",
-            },
-            {
-                question: "What do you need from me to start?",
-                answer: "What your business does, any branding you already have, and the text and images you want on the site. If you do not have those, producing them is part of what the higher packages cover.",
-            },
         ],
+        closing: {
+            text: "Ready for step one?",
+            link: "Tell me about your business",
+        },
     },
 
     contact: {
@@ -646,6 +705,7 @@ export default {
         formEyebrow: "// Start a project",
         findEyebrow: "// Find me on",
         reachEyebrow: "// Contact me",
+        copyHint: "Click to copy",
         // two lines, scrambled separately, and a literal ghost copy holds the box width
         headlineFirst: "LET'S",
         headlineSecond: "BUILD.",
@@ -663,7 +723,7 @@ export default {
         messageLabel: "Message",
         // id is what gets emailed, so the inbox stays english whatever the visitor reads
         projectTypes: [
-            { id: "Software Products", label: "Software Products" },
+            { id: "Website or software", label: "Website or software" },
             { id: "Design & SEO", label: "Design & SEO" },
             { id: "3D Modeling & Printing", label: "3D Modeling & Printing" },
             { id: "Something else", label: "Something else" },

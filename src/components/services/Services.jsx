@@ -12,7 +12,7 @@ const featuredPackage = "standard"
 
 // where each service card leads, and the project type it selects. the ids are what the form emails
 const serviceLinks = [
-    { kind: "work", slug: "client-portal", projectType: "Software Products" },
+    { kind: "work", slug: "client-portal", projectType: "Website or software" },
     { kind: "contact", projectType: "Design & SEO" },
     { kind: "contact", projectType: "3D Modeling & Printing" },
 ]
@@ -33,16 +33,18 @@ function prefillContact(detail){
 function Services(){
 
     const copy = useCopy();
-    const { basePath } = useLanguage();
+    const { basePath, sectionHref } = useLanguage();
     const servicesEyebrow = copy.services.eyebrow;
     const packagesEyebrow = copy.services.packagesEyebrow;
     const packages = copy.services.packages;
     const addons = copy.services.addons;
     const services = copy.services.cards;
-    const contactHref = basePath + "/#contact";
+    const contactHref = sectionHref("contact");
 
     const [leadRef, leadVisible] = useInView();
     const [packagesRef, packagesVisible] = useInView();
+    const [portalRef, portalVisible] = useInView();
+    const [portalGo, setPortalGo] = useState(false);
     const trackRef = useRef(null);
     const [activePackage, setActivePackage] = useState(featuredPackage);
 
@@ -96,9 +98,37 @@ function Services(){
     const leadDelay = { "--intro-delay": eyebrowDuration(servicesEyebrow) + "ms" };
     const packagesDelay = { "--intro-delay": eyebrowDuration(packagesEyebrow) + "ms" };
 
+    const portal = copy.services.portal;
+    const portalDelay = { "--intro-delay": eyebrowDuration(portal.eyebrow) + "ms" };
+
+    // a big screen has both blocks in view at once, so the portal waits for the packages to finish landing
+    const portalStart = eyebrowDuration(packagesEyebrow) + 900;
+
+    useEffect(() => {
+        if(!packagesVisible){
+            return;
+        }
+
+        const timer = setTimeout(() => setPortalGo(true), portalStart);
+
+        return () => clearTimeout(timer);
+    }, [packagesVisible, portalStart]);
+
+    const portalReady = portalVisible && portalGo;
+
     const handleStart = (pack) => {
         track("cta_package", { package: pack.id });
-        prefillContact({ projectType: "Software Products", message: copy.services.startMessage(pack.name) });
+        prefillContact({ projectType: "Website or software", message: copy.services.startMessage(pack.name) });
+    };
+
+    const handleCustom = () => {
+        track("cta_package", { package: "custom" });
+        prefillContact({ projectType: "Something else" });
+    };
+
+    const handlePortal = () => {
+        track("cta_package", { package: "portal" });
+        prefillContact({ projectType: "Website or software", message: portal.message });
     };
 
     const handleAddon = (item) => {
@@ -167,6 +197,10 @@ function Services(){
         );
     });
 
+    const portalPoints = portal.points.map((point, index) => {
+        return <li className = "package-row" key = {index}>{point}</li>;
+    });
+
     const addonCards = addons.map((item) => {
         const points = item.points.map((point, index) => {
             return <li className = "package-row" key = {index}>{point}</li>;
@@ -214,10 +248,6 @@ function Services(){
 
         return (
             <div className = "service-card reveal-rise" key = {index}>
-                <p className = "service-tag">
-                    {service.tag}
-                </p>
-
                 <p className = "service-title">
                     {service.title}
                 </p>
@@ -254,6 +284,8 @@ function Services(){
                     <div className = "packages-head">
                         <SectionEyebrow text = {packagesEyebrow} tag = {true} active = {packagesVisible}/>
                         <p className = "packages-note-flag reveal-rise">{copy.services.startingFrom}</p>
+
+                        <a className = "service-link packages-cta reveal-fade" href = {contactHref} onClick = {handleCustom}>{copy.services.packagesCta}</a>
                     </div>
 
                     <p className = "packages-note reveal-sweep">{copy.services.packagesNote}</p>
@@ -279,6 +311,39 @@ function Services(){
 
                 <div className = "packages-addons">
                     {addonCards}
+                </div>
+            </div>
+
+            <div className = "portal-lead" ref = {portalRef} data-visible = {portalReady} style = {portalDelay}>
+                <SectionEyebrow text = {portal.eyebrow} tag = {true} active = {portalReady}/>
+
+                <div className = "package-card package-addon package-portal reveal-rise">
+                    <div className = "addon-main">
+                        <div className = "package-head">
+                            <p className = "package-name">{portal.name}</p>
+
+                            <div className = "package-cost">
+                                <p className = "package-price">{portal.price}</p>
+                                <p className = "package-monthly">{portal.monthly}</p>
+                            </div>
+                        </div>
+
+                        <p className = "addon-tagline">{portal.tagline}</p>
+                        <p className = "package-addon-status">{portal.status}</p>
+
+                        <div className = "portal-links">
+                            <a className = "service-link" href = {contactHref} onClick = {handlePortal}>{portal.cta}</a>
+                            <Link className = "service-link" to = {basePath + "/work/client-portal"}>{portal.seeLink}</Link>
+                        </div>
+                    </div>
+
+                    <div className = "addon-detail">
+                        <ul className = "package-rows addon-rows">
+                            {portalPoints}
+                        </ul>
+
+                        <p className = "addon-caveat">{portal.caveat}</p>
+                    </div>
                 </div>
             </div>
         </section>

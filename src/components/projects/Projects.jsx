@@ -69,7 +69,10 @@ function Projects({ group }){
         return { ...project, description: text.description, pitch: text.pitch, points: text.points, images: images, cover: cover };
     });
 
-    const projectCards = localizedProjects.map((project) => {
+    const projectCards = localizedProjects.map((project, index) => {
+        // staggered here so the delay can never run out of cards
+        const revealStyle = { "--enter-delay": "calc(var(--intro-delay, 0ms) + " + index * 90 + "ms)" };
+
         // no slug = no case study written yet, so the card keeps its own gallery
         let caseStudyUrl;
         if(project.slug){
@@ -89,6 +92,7 @@ function Projects({ group }){
                 skills = {project.skills}
                 caseStudyUrl = {caseStudyUrl}
                 onOpenGallery = {() => handleOpenGallery(project)}
+                revealStyle = {revealStyle}
             />
         );
     });
@@ -102,7 +106,7 @@ function Projects({ group }){
     }else{
         moreLink = null;
         content = (
-            <div className = "projects-grid reveal-fade">
+            <div className = "projects-grid">
                 {projectCards}
             </div>
         );
