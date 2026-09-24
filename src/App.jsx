@@ -8,6 +8,8 @@ import PageAtmosphere from './components/atmosphere/PageAtmosphere'
 import Header from './components/header/Header'
 import Footer from "./components/footer/Footer"
 import Home from './pages/Home'
+import Dev from './pages/Dev'
+import CaseStudy from './pages/CaseStudy'
 import Privacy from './pages/Privacy'
 import NotFound from './pages/NotFound'
 import { useCopy } from './i18n/languageContext'
@@ -26,8 +28,12 @@ function App() {
         <main id = "main" tabIndex = {-1}>
             <Routes>
                 <Route path = "/" element = {<Home/>}/>
+                <Route path = "/dev" element = {<Dev/>}/>
+                <Route path = "/work/:slug" element = {<CaseStudy/>}/>
                 <Route path = "/privacy" element = {<Privacy/>}/>
                 <Route path = "/es" element = {<Home/>}/>
+                <Route path = "/es/dev" element = {<Dev/>}/>
+                <Route path = "/es/work/:slug" element = {<CaseStudy/>}/>
                 <Route path = "/es/privacy" element = {<Privacy/>}/>
                 <Route path = "*" element = {<NotFound/>}/>
             </Routes>

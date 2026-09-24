@@ -1,65 +1,21 @@
 import ProjectCard from "./projectCards/ProjectCard";
+import WorkShowcase from "./WorkShowcase";
 import Lightbox from "./lightbox/Lightbox";
 import SectionEyebrow from "../sectionEyebrow/SectionEyebrow";
 import { eyebrowDuration } from "../sectionEyebrow/eyebrowTiming";
 import useInView from "../../hooks/useInView";
-import { useCopy } from "../../i18n/languageContext";
-import { queueSmartImages, queueSmartCover, mazeGameImages, mazeGameCover, rideShareImages, rideShareCover, unityGameImages, unityGameCover, mriScannerImages, mriScannerCover, documentSystemImages, documentSystemCover } from "./projectImages";
+import { useCopy, useLanguage } from "../../i18n/languageContext";
+import { Link } from "react-router-dom";
+import { workProjects, devProjects } from "./projectsData";
 import { useState } from "react";
 import { track } from "@vercel/analytics";
 import "./Projects.css"
 
-// titles and skills stay english: they are product names and skillIcons lookup keys
-const projects = [
-    {
-        id: "queuesmart",
-        title: "QueueSmart",
-        repoUrl: "https://github.com/Fifer-code/Software-Design",
-        skills: ["React", "Vite", "Express", "Node.js", "MongoDB", "npm"],
-        images: queueSmartImages,
-        cover: queueSmartCover,
-    },
-    {
-        id: "documents",
-        title: "Freelance Document System",
-        repoUrl: "",
-        skills: ["Figma", "JavaScript", "HTML", "CSS"],
-        images: documentSystemImages,
-        cover: documentSystemCover,
-    },
-    {
-        id: "rideshare",
-        title: "RideShare",
-        repoUrl: "https://github.com/arriagagustavoo/rideshare",
-        skills: ["PostgreSQL", "Express", "JavaScript", "HTML", "CSS"],
-        images: rideShareImages,
-        cover: rideShareCover,
-    },
-    {
-        id: "maze",
-        title: "3D Interactive Maze Game",
-        repoUrl: "https://github.com/arriagagustavoo/Interactive-Maze-Game",
-        skills: ["Python", "OpenGL"],
-        images: mazeGameImages,
-        cover: mazeGameCover,
-    },
-    {
-        id: "unity",
-        title: "2D Unity Game",
-        repoUrl: "",
-        skills: ["Unity", "Clip Studio Paint"],
-        images: unityGameImages,
-        cover: unityGameCover,
-    },
-    {
-        id: "mri",
-        title: "MRI Scanner",
-        repoUrl: "",
-        skills: ["MATLAB"],
-        images: mriScannerImages,
-        cover: mriScannerCover,
-    },
-]
+// ids never translate, so which section is which lives here and not in the dictionaries
+const sections = {
+    work: { id: "projects", projects: workProjects },
+    dev: { id: "dev-projects", projects: devProjects },
+}
 
 // falls back to the english alt if a translated list is short or missing
 function pickAlt(list, index, fallback){
@@ -70,10 +26,14 @@ function pickAlt(list, index, fallback){
     }
 }
 
-function Projects(){
+function Projects({ group }){
 
     const copy = useCopy();
-    const projectsEyebrow = copy.projects.eyebrow;
+    const { basePath } = useLanguage();
+    const section = sections[group];
+    const sectionCopy = copy.projects[group];
+    const projectsEyebrow = sectionCopy.eyebrow;
+    const headingId = section.id + "-heading";
 
     // null = closed. lives here so only one gallery can be open at a time
     const [openProject, setOpenProject] = useState(null);
@@ -91,19 +51,36 @@ function Projects(){
     };
 
     // the captions are translated, so the image list is rebuilt against the active language
-    const localizedProjects = projects.map((project) => {
+    const localizedProjects = section.projects.map((project) => {
         const text = copy.projects.items[project.id];
 
         const images = project.images.map((image, index) => {
             return { src: image.src, alt: pickAlt(text.alts, index, image.alt) };
         });
 
-        const cover = { src: project.cover.src, alt: pickAlt([text.coverAlt], 0, project.cover.alt) };
+        // no cover = the card falls back to the first screenshot
+        let cover;
+        if(project.cover){
+            cover = { src: project.cover.src, alt: pickAlt([text.coverAlt], 0, project.cover.alt) };
+        }else{
+            cover = null;
+        }
 
-        return { ...project, description: text.description, images: images, cover: cover };
+        return { ...project, description: text.description, pitch: text.pitch, points: text.points, images: images, cover: cover };
     });
 
-    const projectCards = localizedProjects.map((project) => {
+    const projectCards = localizedProjects.map((project, index) => {
+        // staggered here so the delay can never run out of cards
+        const revealStyle = { "--enter-delay": "calc(var(--intro-delay, 0ms) + " + index * 90 + "ms)" };
+
+        // no slug = no case study written yet, so the card keeps its own gallery
+        let caseStudyUrl;
+        if(project.slug){
+            caseStudyUrl = basePath + "/work/" + project.slug;
+        }else{
+            caseStudyUrl = null;
+        }
+
         return (
             <ProjectCard
                 key = {project.id}
@@ -113,10 +90,27 @@ function Projects(){
                 repoUrl = {project.repoUrl}
                 description = {project.description}
                 skills = {project.skills}
+                caseStudyUrl = {caseStudyUrl}
                 onOpenGallery = {() => handleOpenGallery(project)}
+                revealStyle = {revealStyle}
             />
         );
     });
+
+    // the homepage set leads with one featured project, the dev page keeps the plain grid
+    let content;
+    let moreLink;
+    if(group === "work"){
+        content = <WorkShowcase projects = {localizedProjects} basePath = {basePath}/>;
+        moreLink = <Link className = "projects-more reveal-fade" to = {basePath + "/dev"}>{copy.projects.moreWork}</Link>;
+    }else{
+        moreLink = null;
+        content = (
+            <div className = "projects-grid">
+                {projectCards}
+            </div>
+        );
+    }
 
     let lightbox;
     if(openProject){
@@ -133,16 +127,18 @@ function Projects(){
 
     return(
         <>
-        <section className = "projects" id = "projects" aria-labelledby = "projects-heading">
-            <h2 className = "visually-hidden" id = "projects-heading">{copy.projects.heading}</h2>
+        <section className = "projects" id = {section.id} data-group = {group} aria-labelledby = {headingId}>
+            <h2 className = "visually-hidden" id = {headingId}>{sectionCopy.heading}</h2>
 
             <div className = "projects-lead" ref = {leadRef} data-visible = {leadVisible} style = {leadDelay}>
-                <SectionEyebrow text = {projectsEyebrow} active = {leadVisible}/>
+                {/* the link shares the eyebrow's row, so it adds no height */}
+                <div className = "projects-head">
+                    <SectionEyebrow text = {projectsEyebrow} active = {leadVisible}/>
 
-                {/* fade only: the cards inside own their own scroll-driven motion */}
-                <div className = "projects-grid reveal-fade">
-                    {projectCards}
+                    {moreLink}
                 </div>
+
+                {content}
             </div>
 
         </section>

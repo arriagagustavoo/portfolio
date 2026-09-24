@@ -4,8 +4,7 @@
 > software, branding and local SEO, and 3D models and prints for small businesses.
 
 Computer Science senior at the University of Houston, taking on freelance client work.
-Contact is through the form on the site or by email at gus@arriagagustavoo.com.
-There is no phone number listed.
+Contact is through the form on the site, by email at gus@arriagagustavoo.com, or by phone at 832-453-4158.
 
 The site is available in English and Spanish. The Spanish version lives at
 https://arriagagustavoo.com/es and is described in https://arriagagustavoo.com/llms-es.txt.
@@ -36,6 +35,23 @@ Business Profile, name/address/phone consistency and review setup; SEO care cove
 profile current, review replies and a monthly report. It does not include content writing or
 link building, and no ranking position is promised.
 
+## Custom client portal
+
+A private login for a business's own clients: proposals, contracts and invoices in one place, progress
+updates with photos, files and messages, and an admin side for the owner. It is the same portal Gustavo
+runs his own business on, sold as a custom build with a starting price and a monthly plan covering
+uptime, fixes and small tweaks. Card payments, integrations and new features are quoted separately.
+
+## How it works
+
+1. Contact: describe what the business needs; a reply and a proposal follow within 24 hours.
+2. Onboarding: the client is set up in Gustavo's client portal, reviews the scope, price and
+   timeline in writing, signs the contract and pays a deposit.
+3. Build: progress is shown along the way. Most sites are ready about two weeks after the content
+   arrives; bigger builds take longer, and the proposal states the timeline.
+4. Handoff: the remainder is paid, accounts are in the client's name, and Gustavo walks the client
+   through it and stays reachable.
+
 ## Working terms
 
 - A deposit on signing, the remainder on delivery. Zelle, bank transfer or check.
@@ -47,6 +63,10 @@ link building, and no ranking position is promised.
 
 ## Pages
 
-- [Home](https://arriagagustavoo.com/) — about, projects, skills, services, packages, process, contact
+- [Home](https://arriagagustavoo.com/) — about, work, services, packages, process, contact
+- [Client Portal case study](https://arriagagustavoo.com/work/client-portal) — a client portal built to run this freelance practice: proposals, contracts, invoices and progress in one place, with one project brief feeding every document
+- [QueueSmart case study](https://arriagagustavoo.com/work/queuesmart) — a queue management web app from a university Software Design course, built by a team of four; the admin side was built by Gustavo. Coursework, not client work
+- [Bracketed case study](https://arriagagustavoo.com/work/bracketed) — the proposal, contract and invoice templates used for client work: plain HTML, fill-in-the-blank, printing to clean PDFs
+- [Dev](https://arriagagustavoo.com/dev) — the engineering side: education and coursework, the skills list, and the coursework and personal projects
 - [Privacy policy](https://arriagagustavoo.com/privacy) — what the contact form collects and who processes it
 - [Versión en español](https://arriagagustavoo.com/es) — the same site in Spanish

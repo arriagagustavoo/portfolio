@@ -8,12 +8,12 @@ import { useLanguage } from "../../i18n/languageContext"
 
 function Footer(){
 
-    const { copy, basePath } = useLanguage();
+    const { copy, basePath, sectionHref } = useLanguage();
     const year = new Date().getFullYear();
 
     // mail points at the contact section, not a mailto: nothing on this site sends visitors away
     const socials = [
-        { label: copy.footer.emailMe, href: basePath + "/#contact", Icon: MailIcon, external: false },
+        { label: copy.footer.emailMe, href: sectionHref("contact"), Icon: MailIcon, external: false },
         { label: "GitHub", href: "https://github.com/arriagagustavoo", Icon: GithubIcon, external: true },
         { label: "Instagram", href: "https://instagram.com/arriagagustavoo", Icon: InstagramIcon, external: true },
         { label: "LinkedIn", href: "https://www.linkedin.com/in/arriagagustavoo/", Icon: LinkedinIcon, external: true },

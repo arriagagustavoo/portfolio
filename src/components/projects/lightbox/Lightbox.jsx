@@ -2,12 +2,12 @@ import "./Lightbox.css"
 import { useCallback, useEffect, useState } from "react"
 import { useCopy } from "../../../i18n/languageContext"
 
-function Lightbox({ title, images, onClose }){
+function Lightbox({ title, images, onClose, startIndex = null }){
 
     const copy = useCopy();
 
-    // null = grid only, nothing expanded
-    const [zoomedIndex, setZoomedIndex] = useState(null);
+    // null = grid only, nothing expanded. startIndex opens straight onto one shot
+    const [zoomedIndex, setZoomedIndex] = useState(startIndex);
 
     const handleZoomOpen = (index) => {
         setZoomedIndex(index);

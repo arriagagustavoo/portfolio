@@ -53,9 +53,19 @@ function LanguageProvider({ children }){
         document.documentElement.setAttribute('data-lang', language);
     }, [language]);
 
+    // /es#about, not /es/#about: the browser reads the second as another document and reloads the page
+    const sectionHref = (id) => {
+        if(basePath === ''){
+            return '/#' + id;
+        }else{
+            return basePath + '#' + id;
+        }
+    };
+
     const value = {
         language: language,
         basePath: basePath,
+        sectionHref: sectionHref,
         otherBasePath: otherBasePath,
         neutralPath: neutralPath,
         copy: dictionaries[language],

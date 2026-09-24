@@ -6,7 +6,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://arriagagustavoo.com/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://arriagagustavoo.com/es"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://arriagagustavoo.com/"/>
-    <lastmod>2026-08-17</lastmod>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -15,9 +15,81 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://arriagagustavoo.com/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://arriagagustavoo.com/es"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://arriagagustavoo.com/"/>
-    <lastmod>2026-08-17</lastmod>
+    <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://arriagagustavoo.com/work/client-portal</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arriagagustavoo.com/work/client-portal"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://arriagagustavoo.com/es/work/client-portal"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arriagagustavoo.com/work/client-portal"/>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arriagagustavoo.com/es/work/client-portal</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arriagagustavoo.com/work/client-portal"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://arriagagustavoo.com/es/work/client-portal"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arriagagustavoo.com/work/client-portal"/>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://arriagagustavoo.com/work/queuesmart</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arriagagustavoo.com/work/queuesmart"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://arriagagustavoo.com/es/work/queuesmart"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arriagagustavoo.com/work/queuesmart"/>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://arriagagustavoo.com/es/work/queuesmart</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arriagagustavoo.com/work/queuesmart"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://arriagagustavoo.com/es/work/queuesmart"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arriagagustavoo.com/work/queuesmart"/>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://arriagagustavoo.com/work/bracketed</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arriagagustavoo.com/work/bracketed"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://arriagagustavoo.com/es/work/bracketed"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arriagagustavoo.com/work/bracketed"/>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://arriagagustavoo.com/es/work/bracketed</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arriagagustavoo.com/work/bracketed"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://arriagagustavoo.com/es/work/bracketed"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arriagagustavoo.com/work/bracketed"/>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://arriagagustavoo.com/dev</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arriagagustavoo.com/dev"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://arriagagustavoo.com/es/dev"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arriagagustavoo.com/dev"/>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://arriagagustavoo.com/es/dev</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://arriagagustavoo.com/dev"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://arriagagustavoo.com/es/dev"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://arriagagustavoo.com/dev"/>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://arriagagustavoo.com/privacy</loc>

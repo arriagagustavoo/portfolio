@@ -12,55 +12,6 @@
     gap: 1.5rem;
 }
 
-.skills-carousel{
-    --enter-delay: var(--intro-delay, 0ms);
-    background-color: var(--main-card);
-    border: 4px solid var(--main-text);
-    box-shadow: -6px 6px 0 var(--main-accent);
-    padding-block: 1rem;
-}
-
-/* overflow hides the extra track; the mask dissolves the logos instead of cutting them */
-.carousel-window{
-    overflow: hidden;
-    -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
-    mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
-}
-
-.carousel-track{
-    display: flex;
-    align-items: center;
-    gap: 3rem;
-    width: max-content;
-    animation: carousel-scroll 25s linear infinite;
-}
-
-.carousel-logo{
-    font-size: 3rem;
-    flex-shrink: 0;
-    width: 1em;
-    height: 1em;
-    object-fit: contain;
-}
-
-/* track holds the list twice. -50% and 0 are the same picture, so unwinding
-   to 0 travels left to right and still loops seamlessly */
-@keyframes carousel-scroll{
-    from{
-        transform: translateX(-50%);
-    }
-    to{
-        transform: translateX(0);
-    }
-}
-
-/* accesibility reduce motion */
-@media(prefers-reduced-motion: reduce){
-    .carousel-track{
-        animation: none;
-    }
-}
-
 .skills-groups{
     display: grid;
     grid-template-columns: minmax(0, 1fr);
@@ -178,38 +129,6 @@
     --enter-delay: calc(var(--intro-delay, 0ms) + 300ms + var(--group-delay, 0ms));
 }
 
-.skill-badge:nth-child(1){
-    --enter-delay: calc(var(--intro-delay, 0ms) + 420ms + var(--group-delay, 0ms));
-}
-
-.skill-badge:nth-child(2){
-    --enter-delay: calc(var(--intro-delay, 0ms) + 460ms + var(--group-delay, 0ms));
-}
-
-.skill-badge:nth-child(3){
-    --enter-delay: calc(var(--intro-delay, 0ms) + 500ms + var(--group-delay, 0ms));
-}
-
-.skill-badge:nth-child(4){
-    --enter-delay: calc(var(--intro-delay, 0ms) + 540ms + var(--group-delay, 0ms));
-}
-
-.skill-badge:nth-child(5){
-    --enter-delay: calc(var(--intro-delay, 0ms) + 580ms + var(--group-delay, 0ms));
-}
-
-.skill-badge:nth-child(6){
-    --enter-delay: calc(var(--intro-delay, 0ms) + 620ms + var(--group-delay, 0ms));
-}
-
-.skill-badge:nth-child(7){
-    --enter-delay: calc(var(--intro-delay, 0ms) + 660ms + var(--group-delay, 0ms));
-}
-
-.skill-badge:nth-child(8){
-    --enter-delay: calc(var(--intro-delay, 0ms) + 700ms + var(--group-delay, 0ms));
-}
-
 @media(min-width: 600px){
     .skills{
         gap: 2rem;
@@ -232,5 +151,17 @@
 @media(min-width: 1200px){
     .skills-groups{
         grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+/* the standard card lift, same as every other card */
+@media(hover: hover){
+    .skill-group{
+        transition: translate 200ms ease, box-shadow 200ms ease;
+    }
+
+    .skill-group:hover{
+        translate: 0 -4px;
+        box-shadow: -10px 10px 0 var(--main-accent);
     }
 }

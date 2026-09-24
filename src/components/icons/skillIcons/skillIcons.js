@@ -31,23 +31,45 @@ import VSCodeIcon from "./VSCodeIcon"
 import NpmIcon from "./NpmIcon"
 import OpenCVIcon from "./OpenCVIcon"
 import NumpyIcon from "./NumpyIcon"
+import NextIcon from "./NextIcon"
+import TypeScriptIcon from "./TypeScriptIcon"
+import SupabaseIcon from "./SupabaseIcon"
+import PlaywrightIcon from "./PlaywrightIcon"
+import JWTIcon from "./JWTIcon"
+import ZodIcon from "./ZodIcon"
+import PuppeteerIcon from "./PuppeteerIcon"
+import VercelIcon from "./VercelIcon"
+import SwiftIcon from "./SwiftIcon"
+import RIcon from "./RIcon"
+import ClaudeIcon from "./ClaudeIcon"
 
 // skill name -> logo component
 const skillIcons = {
     "Python": PythonIcon,
     "C++": CppIcon,
     "C#": CsharpIcon,
+    "Swift": SwiftIcon,
     "JavaScript": JavaScriptIcon,
+    "TypeScript": TypeScriptIcon,
     "HTML": HtmlIcon,
     "CSS": CssIcon,
     "MATLAB": MatlabIcon,
+    "R": RIcon,
 
     "React": ReactIcon,
+    "Next.js": NextIcon,
     "Vite": ViteIcon,
     "Express": ExpressIcon,
     "Node.js": NodeIcon,
     "MongoDB": MongoIcon,
     "PostgreSQL": PostgresIcon,
+    "Supabase": SupabaseIcon,
+    "Playwright": PlaywrightIcon,
+    "JWT": JWTIcon,
+    "Zod": ZodIcon,
+    "Puppeteer": PuppeteerIcon,
+    "Vercel": VercelIcon,
+    "Claude": ClaudeIcon,
 
     "Unity": UnityIcon,
     "OpenGL": OpenGLIcon,

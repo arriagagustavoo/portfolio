@@ -390,6 +390,10 @@
         color: var(--main-background);
     }
 
+    .hero-badge::before{
+        transition: background-color 160ms ease;
+    }
+
     .hero-badge:hover::before{
         background-color: var(--main-accent);
     }
@@ -605,7 +609,8 @@
     }
 }
 
-@media(min-width: 800px){
+/* landscape or square only, a portrait tablet stays on the mobile layout */
+@media(min-width: 800px) and (min-aspect-ratio: 1/1){
     .hero{
         /* tied to the column, not raw vw. the 6rem of edges eat more of a narrow screen */
         --hero-unit: min(30px, calc((100vw - 7rem) / 68), 2.15svh);

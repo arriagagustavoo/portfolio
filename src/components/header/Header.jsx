@@ -11,11 +11,12 @@ import {useState, useEffect, useRef} from 'react'
 import { Link } from 'react-router-dom'
 import { useLanguage } from '../../i18n/languageContext'
 
-const sectionIds = ["hero", "about", "projects", "skills", "services", "process", "contact"]
+const sectionIds = ["hero", "about", "projects", "services", "process", "contact"]
 
 function Header(){
 
-    const { copy, basePath, otherBasePath, neutralPath } = useLanguage();
+    const { copy, basePath, sectionHref, otherBasePath, neutralPath } = useLanguage();
+    const isHome = neutralPath === '';
     const navLinks = copy.header.nav;
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -92,6 +93,11 @@ function Header(){
             let ratio = 0;
             if(maxScroll > 0){
                 ratio = y / maxScroll;
+            }
+
+            // maxScroll is cached, and past 1 the full-width bar overflows and adds a horizontal scrollbar
+            if(ratio > 1){
+                ratio = 1;
             }
 
             // sections tile the page, so the active one is the last to pass the probe line
@@ -191,9 +197,19 @@ function Header(){
             className = "header-link contact";
         }
 
+        // a link to its own page, so the route decides whether it is lit, not the scroll position
+        if(link.to){
+            return (
+                <Link className = {className} key = {link.id} to = {basePath + link.to}
+                data-active = {neutralPath === link.to} onClick = {closeMenu}>
+                    {link.label}
+                </Link>
+            );
+        }
+
         return (
-            <a className = {className} key = {link.id} href = {basePath + "/#" + link.id}
-            data-active = {activeSection === link.id} onClick = {closeMenu}>
+            <a className = {className} key = {link.id} href = {sectionHref(link.id)}
+            data-active = {isHome && activeSection === link.id} onClick = {closeMenu}>
                 {link.label}
             </a>
         );
@@ -201,7 +217,7 @@ function Header(){
 
     // off the home page there is no section to hold, so the twin page is the whole target
     let languageTarget = otherBasePath + neutralPath;
-    if(neutralPath === ''){
+    if(isHome){
         let anchor = activeSection;
         if(!anchor){
             anchor = "hero";
@@ -214,7 +230,7 @@ function Header(){
         <>
         <header className = "header" ref = {headerRef}>
             <div className = "left-header">
-                <a className = "header-logo-link" href = {basePath + "/#hero"}>
+                <a className = "header-logo-link" href = {sectionHref("hero")}>
                     <picture key = {theme}>
                         <source media = "(min-width: 1000px)" srcSet = {logoLarge}/>
                         <img className = "header-logo" src = {logoSmall} alt = {copy.header.logoAlt}/>

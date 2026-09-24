@@ -6,6 +6,7 @@ import GithubIcon from "../icons/GithubIcon"
 import InstagramIcon from "../icons/InstagramIcon"
 import LinkedinIcon from "../icons/LinkedinIcon"
 import MailIcon from "../icons/MailIcon"
+import PhoneIcon from "../icons/PhoneIcon"
 import SectionEyebrow from "../sectionEyebrow/SectionEyebrow"
 import ContactForm from "./ContactForm"
 import { eyebrowDuration } from "../sectionEyebrow/eyebrowTiming"
@@ -14,56 +15,50 @@ import useScramble from "../../hooks/useScramble"
 import useReducedMotion from "../../hooks/useReducedMotion"
 import { useCopy } from "../../i18n/languageContext"
 
-// copy: true = copy button instead of a link
 const emailAddress = "gus@arriagagustavoo.com"
+const phoneNumber = "832-453-4158"
 
+// platform names are proper nouns, so they stay out of the copy files
 const findMeLinks = [
     {
+        name: "GitHub",
         label: "github.com/arriagagustavoo",
         href: "https://github.com/arriagagustavoo",
         Icon: GithubIcon,
-        copy: false,
     },
     {
+        name: "Instagram",
         label: "@arriagagustavoo",
         href: "https://instagram.com/arriagagustavoo",
         Icon: InstagramIcon,
-        copy: false,
     },
     {
+        name: "LinkedIn",
         label: "linkedin.com/in/arriagagustavoo",
         href: "https://www.linkedin.com/in/arriagagustavoo/",
         Icon: LinkedinIcon,
-        copy: false,
     },
     {
+        name: "Facebook",
         label: "facebook.com/arriagagustavoo",
         href: "https://www.facebook.com/arriagagustavoo",
         Icon: FacebookIcon,
-        copy: false,
     },
 ]
 
-// builds either column
-function buildLinks(links, onCopy){
+function buildLinks(links){
     return links.map((link) => {
         const Icon = link.Icon;
 
-        if(link.copy){
-            return (
-                <button className = "contact-link reveal-sweep" key = {link.label} type = "button" onClick = {() => onCopy(link.label)}>
-                    <Icon className = "contact-icon"/>
-                    {link.label}
-                </button>
-            );
-        }else{
-            return (
-                <a className = "contact-link reveal-sweep" key = {link.label} href = {link.href} target = "_blank" rel = "noopener noreferrer">
-                    <Icon className = "contact-icon"/>
-                    {link.label}
-                </a>
-            );
-        }
+        return (
+            <a className = "contact-link reveal-sweep" key = {link.label} href = {link.href} target = "_blank" rel = "noopener noreferrer">
+                <Icon className = "contact-icon"/>
+                <span className = "contact-link-text">
+                    <span className = "contact-link-name">{link.name}</span>
+                    <span className = "contact-link-handle">{link.label}</span>
+                </span>
+            </a>
+        );
     });
 }
 
@@ -111,21 +106,21 @@ function Contact(){
     };
 
     // absent entirely on an insecure origin, and writeText still rejects if permission is blocked
-    const handleCopy = (value) => {
+    const handleCopy = (value, eventName) => {
         if(!navigator.clipboard){
             showToast(copy.contact.copyFailed(value));
             return;
         }
 
         navigator.clipboard.writeText(value).then(() => {
-            track("email_copied");
+            track(eventName);
             showToast(copy.contact.copied(value));
         }).catch(() => {
             showToast(copy.contact.copyFailed(value));
         });
     };
 
-    const findMe = buildLinks(findMeLinks, handleCopy);
+    const findMe = buildLinks(findMeLinks);
 
     let toast;
     if(toastText){
@@ -162,10 +157,23 @@ function Contact(){
                 <div className = "contact-column" ref = {reachRef} data-visible = {reachVisible} style = {reachDelay}>
                     <SectionEyebrow text = {reachEyebrow} tag = {true} active = {reachVisible}/>
 
-                    <button className = "contact-email reveal-sweep" type = "button" onClick = {() => handleCopy(emailAddress)}>
-                        <MailIcon className = "contact-email-icon"/>
-                        {emailAddress}
-                    </button>
+                    <div className = "contact-reach-grid">
+                        <button className = "contact-email reveal-sweep" type = "button" onClick = {() => handleCopy(emailAddress, "email_copied")}>
+                            <MailIcon className = "contact-email-icon"/>
+                            <span className = "contact-link-text">
+                                <span className = "contact-email-address">{emailAddress}</span>
+                                <span className = "contact-link-handle">{copy.contact.copyHint}</span>
+                            </span>
+                        </button>
+
+                        <button className = "contact-email contact-phone reveal-sweep" type = "button" onClick = {() => handleCopy(phoneNumber, "phone_copied")}>
+                            <PhoneIcon className = "contact-email-icon"/>
+                            <span className = "contact-link-text">
+                                <span className = "contact-email-address">{phoneNumber}</span>
+                                <span className = "contact-link-handle">{copy.contact.copyHint}</span>
+                            </span>
+                        </button>
+                    </div>
                 </div>
 
                 <div className = "contact-column" ref = {findRef} data-visible = {findVisible} style = {findDelay}>

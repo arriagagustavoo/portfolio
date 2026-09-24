@@ -37,63 +37,92 @@ html{
     -webkit-text-size-adjust: 100%;
 }
 
-#hero, #about, #projects, #skills, #services, #process, #contact {
+#hero, #about, #projects, #dev, #dev-projects, #skills, #services, #process, #contact {
     scroll-margin-top: 5rem;
 }
 
-/* every layout pass was re-laying-out all of these; skipping them offscreen cut FCP 751ms */
-#about, #projects, #skills, #services, #process, #contact{
-    content-visibility: auto;
-}
-
-/* measured section heights, so the scrollbar and anchor jumps stay honest before a section renders */
+/* an anchor jump lands the first eyebrow 30px under the header:
+   the header, plus 30, minus the padding that sits above that eyebrow.
+   the page has always been able to scroll far enough for contact too */
 #about{
-    contain-intrinsic-size: auto 974px;
+    scroll-margin-top: calc(var(--header-height) + 30px - var(--about-padding-top));
 }
 
 #projects{
-    contain-intrinsic-size: auto 2920px;
+    scroll-margin-top: calc(var(--header-height) + 30px - var(--projects-padding-top));
+}
+
+#services, #process, #contact{
+    scroll-margin-top: calc(var(--header-height) + 30px - var(--section-padding-block));
+}
+
+/* every layout pass was re-laying-out all of these; skipping them offscreen cut FCP 751ms */
+#about, #projects, #dev-projects, #skills, #services, #process, #contact{
+    content-visibility: auto;
+}
+
+/* usePrimeSections adds this for two frames after load, so every section renders once and
+   remembers its real height. it wins on specificity (id + class beats id) */
+.priming-sections :is(#about, #projects, #dev-projects, #skills, #services, #process, #contact){
+    content-visibility: visible;
+}
+
+/* first guesses only, exact at the width they were measured at and wrong elsewhere until the section has rendered */
+#about{
+    contain-intrinsic-size: auto 2173px;
+}
+
+#projects{
+    contain-intrinsic-size: auto 1666px;
+}
+
+#dev-projects{
+    contain-intrinsic-size: auto 1900px;
 }
 
 #skills{
-    contain-intrinsic-size: auto 1353px;
+    contain-intrinsic-size: auto 1629px;
 }
 
 #services{
-    contain-intrinsic-size: auto 1801px;
+    contain-intrinsic-size: auto 2660px;
 }
 
 #process{
-    contain-intrinsic-size: auto 2557px;
+    contain-intrinsic-size: auto 2611px;
 }
 
 #contact{
-    contain-intrinsic-size: auto 1129px;
+    contain-intrinsic-size: auto 1541px;
 }
 
 @media(min-width: 800px){
     #about{
-        contain-intrinsic-size: auto 741px;
+        contain-intrinsic-size: auto 1298px;
     }
 
     #projects{
-        contain-intrinsic-size: auto 1972px;
+        contain-intrinsic-size: auto 1359px;
+    }
+
+    #dev-projects{
+        contain-intrinsic-size: auto 1250px;
     }
 
     #skills{
-        contain-intrinsic-size: auto 805px;
+        contain-intrinsic-size: auto 964px;
     }
 
     #services{
-        contain-intrinsic-size: auto 1356px;
+        contain-intrinsic-size: auto 1900px;
     }
 
     #process{
-        contain-intrinsic-size: auto 1565px;
+        contain-intrinsic-size: auto 1382px;
     }
 
     #contact{
-        contain-intrinsic-size: auto 957px;
+        contain-intrinsic-size: auto 1105px;
     }
 }
 
@@ -120,8 +149,9 @@ html{
     --overlay-scrim-strong: rgba(228, 228, 228, 0.96);
 
     /* desktop only: content caps at --content-max-width and centers,
-       leftover space becomes even side padding. Never less than 3rem. */
-    --content-max-width: 1200px;
+       leftover space becomes even side padding. Never less than 3rem.
+       2450 = the hero's own width at 2560, so sections match it instead of sitting narrower */
+    --content-max-width: 2450px;
     --section-inset: max(3rem, calc((100% - var(--content-max-width)) / 2));
 
     /* fallback only — Header.jsx measures the real header and overwrites this.
@@ -315,5 +345,28 @@ a, button{
 
     [data-visible='true'] :is(.reveal-sweep, .reveal-rise, .reveal-flip, .reveal-fade){
         animation: none;
+    }
+}
+
+/* small standalone links: a bigger hit area on phones and tablets without moving anything */
+@media(max-width: 1024px){
+    :is(.footer-social, .showcase-repo){
+        padding: .55rem;
+        margin: -.55rem;
+    }
+
+    :is(.footer-privacy, .projects-more, .showcase-link, .service-link){
+        padding-block: .5rem;
+        margin-block: -.5rem;
+    }
+
+    :is(.dev-back, .case-back){
+        padding: .6rem .5rem;
+        margin: -.6rem -.5rem;
+    }
+
+    .packages-arrow{
+        min-width: 40px;
+        min-height: 40px;
     }
 }

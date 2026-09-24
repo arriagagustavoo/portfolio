@@ -11,10 +11,47 @@
        view() timeline then binds to it instead of the page and never advances */
 }
 
+/* a var so index.css can work the anchor landing off it */
+.projects[data-group='work']{
+    --projects-padding-top: 1.5rem;
+    padding-top: var(--projects-padding-top);
+}
+
 .projects-lead{
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+}
+
+.projects-head{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: .5rem 1.5rem;
+}
+
+.projects-more{
+    --enter-delay: var(--intro-delay, 0ms);
+    color: var(--main-accent);
+    font-size: 1.15rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.projects-more::after{
+    content: " ›";
+}
+
+@media(hover: hover){
+    .projects-more{
+        transition: color 160ms ease, translate 180ms ease;
+    }
+
+    .projects-more:hover{
+        color: var(--main-text);
+        translate: 4px 0;
+    }
 }
 
 .projects-grid{
@@ -31,6 +68,10 @@
 
     .projects{
         gap: 2rem;
+    }
+
+    .projects[data-group='work']{
+        --projects-padding-top: 2rem;
     }
 
     .projects-lead{

@@ -63,48 +63,79 @@
     gap: .75rem;
 }
 
-/* auto-fit, not a breakpoint: this block's width depends on the headline beside it */
 .contact-link-grid{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-    gap: .8rem 1.5rem;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.25rem;
+}
+
+/* the standard card box, shared by the email and the four links */
+.contact-email, .contact-link{
+    display: flex;
+    align-items: center;
+    gap: .85rem;
+    width: 100%;
+    background-color: var(--main-card);
+    border: 4px solid var(--main-text);
+    box-shadow: -6px 6px 0 var(--main-accent);
+    padding: .65rem 1rem;
+    color: var(--main-text);
+    font-family: inherit;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.contact-link-text{
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+    min-width: 0;
+}
+
+.contact-link-handle{
+    color: var(--secondary-text);
+    font-size: .95rem;
+    overflow-wrap: anywhere;
+}
+
+/* auto-fit collapses to one column when two cards would break the address mid-word */
+.contact-reach-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(27rem, 100%), 1fr));
+    gap: 1.25rem;
 }
 
 /* without this it inherits 0ms and lands before its own eyebrow has finished typing */
 .contact-email{
     --enter-delay: var(--intro-delay, 0ms);
-    display: flex;
-    align-items: center;
-    gap: .75rem;
-    width: fit-content;
-    max-width: 100%;
-    background: none;
-    border: none;
-    padding: 0;
-    color: var(--main-text);
-    font-family: inherit;
-    font-size: 1.4rem;
+}
+
+.contact-phone{
+    --enter-delay: calc(var(--intro-delay, 0ms) + 90ms);
+}
+
+.contact-email-address{
+    font-size: 1.25rem;
     font-weight: 700;
     letter-spacing: -0.01em;
-    text-align: left;
-    cursor: pointer;
     overflow-wrap: anywhere;
 }
 
 .contact-email-icon{
-    font-size: 1.7rem;
+    font-size: 2rem;
     flex-shrink: 0;
 }
 
 @media(hover: hover){
     /* translate, not transform: reveal-sweep owns the shorthand */
-    .contact-email{
-        transition: translate 200ms ease, color 200ms ease;
+    .contact-email, .contact-link{
+        transition: translate 200ms ease, box-shadow 200ms ease;
     }
 
-    .contact-email:hover{
-        color: var(--main-accent);
-        translate: .3rem 0;
+    .contact-email:hover, .contact-link:hover{
+        translate: 0 -4px;
+        box-shadow: -10px 10px 0 var(--main-accent);
     }
 }
 
@@ -124,36 +155,14 @@
     --enter-delay: calc(var(--intro-delay, 0ms) + 270ms);
 }
 
-.contact-link{
-    display: flex;
-    align-items: center;
-    gap: .75rem;
-    color: var(--main-text);
+.contact-link-name{
     font-size: 1.15rem;
-    text-decoration: none;
-    width: fit-content;
-    background: none;
-    border: none;
-    padding: 0;
-    font-family: inherit;
-    text-align: left;
-    cursor: pointer;
-}
-
-@media(hover: hover){
-    /* translate, not transform: reveal-sweep owns the shorthand */
-    .contact-link{
-        transition: translate 200ms ease, color 200ms ease;
-    }
-
-    .contact-link:hover{
-        color: var(--main-accent);
-        translate: .3rem 0;
-    }
+    font-weight: 700;
+    line-height: 1.1;
 }
 
 .contact-icon{
-    font-size: 1.5rem;
+    font-size: 2rem;
     flex-shrink: 0;
 }
 
@@ -258,8 +267,9 @@
         gap: 3rem;
     }
 
+    /* grows with the screen, 192px at 2560 and never under the old 80px */
     .contact-headline{
-        font-size: 5rem;
+        font-size: clamp(5rem, 7.5vw, 12rem);
     }
 
     /* full-width row of its own, so the original headline + links row is untouched */
@@ -272,13 +282,26 @@
     .contact-columns{
         flex: 1 1 26rem;
         gap: 2.5rem;
+        max-width: 90rem;
+        margin-left: auto;
+        /* as tall as the headline block, with the leftover space between the two groups */
+        align-self: stretch;
+        justify-content: space-between;
     }
 
-    .contact-email{
-        font-size: 1.75rem;
+    /* one column when the block is narrow, or the longest handle wraps to three lines */
+    .contact-link-grid{
+        grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
     }
 
-    .contact-email-icon{
-        font-size: 2rem;
+    .contact-email-address{
+        font-size: 1.5rem;
+    }
+}
+
+/* auto-fit would make it 3 + 1 once the block is wide */
+@media(min-width: 1200px){
+    .contact-link-grid{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }

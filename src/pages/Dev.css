@@ -1,0 +1,204 @@
+/* one container for the whole page body: it owns the padding and divider the sections used to have */
+.dev-layout{
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 3rem;
+    border-bottom: var(--section-divider);
+    padding: 2rem var(--section-padding-inline) var(--section-padding-block);
+}
+
+/* sits in the header-to-eyebrow padding, so adding it moved nothing */
+.dev-back{
+    position: absolute;
+    top: .45rem;
+    left: var(--section-padding-inline);
+    color: var(--secondary-text);
+    font-size: .9rem;
+    text-decoration: none;
+}
+
+.dev-back::before{
+    content: "‹ ";
+    color: var(--main-accent);
+}
+
+@media(hover: hover){
+    .dev-back{
+        transition: color 160ms ease;
+    }
+
+    .dev-back:hover{
+        color: var(--main-text);
+    }
+}
+
+.dev-col{
+    display: contents;
+}
+
+.dev-layout .dev-intro,
+.dev-layout .projects,
+.dev-layout .skills,
+.dev-layout .coursework{
+    padding: 0;
+    border-bottom: none;
+    min-height: 0;
+}
+
+/* the page is short enough that skipping offscreen sections saves nothing, and it keeps the grid honest */
+.dev-layout #dev-projects,
+.dev-layout #skills{
+    content-visibility: visible;
+}
+
+/* one column: the work comes before the skills, whatever order the columns are written in */
+.dev-layout .dev-intro{
+    order: 1;
+}
+
+.dev-layout .projects{
+    order: 2;
+}
+
+.dev-layout .skills{
+    order: 3;
+}
+
+.dev-layout .coursework{
+    order: 4;
+}
+
+.dev-intro{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.dev-title{
+    --enter-delay: var(--intro-delay, 0ms);
+    color: var(--main-text);
+    font-family: Geist, sans-serif;
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: .95;
+    letter-spacing: -0.03em;
+}
+
+.dev-bio{
+    max-width: 60ch;
+    color: var(--secondary-text);
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.dev-facts{
+    display: flex;
+    flex-wrap: wrap;
+    gap: .6rem 1.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.dev-fact{
+    color: var(--main-text);
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+/* the hero services marker */
+.dev-fact::before{
+    content: "> ";
+    color: var(--main-accent);
+}
+
+.dev-outro{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: var(--section-padding-block) var(--section-padding-inline);
+}
+
+.dev-outro-text{
+    color: var(--main-text);
+    font-size: 1.35rem;
+    font-weight: 700;
+}
+
+/* the dev cards are the secondary set, so they run denser and quieter than the work ones */
+.projects[data-group='dev'] .card-title{
+    font-size: 1.25rem;
+}
+
+.projects[data-group='dev'] .card-description{
+    font-size: .95rem;
+}
+
+@media(min-width: 600px){
+    .dev-title{
+        font-size: 4rem;
+    }
+}
+
+/* two columns: who I am and what I use on the left, the work and the classes on the right */
+@media(min-width: 1400px){
+    .dev-layout{
+        grid-template-columns: minmax(0, 6fr) minmax(0, 7fr);
+        gap: 3rem 4rem;
+    }
+
+    .dev-col{
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    .dev-layout .dev-intro,
+    .dev-layout .projects,
+    .dev-layout .skills,
+    .dev-layout .coursework{
+        order: 0;
+    }
+
+    /* the intro grows with the screen, 92px at 2560 */
+    .dev-title{
+        font-size: clamp(4rem, 3.6vw, 6.5rem);
+    }
+
+    .dev-bio{
+        font-size: clamp(1.1rem, 1.05vw, 1.5rem);
+    }
+
+    .dev-fact{
+        font-size: clamp(1rem, .95vw, 1.35rem);
+    }
+
+    .dev-layout .projects[data-group='dev'] .projects-grid{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .dev-layout .skills-groups{
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    /* the last section in each column takes the leftover height, so both columns end on the same line */
+    .dev-layout .skills,
+    .dev-layout .coursework{
+        flex: 1;
+    }
+
+    .dev-layout .skills-lead,
+    .dev-layout .coursework-lead,
+    .dev-layout .skills-groups,
+    .dev-layout .course-groups{
+        flex: 1;
+    }
+}
+
+@media(min-width: 1800px){
+    .dev-layout .skills-groups{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}

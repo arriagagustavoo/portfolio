@@ -9,7 +9,7 @@
 
 .footer-text{
     color: var(--main-background);
-    font-size: .8rem;
+    font-size: max(.8rem, 12px);
     font-weight: 500;
 }
 

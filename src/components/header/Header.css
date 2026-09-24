@@ -195,6 +195,7 @@
     color: var(--main-text);
     font-weight: 700;
     clip-path: var(--slanted-shape);
+    transition: background-color 160ms ease;
 }
 
 /* not redundant: the active rule above outranks .contact, and accent-on-accent is invisible */

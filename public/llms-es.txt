@@ -5,7 +5,7 @@
 
 Estudiante de último año de Ciencias de la Computación en la Universidad de Houston, que toma
 trabajo freelance. El contacto es por el formulario del sitio o por correo a
-gus@arriagagustavoo.com. No hay número de teléfono publicado.
+gus@arriagagustavoo.com o por teléfono al 832-453-4158.
 
 El sitio está en inglés y en español. La versión en español vive en
 https://arriagagustavoo.com/es y es una traducción del mismo contenido.
@@ -40,6 +40,23 @@ teléfono, y la preparación de reseñas; el cuidado SEO cubre mantener el perfi
 reseñas y un reporte mensual. No incluye redacción de contenido ni compra de enlaces, y no se
 promete ninguna posición en Google.
 
+## Portal de clientes a medida
+
+Un acceso privado para los propios clientes de un negocio: propuestas, contratos y facturas en un solo lugar,
+avances con fotos, archivos y mensajes, y un lado administrativo para el dueño. Es el mismo portal con el que
+Gustavo opera su propio negocio, vendido como un desarrollo a medida con un precio inicial y un plan mensual
+que cubre disponibilidad, correcciones y ajustes pequeños. Los pagos con tarjeta, las integraciones y las
+funciones nuevas se cotizan aparte.
+
+## Cómo funciona
+
+1. Contacto: se describe lo que el negocio necesita; en menos de 24 horas llegan una respuesta y una propuesta.
+2. Arranque: el cliente entra al portal de clientes de Gustavo, revisa el alcance, el precio y el plazo por
+   escrito, firma el contrato y paga un anticipo.
+3. Desarrollo: se muestra el avance en el camino. La mayoría de los sitios quedan listos unas dos semanas
+   después de que llega el contenido; los proyectos más grandes toman más, y la propuesta trae el plazo.
+4. Entrega: se paga el resto, las cuentas quedan a nombre del cliente, y Gustavo lo guía y sigue disponible.
+
 ## Condiciones de trabajo
 
 - Un anticipo al firmar, el resto contra entrega. Zelle, transferencia bancaria o cheque.
@@ -51,6 +68,10 @@ promete ninguna posición en Google.
 
 ## Páginas
 
-- [Inicio](https://arriagagustavoo.com/es) — sobre mí, proyectos, habilidades, servicios, paquetes, proceso, contacto
+- [Inicio](https://arriagagustavoo.com/es) — sobre mí, trabajo, servicios, paquetes, proceso, contacto
+- [Caso de estudio: Client Portal](https://arriagagustavoo.com/es/work/client-portal) — un portal de clientes construido para operar este negocio freelance: propuestas, contratos, facturas y avances en un solo lugar, con una sola ficha de proyecto que alimenta todos los documentos
+- [Caso de estudio: QueueSmart](https://arriagagustavoo.com/es/work/queuesmart) — una aplicación web de gestión de filas de un curso universitario de Diseño de Software, construida por un equipo de cuatro; Gustavo construyó el lado administrativo. Trabajo de escuela, no de un cliente
+- [Caso de estudio: Bracketed](https://arriagagustavoo.com/es/work/bracketed) — las plantillas de propuesta, contrato y factura usadas con clientes: HTML simple, para llenar, que se imprimen como PDF limpios
+- [Dev](https://arriagagustavoo.com/es/dev) — el lado técnico: educación y cursos, la lista de habilidades, y los proyectos de escuela y personales
 - [Política de privacidad](https://arriagagustavoo.com/es/privacy) — qué recopila el formulario y quién lo procesa
 - [English version](https://arriagagustavoo.com/) — the same site in English
