@@ -41,7 +41,7 @@ const findMeLinks = [
     {
         name: "Facebook",
         label: "facebook.com/arriagagustavoo",
-        href: "https://www.facebook.com/arriagagustavoo",
+        href: "https://www.facebook.com/gustavo.arriaga.395669/",
         Icon: FacebookIcon,
     },
 ]
@@ -195,9 +195,10 @@ function Contact(){
                     <span aria-hidden = "true">^</span>
                 </button>
             </div>
-
-            {toast}
         </section>
+
+        {/* outside the section: its content-visibility containment traps position fixed */}
+        {toast}
         </>
     )
 }

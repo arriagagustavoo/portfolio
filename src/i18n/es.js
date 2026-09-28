@@ -139,7 +139,6 @@ export default {
                     "Panel del cliente con la etapa del proyecto, lo pagado y lo pendiente, documentos, avance y mensajes",
                     "La propuesta como la lee el cliente, con los controles para aprobar o pedir cambios",
                     "Contrato de servicio firmado que muestra a ambas partes y el registro de la aprobación",
-                    "La factura como la ve el cliente, con el monto a pagar y cómo pagarlo",
                     "Historial de avance con capturas del sitio, cada una con una reacción y un campo de comentario",
                     "Hilo de mensajes entre el cliente y yo",
                     "Archivos que el cliente ha enviado, junto a los puntos de la lista que responden",
@@ -525,7 +524,7 @@ export default {
             {
                 id: "basic",
                 name: "Básico",
-                price: "Desde $750",
+                price: "Desde $600",
                 monthly: "$45/mes",
                 goodFor: "Un negocio que necesita que lo encuentren en internet.",
                 summary: "Un sitio que le muestra a la gente quién eres, qué haces y cómo contactarte.",
@@ -534,7 +533,7 @@ export default {
             {
                 id: "standard",
                 name: "Estándar",
-                price: "Desde $2200",
+                price: "Desde $1700",
                 monthly: "$65/mes",
                 goodFor: "Un negocio que recibe reservaciones, pedidos o mensajes por su sitio.",
                 inherits: "Todo lo del Básico",
@@ -544,7 +543,7 @@ export default {
             {
                 id: "premium",
                 name: "Premium",
-                price: "Desde $3800",
+                price: "Desde $3000",
                 monthly: "$95/mes",
                 goodFor: "Un negocio que quiere un sitio único conectado a sus otras herramientas.",
                 inherits: "Todo lo del Estándar",
@@ -586,7 +585,7 @@ export default {
         portal: {
             eyebrow: "// Portal de clientes",
             name: "Portal a medida",
-            price: "Desde $3500",
+            price: "Desde $2800",
             monthly: "$120/mes",
             tagline: "Un acceso privado donde tus propios clientes ven todo sobre su proyecto",
             status: "El mismo portal con el que opero mi propio negocio",

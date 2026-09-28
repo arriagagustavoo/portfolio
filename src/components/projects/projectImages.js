@@ -60,7 +60,6 @@ import cpSignIn from "../../assets/projects/clientportal/Client-SignIn.webp"
 import cpClientDashboard from "../../assets/projects/clientportal/Client-Dashboard.webp"
 import cpClientProposal from "../../assets/projects/clientportal/Client-Proposal.webp"
 import cpClientContract from "../../assets/projects/clientportal/Client-Contract.webp"
-import cpClientInvoice from "../../assets/projects/clientportal/Client-Invoice.webp"
 import cpClientProgress from "../../assets/projects/clientportal/Client-Progress.webp"
 import cpClientMessages from "../../assets/projects/clientportal/Client-Messages.webp"
 import cpClientFiles from "../../assets/projects/clientportal/Client-Files.webp"
@@ -191,7 +190,6 @@ export const clientPortalImages = [
     { src: cpClientDashboard, alt: "Client dashboard with the project stage, amounts paid and due, documents, progress and messages" },
     { src: cpClientProposal, alt: "Proposal as the client reads it, with the approve and request changes controls" },
     { src: cpClientContract, alt: "Signed service agreement showing both parties and the approval record" },
-    { src: cpClientInvoice, alt: "Invoice as the client sees it, with the amount due and how to pay" },
     { src: cpClientProgress, alt: "Progress feed of build screenshots, each with a reaction and a comment box" },
     { src: cpClientMessages, alt: "Message thread between the client and me" },
     { src: cpClientFiles, alt: "Files the client has sent, against the checklist items they answer" },

@@ -233,7 +233,7 @@
     padding: 1rem 2rem;
     font-size: 1rem;
     font-weight: 600;
-    z-index: 10;
+    z-index: 130;
     animation: toast-in 200ms ease-out;
 }
 

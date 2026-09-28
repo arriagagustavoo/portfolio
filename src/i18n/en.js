@@ -139,7 +139,6 @@ export default {
                     "Client dashboard with the project stage, amounts paid and due, documents, progress and messages",
                     "Proposal as the client reads it, with the approve and request changes controls",
                     "Signed service agreement showing both parties and the approval record",
-                    "Invoice as the client sees it, with the amount due and how to pay",
                     "Progress feed of build screenshots, each with a reaction and a comment box",
                     "Message thread between the client and me",
                     "Files the client has sent, against the checklist items they answer",
@@ -527,7 +526,7 @@ export default {
             {
                 id: "basic",
                 name: "Basic",
-                price: "From $750",
+                price: "From $600",
                 monthly: "$45/mo",
                 goodFor: "A business that needs to be found online.",
                 summary: "A site that shows people who you are, what you do, and how to reach you.",
@@ -536,7 +535,7 @@ export default {
             {
                 id: "standard",
                 name: "Standard",
-                price: "From $2200",
+                price: "From $1700",
                 monthly: "$65/mo",
                 goodFor: "A business that takes bookings, orders or messages through its site.",
                 inherits: "Everything in Basic",
@@ -546,7 +545,7 @@ export default {
             {
                 id: "premium",
                 name: "Premium",
-                price: "From $3800",
+                price: "From $3000",
                 monthly: "$95/mo",
                 goodFor: "A business that wants a one-of-a-kind site connected to its other tools.",
                 inherits: "Everything in Standard",
@@ -588,7 +587,7 @@ export default {
         portal: {
             eyebrow: "// Client portal",
             name: "Custom portal",
-            price: "From $3500",
+            price: "From $2800",
             monthly: "$120/mo",
             tagline: "A private login where your own clients see everything about their project",
             status: "The same portal I run my own business on",
