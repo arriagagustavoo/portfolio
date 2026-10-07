@@ -28,8 +28,8 @@ const findMeLinks = [
     },
     {
         name: "Instagram",
-        label: "@arriagagustavoo",
-        href: "https://instagram.com/arriagagustavoo",
+        label: "@dev.arriagagustavoo",
+        href: "https://www.instagram.com/dev.arriagagustavoo/",
         Icon: InstagramIcon,
     },
     {

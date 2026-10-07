@@ -15,7 +15,7 @@ function Footer(){
     const socials = [
         { label: copy.footer.emailMe, href: sectionHref("contact"), Icon: MailIcon, external: false },
         { label: "GitHub", href: "https://github.com/arriagagustavoo", Icon: GithubIcon, external: true },
-        { label: "Instagram", href: "https://instagram.com/arriagagustavoo", Icon: InstagramIcon, external: true },
+        { label: "Instagram", href: "https://www.instagram.com/dev.arriagagustavoo/", Icon: InstagramIcon, external: true },
         { label: "LinkedIn", href: "https://www.linkedin.com/in/arriagagustavoo/", Icon: LinkedinIcon, external: true },
     ];
 
