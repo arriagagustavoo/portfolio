@@ -41,7 +41,7 @@ const findMeLinks = [
     {
         name: "Facebook",
         label: "facebook.com/arriagagustavoo",
-        href: "https://www.facebook.com/gustavo.arriaga.395669/",
+        href: "https://www.facebook.com/arriagagustavoo/",
         Icon: FacebookIcon,
     },
 ]
