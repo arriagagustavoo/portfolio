@@ -6,7 +6,7 @@ import { Chips } from '@/components/bits'
 import { Gallery } from '@/components/Work'
 import { getDict } from '@/lib/content/site'
 import { href, locales, SITE, type Lang } from '@/lib/i18n'
-import { projects } from '@/lib/data'
+import { lead, projects } from '@/lib/data'
 import { crumbs, JsonLd, pageMeta } from '@/lib/seo'
 
 type P = { params: Promise<{ lang: Lang; slug: string }> }
@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: P): Promise<Metadata> {
   const { lang, slug } = await params
   const p = projects.find(x => x.slug === slug); if (!p) return {}
   const it = (getDict(lang).legacy.caseStudy.items as Record<string, Item>)[p.key]
-  return pageMeta(lang, 'work', '/work/' + slug, { title: it.meta.title.replace(/ — /g, ' | '), description: it.meta.description, image: p.shots[0].src })
+  return pageMeta(lang, 'work', '/work/' + slug, { title: it.meta.title.replace(/ — /g, ' | '), description: it.meta.description, image: p.shots[lead[p.key]].src })
 }
 
 export default async function Case({ params }: P) {
@@ -45,7 +45,7 @@ export default async function Case({ params }: P) {
   return (
     <>
       <JsonLd data={crumbs(lang, [[t.nav.home, '/'], [t.nav.work, '/work'], [p.title, '/work/' + slug]])} />
-      <JsonLd data={{ '@context': 'https://schema.org', '@type': 'CreativeWork', name: p.title, description: it.meta.description, url: SITE + href(lang, '/work/' + slug), image: SITE + p.shots[0].src, creator: { '@id': SITE + '/#gustavo' }, inLanguage: lang, keywords: p.skills.join(', ') }} />
+      <JsonLd data={{ '@context': 'https://schema.org', '@type': 'CreativeWork', name: p.title, description: it.meta.description, url: SITE + href(lang, '/work/' + slug), image: SITE + p.shots[lead[p.key]].src, creator: { '@id': SITE + '/#gustavo' }, inLanguage: lang, keywords: p.skills.join(', ') }} />
       <section className="wrap sec first">
         <nav className="crumb" aria-label="Breadcrumb"><Link href={href(lang, '/work')} transitionTypes={['nav-back']}>{c.crumb}</Link><span aria-hidden="true">/</span><span aria-current="page">{p.title}</span></nav>
         <div className="cs-top">

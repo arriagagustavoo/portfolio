@@ -1,72 +1,36 @@
-# Gustavo Arriaga
+# Gustavo Arriaga (arriagagustavoo)
 
-> Freelance web developer and designer based in Houston, Texas. Builds websites, custom
-> software, branding and local SEO, and 3D models and prints for small businesses.
+> A one-person design / code studio in Houston, Texas. Gustavo "Gus" Arriaga designs and builds websites and custom software for small businesses, in English and Spanish, and handles graphic design and local SEO.
 
-Computer Science senior at the University of Houston, taking on freelance client work.
-Contact is through the form on the site, by email at gus@arriagagustavoo.com, or by phone at 832-453-4158.
-
-The site is available in English and Spanish. The Spanish version lives at
-https://arriagagustavoo.com/es and is described in https://arriagagustavoo.com/llms-es.txt.
-
-## Services
-
-- **Software products** — custom websites, web applications and internal tools, full stack.
-- **Design and SEO** — branding, graphics, and local SEO: Google Business Profile, the map
-  listing, reviews, and the on-page setup that lets Google read the site.
-- **3D modeling and printing** — CAD design, prototypes and finished custom prints.
-
-## Website packages
-
-Three tiers, priced from a starting figure and settled in a written proposal:
-
-- **Basic** — an informational site: branded pages, a contact form, and the technical SEO baked in
-  (sitemap, page titles, schema, speed and mobile checks). No database and no Business Profile work.
-- **Standard** — adds a backend, so the site stores what comes in and the owner gets a private
-  admin page to read bookings, orders, messages and sign-ups. Customer accounts optional.
-- **Premium** — adds fully custom design, full branding, and Google Business Profile setup.
-
-Every package includes monthly maintenance from launch: uptime, bug fixes and small tweaks.
-It is part of the package, not optional, but either party can end it on 30 days' notice.
-New features are quoted separately.
-
-SEO setup (one-time) and SEO care (monthly) can be added to any package. Setup covers the Google
-Business Profile, name/address/phone consistency and review setup; SEO care covers keeping the
-profile current, review replies and a monthly report. It does not include content writing or
-link building, and no ranking position is promised.
-
-## Custom client portal
-
-A private login for a business's own clients: proposals, contracts and invoices in one place, progress
-updates with photos, files and messages, and an admin side for the owner. It is the same portal Gustavo
-runs his own business on, sold as a custom build with a starting price and a monthly plan covering
-uptime, fixes and small tweaks. Card payments, integrations and new features are quoted separately.
+Computer science senior at the University of Houston (B.S. Computer Science, Software Design). Freelancing since 2026.
+Contact: the form at https://arriagagustavoo.com/contact, gus@arriagagustavoo.com, or call/text 832-453-4158.
+Spanish version of the site: https://arriagagustavoo.com/es (summary in https://arriagagustavoo.com/llms-es.txt).
 
 ## How it works
 
-1. Contact: describe what the business needs; a reply and a proposal follow within 24 hours.
-2. Onboarding: the client is set up in Gustavo's client portal, reviews the scope, price and
-   timeline in writing, signs the contract and pays a deposit.
-3. Build: progress is shown along the way. Most sites are ready about two weeks after the content
-   arrives; bigger builds take longer, and the proposal states the timeline.
-4. Handoff: the remainder is paid, accounts are in the client's name, and Gustavo walks the client
-   through it and stays reachable.
+1. Design: a talk about the business, then a free design the owner sees before paying anything.
+2. Build: the site is coded; the client follows progress, files, messages and payments in their own portal.
+3. Ship: it goes live; hosting, fixes and small changes every month, no lock-in (30 days' notice either way).
 
-## Working terms
+## Packages (approximate; exact price comes from the free estimate and a written quote)
 
-- A deposit on signing, the remainder on delivery. Zelle, bank transfer or check.
-- Domain and hosting are registered in the client's name, on the client's payment method.
-- Out-of-scope work is quoted in writing and needs approval before it starts.
-- Either party can end the arrangement on 30 days' notice, with accounts and data handed over.
-- Clients own the data their site collects and the documents it generates, and receive a
-  licence to the application.
+- Starter, from $600 + $45/mo: customers read it. Its own design and motion, works on phones, contact form, readable by Google.
+- Standard, about $1,700 + $65/mo: customers do one thing on it (book, order or message), with accounts and a database.
+- Premium, about $3,000 + $95/mo: customers do several things, and the owner runs it from a back office (payments, schedules, editing).
+- Custom portal, about $2,800 + $120/mo: software the business itself runs on every day.
+
+Add-ons: extra pages, a Spanish version, Google Business Profile setup and monthly care, review stands (NFC/QR), self-editing, logo cleanup, custom design, 3D models and prints.
+Payments: half at signing, half at delivery. Two rounds of revisions. The client owns the site, code, content and data once paid. No ranking or sales guarantees.
 
 ## Pages
 
-- [Home](https://arriagagustavoo.com/) — about, work, services, packages, process, contact
-- [Client Portal case study](https://arriagagustavoo.com/work/client-portal) — a client portal built to run this freelance practice: proposals, contracts, invoices and progress in one place, with one project brief feeding every document
-- [QueueSmart case study](https://arriagagustavoo.com/work/queuesmart) — a queue management web app from a university Software Design course, built by a team of four; the admin side was built by Gustavo. Coursework, not client work
-- [Bracketed case study](https://arriagagustavoo.com/work/bracketed) — the proposal, contract and invoice templates used for client work: plain HTML, fill-in-the-blank, printing to clean PDFs
-- [Dev](https://arriagagustavoo.com/dev) — the engineering side: education and coursework, the skills list, and the coursework and personal projects
-- [Privacy policy](https://arriagagustavoo.com/privacy) — what the contact form collects and who processes it
-- [Versión en español](https://arriagagustavoo.com/es) — the same site in Spanish
+- [Home](https://arriagagustavoo.com/): what he does, the free estimate, featured work, packages, why work with him
+- [Work](https://arriagagustavoo.com/work): projects with case studies
+- [Client Portal case study](https://arriagagustavoo.com/work/client-portal): his own client software (Next.js, TypeScript, Supabase)
+- [Bracketed case study](https://arriagagustavoo.com/work/bracketed): his proposal, contract and invoice templates
+- [QueueSmart case study](https://arriagagustavoo.com/work/queuesmart): a team coursework app; he built the admin side
+- [Services](https://arriagagustavoo.com/services): packages, add-ons and common questions
+- [FAQ](https://arriagagustavoo.com/faq): working together, price and payment, after launch
+- [About](https://arriagagustavoo.com/about): who he is
+- [Dev](https://arriagagustavoo.com/dev): skills, school projects and coursework
+- [Contact](https://arriagagustavoo.com/contact)

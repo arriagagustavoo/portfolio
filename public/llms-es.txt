@@ -1,77 +1,24 @@
-# Gustavo Arriaga
+# Gustavo Arriaga (arriagagustavoo)
 
-> Desarrollador y diseñador web freelance en Houston, Texas. Hace sitios web, software a
-> medida, branding y SEO local, y modelos e impresión 3D para pequeños negocios.
+> Un estudio de diseño y código de una sola persona en Houston, Texas. Gustavo "Gus" Arriaga diseña y programa sitios web y software a la medida para pequeños negocios, en inglés y español, además de diseño gráfico y SEO local.
 
-Estudiante de último año de Ciencias de la Computación en la Universidad de Houston, que toma
-trabajo freelance. El contacto es por el formulario del sitio o por correo a
-gus@arriagagustavoo.com o por teléfono al 832-453-4158.
-
-El sitio está en inglés y en español. La versión en español vive en
-https://arriagagustavoo.com/es y es una traducción del mismo contenido.
-
-## Servicios
-
-- **Productos de software** — sitios web, aplicaciones y herramientas internas a medida, full stack.
-- **Diseño y SEO** — branding, gráficos y SEO local: Perfil de Negocio de Google, la ficha del
-  mapa, reseñas, y la configuración en la página que permite a Google leer el sitio.
-- **Modelado e impresión 3D** — diseño CAD, prototipos e impresiones terminadas a medida.
-
-## Paquetes web
-
-Tres niveles, con un precio inicial y cerrados en una propuesta por escrito:
-
-- **Básico** — un sitio informativo: páginas con tu marca, formulario de contacto y el SEO técnico
-  incluido (sitemap, títulos de página, schema, velocidad y móvil). Sin base de datos y sin
-  trabajo de Perfil de Negocio.
-- **Estándar** — agrega un backend, así el sitio guarda lo que llega y el dueño tiene una página
-  de administración privada para ver reservaciones, pedidos, mensajes y registros. Cuentas de
-  usuario opcionales.
-- **Premium** — agrega diseño totalmente a medida, branding completo, y la configuración del
-  Perfil de Negocio de Google.
-
-Todos los paquetes incluyen mantenimiento mensual desde el lanzamiento: disponibilidad,
-corrección de errores y ajustes pequeños. Es parte del paquete, no es opcional, pero cualquiera
-de las dos partes puede terminarlo con 30 días de aviso. Las funciones nuevas se cotizan aparte.
-
-La configuración SEO (única) y el cuidado SEO (mensual) se pueden agregar a cualquier paquete.
-La configuración cubre el Perfil de Negocio de Google, la consistencia de nombre, dirección y
-teléfono, y la preparación de reseñas; el cuidado SEO cubre mantener el perfil al día, responder
-reseñas y un reporte mensual. No incluye redacción de contenido ni compra de enlaces, y no se
-promete ninguna posición en Google.
-
-## Portal de clientes a medida
-
-Un acceso privado para los propios clientes de un negocio: propuestas, contratos y facturas en un solo lugar,
-avances con fotos, archivos y mensajes, y un lado administrativo para el dueño. Es el mismo portal con el que
-Gustavo opera su propio negocio, vendido como un desarrollo a medida con un precio inicial y un plan mensual
-que cubre disponibilidad, correcciones y ajustes pequeños. Los pagos con tarjeta, las integraciones y las
-funciones nuevas se cotizan aparte.
+Estudiante de último año de Ciencias de la Computación en la Universidad de Houston. Freelance desde 2026.
+Contacto: el formulario en https://arriagagustavoo.com/es/contact, gus@arriagagustavoo.com, o llamada/texto al 832-453-4158.
+Versión en inglés: https://arriagagustavoo.com (resumen en https://arriagagustavoo.com/llms.txt).
 
 ## Cómo funciona
 
-1. Contacto: se describe lo que el negocio necesita; en menos de 24 horas llegan una respuesta y una propuesta.
-2. Arranque: el cliente entra al portal de clientes de Gustavo, revisa el alcance, el precio y el plazo por
-   escrito, firma el contrato y paga un anticipo.
-3. Desarrollo: se muestra el avance en el camino. La mayoría de los sitios quedan listos unas dos semanas
-   después de que llega el contenido; los proyectos más grandes toman más, y la propuesta trae el plazo.
-4. Entrega: se paga el resto, las cuentas quedan a nombre del cliente, y Gustavo lo guía y sigue disponible.
+1. Diseño: hablamos de tu negocio y te hace un diseño gratis que ves antes de pagar.
+2. Construcción: programa el sitio; tú sigues avances, archivos, mensajes y pagos en tu propio portal.
+3. Lanzamiento: sale en vivo; hosting, arreglos y cambios pequeños cada mes, sin amarres (30 días de aviso).
 
-## Condiciones de trabajo
+## Paquetes (aproximados; el precio exacto viene en la cotización gratis y por escrito)
 
-- Un anticipo al firmar, el resto contra entrega. Zelle, transferencia bancaria o cheque.
-- El dominio y el hosting se registran a nombre del cliente, con su método de pago.
-- El trabajo fuera del alcance se cotiza por escrito y requiere aprobación antes de empezar.
-- Cualquiera de las dos partes puede terminar con 30 días de aviso, entregando cuentas y datos.
-- El cliente es dueño de los datos que recopila su sitio y de los documentos que genera, y
-  recibe una licencia sobre la aplicación.
+- Starter, desde $600 + $45/mes: tus clientes lo leen.
+- Standard, unos $1,700 + $65/mes: tus clientes hacen una cosa (reservar, pedir o escribir), con cuentas y base de datos.
+- Premium, unos $3,000 + $95/mes: tus clientes hacen varias cosas y tú manejas todo desde tu propia oficina en línea.
+- Portal a la medida, unos $2,800 + $120/mes: software con el que tu negocio trabaja todos los días.
 
 ## Páginas
 
-- [Inicio](https://arriagagustavoo.com/es) — sobre mí, trabajo, servicios, paquetes, proceso, contacto
-- [Caso de estudio: Client Portal](https://arriagagustavoo.com/es/work/client-portal) — un portal de clientes construido para operar este negocio freelance: propuestas, contratos, facturas y avances en un solo lugar, con una sola ficha de proyecto que alimenta todos los documentos
-- [Caso de estudio: QueueSmart](https://arriagagustavoo.com/es/work/queuesmart) — una aplicación web de gestión de filas de un curso universitario de Diseño de Software, construida por un equipo de cuatro; Gustavo construyó el lado administrativo. Trabajo de escuela, no de un cliente
-- [Caso de estudio: Bracketed](https://arriagagustavoo.com/es/work/bracketed) — las plantillas de propuesta, contrato y factura usadas con clientes: HTML simple, para llenar, que se imprimen como PDF limpios
-- [Dev](https://arriagagustavoo.com/es/dev) — el lado técnico: educación y cursos, la lista de habilidades, y los proyectos de escuela y personales
-- [Política de privacidad](https://arriagagustavoo.com/es/privacy) — qué recopila el formulario y quién lo procesa
-- [English version](https://arriagagustavoo.com/) — the same site in English
+- [Inicio](https://arriagagustavoo.com/es) · [Trabajo](https://arriagagustavoo.com/es/work) · [Servicios](https://arriagagustavoo.com/es/services) · [Preguntas](https://arriagagustavoo.com/es/faq) · [Sobre mí](https://arriagagustavoo.com/es/about) · [Dev](https://arriagagustavoo.com/es/dev) · [Contacto](https://arriagagustavoo.com/es/contact)
