@@ -66,8 +66,8 @@ export function Headline({ lines, words }: { lines: string[]; words: string[] })
   }, [words])
   return (
     <h1 className="hl" ref={h}>
-      <span className="ln">{lines[0]}</span>
-      <span className="ln">{lines[1]}</span>
+      <span className="ln">{lines[0]}</span>{' '}
+      <span className="ln">{lines[1]}</span>{' '}
       <span className="ln">{lines[2]} <span className="slot"><span className="word gl" ref={w}>{words[0]}</span></span></span>
       <span className="vh"> ({words.map(x => x.replace('.', '')).join(', ')})</span>
     </h1>

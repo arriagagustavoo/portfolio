@@ -23,6 +23,7 @@ export function generateStaticParams() { return locales.map(lang => ({ lang })) 
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
+  title: { default: 'arriagagustavoo', template: '%s' },
   icons: { icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }, { url: '/favicon.ico' }], apple: '/apple-touch-icon.png' },
   formatDetection: { telephone: false },
   authors: [{ name: 'Gustavo Arriaga', url: SITE }],
@@ -38,7 +39,7 @@ export default async function Layout({ children, params }: { children: React.Rea
   return (
     <html lang={lang} data-theme="dark" suppressHydrationWarning className={`${geist.variable} ${pixel.variable} ${mono.variable} ${hand.variable}`}>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: "try{if(localStorage.getItem('theme')==='light')document.documentElement.dataset.theme='light'}catch(e){}" }} />
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js');try{if(localStorage.getItem('theme')==='light')document.documentElement.dataset.theme='light'}catch(e){}" }} />
         <JsonLd data={siteGraph(lang)} />
       </head>
       <body>
