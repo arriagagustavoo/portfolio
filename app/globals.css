@@ -576,17 +576,10 @@ a.sch:hover{background:var(--raised)}
 .nf .cr{width:150px;flex:none}
 .nf .cr svg{width:100%;height:auto;overflow:visible}
 
-/* toasts: a dot that springs open into a pill, then folds back */
-.toasts{position:fixed;top:76px;left:50%;translate:-50% 0;z-index:60;display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:none}
-.toast{pointer-events:auto;display:flex;align-items:center;gap:10px;height:46px;max-width:46px;padding:0 6px;border-radius:23px;background:var(--fg);color:var(--bg);overflow:hidden;white-space:nowrap;box-shadow:0 14px 34px -14px rgba(0,0,0,.55);scale:.4;opacity:0;transition:max-width .6s cubic-bezier(.34,1.4,.64,1),scale .45s cubic-bezier(.34,1.56,.64,1),opacity .2s ease,translate .45s var(--ease-out)}
-.toast.in{max-width:520px;scale:1;opacity:1;padding:0 8px 0 6px}
-.toast.out{max-width:46px;scale:.5;opacity:0;translate:0 -10px;transition-duration:.35s}
-.toast .ti{width:34px;height:34px;flex:none;border-radius:50%;display:grid;place-items:center;background:var(--green);color:#000;font-weight:800;font-size:14px;font-family:var(--pixel)}
-.toast .tm{font-size:14.5px;font-weight:600;opacity:0;transition:opacity .25s ease .18s;padding-right:8px}
-.toast.in .tm{opacity:1}
-.toast .ta{border:0;cursor:pointer;background:var(--green);color:#000;font-weight:700;font-size:13.5px;padding:7px 14px;border-radius:16px;margin-right:2px;text-decoration:none}
-.toast.info .ti{background:var(--pink);color:#fff}
-
+/* toasts: Sileo, in the site's palette (its own styles do the morph and springs) */
+[data-sileo-toast]{--sileo-state-success:#1e9e45;--sileo-state-info:#ff2f6d;--sileo-state-action:#1e9e45;--sileo-state-error:#ff2f6d;--sileo-btn-bg:#1e9e45;--sileo-btn-bg-hover:#1a883b;--sileo-btn-color:#000}
+.toast-t{text-transform:none!important;font-family:var(--body)!important;font-weight:650!important;color:var(--bg)!important}
+.toast-b{font-weight:700!important}
 
 /* ---- web interface guidelines pass ---- */
 a,button,summary,label{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
@@ -598,7 +591,6 @@ p,li{text-wrap:pretty}
 .t-p b,.tc-p,.est .big,.est .res li span:last-child,.url,.win .sw,.ct{font-variant-numeric:tabular-nums}
 .x-btn:hover,.est .foot button:hover{color:var(--fg)}
 .mnav{overscroll-behavior:contain}
-.toasts{top:calc(76px + env(safe-area-inset-top,0px))}
 .foot{padding-bottom:calc(26px + env(safe-area-inset-bottom,0px))}
 
 /* ---------------- phones and small laptops ---------------- */

@@ -1,7 +1,9 @@
 'use client'
 // Site-wide behavior that has no markup of its own: the background, toasts, smooth scroll and scroll reveals.
-import { usePathname } from 'next/navigation'
-import { useEffect, useRef, useState } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
+import { sileo, Toaster } from 'sileo'
+import 'sileo/styles.css'
+import { useEffect, useRef } from 'react'
 import type { ToastOpts } from '@/lib/toast'
 import { swapLang, type Lang } from '@/lib/i18n'
 
@@ -50,52 +52,44 @@ export function Backdrop() {
   )
 }
 
-type T = ToastOpts & { id: number; msg: string; state: 'new' | 'in' | 'out' }
-/** toasts: a dot that springs open into a pill (the Sileo feel), plus the "¿Prefieres español?" nudge */
+/** toasts: the real Sileo (physics springs, the gooey morph), dressed in the site's colors,
+ *  plus the "¿Prefieres español?" nudge for Spanish-language browsers */
 export function Toasts({ lang, words }: { lang: Lang; words: { es: string; en: string; prefer: string; change: string } }) {
-  const [list, setList] = useState<T[]>([])
   const path = usePathname() || '/'
+  const router = useRouter()
   useEffect(() => {
-    let id = 0
     const on = (e: Event) => {
       const d = (e as CustomEvent).detail as ToastOpts & { msg: string }
-      const t: T = { ...d, id: ++id, state: 'new' }
-      setList(l => [t, ...l].slice(0, 3))
-      requestAnimationFrame(() => requestAnimationFrame(() => setList(l => l.map(x => (x.id === t.id ? { ...x, state: 'in' } : x)))))
-      setTimeout(() => setList(l => l.map(x => (x.id === t.id ? { ...x, state: 'out' } : x))), d.ms ?? 3200)
-      setTimeout(() => setList(l => l.filter(x => x.id !== t.id)), (d.ms ?? 3200) + 450)
+      // Sileo draws the pill in SVG, so it gets a real color: the site's text color, flipped against the page in either theme
+      const fill = getComputedStyle(document.documentElement).getPropertyValue('--fg').trim() || '#ece9e3'
+      const base = { title: d.msg, duration: d.ms ?? 3600, fill, styles: { title: 'toast-t', button: 'toast-b' } }
+      if (d.action) { const a = d.action; sileo.action({ ...base, button: { title: a.label, onClick: () => { try { sessionStorage.setItem('langToast', 'es') } catch {} router.push(a.href) } } }) }
+      else if (d.icon === '!') sileo.error(base)
+      else if (d.kind === 'info') sileo.info(base)
+      else sileo.success(base)
     }
     addEventListener('toast', on)
     return () => removeEventListener('toast', on)
-  }, [])
+  }, [router])
   // after a language switch, say so on the new page
   useEffect(() => {
     let to: string | null = null
     try { to = sessionStorage.getItem('langToast'); sessionStorage.removeItem('langToast') } catch {}
-    if (to === lang) setTimeout(() => dispatchEvent(new CustomEvent('toast', { detail: { msg: lang === 'es' ? words.es : words.en, icon: lang.toUpperCase() } })), 250)
+    if (to === lang) setTimeout(() => dispatchEvent(new CustomEvent('toast', { detail: { msg: lang === 'es' ? words.es : words.en } })), 250)
   }, [lang, words])
   // a Spanish-language browser on an English page gets one gentle offer, once
   useEffect(() => {
     if (lang !== 'en') return
     let seen = false
     try { seen = !!localStorage.getItem('esNudge') } catch {}
-    if (seen || !(navigator.language || '').toLowerCase().startsWith('es')) return
+    if (seen || !(navigator.languages || [navigator.language]).some(l => (l || '').toLowerCase().startsWith('es'))) return
     const t = setTimeout(() => {
       try { localStorage.setItem('esNudge', '1') } catch {}
-      dispatchEvent(new CustomEvent('toast', { detail: { msg: words.prefer, icon: 'Ñ', kind: 'info', ms: 7000, action: { label: words.change, href: swapLang(path, 'es') } } }))
+      dispatchEvent(new CustomEvent('toast', { detail: { msg: words.prefer, kind: 'info', ms: 7000, action: { label: words.change, href: swapLang(path, 'es') } } }))
     }, 1600)
     return () => clearTimeout(t)
   }, [lang, path, words])
-  return (
-    <div className="toasts" aria-live="polite">
-      {list.map(t => (
-        <div key={t.id} role="status" className={'toast' + (t.kind ? ' ' + t.kind : '') + (t.state === 'in' ? ' in' : t.state === 'out' ? ' out' : '')}>
-          <span className="ti">{t.icon ?? '✓'}</span><span className="tm">{t.msg}</span>
-          {t.action && <a className="ta" href={t.action.href} onClick={() => { try { sessionStorage.setItem('langToast', 'es') } catch {} }}>{t.action.label}</a>}
-        </div>
-      ))}
-    </div>
-  )
+  return <Toaster position="top-center" offset={{ top: 72 }} theme="dark" />
 }
 
 /** Lenis smooth scrolling (off for reduced motion), and reveals that rise once as they come into view */
