@@ -76,7 +76,7 @@ export default async function Case({ params }: P) {
               {linked.map((s, i) => (
                 <figure key={s.src} className="browser" style={{ margin: 0 }}>
                   <div className="chrome"><span className="lights"><i /><i /><i /></span><span className="url">{it.linked!.labels[i]}</span></div>
-                  <div className={'screen' + (p.doc ? ' doc' : '')} style={p.doc ? { aspectRatio: '3 / 4' } : undefined}><Image src={s.src} alt={it.linked!.labels[i]} fill sizes="(max-width: 900px) 92vw, 600px" style={{ objectFit: p.doc ? 'contain' : 'cover', objectPosition: 'top left' }} /></div>
+                  <div className={'screen' + (p.doc ? ' doc' : '')} style={p.doc ? { aspectRatio: '3 / 4' } : undefined}><Image src={s.src} alt={it.linked!.labels[i]} fill sizes="(max-width: 56rem) 92vw, 42vw" style={{ objectFit: p.doc ? 'contain' : 'cover', objectPosition: 'top left' }} /></div>
                 </figure>
               ))}
             </div>

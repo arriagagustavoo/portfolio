@@ -42,7 +42,7 @@ export default async function Dev({ params }: P) {
         <div className="dgrid cols">
           {devProjects.map((p, k) => (
             <article className="dcard" key={p.cover} data-reveal style={{ transitionDelay: k * 70 + 'ms' }}>
-              <div className="dimg"><Image src={p.cover} alt={d.projects[k].title} fill sizes="(max-width: 900px) 92vw, 320px" /></div>
+              <div className="dimg"><Image src={p.cover} alt={d.projects[k].title} fill sizes="(max-width: 56rem) 92vw, 22vw" /></div>
               <h3 style={{ margin: 0 }}><b>{d.projects[k].title}</b></h3>
               <p>{d.projects[k].text}</p>
               <Chips names={p.skills} />

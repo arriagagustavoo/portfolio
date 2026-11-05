@@ -25,7 +25,7 @@ export default async function Work({ params }: P) {
             <ViewTransition name={'shot-' + p.slug} share="morph" default="none">
             <div className="browser">
               <div className="chrome"><span className="lights"><i /><i /><i /></span><span className="url">{p.url}</span></div>
-              <div className={'screen' + (p.doc ? ' doc' : '')}><Image src={p.shots[lead[p.key]].src} alt={(t.legacy.projects as Record<string, { alts: string[] }>)[p.key].alts[lead[p.key]] ?? p.title} fill sizes="(max-width: 900px) 92vw, 420px" style={{ objectFit: p.doc ? 'contain' : 'cover', objectPosition: p.doc ? 'center' : 'top left' }} /></div>
+              <div className={'screen' + (p.doc ? ' doc' : '')}><Image src={p.shots[lead[p.key]].src} alt={(t.legacy.projects as Record<string, { alts: string[] }>)[p.key].alts[lead[p.key]] ?? p.title} fill sizes="(max-width: 56rem) 92vw, 30vw" style={{ objectFit: p.doc ? 'contain' : 'cover', objectPosition: p.doc ? 'center' : 'top left' }} /></div>
             </div>
             </ViewTransition>
             <div className="wc-t"><h2 style={{ margin: 0, font: 'inherit' }}><b>{p.title}</b></h2><span className="wc-k">{w.kinds[p.kind]}</span></div>

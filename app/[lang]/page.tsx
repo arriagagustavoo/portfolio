@@ -92,7 +92,7 @@ export default async function Home({ params }: P) {
       <section className="wrap sec" aria-labelledby="why">
         <div className="why">
           <div data-reveal="wipe">
-            <div className="pk photo-pk"><ColePeek /><div className="photo"><Image src="/images/gus.webp" alt={t.about.photoAlt} fill sizes="(max-width: 40rem) 90vw, 24rem" /></div></div>
+            <div className="pk photo-pk"><ColePeek /><div className="photo"><Image src="/images/gus.webp" alt={t.about.photoAlt} fill sizes="(max-width: 40rem) 90vw, 27vw" /></div></div>
             <figure className="quote"><blockquote>&ldquo;{t.quote.text}&rdquo;</blockquote><Html as="figcaption" html={t.quote.source} /></figure>
           </div>
           <div data-reveal>

@@ -45,7 +45,7 @@ export function FeaturedStack({ items, words }: { items: P[]; words: { read: str
                   </span>
                 </div>
                 <Link className={'screen' + (p.doc ? ' doc' : '')} href={p.href} transitionTypes={['nav-forward']} tabIndex={pos === 0 ? 0 : -1} aria-label={`${words.open}: ${p.title}`} onClick={ev => { if (pos !== 0) ev.preventDefault() }}>
-                  <Image src={p.shots[shot[k]]} alt="" fill sizes="(max-width: 900px) 92vw, 900px" style={{ objectFit: p.doc ? 'contain' : 'cover', objectPosition: p.doc ? 'center' : 'top left' }} />
+                  <Image src={p.shots[shot[k]]} alt="" fill sizes="(max-width: 56rem) 92vw, 63vw" style={{ objectFit: p.doc ? 'contain' : 'cover', objectPosition: p.doc ? 'center' : 'top left' }} />
                   <span className="open">{words.read}</span>
                 </Link>
               </div>
@@ -109,7 +109,7 @@ export function Gallery({ shots, url, doc, alts, more, label, vt }: { shots: str
           </span>
         </div>
         <div className={'screen' + (doc ? ' doc' : '')} ref={view} style={doc ? { aspectRatio: '4 / 3' } : undefined}>
-          <Image src={shots[i]} alt={alts[i] ?? ''} fill sizes="(max-width: 900px) 92vw, 760px" style={{ objectFit: doc ? 'contain' : 'cover', objectPosition: doc ? 'center' : 'top left' }} priority />
+          <Image src={shots[i]} alt={alts[i] ?? ''} fill sizes="(max-width: 56rem) 92vw, 53vw" style={{ objectFit: doc ? 'contain' : 'cover', objectPosition: doc ? 'center' : 'top left' }} priority />
         </div>
       </div>
       </ViewTransition>

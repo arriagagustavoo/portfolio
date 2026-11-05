@@ -150,7 +150,7 @@ export default function EstimateCard({ t, e, work }: { t: Dict['card']; e: Dict[
               {work.map((w, k) => (
                 <div key={w.title} className="mw browser" data-p={order.indexOf(k)}>
                   <div className="chrome"><span className="lights"><i /><i /><i /></span><span className="url">{w.url}</span></div>
-                  <div className={'screen' + (w.doc ? ' doc' : '')}><Image src={w.src} alt="" fill sizes="360px" style={{ objectFit: w.doc ? 'contain' : 'cover' }} /></div>
+                  <div className={'screen' + (w.doc ? ' doc' : '')}><Image src={w.src} alt="" fill sizes="25vw" style={{ objectFit: w.doc ? 'contain' : 'cover' }} /></div>
                 </div>
               ))}
             </div>
