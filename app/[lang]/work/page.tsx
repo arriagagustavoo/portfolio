@@ -28,7 +28,7 @@ export default async function Work({ params }: P) {
             <div className="wc-t"><h2 style={{ margin: 0, font: 'inherit' }}><b>{p.title}</b></h2><span className="wc-k">{w.kinds[p.kind]}</span></div>
             <p className="wc-o">{t.legacy.projects[p.key].pitch}</p>
             <Chips names={p.cardSkills} />
-            <span className="go">{w.read} <span className="ar" aria-hidden="true">→</span></span>
+            <span className="go">{w.read}</span>
           </Link>
         ))}
         <Link className="wcard next" data-kind="websites" href={href(lang, '/contact')} data-reveal><div className="nx"><span className="nx-i" aria-hidden="true">+</span><b>{w.next.title}</b><span>{w.next.text}</span></div></Link>

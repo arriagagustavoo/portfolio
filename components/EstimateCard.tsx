@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useLayoutEffect, useRef, useState } from 'react'
 import { ColePeek } from './Cole'
-import { Html } from './bits'
+import { Chevron, Html } from './bits'
 import { decode } from './Hero'
 import { coleReact } from '@/lib/cole'
 import { sendForm } from '@/lib/send'
@@ -99,13 +99,13 @@ export default function EstimateCard({ t, e, work }: { t: Dict['card']; e: Dict[
             <div className="top"><span><i>//</i> {t.start}</span><span>{t.minute}</span></div>
             <h2 className="ask-h">{t.hook}</h2>
             <p className="ask-p">{t.sub}</p>
-            <button className="choice main" type="button" onClick={() => go('price')}><span>{t.price.title}</span><Html as="small" html={t.price.small} /><span className="ar" aria-hidden="true">→</span></button>
-            <button className="choice" type="button" onClick={() => go('work')}><span>{t.work.title}</span><small>{t.work.small}</small><span className="ar" aria-hidden="true">→</span></button>
+            <button className="choice main" type="button" onClick={() => go('price')}><span>{t.price.title}</span><Html as="small" html={t.price.small} /><Chevron /></button>
+            <button className="choice" type="button" onClick={() => go('work')}><span>{t.work.title}</span><small>{t.work.small}</small><Chevron /></button>
           </div>
         )}
         {pane === 'price' && (
           <div className="est swapin">
-            <button className="bk2" type="button" onClick={() => go('home')}>← {t.back}</button>
+            <button className="bk2" type="button" onClick={() => go('home')}>{t.back}</button>
             {top}
             {i < e.q.length ? (
               <div key={i} className="swapin" aria-live="polite">
@@ -145,7 +145,7 @@ export default function EstimateCard({ t, e, work }: { t: Dict['card']; e: Dict[
         )}
         {pane === 'work' && (
           <div className="swapin">
-            <button className="bk2" type="button" onClick={() => go('home')}>← {t.back}</button>
+            <button className="bk2" type="button" onClick={() => go('home')}>{t.back}</button>
             <div className="mstack" aria-hidden="true">
               {work.map((w, k) => (
                 <div key={w.title} className="mw browser" data-p={order.indexOf(k)}>
@@ -155,7 +155,7 @@ export default function EstimateCard({ t, e, work }: { t: Dict['card']; e: Dict[
               ))}
             </div>
             <div className="mlist">
-              {work.map((w, k) => <Link key={w.title} href={w.href} onPointerEnter={() => setOrder([k, ...[0, 1, 2].filter(x => x !== k)])} onFocus={() => setOrder([k, ...[0, 1, 2].filter(x => x !== k)])}>{w.title}<span>{t.open} ↗</span></Link>)}
+              {work.map((w, k) => <Link key={w.title} href={w.href} onPointerEnter={() => setOrder([k, ...[0, 1, 2].filter(x => x !== k)])} onFocus={() => setOrder([k, ...[0, 1, 2].filter(x => x !== k)])}>{w.title}<span>{t.open}</span></Link>)}
             </div>
             <Link className="lnk allw" href={work[0].href.replace(/\/[^/]+$/, '')}>{t.seeAll}</Link>
           </div>

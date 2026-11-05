@@ -65,7 +65,7 @@ export default function Header({ lang, nav }: { lang: Lang; nav: Dict['nav'] }) 
         <div className="mnav" id="mnav">
           {(['home', ...NAV, 'faq'] as const).map((k, i) => {
             const to = k === 'home' ? href(lang, '/') : href(lang, '/' + k)
-            return <Link className="m" key={k} href={to} style={{ animationDelay: i * 40 + 'ms' }} aria-current={path === to ? 'page' : undefined}><i>0{i + 1}</i>{nav[k]}</Link>
+            return <Link className="m" key={k} href={to} style={{ animationDelay: i * 40 + 'ms' }} aria-current={path === to ? 'page' : undefined}>{nav[k]}</Link>
           })}
           <Link className="btn" href={href(lang, '/') + '#estimate'}>{nav.estimate}</Link>
           <button className="icon-b" type="button" onClick={theme} aria-label={nav.theme} style={{ marginTop: 16 }}><Icon name="moon" /></button>

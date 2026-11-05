@@ -34,7 +34,7 @@ export default async function Services({ params }: P) {
           ))}
         </div>
         <p className="note">{pr.note}</p>
-        <div className="acts"><Link className="btn" href={href(lang, '/') + '#estimate'}>{t.nav.estimate} <span className="ar" aria-hidden="true">→</span></Link><span className="lede" style={{ margin: 0 }}>{s.estimateSub}</span></div>
+        <div className="acts"><Link className="btn" href={href(lang, '/') + '#estimate'}>{t.nav.estimate}</Link><span className="lede" style={{ margin: 0 }}>{s.estimateSub}</span></div>
       </section>
       <section className="wrap sec" aria-labelledby="addons">
         <div className="sec-h" data-reveal><h2 className="h2" id="addons">{s.addonsTitle}</h2></div>
@@ -44,7 +44,7 @@ export default async function Services({ params }: P) {
       <section className="wrap sec" aria-labelledby="gtk">
         <div className="sec-h" data-reveal><h2 className="h2" id="gtk">{s.faqTitle}</h2><Link className="lnk" href={href(lang, '/faq')}>{s.allQuestions}</Link></div>
         <div data-reveal><Faq items={some} /></div>
-        <div className="acts"><Link className="btn ghost" href={href(lang, '/contact')}>{s.orMessage} <span className="ar" aria-hidden="true">→</span></Link></div>
+        <div className="acts"><Link className="btn ghost" href={href(lang, '/contact')}>{s.orMessage}</Link></div>
       </section>
     </>
   )

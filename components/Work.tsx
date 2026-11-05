@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
-import { Chips } from './bits'
+import { Chevron, Chips } from './bits'
 
 type P = { title: string; url: string; href: string; doc?: boolean; text: string; skills: string[]; shots: string[] }
 const flash = (el: Element | null) => { if (!el || matchMedia('(prefers-reduced-motion: reduce)').matches) return; el.classList.remove('flash'); void (el as HTMLElement).offsetWidth; el.classList.add('flash') }
@@ -20,7 +20,7 @@ export function FeaturedStack({ items, words }: { items: P[]; words: { read: str
     <div className="stack">
       <div>
         <div className="plist" role="list">
-          {items.map((p, k) => <button key={p.title} type="button" role="listitem" aria-current={k === front} onClick={() => toFront(k)}><i>0{k + 1}</i>{p.title}</button>)}
+          {items.map((p, k) => <button key={p.title} type="button" role="listitem" aria-current={k === front} onClick={() => toFront(k)}>{p.title}</button>)}
         </div>
         <div className="pdet" aria-live="polite">
           <p>{cur.text}</p>
@@ -38,14 +38,14 @@ export function FeaturedStack({ items, words }: { items: P[]; words: { read: str
                 <div className="chrome">
                   <span className="lights"><i /><i /><i /></span><span className="url">{p.url}</span>
                   <span className="sw">
-                    <button type="button" aria-label={words.prev} tabIndex={pos === 0 ? 0 : -1} onClick={ev => { ev.stopPropagation(); flip(k, -1) }}>‹</button>
+                    <button type="button" aria-label={words.prev} tabIndex={pos === 0 ? 0 : -1} onClick={ev => { ev.stopPropagation(); flip(k, -1) }}><Chevron dir="left" className="chv" /></button>
                     <span>{shot[k] + 1}/{p.shots.length}</span>
-                    <button type="button" aria-label={words.next} tabIndex={pos === 0 ? 0 : -1} onClick={ev => { ev.stopPropagation(); flip(k, 1) }}>›</button>
+                    <button type="button" aria-label={words.next} tabIndex={pos === 0 ? 0 : -1} onClick={ev => { ev.stopPropagation(); flip(k, 1) }}><Chevron className="chv" /></button>
                   </span>
                 </div>
                 <Link className={'screen' + (p.doc ? ' doc' : '')} href={p.href} tabIndex={pos === 0 ? 0 : -1} aria-label={`${words.open}: ${p.title}`} onClick={ev => { if (pos !== 0) ev.preventDefault() }}>
                   <Image src={p.shots[shot[k]]} alt="" fill sizes="(max-width: 900px) 92vw, 900px" style={{ objectFit: p.doc ? 'contain' : 'cover', objectPosition: p.doc ? 'center' : 'top left' }} />
-                  <span className="open">{words.read} ↗</span>
+                  <span className="open">{words.read}</span>
                 </Link>
               </div>
             )
@@ -100,9 +100,9 @@ export function Gallery({ shots, url, doc, alts, more, label }: { shots: string[
         <div className="chrome">
           <span className="lights"><i /><i /><i /></span><span className="url">{url}</span>
           <span className="sw" style={{ display: 'flex', alignItems: 'center', gap: 2, fontFamily: 'var(--mono)', fontSize: 11.5, color: 'var(--fg-3)' }}>
-            <button className="icon-b" style={{ width: 28, height: 24 }} type="button" aria-label="‹" onClick={() => go(i - 1)}>‹</button>
+            <button className="icon-b" style={{ width: 28, height: 24 }} type="button" aria-label={label + " −1"} onClick={() => go(i - 1)}><Chevron dir="left" className="chv" /></button>
             <span>{i + 1}/{shots.length}</span>
-            <button className="icon-b" style={{ width: 28, height: 24 }} type="button" aria-label="›" onClick={() => go(i + 1)}>›</button>
+            <button className="icon-b" style={{ width: 28, height: 24 }} type="button" aria-label={label + " +1"} onClick={() => go(i + 1)}><Chevron className="chv" /></button>
           </span>
         </div>
         <div className={'screen' + (doc ? ' doc' : '')} ref={view} style={doc ? { aspectRatio: '4 / 3' } : undefined}>

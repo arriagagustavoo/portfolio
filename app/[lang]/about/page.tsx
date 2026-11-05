@@ -45,7 +45,7 @@ export default async function About({ params }: P) {
       <section className="wrap sec" aria-labelledby="count">
         <div className="sec-h" data-reveal><h2 className="h2" id="count">{a.countOn}</h2></div>
         <div className="rlist two" data-reveal>{[...t.why.reasons, ...a.extra].map(r => <div key={r.title}><b>{r.title}</b><p>{r.body}</p></div>)}</div>
-        <div className="acts"><Link className="btn" href={href(lang, '/contact')}>{t.close.send} <span className="ar" aria-hidden="true">→</span></Link><Link className="btn ghost" href={href(lang, '/work')}>{t.hero.seeWork}</Link></div>
+        <div className="acts"><Link className="btn" href={href(lang, '/contact')}>{t.close.send}</Link><Link className="btn ghost" href={href(lang, '/work')}>{t.hero.seeWork}</Link></div>
       </section>
     </>
   )

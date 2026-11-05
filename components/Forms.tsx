@@ -39,7 +39,7 @@ export function QuickForm({ t, estimateHref, toastSent }: { t: Dict['close']; es
     <div className="cl3-r" ref={box}>
       {!open ? (
         <div className="qz-btns">
-          <button className="btn" type="button" aria-expanded={false} onClick={() => { resize(() => setOpen(true)); if (matchMedia('(pointer: fine)').matches) setTimeout(() => box.current?.querySelector<HTMLInputElement>('input[name=name]')?.focus(), 260) }}>{t.send} <span className="ar" aria-hidden="true">→</span></button>
+          <button className="btn" type="button" aria-expanded={false} onClick={() => { resize(() => setOpen(true)); if (matchMedia('(pointer: fine)').matches) setTimeout(() => box.current?.querySelector<HTMLInputElement>('input[name=name]')?.focus(), 260) }}>{t.send}</button>
           <Link className="btn ghost" href={estimateHref}>{t.estimate}</Link>
         </div>
       ) : done ? (
@@ -53,7 +53,7 @@ export function QuickForm({ t, estimateHref, toastSent }: { t: Dict['close']; es
           </div>
           <label className="field"><span>{t.need} <i>{t.optional}</i></span><input name="need" placeholder={t.needPh} /></label>
           <div className="fact">
-            <button className="btn" type="submit">{t.submit} <span className="ar" aria-hidden="true">→</span></button>
+            <button className="btn" type="submit">{t.submit}</button>
             <button className="x-btn" type="button" onClick={() => resize(() => setOpen(false))}>{t.cancel}</button>
             {err && <span className="ferr" role="alert">{t.error}</span>}
           </div>
@@ -99,7 +99,7 @@ export function ContactForm({ t, errText, toastSent, failed }: { t: Dict['contac
       </div>
       <label className="field"><span>{t.more} <i>(optional)</i></span><textarea name="more" rows={3} placeholder={t.morePh} /></label>
       <div className="fact">
-        <button className="btn" type="submit">{t.submit} <span className="ar" aria-hidden="true">→</span></button>
+        <button className="btn" type="submit">{t.submit}</button>
         <span className="trust"><Icon name="lock" />{t.trust}</span>
         {err && <span className="ferr" role="alert">{errText}</span>}
       </div>

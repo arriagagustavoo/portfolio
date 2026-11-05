@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import type { Metadata } from 'next'
-import { Html, Icon, LongLogo, Mark } from '@/components/bits'
+import { Chevron, Html, Icon, LongLogo, Mark } from '@/components/bits'
 import { Headline, Typed } from '@/components/Hero'
 import EstimateCard from '@/components/EstimateCard'
 import { ColePeek, CostumeCole } from '@/components/Cole'
@@ -40,7 +40,7 @@ export default async function Home({ params }: P) {
               {t.hero.services.map(s => <div key={s.title}><Icon name={s.icon as IconName} /><b>{s.title}</b><span>{s.sub}</span></div>)}
             </div>
             <div className="acts">
-              <Link className="btn ghost" href={href(lang, '/work')}>{t.hero.seeWork} <span className="ar" aria-hidden="true">→</span></Link>
+              <Link className="btn ghost" href={href(lang, '/work')}>{t.hero.seeWork}</Link>
               <Link className="hablo" href={swapLang('/', lang === 'en' ? 'es' : 'en')} hrefLang={lang === 'en' ? 'es' : 'en'}><Icon name="translate" />{t.hero.otherLang}</Link>
             </div>
             <div className="chrow">
@@ -49,7 +49,7 @@ export default async function Home({ params }: P) {
             </div>
           </div>
         </div>
-        <div className="devlink"><Link href={href(lang, '/dev')}>{t.hero.dev} <span aria-hidden="true">→</span></Link></div>
+        <div className="devlink"><Link href={href(lang, '/dev')}>{t.hero.dev}</Link></div>
       </section>
 
       <section className="wrap sec" aria-label={t.steps.map(s => s.word).join(', ')}>
@@ -82,7 +82,7 @@ export default async function Home({ params }: P) {
               <span className="t-n">{x.name}</span>
               <span className="t-w">{x.who}<em>{t.pricing.great}: {x.great}</em></span>
               <span className="t-p"><b>{x.price}</b><small>{x.monthly}</small></span>
-              <span className="t-ar" aria-hidden="true">→</span>
+              <Chevron />
             </Link>
           ))}
         </div>
@@ -98,7 +98,7 @@ export default async function Home({ params }: P) {
           <div data-reveal>
             <h2 className="h2" id="why">{t.why.title}</h2>
             <div className="rlist">{t.why.reasons.map(r => <div key={r.title}><b>{r.title}</b><p>{r.body}</p></div>)}</div>
-            <div className="acts"><Link className="btn ghost" href={href(lang, '/about')}>{t.why.more} <span className="ar" aria-hidden="true">→</span></Link></div>
+            <div className="acts"><Link className="btn ghost" href={href(lang, '/about')}>{t.why.more}</Link></div>
           </div>
         </div>
       </section>

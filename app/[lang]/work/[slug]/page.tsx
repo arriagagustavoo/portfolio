@@ -87,11 +87,11 @@ export default async function Case({ params }: P) {
           <div className="chap" key={s.heading} data-reveal><h2>{s.heading}</h2><div><p>{s.body}</p>{s.points && <ul className="chk">{s.points.map(x => <li key={x}>{x}</li>)}</ul>}</div></div>
         ))}
         {p.repo && <p className="note"><a className="lnk" href={p.repo} target="_blank" rel="noopener noreferrer">GitHub</a></p>}
-        <div className="acts" data-reveal><span className="lede" style={{ margin: 0 }}>{c.cta}</span><Link className="btn" href={href(lang, '/contact')}>{c.ctaBtn} <span className="ar" aria-hidden="true">→</span></Link></div>
+        <div className="acts" data-reveal><span className="lede" style={{ margin: 0 }}>{c.cta}</span><Link className="btn" href={href(lang, '/contact')}>{c.ctaBtn}</Link></div>
         <nav className="pn" aria-label={c.all}>
-          <Link className="pn-p" href={href(lang, '/work/' + prev.slug)} rel="prev"><span>← {c.prev}</span><b>{prev.title}</b></Link>
+          <Link className="pn-p" href={href(lang, '/work/' + prev.slug)} rel="prev"><span>{c.prev}</span><b>{prev.title}</b></Link>
           <Link className="pn-all" href={href(lang, '/work')}>{c.all}</Link>
-          <Link className="pn-n" href={href(lang, '/work/' + next.slug)} rel="next"><span>{c.next} →</span><b>{next.title}</b></Link>
+          <Link className="pn-n" href={href(lang, '/work/' + next.slug)} rel="next"><span>{c.next}</span><b>{next.title}</b></Link>
         </nav>
       </section>
     </>
