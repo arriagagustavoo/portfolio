@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import localFont from 'next/font/local'
+import Script from 'next/script'
 import { Caveat, Geist_Mono } from 'next/font/google'
 import { notFound } from 'next/navigation'
 import { Analytics } from '@vercel/analytics/next'
@@ -39,7 +40,7 @@ export default async function Layout({ children, params }: { children: React.Rea
   return (
     <html lang={lang} data-theme="dark" suppressHydrationWarning className={`${geist.variable} ${pixel.variable} ${mono.variable} ${hand.variable}`}>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js');try{if(localStorage.getItem('theme')==='light'){document.documentElement.dataset.theme='light';var m=document.querySelector('meta[name=theme-color]');if(m)m.setAttribute('content','#e3e0d8')}}catch(e){}" }} />
+        <Script id="boot" strategy="beforeInteractive">{"document.documentElement.classList.add('js');try{if(localStorage.getItem('theme')==='light'){document.documentElement.dataset.theme='light';var m=document.querySelector('meta[name=theme-color]');if(m)m.setAttribute('content','#e3e0d8')}}catch(e){}"}</Script>
         <JsonLd data={siteGraph(lang)} />
       </head>
       <body>

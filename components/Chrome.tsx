@@ -1,9 +1,8 @@
 'use client'
 // Site-wide behavior that has no markup of its own: the background, toasts, smooth scroll and scroll reveals.
 import { usePathname, useRouter } from 'next/navigation'
-import { sileo, Toaster } from 'sileo'
 import 'sileo/styles.css'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { ToastOpts } from '@/lib/toast'
 import { swapLang, type Lang } from '@/lib/i18n'
 import { decode } from './Hero'
@@ -66,20 +65,36 @@ export function Backdrop() {
 export function Toasts({ lang, words }: { lang: Lang; words: { es: string; en: string; prefer: string; change: string } }) {
   const path = usePathname() || '/'
   const router = useRouter()
+  // Sileo (and the motion library under it) loads on the first toast, not with the page
+  type Sileo = typeof import('sileo')
+  type Detail = ToastOpts & { msg: string }
+  const [mod, setMod] = useState<Sileo | null>(null)
+  const modRef = useRef<Sileo | null>(null)
+  const queue = useRef<Detail[]>([])
+  const show = (m: Sileo, d: Detail) => {
+    // Sileo draws the pill in SVG, so it gets a real color: the site's text color, flipped against the page in either theme
+    const fill = getComputedStyle(document.documentElement).getPropertyValue('--fg').trim() || '#ece9e3'
+    const base = { title: d.msg, duration: d.ms ?? 3600, fill, styles: { title: 'toast-t', button: 'toast-b' } }
+    if (d.action) { const a = d.action; m.sileo.action({ ...base, button: { title: a.label, onClick: () => { try { sessionStorage.setItem('langToast', 'es') } catch {} router.push(a.href) } } }) }
+    else if (d.icon === '!') m.sileo.error(base)
+    else if (d.kind === 'info') m.sileo.info(base)
+    else m.sileo.success(base)
+  }
   useEffect(() => {
     const on = (e: Event) => {
-      const d = (e as CustomEvent).detail as ToastOpts & { msg: string }
-      // Sileo draws the pill in SVG, so it gets a real color: the site's text color, flipped against the page in either theme
-      const fill = getComputedStyle(document.documentElement).getPropertyValue('--fg').trim() || '#ece9e3'
-      const base = { title: d.msg, duration: d.ms ?? 3600, fill, styles: { title: 'toast-t', button: 'toast-b' } }
-      if (d.action) { const a = d.action; sileo.action({ ...base, button: { title: a.label, onClick: () => { try { sessionStorage.setItem('langToast', 'es') } catch {} router.push(a.href) } } }) }
-      else if (d.icon === '!') sileo.error(base)
-      else if (d.kind === 'info') sileo.info(base)
-      else sileo.success(base)
+      const d = (e as CustomEvent).detail as Detail
+      if (modRef.current) return show(modRef.current, d)
+      queue.current.push(d)
+      import('sileo').then(m => { modRef.current = m; setMod(m) })
     }
     addEventListener('toast', on)
     return () => removeEventListener('toast', on)
-  }, [router])
+  }, [router]) // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    if (!mod) return
+    const t = setTimeout(() => queue.current.splice(0).forEach(d => show(mod, d)), 60)
+    return () => clearTimeout(t)
+  }, [mod]) // eslint-disable-line react-hooks/exhaustive-deps
   // after a language switch, say so on the new page
   useEffect(() => {
     let to: string | null = null
@@ -98,12 +113,20 @@ export function Toasts({ lang, words }: { lang: Lang; words: { es: string; en: s
     }, 1600)
     return () => clearTimeout(t)
   }, [lang, path, words])
-  return <Toaster position="top-center" offset={{ top: 72 }} theme="dark" />
+  return mod ? <mod.Toaster position="top-center" offset={{ top: 72 }} theme="dark" /> : null
 }
 
 /** Lenis smooth scrolling (off for reduced motion), and reveals that rise once as they come into view */
 export function Motion() {
   const path = usePathname()
+  // switching between English and Spanish swaps the root layout, so the boot script doesn't run again: re-apply it here
+  useEffect(() => {
+    const el = document.documentElement
+    el.classList.add('js')
+    try {
+      if (localStorage.getItem('theme') === 'light') { el.dataset.theme = 'light'; document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#e3e0d8') }
+    } catch {}
+  }, [])
   useEffect(() => {
     // smooth scrolling is a vestibular trigger: never started under reduced motion, and torn down if the setting changes
     const mq = matchMedia('(prefers-reduced-motion: reduce)')
@@ -131,8 +154,12 @@ export function Motion() {
       const el = e.target as HTMLElement; hd.unobserve(el)
       const text = el.textContent || ''
       if (el.children.length || !text.trim()) return
+      const lh = parseFloat(getComputedStyle(el).lineHeight) || el.offsetHeight
+      const oneLine = el.offsetHeight < lh * 1.5
+      el.style.height = el.offsetHeight + 'px'; el.style.maxWidth = el.offsetWidth + 'px'
+      if (oneLine) el.style.whiteSpace = 'nowrap'
       el.setAttribute('aria-label', text); decode(el, text, Math.min(700, 260 + text.length * 22))
-      setTimeout(() => el.removeAttribute('aria-label'), 900)
+      setTimeout(() => { el.removeAttribute('aria-label'); el.style.height = ''; el.style.maxWidth = ''; el.style.whiteSpace = '' }, 900)
     }), { rootMargin: '0px 0px -12% 0px' })
     document.querySelectorAll<HTMLElement>('main .h2').forEach(el => hd.observe(el))
     return () => { io.disconnect(); hd.disconnect() }

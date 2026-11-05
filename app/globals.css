@@ -320,8 +320,8 @@ a.sch{transition:background .15s ease}
 .plist button{display:flex;width:calc(100% + 1.75rem);margin:0 -0.875rem;padding:0.75rem 0.875rem;gap:0.75rem;align-items:baseline;text-align:left;border:0;background:none;cursor:pointer;font-size:1.1875rem;font-weight:700;letter-spacing:-.015em;color:var(--fg-2);transition:background .2s ease,color .2s ease}
 .plist button::after{content:"";margin-left:auto;align-self:center;width:1rem;height:1rem;flex:none;background:var(--green-text);-webkit-mask:var(--chev) center/contain no-repeat;mask:var(--chev) center/contain no-repeat;opacity:0;translate:-0.375rem 0;transition:opacity .2s ease,translate .25s var(--ease-out)}
 
-.plist button[aria-current="true"]::after{opacity:1;translate:0 0}
-.plist button[aria-current="true"]{background:var(--card);color:var(--fg)}
+.plist button[aria-pressed="true"]::after{opacity:1;translate:0 0}
+.plist button[aria-pressed="true"]{background:var(--card);color:var(--fg)}
 .pdet p{margin:0 0 0.875rem;color:var(--fg-2)}
 .pdet .chips{margin-bottom:1.125rem}
 .pdet .lnk + .lnk{margin-left:1.25rem}
@@ -794,8 +794,10 @@ body{font-size:clamp(1rem,.96rem + .2vw,1.0625rem)}
 
 /* motion, round 10: steps arrive Cole first, then the word, then the line, one step after another */
 .js .stp[data-reveal]{opacity:1;translate:none}
-.js .stp[data-reveal] > *{opacity:0;translate:0 .9rem;transition:opacity .55s var(--ease-out),translate .6s var(--ease-out);transition-delay:calc(var(--i,0) * 130ms)}
-.js .stp[data-reveal] > .cl{translate:0 1.75rem}
+.js .stp[data-reveal] > *{opacity:0;translate:0 .5rem;transition:opacity .55s var(--ease-out),translate .6s var(--ease-out);transition-delay:calc(var(--i,0) * 130ms)}
+.js .stp[data-reveal] > .cl{translate:0 .5rem;scale:.86;transform-origin:50% 100%}
+.js .stp.in > .cl{scale:1}
+.js .stp[data-reveal] > *{transition-property:opacity,translate,scale}
 .js .stp.in > *{opacity:1;translate:0 0}
 .js .stp.in > .w-row{transition-delay:calc(var(--i,0) * 130ms + 80ms)}
 .js .stp.in > p{transition-delay:calc(var(--i,0) * 130ms + 140ms)}
@@ -868,6 +870,20 @@ button.dimg{display:block;width:100%;padding:0;border:0;cursor:zoom-in}
 .js .skc.in .chip:nth-child(1){transition-delay:148ms}.js .skc.in .chip:nth-child(2){transition-delay:176ms}.js .skc.in .chip:nth-child(3){transition-delay:204ms}.js .skc.in .chip:nth-child(4){transition-delay:232ms}.js .skc.in .chip:nth-child(5){transition-delay:260ms}.js .skc.in .chip:nth-child(6){transition-delay:288ms}.js .skc.in .chip:nth-child(7){transition-delay:316ms}.js .skc.in .chip:nth-child(8){transition-delay:344ms}.js .skc.in .chip:nth-child(9){transition-delay:372ms}.js .skc.in .chip:nth-child(10){transition-delay:400ms}.js .skc.in .chip:nth-child(11){transition-delay:428ms}.js .skc.in .chip:nth-child(12){transition-delay:456ms}
 /* contact tiles arrive in reading order */
 .js .socs[data-reveal="rows"].in > :nth-child(5){transition-delay:.28s}.js .socs[data-reveal="rows"].in > :nth-child(6){transition-delay:.35s}
+
+/* ---------------- round 12 (Nov 5) ---------------- */
+/* featured: "See all work" is its own row under the projects, a quieter link with a chevron that slides */
+.plist{margin-bottom:.25rem}
+.pall{display:flex;align-items:center;gap:.6rem;width:calc(100% + 1.75rem);margin:0 -0.875rem 1.25rem;padding:.7rem .875rem;font-size:.95rem;font-weight:650;color:var(--green-text);text-decoration:none;box-shadow:0 -1px 0 var(--hair);transition:background .2s ease,color .2s ease}
+.pall .chv{width:1rem;height:1rem;margin-left:auto;transition:translate .25s var(--ease-out)}
+@media (hover:hover) and (pointer:fine){.pall:hover{background:color-mix(in srgb,var(--card) 70%,transparent);color:var(--fg)}.pall:hover .chv{translate:.25rem 0}}
+/* steps: bigger Coles, the band pulled in from both sides so no space is wasted */
+.steps{--cs:clamp(5rem,3.8rem + 2.6vw,7rem)}
+.steps-sec{padding-block:0;margin-block:clamp(-.75rem,-.2rem - 1vw,-.25rem) clamp(-1.25rem,-.4rem - 1.2vw,-.5rem)}
+.stp .w-row{margin-top:.1rem}
+/* dev: skills start right under the intro */
+.dev-top{padding-bottom:0}
+.dev-top + .sec{padding-top:clamp(1.25rem,.8rem + 1.2vw,2rem)}
 
 @media (prefers-reduced-motion:reduce){
   .js .skc[data-reveal] .chip{scale:1;transition-delay:0s!important}

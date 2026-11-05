@@ -29,7 +29,7 @@ export function Typed({ text, className }: { text: string; className?: string })
     t = window.setTimeout(step, 350)
     return () => clearTimeout(t)
   }, [text])
-  return <span className={className} aria-label={text}><span aria-hidden="true">{shown}</span></span>
+  return <span className={className}><span className="vh">{text}</span><span aria-hidden="true">{shown}</span></span>
 }
 
 /** Three fixed lines. The business word sits in a slot as wide as the longest word, so nothing reflows,

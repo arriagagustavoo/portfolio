@@ -19,7 +19,7 @@ export default async function Dev({ params }: P) {
   return (
     <>
       <JsonLd data={crumbs(lang, [[t.nav.home, '/'], [t.nav.dev, '/dev']])} />
-      <section className="wrap sec first">
+      <section className="wrap sec first dev-top">
         <div className="dev-h">
           <div>
             <h1 className="h1">{d.title}</h1>

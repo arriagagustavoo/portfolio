@@ -20,14 +20,14 @@ export function FeaturedStack({ head, items, words }: { head?: React.ReactNode; 
     <div className="stack">
       <div>
         {head}
-        <div className="plist" role="list">
-          {items.map((p, k) => <button key={p.title} type="button" role="listitem" aria-current={k === front} onClick={() => toFront(k)}>{p.title}</button>)}
+        <div className="plist" role="group" aria-labelledby="featured">
+          {items.map((p, k) => <button key={p.title} type="button" aria-pressed={k === front} onClick={() => toFront(k)}>{p.title}</button>)}
         </div>
+        <Link className="pall" href={words.seeAllHref}>{words.seeAll}<Chevron className="chv" /></Link>
         <div className="pdet" aria-live="polite">
           <p>{cur.text}</p>
           <Chips names={cur.skills} />
           <Link className="lnk" href={cur.href} transitionTypes={['nav-forward']}>{words.read}</Link>
-          <Link className="lnk" href={words.seeAllHref}>{words.seeAll}</Link>
         </div>
       </div>
       <div>

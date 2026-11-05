@@ -5,11 +5,11 @@ const en = {
   lang: 'en',
   nav: { home: 'Home', work: 'Work', services: 'Services', about: 'About', dev: 'Dev', contact: 'Contact', faq: 'FAQ', privacy: 'Privacy', menu: 'Menu', close: 'Close menu', estimate: 'Get my free estimate', theme: 'Switch light and dark', skip: 'Skip to content', language: 'Language' },
   meta: {
-    home: { title: 'Gustavo Arriaga | Web Designer and Developer in Houston, TX', description: 'One-person design and code studio in Houston. Custom websites, software, graphic design and local SEO for small businesses, in English and Spanish. Free design and estimate.' },
+    home: { title: 'Gustavo Arriaga | Web Designer and Developer in Houston, TX', description: 'One-person design and code studio in Houston. Custom websites, software and local SEO for small businesses, in English and Spanish. Free design first.' },
     work: { title: 'Work | Websites and Software by Gustavo Arriaga', description: 'Websites, software and design projects by Gustavo Arriaga, a web designer and developer in Houston, each with the story behind it.' },
     services: { title: 'Services and Prices | Web Design in Houston', description: 'Website packages from $600 with design and motion included, custom software, graphic design and local SEO for Houston businesses. Free design and estimate.' },
     faq: { title: 'Questions | Working with Gustavo Arriaga', description: 'Straight answers about prices, payments, contracts, ownership, Spanish sites and what happens after your website launches.' },
-    about: { title: 'About Gustavo Arriaga | Houston Web Designer', description: 'Gustavo Arriaga runs a one-person design and code studio in Houston. Computer science senior at the University of Houston, building websites and software in English and Spanish.' },
+    about: { title: 'About Gustavo Arriaga | Houston Web Designer', description: 'Gustavo Arriaga runs a one-person design and code studio in Houston, building websites and software in English and Spanish. UH computer science senior.' },
     dev: { title: 'Dev | Full-stack Developer Gustavo Arriaga', description: 'The technical side: skills, school and personal projects, and coursework of Gustavo Arriaga, a full-stack developer and UH computer science senior.' },
     contact: { title: 'Contact | Start Your Website with Gustavo Arriaga', description: 'Call, text, email or message Gustavo Arriaga about your website. Houston area and remote, in English and Spanish.' },
     privacy: { title: 'Privacy | Gustavo Arriaga', description: 'What this site collects, who handles it and how long it is kept.' },
@@ -18,7 +18,7 @@ const en = {
   hero: {
     eyebrow: "// hey, I'm Gus",
     lines: ['I design and', 'build websites', 'for'],
-    words: ['barbershops.', 'taquerías.', 'gyms.', 'contractors.', 'salons.', 'food trucks.'],
+    words: ['barbershops.', 'taquerías.', 'gyms.', 'contractors.', 'salons.'],
     studio: 'I run a one-person design / code studio:',
     services: [
       { icon: 'web', title: 'Websites', sub: 'Designed and coded by me' },
@@ -160,11 +160,11 @@ const es: Dict = {
   lang: 'es',
   nav: { home: 'Inicio', work: 'Trabajo', services: 'Servicios', about: 'Sobre mí', dev: 'Dev', contact: 'Contacto', faq: 'Preguntas', privacy: 'Privacidad', menu: 'Menú', close: 'Cerrar menú', estimate: 'Mi cotización gratis', theme: 'Cambiar claro y oscuro', skip: 'Ir al contenido', language: 'Idioma' },
   meta: {
-    home: { title: 'Gustavo Arriaga | Diseñador y desarrollador web en Houston, TX', description: 'Estudio de diseño y código de una sola persona en Houston. Sitios web, software a la medida, diseño gráfico y SEO local para pequeños negocios, en inglés y español. Diseño y cotización gratis.' },
+    home: { title: 'Gustavo Arriaga | Diseñador y desarrollador web en Houston, TX', description: 'Estudio de diseño y código en Houston. Sitios web, software a la medida y SEO local para pequeños negocios, en inglés y español. Diseño gratis primero.' },
     work: { title: 'Trabajo | Sitios web y software de Gustavo Arriaga', description: 'Proyectos de sitios web, software y diseño de Gustavo Arriaga, diseñador y desarrollador web en Houston, cada uno con su historia.' },
-    services: { title: 'Servicios y precios | Diseño web en Houston', description: 'Paquetes de sitios web desde $600 con diseño y animación incluidos, software a la medida, diseño gráfico y SEO local para negocios de Houston. Diseño y cotización gratis.' },
+    services: { title: 'Servicios y precios | Diseño web en Houston', description: 'Sitios web desde $600 con diseño y animación incluidos, software a la medida y SEO local para negocios de Houston. Diseño y cotización gratis.' },
     faq: { title: 'Preguntas | Trabajar con Gustavo Arriaga', description: 'Respuestas claras sobre precios, pagos, contratos, propiedad, sitios en español y qué pasa después de lanzar tu sitio.' },
-    about: { title: 'Sobre Gustavo Arriaga | Diseñador web en Houston', description: 'Gustavo Arriaga tiene un estudio de diseño y código de una sola persona en Houston. Estudiante de último año de Ciencias de la Computación en la Universidad de Houston.' },
+    about: { title: 'Sobre Gustavo Arriaga | Diseñador web en Houston', description: 'Gustavo Arriaga tiene un estudio de diseño y código en Houston. Hace sitios web y software en inglés y español. Estudiante de computación en UH.' },
     dev: { title: 'Dev | Desarrollador full-stack Gustavo Arriaga', description: 'El lado técnico: habilidades, proyectos de escuela y personales, y cursos de Gustavo Arriaga, desarrollador full-stack.' },
     contact: { title: 'Contacto | Empieza tu sitio con Gustavo Arriaga', description: 'Llama, manda texto, correo o mensaje a Gustavo Arriaga sobre tu sitio web. Área de Houston y a distancia, en inglés y español.' },
     privacy: { title: 'Privacidad | Gustavo Arriaga', description: 'Qué recopila este sitio, quién lo maneja y por cuánto tiempo se guarda.' },
@@ -173,7 +173,7 @@ const es: Dict = {
   hero: {
     eyebrow: '// hola, soy Gus',
     lines: ['Diseño y programo', 'sitios web', 'para'],
-    words: ['barberías.', 'taquerías.', 'gimnasios.', 'contratistas.', 'salones.', 'food trucks.'],
+    words: ['barberías.', 'taquerías.', 'gimnasios.', 'contratistas.', 'salones.'],
     studio: 'Tengo un estudio de diseño y código de una sola persona:',
     services: [
       { icon: 'web', title: 'Sitios web', sub: 'Diseñados y programados por mí' },
