@@ -34,7 +34,7 @@ export default async function About({ params }: P) {
             <div className="follow"><span>{a.follow}</span><a className="sch" href={contact.instagram.url} {...ext}><Icon name="instagram" />Instagram</a><a className="sch" href={contact.facebook.url} {...ext}><Icon name="facebook" />Facebook</a></div>
           </div>
           <div className="ab2-r">
-            <div className="pk photo-pk"><ColePeek /><div className="photo"><Image src="/images/gus.webp" alt={a.photoAlt} fill priority sizes="(max-width: 56rem) 80vw, 25vw" /></div></div>
+            <div className="pk photo-pk"><ColePeek /><div className="photo"><Image src="/images/gus-arriaga.webp" alt={a.photoAlt} fill priority sizes="(max-width: 56rem) 80vw, 25vw" /></div></div>
           </div>
         </div>
       </section>

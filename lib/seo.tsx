@@ -27,7 +27,7 @@ export function siteGraph(lang: Lang) {
     '@context': 'https://schema.org',
     '@graph': [
       {
-        '@type': 'Person', '@id': SITE + '/#gustavo', name: 'Gustavo Arriaga', alternateName: 'Gus Arriaga', url: SITE + '/', image: SITE + '/images/gus.webp',
+        '@type': 'Person', '@id': SITE + '/#gustavo', name: 'Gustavo Arriaga', alternateName: 'Gus Arriaga', url: SITE + '/', image: SITE + '/images/gus-arriaga.webp',
         email: contact.email, telephone: contact.tel, jobTitle: lang === 'es' ? 'Diseñador y desarrollador web' : 'Web Designer and Developer',
         address: { '@type': 'PostalAddress', addressLocality: 'Houston', addressRegion: 'TX', addressCountry: 'US' },
         alumniOf: { '@type': 'CollegeOrUniversity', name: 'University of Houston' },
