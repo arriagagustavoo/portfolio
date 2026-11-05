@@ -16,6 +16,7 @@ export default function Footer({ lang, t }: { lang: Lang; t: Dict }) {
             <p>{t.footer.about}</p>
             <Link className="btn" href={href(lang, '/') + '#estimate'}>{t.nav.estimate}</Link>
           </div>
+          <div className="fcols">
           <nav className="fcol" aria-label={t.footer.pages}><b>{t.footer.pages}</b>{pages.map(([p, l]) => <Link key={p} href={href(lang, p)}>{l}</Link>)}</nav>
           <nav className="fcol" aria-label={t.footer.work}><b>{t.footer.work}</b>{projects.map(p => <Link key={p.slug} href={href(lang, '/work/' + p.slug)}>{p.title}</Link>)}</nav>
           <div className="fcol"><b>{t.footer.contact}</b>
@@ -25,6 +26,7 @@ export default function Footer({ lang, t }: { lang: Lang; t: Dict }) {
             <a href={contact.facebook.url} {...ext}>Facebook</a>
             <a href={contact.linkedin.url} {...ext}>LinkedIn</a>
             <a href={contact.github.url} {...ext}>GitHub</a>
+          </div>
           </div>
         </div>
         <div className="foot-bot"><span>{t.footer.rights}</span><span><Link href={href(lang, '/privacy')}>{t.nav.privacy}</Link> · <Link href="/" hrefLang="en">English</Link> / <Link href="/es" hrefLang="es">Español</Link></span></div>

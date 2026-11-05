@@ -40,11 +40,11 @@ export default async function About({ params }: P) {
       </section>
       <section className="wrap sec story" aria-label={a.lead}>
         <p className="lead" data-reveal>{a.lead}</p>
-        <div className="story-cols" data-reveal>{a.story.map(s => <p key={s.slice(0, 20)}>{s}</p>)}</div>
+        <div className="story-cols cols" data-reveal>{a.story.map(s => <p key={s.slice(0, 20)}>{s}</p>)}</div>
       </section>
       <section className="wrap sec" aria-labelledby="count">
         <div className="sec-h" data-reveal><h2 className="h2" id="count">{a.countOn}</h2></div>
-        <div className="rlist two" data-reveal>{[...t.why.reasons, ...a.extra].map(r => <div key={r.title}><b>{r.title}</b><p>{r.body}</p></div>)}</div>
+        <div className="rlist two cols" data-reveal>{[...t.why.reasons, ...a.extra].map(r => <div key={r.title}><b>{r.title}</b><p>{r.body}</p></div>)}</div>
         <div className="acts"><Link className="btn" href={href(lang, '/contact')}>{t.close.send}</Link><Link className="btn ghost" href={href(lang, '/work')}>{t.hero.seeWork}</Link></div>
       </section>
     </>

@@ -53,7 +53,7 @@ export default async function Home({ params }: P) {
       </section>
 
       <section className="wrap sec" aria-label={t.steps.map(s => s.word).join(', ')}>
-        <div className="steps">
+        <div className="steps cols">
           {t.steps.map((s, k) => (
             <div className="stp" key={s.word} data-reveal style={{ transitionDelay: k * 90 + 'ms' }}>
               <CostumeCole kind={(['design', 'build', 'ship'] as const)[k]} delay={k * 0.25} />
@@ -92,7 +92,7 @@ export default async function Home({ params }: P) {
       <section className="wrap sec" aria-labelledby="why">
         <div className="why">
           <div data-reveal="wipe">
-            <div className="pk photo-pk"><ColePeek /><div className="photo"><Image src="/images/gus.webp" alt={t.about.photoAlt} fill sizes="(max-width: 900px) 300px, 380px" /></div></div>
+            <div className="pk photo-pk"><ColePeek /><div className="photo"><Image src="/images/gus.webp" alt={t.about.photoAlt} fill sizes="(max-width: 40rem) 90vw, 24rem" /></div></div>
             <figure className="quote"><blockquote>&ldquo;{t.quote.text}&rdquo;</blockquote><Html as="figcaption" html={t.quote.source} /></figure>
           </div>
           <div data-reveal>

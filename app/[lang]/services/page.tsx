@@ -20,7 +20,7 @@ export default async function Services({ params }: P) {
       <section className="wrap sec first">
         <div className="head2"><h1 className="h1">{s.title}</h1><p className="lede">{s.intro}</p></div>
         <div className="whatido">{t.hero.services.map(x => <span key={x.title}><Icon name={x.icon as IconName} />{x.title}</span>)}</div>
-        <div className="tcards">
+        <div className="tcards cols">
           {pr.tiers.map((x, k) => (
             <div key={x.name} className={'tc' + (k === 0 ? ' hot' : '')} data-reveal style={{ transitionDelay: k * 70 + 'ms' }}>
               {k === 0 && <span className="tc-badge">{pr.badge}</span>}
@@ -38,7 +38,7 @@ export default async function Services({ params }: P) {
       </section>
       <section className="wrap sec" aria-labelledby="addons">
         <div className="sec-h" data-reveal><h2 className="h2" id="addons">{s.addonsTitle}</h2></div>
-        <div className="addons" data-reveal>{s.addons.map(([n, d]) => <div className="ad" key={n}><b>{n}</b><span>{d}</span></div>)}</div>
+        <div className="addons cols" data-reveal>{s.addons.map(([n, d]) => <div className="ad" key={n}><b>{n}</b><span>{d}</span></div>)}</div>
         <p className="note">{s.addonsNote}</p>
       </section>
       <section className="wrap sec" aria-labelledby="gtk">

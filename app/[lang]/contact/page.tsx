@@ -18,7 +18,7 @@ export default async function Contact({ params }: P) {
       <div className="ct2">
         <div>
           <h1 className="h1">{c.title}<span className="g">.</span></h1>
-          <p className="lede" style={{ marginTop: 14 }}>{c.intro}</p>
+          <p className="lede" style={{ marginTop: '.875rem' }}>{c.intro}</p>
           <Socials t={t} two />
           <p className="where">{c.where}</p>
         </div>

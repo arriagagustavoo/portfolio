@@ -27,21 +27,27 @@ export function Backdrop() {
       raf = Math.abs(tx - cx) + Math.abs(ty - cy) > 0.1 ? requestAnimationFrame(loop) : 0
     }
     let lastMove = 0
-    const move = (e: PointerEvent) => { lastMove = performance.now(); tx = (e.clientX / innerWidth) * 100; ty = (e.clientY / innerHeight) * 100; if (!raf) raf = requestAnimationFrame(loop) }
+    const aim = (x: number, y: number) => { lastMove = performance.now(); tx = (x / innerWidth) * 100; ty = (y / innerHeight) * 100; if (!raf) raf = requestAnimationFrame(loop) }
+    const move = (e: PointerEvent) => aim(e.clientX, e.clientY)
     addEventListener('pointermove', move, { passive: true })
+    addEventListener('pointerdown', move, { passive: true })
+    // touch screens have no cursor to carry the light, so it wanders on its own, slowly
+    const touch = matchMedia('(hover: none)').matches
     const rows = [...el.querySelectorAll<HTMLElement>('.logs div')]
     let drift = 0
-    if (!reduce && matchMedia('(hover: hover) and (min-width: 901px)').matches) {
+    if (!reduce) {
       let s = 0, prev = performance.now()
       const step = (t: number) => {
-        if (t - lastMove < 4000 && !document.hidden && !matchMedia('(prefers-reduced-motion: reduce)').matches) s += (t - prev) / 1000
+        const live = !document.hidden && !matchMedia('(prefers-reduced-motion: reduce)').matches
+        if (live && touch && t - lastMove > 2500) { const a = t / 9000; tx = 50 + 34 * Math.sin(a); ty = 42 + 30 * Math.sin(a * 1.7 + 1); if (!raf) raf = requestAnimationFrame(loop) }
+        if (live && (touch || t - lastMove < 4000)) s += (t - prev) / 1000
         prev = t
         rows.forEach((r, k) => { const d = k % 2 ? 1 : -1; r.style.transform = `translate3d(${((d * s * (9 + (k % 3) * 3)) % 600) - (d > 0 ? 600 : 0)}px,0,0)` })
         drift = requestAnimationFrame(step)
       }
       drift = requestAnimationFrame(step)
     }
-    return () => { removeEventListener('pointermove', move); cancelAnimationFrame(raf); cancelAnimationFrame(drift) }
+    return () => { removeEventListener('pointermove', move); removeEventListener('pointerdown', move); cancelAnimationFrame(raf); cancelAnimationFrame(drift) }
   }, [])
   const rows = Array.from({ length: 30 }, (_, r) => Array.from({ length: 4 }, (_, c) => { const l = LOG[(r * 3 + c * 5) % LOG.length]; return `[${l[0]}]  ${l[1]}  ${l[2]}          ` }).join(''))
   return (

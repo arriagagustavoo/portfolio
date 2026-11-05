@@ -33,40 +33,34 @@ export function Typed({ text, className }: { text: string; className?: string })
 }
 
 /** Three fixed lines. The business word sits in a slot as wide as the longest word, so nothing reflows,
- *  and the size steps down only if a line would not fit its column. */
+ *  and the size follows the column continuously, never past the point where a line would not fit. */
 export function Headline({ lines, words }: { lines: string[]; words: string[] }) {
   const h = useRef<HTMLHeadingElement>(null)
   const w = useRef<HTMLSpanElement>(null)
   useEffect(() => {
     const el = h.current!, slot = el.querySelector<HTMLElement>('.slot')!
+    // Measured once (and again when the words change): the slot gets the longest word's width in em and the
+    // headline publishes its widest line in em as --k. CSS then sizes it as min(fluid size, column / k),
+    // so it scales continuously with the column while the window is being resized, with no JS on resize.
     const fit = () => {
-      el.style.fontSize = ''
-      const avail = el.parentElement!.clientWidth
-      let fs = parseFloat(getComputedStyle(el).fontSize)
+      const fs = parseFloat(getComputedStyle(el).fontSize)
       const meas = document.createElement('span'); meas.className = 'word'; meas.style.cssText = 'position:absolute;visibility:hidden;white-space:pre;left:-9999px'
       el.appendChild(meas)
-      for (;;) {
-        el.style.fontSize = fs + 'px'
-        let sw = 0; words.forEach(x => { meas.textContent = x; sw = Math.max(sw, meas.getBoundingClientRect().width) })
-        slot.style.width = Math.ceil(sw + 6) + 'px'
-        const widest = Math.max(...[...el.querySelectorAll<HTMLElement>('.ln')].map(l => l.getBoundingClientRect().width))
-        if (widest <= avail || fs <= 28) break
-        fs -= 2
-      }
+      let sw = 0; words.forEach(x => { meas.textContent = x; sw = Math.max(sw, meas.getBoundingClientRect().width) })
       meas.remove()
+      slot.style.width = ((sw + 6) / fs).toFixed(3) + 'em'
+      const widest = Math.max(...[...el.querySelectorAll<HTMLElement>('.ln')].map(l => l.getBoundingClientRect().width))
+      el.style.setProperty('--k', (widest / fs + 0.04).toFixed(3))
     }
     const ready = (document as Document & { fonts?: FontFaceSet }).fonts?.ready ?? Promise.resolve()
     ready.then(fit)
-    let rz = 0
-    const onR = () => { clearTimeout(rz); rz = window.setTimeout(fit, 120) }
-    addEventListener('resize', onR)
     let i = 0, iv = 0
     // the word pauses while you hover or focus the headline, and when the tab is hidden
     let paused = false
     const hold = () => { paused = true }, go = () => { paused = false }
     el.addEventListener('pointerenter', hold); el.addEventListener('pointerleave', go)
     if (!reduced()) iv = window.setInterval(() => { if (paused || document.hidden) return; i = (i + 1) % words.length; if (w.current) decode(w.current, words[i], 420) }, 2600)
-    return () => { removeEventListener('resize', onR); clearInterval(iv); el.removeEventListener('pointerenter', hold); el.removeEventListener('pointerleave', go) }
+    return () => { clearInterval(iv); el.removeEventListener('pointerenter', hold); el.removeEventListener('pointerleave', go) }
   }, [words])
   return (
     <h1 className="hl" ref={h}>

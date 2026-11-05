@@ -129,14 +129,14 @@ export default function EstimateCard({ t, e, work }: { t: Dict['card']; e: Dict[
                   <form className="qform in" onSubmit={send}>
                     <p style={{ fontWeight: 650, color: 'var(--fg)' }}>{e.sendTitle}</p>
                     <input className="hp" type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off" aria-hidden="true" />
-                    <div className="qf-row">
+                    <div className="qf-row cols">
                       <label className="field">{e.name}<input name="name" autoComplete="given-name" required /></label>
                       <label className="field">{e.contact}<input name="reach" autoComplete="email" spellCheck={false} placeholder="832-555-0100…" required /></label>
                     </div>
                     <div className="fact"><button className="btn" type="submit">{e.sendBtn}</button></div>
                   </form>
                 ) : (
-                  <div className="acts" style={{ marginTop: 6 }}><button className="btn" type="button" onClick={() => { remember(); setSendOpen(true) }}>{e.send}</button></div>
+                  <div className="acts" style={{ marginTop: '.375rem' }}><button className="btn" type="button" onClick={() => { remember(); setSendOpen(true) }}>{e.send}</button></div>
                 )}
                 <div className="foot"><span>{e.quote}</span><button type="button" onClick={restart}>{e.again}</button></div>
               </div>

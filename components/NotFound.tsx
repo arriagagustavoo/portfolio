@@ -13,7 +13,7 @@ export function NotFoundBody({ t }: { t: { en: T; es: T } }) {
       <ColeThumbs />
       <div>
         <h1 className="h1">{w.title}</h1>
-        <p className="lede" style={{ marginTop: 14 }}>{w.text}</p>
+        <p className="lede" style={{ marginTop: '.875rem' }}>{w.text}</p>
         <div className="acts"><Link className="btn" href={href(lang, '/')}>{w.home}</Link><Link className="lnk" href={href(lang, '/contact')}>{w.message}</Link></div>
       </div>
     </section>

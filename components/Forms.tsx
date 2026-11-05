@@ -47,7 +47,7 @@ export function QuickForm({ t, estimateHref, toastSent }: { t: Dict['close']; es
       ) : (
         <form className="qform in" onSubmit={submit} noValidate>
           <input className="hp" type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off" aria-hidden="true" />
-          <div className="qf-row">
+          <div className="qf-row cols">
             <label className="field">{t.name}<input name="name" autoComplete="given-name" placeholder={t.namePh} /></label>
             <label className="field">{t.contact}<input name="reach" autoComplete="email" spellCheck={false} placeholder={t.contactPh} /></label>
           </div>
@@ -87,7 +87,7 @@ export function ContactForm({ t, errText, toastSent, failed }: { t: Dict['contac
       <input className="hp" type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off" aria-hidden="true" />
       <div>
         <span className="lbl" id="needs"><i>//</i> {t.needTitle} <span style={{ color: 'var(--fg-3)' }}>{t.tap}</span></span>
-        <div className="picks" role="group" aria-labelledby="needs" style={{ marginTop: 10 }}>
+        <div className="picks" role="group" aria-labelledby="needs" style={{ marginTop: '.625rem' }}>
           {t.picks.map(p => <button key={p} type="button" aria-pressed={picks.includes(p)} onClick={() => setPicks(v => (v.includes(p) ? v.filter(x => x !== p) : [...v, p]))}>{p}</button>)}
         </div>
       </div>

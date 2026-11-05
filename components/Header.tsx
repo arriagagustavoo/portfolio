@@ -68,7 +68,7 @@ export default function Header({ lang, nav }: { lang: Lang; nav: Dict['nav'] }) 
             return <Link className="m" key={k} href={to} style={{ animationDelay: i * 40 + 'ms' }} aria-current={path === to ? 'page' : undefined}>{nav[k]}</Link>
           })}
           <Link className="btn" href={href(lang, '/') + '#estimate'}>{nav.estimate}</Link>
-          <button className="icon-b" type="button" onClick={theme} aria-label={nav.theme} style={{ marginTop: 16 }}><Icon name="moon" /></button>
+          <button className="icon-b" type="button" onClick={theme} aria-label={nav.theme} style={{ marginTop: '1rem' }}><Icon name="moon" /></button>
           <p>832-453-4158 · gus@arriagagustavoo.com</p>
         </div>
       )}

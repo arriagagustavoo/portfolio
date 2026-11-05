@@ -84,7 +84,7 @@ export function WorkGrid({ filters, kinds, empty, children }: { filters: [string
       <div className="filt" role="group">
         {filters.map(([k, l]) => <button key={k} type="button" aria-pressed={f === k} onClick={() => pick(k)}>{l}</button>)}
       </div>
-      <div className="wgrid" ref={grid} data-f={f}>{children}</div>
+      <div className="wgrid cols" ref={grid} data-f={f}>{children}</div>
       {none && <p className="note">{empty}</p>}
     </>
   )
@@ -102,10 +102,10 @@ export function Gallery({ shots, url, doc, alts, more, label, vt }: { shots: str
       <div className="browser">
         <div className="chrome">
           <span className="lights"><i /><i /><i /></span><span className="url">{url}</span>
-          <span className="sw" style={{ display: 'flex', alignItems: 'center', gap: 2, fontFamily: 'var(--mono)', fontSize: 11.5, color: 'var(--fg-3)' }}>
-            <button className="icon-b" style={{ width: 28, height: 24 }} type="button" aria-label={label + " −1"} onClick={() => go(i - 1)}><Chevron dir="left" className="chv" /></button>
+          <span className="sw" style={{ display: 'flex', alignItems: 'center', gap: 2, fontFamily: 'var(--mono)', fontSize: '.72rem', color: 'var(--fg-3)' }}>
+            <button className="icon-b" style={{ width: '1.75rem', height: '1.5rem' }} type="button" aria-label={label + " −1"} onClick={() => go(i - 1)}><Chevron dir="left" className="chv" /></button>
             <span>{i + 1}/{shots.length}</span>
-            <button className="icon-b" style={{ width: 28, height: 24 }} type="button" aria-label={label + " +1"} onClick={() => go(i + 1)}><Chevron className="chv" /></button>
+            <button className="icon-b" style={{ width: '1.75rem', height: '1.5rem' }} type="button" aria-label={label + " +1"} onClick={() => go(i + 1)}><Chevron className="chv" /></button>
           </span>
         </div>
         <div className={'screen' + (doc ? ' doc' : '')} ref={view} style={doc ? { aspectRatio: '4 / 3' } : undefined}>
@@ -113,7 +113,7 @@ export function Gallery({ shots, url, doc, alts, more, label, vt }: { shots: str
         </div>
       </div>
       </ViewTransition>
-      <div className="gal-t">
+      <div className="gal-t cols">
         {shots.slice(0, 5).map((s, k) => (
           <button key={s} type="button" aria-label={`${label} ${k + 1}`} aria-current={i === k} onClick={() => go(k)} style={doc ? { aspectRatio: '4 / 3' } : undefined}>
             <Image src={s} alt="" width={200} height={doc ? 150 : 97} style={{ objectFit: doc ? 'contain' : 'cover' }} />
