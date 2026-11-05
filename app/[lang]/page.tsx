@@ -12,7 +12,7 @@ import { getDict } from '@/lib/content/site'
 import { href, swapLang, type Lang } from '@/lib/i18n'
 import { lead, projects } from '@/lib/data'
 import { pageMeta } from '@/lib/seo'
-import { uhLogo, type IconName } from '@/lib/icons'
+import { uhLogo } from '@/lib/icons'
 
 type P = { params: Promise<{ lang: Lang }> }
 export async function generateMetadata({ params }: P): Promise<Metadata> { const { lang } = await params; return pageMeta(lang, 'home', '/') }
@@ -37,7 +37,7 @@ export default async function Home({ params }: P) {
           <EstimateCard t={t.card} e={t.estimate} work={work.map(w => ({ title: w.title, url: w.url, href: w.href, src: w.shots[0], doc: w.doc }))} />
           <div className="h-bot">
             <div className="svc">
-              {t.hero.services.map(s => <div key={s.title}><Icon name={s.icon as IconName} /><b>{s.title}</b><span>{s.sub}</span></div>)}
+              {t.hero.services.map(s => <Link key={s.title} href={href(lang, '/services')}><Chevron className="chv" /><b>{s.title}</b><span>{s.sub}</span></Link>)}
             </div>
             <div className="acts">
               <Link className="btn ghost" href={href(lang, '/work')}>{t.hero.seeWork}</Link>
@@ -55,7 +55,7 @@ export default async function Home({ params }: P) {
       <section className="wrap sec steps-sec" aria-label={t.steps.map(s => s.word).join(', ')}>
         <div className="steps cols">
           {t.steps.map((s, k) => (
-            <div className="stp" key={s.word} data-reveal style={{ transitionDelay: k * 90 + 'ms' }}>
+            <div className="stp" key={s.word} data-reveal style={{ '--i': k } as React.CSSProperties}>
               <CostumeCole kind={(['design', 'build', 'ship'] as const)[k]} delay={k * 0.25} />
               <div className="w-row"><h2 className="w">{s.word}<i>.</i></h2>{s.free && <span className="freetag">{t.card.free}</span>}</div>
               <Html as="p" html={s.text} />
@@ -79,7 +79,7 @@ export default async function Home({ params }: P) {
         <div className="tiers" data-reveal="rows">
           {t.pricing.tiers.map((x, k) => (
             <Link key={x.name} className={'tier' + (k === 0 ? ' hot' : '')} href={href(lang, '/services')}>
-              <span className="t-n">{x.name}</span>
+              <span className="t-n">{x.name}{k === 0 && <span className="rec">{t.pricing.recommended}</span>}</span>
               <span className="t-w">{x.who}<em>{t.pricing.great}: {x.great}</em></span>
               <span className="t-p"><b>{x.price}</b><small>{x.monthly}</small></span>
               <Chevron />
@@ -89,13 +89,13 @@ export default async function Home({ params }: P) {
         <p className="note">{t.pricing.note}</p>
       </section>
 
-      <section className="wrap sec" aria-labelledby="why">
+      <section className="wrap sec why-sec" aria-labelledby="why">
         <div className="why">
-          <div data-reveal="wipe">
-            <div className="pk photo-pk"><ColePeek /><div className="photo"><Image src="/images/gus-arriaga.webp" alt={t.about.photoAlt} fill sizes="(max-width: 40rem) 90vw, 27vw" /></div></div>
-            <figure className="quote"><blockquote>&ldquo;{t.quote.text}&rdquo;</blockquote><Html as="figcaption" html={t.quote.source} /></figure>
+          <div className="why-l">
+            <div className="pk photo-pk" data-reveal="wipe"><ColePeek /><div className="photo"><Image src="/images/gus-arriaga.webp" alt={t.about.photoAlt} fill sizes="(max-width: 40rem) 90vw, 27vw" /></div></div>
+            <figure className="quote" data-reveal><blockquote>&ldquo;{t.quote.text}&rdquo;</blockquote><Html as="figcaption" html={t.quote.source} /></figure>
           </div>
-          <div data-reveal>
+          <div className="why-r" data-reveal>
             <h2 className="h2" id="why">{t.why.title}</h2>
             <div className="rlist" data-reveal="rows">{t.why.reasons.map(r => <div key={r.title}><b>{r.title}</b><p>{r.body}</p></div>)}</div>
             <div className="acts"><Link className="btn ghost" href={href(lang, '/about')}>{t.why.more}</Link></div>

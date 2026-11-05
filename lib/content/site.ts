@@ -64,7 +64,7 @@ const en = {
   pricing: {
     title: 'Which one do you need?', sub: 'Ask yourself who uses it every day. Every site gets its own design and motion.', all: 'All services',
     note: 'Prices are approximate. Your exact price comes in the free estimate, and a written quote before anything starts.',
-    badge: 'Most businesses start here', example: 'Want to see an example?', great: 'Great for',
+    badge: 'Most businesses start here', recommended: 'Recommended', example: 'Want to see an example?', great: 'Great for',
     tiers: [
       { name: 'Starter', price: 'from $600', monthly: '+ $45/mo', who: 'Customers read it.', great: 'Barbershops, food trucks, contractors', list: ['Its own design and motion', 'Works great on phones', 'Contact form and your business details', 'Readable by Google'] },
       { name: 'Standard', price: '~$1,700', monthly: '+ $65/mo', who: 'Customers do one thing on it: book, order or message.', great: 'Salons taking bookings, restaurants taking orders, trainers', list: ['Everything in Starter', 'Customer accounts', 'One job: booking, ordering or messages', 'A database behind it'] },
@@ -219,7 +219,7 @@ const es: Dict = {
   pricing: {
     title: '¿Cuál necesitas?', sub: 'Pregúntate quién lo usa todos los días. Cada sitio tiene su propio diseño y animación.', all: 'Todos los servicios',
     note: 'Los precios son aproximados. Tu precio exacto viene en la cotización gratis, y por escrito antes de empezar.',
-    badge: 'Casi todos empiezan aquí', example: '¿Quieres ver un ejemplo?', great: 'Ideal para',
+    badge: 'Casi todos empiezan aquí', recommended: 'Recomendado', example: '¿Quieres ver un ejemplo?', great: 'Ideal para',
     tiers: [
       { name: 'Starter', price: 'desde $600', monthly: '+ $45/mes', who: 'Tus clientes lo leen.', great: 'Barberías, food trucks, contratistas', list: ['Su propio diseño y animación', 'Se ve muy bien en el teléfono', 'Formulario de contacto y los datos de tu negocio', 'Google lo puede leer'] },
       { name: 'Standard', price: '~$1,700', monthly: '+ $65/mes', who: 'Tus clientes hacen una cosa: reservar, pedir o escribir.', great: 'Salones con citas, restaurantes con pedidos, entrenadores', list: ['Todo lo de Starter', 'Cuentas para clientes', 'Una tarea: citas, pedidos o mensajes', 'Una base de datos detrás'] },

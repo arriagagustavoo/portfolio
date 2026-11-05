@@ -115,7 +115,7 @@ export default function EstimateCard({ t, e, work }: { t: Dict['card']; e: Dict[
                     <button key={k} className="a" type="button" style={{ animationDelay: k * 40 + 'ms' }} aria-pressed={picked === k} onClick={() => answer(k)}><span className="k">{k + 1}</span><span>{a}</span></button>
                   ))}
                 </div>
-                <div className="foot"><span>{e.minute}</span>{i > 0 && <button type="button" onClick={() => { remember(); setI(i - 1) }}>{e.back}</button>}</div>
+                <div className="efoot"><span>{e.minute}</span>{i > 0 && <button type="button" onClick={() => { remember(); setI(i - 1) }}>{e.back}</button>}</div>
               </div>
             ) : (
               <div className="res swapin">
@@ -138,7 +138,7 @@ export default function EstimateCard({ t, e, work }: { t: Dict['card']; e: Dict[
                 ) : (
                   <div className="acts" style={{ marginTop: '.375rem' }}><button className="btn" type="button" onClick={() => { remember(); setSendOpen(true) }}>{e.send}</button></div>
                 )}
-                <div className="foot"><span>{e.quote}</span><button type="button" onClick={restart}>{e.again}</button></div>
+                <div className="efoot"><span>{e.quote}</span><button type="button" onClick={restart}>{e.again}</button></div>
               </div>
             )}
           </div>

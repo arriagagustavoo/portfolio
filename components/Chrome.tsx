@@ -6,6 +6,7 @@ import 'sileo/styles.css'
 import { useEffect, useRef } from 'react'
 import type { ToastOpts } from '@/lib/toast'
 import { swapLang, type Lang } from '@/lib/i18n'
+import { decode } from './Hero'
 
 const LOG = [
   ['09:41:02', 'deploy', 'site ready on vercel  38s'], ['09:41:07', 'estimate', 'type=barbershop pages=3 es=true'], ['09:42:15', 'lighthouse', 'perf 99  a11y 100  seo 100'],
@@ -124,7 +125,17 @@ export function Motion() {
   useEffect(() => {
     const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target) } }), { rootMargin: '0px 0px -8% 0px' })
     document.querySelectorAll('[data-reveal]:not(.in)').forEach(el => io.observe(el))
-    return () => io.disconnect()
+    // section headings resolve from glyphs once, the first time they come into view (text-only headings)
+    const hd = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return
+      const el = e.target as HTMLElement; hd.unobserve(el)
+      const text = el.textContent || ''
+      if (el.children.length || !text.trim()) return
+      el.setAttribute('aria-label', text); decode(el, text, Math.min(700, 260 + text.length * 22))
+      setTimeout(() => el.removeAttribute('aria-label'), 900)
+    }), { rootMargin: '0px 0px -12% 0px' })
+    document.querySelectorAll<HTMLElement>('main .h2').forEach(el => hd.observe(el))
+    return () => { io.disconnect(); hd.disconnect() }
   }, [path])
   return null
 }

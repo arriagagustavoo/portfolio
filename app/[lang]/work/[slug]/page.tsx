@@ -44,6 +44,7 @@ export default async function Case({ params }: P) {
   const [first, ...rest] = it.sections
   return (
     <>
+      <div className="readbar" aria-hidden="true" />
       <JsonLd data={crumbs(lang, [[t.nav.home, '/'], [t.nav.work, '/work'], [p.title, '/work/' + slug]])} />
       <JsonLd data={{ '@context': 'https://schema.org', '@type': 'CreativeWork', name: p.title, description: it.meta.description, url: SITE + href(lang, '/work/' + slug), image: SITE + p.shots[lead[p.key]].src, creator: { '@id': SITE + '/#gustavo' }, inLanguage: lang, keywords: p.skills.join(', ') }} />
       <section className="wrap sec first">
