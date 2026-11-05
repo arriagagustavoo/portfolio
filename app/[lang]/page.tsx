@@ -65,9 +65,8 @@ export default async function Home({ params }: P) {
       </section>
 
       <section className="wrap sec" aria-labelledby="featured">
-        <div className="sec-h" data-reveal><h2 className="h2" id="featured">{t.featured.title}</h2><Link className="lnk" href={href(lang, '/work')}>{t.featured.seeAll}</Link></div>
         <div data-reveal="depth">
-          <FeaturedStack items={work} words={{ read: t.featured.read, seeAll: t.featured.seeAll, seeAllHref: href(lang, '/work'), hint: t.featured.hint, prev: t.caseStudy.prev, next: t.caseStudy.next, open: t.card.open }} />
+          <FeaturedStack head={<h2 className="h2" id="featured">{t.featured.title}</h2>} items={work} words={{ read: t.featured.read, seeAll: t.featured.seeAll, seeAllHref: href(lang, '/work'), hint: t.featured.hint, prev: t.caseStudy.prev, next: t.caseStudy.next, open: t.card.open }} />
         </div>
       </section>
 
@@ -105,8 +104,7 @@ export default async function Home({ params }: P) {
 
       <section className="wrap sec close" aria-labelledby="build">
         <div className="cl3-h" data-reveal>
-          <Mark className="bm lock" />
-          <div><h2 className="cl-h gl" id="build">{t.close.title}</h2><p className="cl-p">{t.close.text}</p></div>
+          <div><div className="cl-lock"><Mark className="bm lock" /><h2 className="cl-h gl" id="build">{t.close.title}</h2></div><p className="cl-p">{t.close.text}</p></div>
           <QuickForm t={t.close} estimateHref={href(lang, '/') + '#estimate'} toastSent={t.toast.sent} />
         </div>
         <div className="pk close-pk"><ColePeek center say={lang === 'es' ? '¡hola!' : 'hey!'} /><Socials t={t} /></div>

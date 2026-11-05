@@ -38,7 +38,7 @@ export default async function Services({ params }: P) {
       </section>
       <section className="wrap sec" aria-labelledby="addons">
         <div className="sec-h" data-reveal><h2 className="h2" id="addons">{s.addonsTitle}</h2></div>
-        <div className="addons cols" data-reveal>{s.addons.map(([n, d]) => <div className="ad" key={n}><b>{n}</b><span>{d}</span></div>)}</div>
+        <div className="addons cols" data-reveal>{s.addons.map(([n, d, p]) => <div className="ad" key={n}><b>{n}{p && <em className="ad-p">{p}</em>}</b><span>{d}</span></div>)}</div>
         <p className="note">{s.addonsNote}</p>
       </section>
       <section className="wrap sec" aria-labelledby="gtk">

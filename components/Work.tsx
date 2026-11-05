@@ -8,7 +8,7 @@ type P = { title: string; url: string; href: string; doc?: boolean; text: string
 const flash = (el: Element | null) => { if (!el || matchMedia('(prefers-reduced-motion: reduce)').matches) return; el.classList.remove('flash'); void (el as HTMLElement).offsetWidth; el.classList.add('flash') }
 
 /** featured work: three browser windows stacked like a desktop. Arrows flip screenshots, the front screen opens the case study */
-export function FeaturedStack({ items, words }: { items: P[]; words: { read: string; seeAll: string; seeAllHref: string; hint: string; prev: string; next: string; open: string } }) {
+export function FeaturedStack({ head, items, words }: { head?: React.ReactNode; items: P[]; words: { read: string; seeAll: string; seeAllHref: string; hint: string; prev: string; next: string; open: string } }) {
   const [order, setOrder] = useState(items.map((_, k) => k))
   const [shot, setShot] = useState(items.map(() => 0))
   const wins = useRef<(HTMLDivElement | null)[]>([])
@@ -19,6 +19,7 @@ export function FeaturedStack({ items, words }: { items: P[]; words: { read: str
   return (
     <div className="stack">
       <div>
+        {head}
         <div className="plist" role="list">
           {items.map((p, k) => <button key={p.title} type="button" role="listitem" aria-current={k === front} onClick={() => toFront(k)}>{p.title}</button>)}
         </div>

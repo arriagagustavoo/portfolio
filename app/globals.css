@@ -197,7 +197,7 @@ a.sch{transition:background .15s ease}
 .hero{padding-top:clamp(1.125rem,4vh,2.75rem);padding-bottom:clamp(1.5rem,4vh,3rem)}
 .hgrid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(20rem,1fr);grid-template-areas:"top card" "bot card";grid-template-rows:auto 1fr;column-gap:clamp(1.75rem,4vw,4rem);align-items:start}
 .h-top{grid-area:top}.h-bot{grid-area:bot}.hgrid > .pk{grid-area:card;align-self:center}
-.eb{display:block;font-family:var(--mono);font-size:0.9375rem;color:var(--fg-2);min-height:1.6em}
+.eb{display:block;font-family:var(--mono);font-size:0.9375rem;color:var(--green-text);min-height:1.6em}
 .hl{margin:0.625rem 0 0;font-size:clamp(2.625rem,5.4vw,5rem);line-height:1.02;letter-spacing:-.042em;font-weight:850;white-space:nowrap}
 .hl .ln{display:block;width:max-content}
 .hl .ln{animation:rise .8s var(--ease-out) both}.hl .ln:nth-child(2){animation-delay:.08s}.hl .ln:nth-child(3){animation-delay:.16s}
@@ -705,7 +705,7 @@ body{font-size:clamp(1rem,.96rem + .2vw,1.0625rem)}
 .foot-top{gap:1.75rem clamp(1.75rem,4vw,3rem)}.fbrand{flex:1 1 18rem}.fcols{flex:2.4 1 27rem;display:flex;flex-wrap:wrap;gap:1.75rem}.fcol{flex:1 1 calc((22rem - 100%) * 999)}.fcol:last-child{flex-grow:1.6}
 .pn{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:clamp(.75rem,3vw,1.25rem)}
 .photo-pk{width:100%}
-.stp .cl{width:clamp(5rem,4rem + 3vw,6.5rem);height:clamp(5rem,4rem + 3vw,6.5rem)}
+
 
 /* header: links while they fit, the menu below that */
 @media (max-width:56rem){
@@ -750,13 +750,18 @@ body{font-size:clamp(1rem,.96rem + .2vw,1.0625rem)}
 .stp .w-row:has(.freetag){padding-left:calc(var(--ft,3.4rem) + .75rem)}
 .stp p{margin:.5rem auto 0}
 @container (min-width:46rem){
-  .steps{--d:clamp(.75rem,2cqi,1.75rem);align-items:start}
+  .steps{--d:clamp(.5rem,1.4cqi,1.1rem);align-items:start}
   .stp:nth-child(2){margin-top:var(--d)}.stp:nth-child(3){margin-top:calc(var(--d) * 2)}
-  .steps .stp + .stp::before{display:block;content:"";position:absolute;left:calc(-50% + 3.75rem);top:calc(2.75rem - var(--d));width:calc(100% - 7.5rem);height:var(--d);background:none;border:0 dashed color-mix(in srgb,var(--green) 80%,transparent);border-top-width:2px;border-right-width:2px;clip-path:inset(0 100% 0 0);transition:clip-path .9s var(--ease-out) .5s}
+  .steps .stp + .stp::before{display:block;content:"";position:absolute;left:calc(-50% + var(--cs) / 2 + .6rem);top:calc(var(--cs) * .42 - var(--d));width:calc(100% - var(--cs) - 1.2rem);height:var(--d);background:none;border:0 dashed color-mix(in srgb,var(--green) 80%,transparent);border-top-width:2px;border-right-width:2px;clip-path:inset(0 100% 0 0);transition:clip-path .9s var(--ease-out) .5s}
   .steps .stp.in + .stp.in::before,html:not(.js) .steps .stp + .stp::before{clip-path:inset(0 -2px -2px 0)}
 }
+.steps{--cs:clamp(4.25rem,3.4rem + 1.8vw,5.5rem)}
+.stp .cl{width:var(--cs);height:var(--cs)}
+.steps-sec{padding-block:clamp(.75rem,.4rem + 1vw,1.75rem)}
 /* recommended tier: a slanted badge instead of a green wash */
-.rec{display:inline-block;margin-left:.7rem;vertical-align:.18em;font-family:var(--pixel);font-weight:400;font-size:.72rem;letter-spacing:0;padding:.22rem .65rem;background:var(--green);color:#000;clip-path:var(--slant-s);rotate:-3deg}
+.t-n{position:relative}
+.rec{position:absolute;left:-.7rem;top:-1.05rem;z-index:1;font-family:var(--pixel);font-weight:400;font-size:.66rem;letter-spacing:0;line-height:1;padding:.28rem .55rem;background:var(--green);color:#000;rotate:-7deg;box-shadow:-2px 2px 0 rgba(0,0,0,.5);white-space:nowrap}
+.tier.hot{padding-top:1.85rem}
 /* why work with me: the photo's top lines up with the heading and its bottom with the button; Cole and the quote sit outside */
 .why{display:grid;grid-template-columns:minmax(14rem,23rem) minmax(0,1fr);grid-template-areas:"photo text" "quote .";column-gap:clamp(1.75rem,5vw,4.5rem);row-gap:1rem;align-items:stretch;padding-top:calc(6rem * .62)}
 .why-l{display:contents}
@@ -783,6 +788,9 @@ body{font-size:clamp(1rem,.96rem + .2vw,1.0625rem)}
 .close .qform,.close .done{text-align:left}
 /* hero card: the FREE sticker sits left of Cole so his waving hand never covers it */
 .hgrid > .pk .free-st{right:calc(var(--w) + 2.6rem)}
+@container hero (max-width:52rem){.hgrid > .pk .free-st{right:auto}}
+.svc .chv{width:clamp(1.2rem,.9rem + 1vw,1.75rem);height:clamp(1.2rem,.9rem + 1vw,1.75rem)}
+.svc > a{grid-template-columns:clamp(1.2rem,.9rem + 1vw,1.75rem) minmax(0,1fr)}
 
 /* motion, round 10: steps arrive Cole first, then the word, then the line, one step after another */
 .js .stp[data-reveal]{opacity:1;translate:none}
@@ -794,7 +802,7 @@ body{font-size:clamp(1rem,.96rem + .2vw,1.0625rem)}
 /* hover feedback that says "this goes somewhere" */
 .svc b,.t-p b{transition:color .2s ease}
 .t-n{transition:translate .3s var(--ease-out),color .2s ease}
-.rlist b::before{transform-origin:0 50%;transition:scale .3s var(--ease-out)}
+.rlist b::before{transform-origin:50% 50%;transition:scale .3s var(--ease-out)}
 .screen img{transition:scale .6s var(--ease-out)}
 .lnk{transition:color .15s ease,text-decoration-color .15s ease,text-underline-offset .2s var(--ease-out)}
 @media (hover:hover) and (pointer:fine){
@@ -802,7 +810,7 @@ body{font-size:clamp(1rem,.96rem + .2vw,1.0625rem)}
   .svc > a:hover b{color:var(--green-text)}
   .tier:hover .t-n{translate:.3rem 0}
   .tier:hover .t-p b{color:var(--green-text)}
-  .rlist > div:hover b::before{scale:2.6 1}
+  .rlist > div:hover b::before{scale:1 2.3}
   .soc:hover svg{animation:flash .34s steps(2) 1}
   .wcard:hover .screen img,.win[data-p="0"]:hover .screen img{scale:1.035}
   .lnk:hover{text-underline-offset:8px}
@@ -812,7 +820,57 @@ body{font-size:clamp(1rem,.96rem + .2vw,1.0625rem)}
 @supports (animation-timeline:scroll()){.readbar{animation:readbar linear both;animation-timeline:scroll(root)}}
 @keyframes readbar{to{scale:1 1}}
 
+/* ---------------- round 11 (Nov 5) ---------------- */
+/* featured work: the heading sits with the project list, not floating above the stacked windows */
+.stack > :first-child > .h2{margin:0 0 1rem}
+/* let's build: the mark and the words are one lockup, so the section is one row shorter */
+.cl-lock{display:flex;align-items:center;justify-content:center;gap:.25em;font-size:clamp(2.2rem,6vw,5.25rem)}
+.cl-lock .bm{width:auto;height:.92em;flex:none}
+.close .cl3-h{gap:.9rem}
+.close-pk{margin-top:calc(var(--w) * .62 + 2rem)}
+/* dev page: a two-line title, and skills start sooner */
+.dev-h .h1{max-width:19ch}
+.dev-h + *{margin-top:0}
+/* add-on prices */
+.ad-p{display:inline-block;margin-left:.6rem;font-style:normal;font-family:var(--pixel);font-weight:400;font-size:.8125rem;color:var(--green-text)}
+/* dev projects open a gallery */
+button.dimg{display:block;width:100%;padding:0;border:0;cursor:zoom-in}
+.dcount{position:absolute;right:.5rem;bottom:.5rem;font-family:var(--mono);font-size:.72rem;padding:.2rem .5rem;background:color-mix(in srgb,var(--bg) 82%,transparent);color:var(--fg-2)}
+.dtitle{all:unset;cursor:pointer}
+.dtitle:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+.dlg{width:min(68rem,94vw);max-height:92dvh;padding:0;border:0;background:var(--raised);color:var(--fg);box-shadow:var(--pop),0 1.5rem 4rem rgba(0,0,0,.55)}
+.dlg::backdrop{background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:blur(6px)}
+.dlg[open]{animation:dlg-in .3s var(--ease-out)}
+@keyframes dlg-in{from{opacity:0;scale:.97}}
+.dlg-in{display:flex;flex-direction:column;gap:.75rem;padding:clamp(.75rem,2vw,1.25rem)}
+.dlg-top{display:flex;align-items:center;gap:1rem}.dlg-top b{font-size:1.125rem}.dlg-n{margin-left:auto;font-family:var(--mono);font-size:.8125rem;color:var(--fg-3)}
+.dlg .x{position:relative;width:1rem;height:1rem}.dlg .x::before,.dlg .x::after{content:"";position:absolute;left:0;right:0;top:50%;height:2px;background:currentColor;rotate:45deg}.dlg .x::after{rotate:-45deg}
+.dlg-view{position:relative;aspect-ratio:16/9;max-height:62dvh;background:var(--sunk)}
+.dlg-prev,.dlg-next{position:absolute;top:50%;translate:0 -50%}.dlg-prev{left:.5rem}.dlg-next{right:.5rem}
+.dlg-thumbs{display:flex;gap:.4rem;overflow-x:auto;padding-bottom:.25rem}
+.dlg-thumbs button{position:relative;flex:none;width:5.5rem;aspect-ratio:16/10;padding:0;border:0;cursor:pointer;background:var(--sunk);opacity:.55;transition:opacity .2s ease;box-shadow:0 0 0 1px var(--hair)}
+.dlg-thumbs button[aria-current="true"]{opacity:1;box-shadow:0 0 0 2px var(--green)}
+.dlg-thumbs img{object-fit:cover}
+@media (hover:hover) and (pointer:fine){.dlg-thumbs button:hover{opacity:.9}.dcard:hover .dtitle b{color:var(--green-text)}}
+/* scroll motion, round 11 */
+/* the back windows of the featured stack fan out from behind the front one as the section scrolls in */
+@supports (animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference){
+    .win[data-p="1"]{animation:fan1 linear both;animation-timeline:view();animation-range:entry 0% cover 38%}
+    .win[data-p="2"]{animation:fan2 linear both;animation-timeline:view();animation-range:entry 0% cover 42%}
+  }
+}
+@keyframes fan1{from{translate:-3.5% 10%}}
+@keyframes fan2{from{translate:-7% 20%}}
+/* skill chips pop in one after another when their group arrives */
+.js .skc[data-reveal] .chip{opacity:0;scale:.9;transition:opacity .35s var(--ease-out),scale .35s var(--ease-out)}
+.js .skc.in .chip{opacity:1;scale:1}
+.js .skc.in .chip:nth-child(1){transition-delay:148ms}.js .skc.in .chip:nth-child(2){transition-delay:176ms}.js .skc.in .chip:nth-child(3){transition-delay:204ms}.js .skc.in .chip:nth-child(4){transition-delay:232ms}.js .skc.in .chip:nth-child(5){transition-delay:260ms}.js .skc.in .chip:nth-child(6){transition-delay:288ms}.js .skc.in .chip:nth-child(7){transition-delay:316ms}.js .skc.in .chip:nth-child(8){transition-delay:344ms}.js .skc.in .chip:nth-child(9){transition-delay:372ms}.js .skc.in .chip:nth-child(10){transition-delay:400ms}.js .skc.in .chip:nth-child(11){transition-delay:428ms}.js .skc.in .chip:nth-child(12){transition-delay:456ms}
+/* contact tiles arrive in reading order */
+.js .socs[data-reveal="rows"].in > :nth-child(5){transition-delay:.28s}.js .socs[data-reveal="rows"].in > :nth-child(6){transition-delay:.35s}
+
 @media (prefers-reduced-motion:reduce){
+  .js .skc[data-reveal] .chip{scale:1;transition-delay:0s!important}
   .js .stp[data-reveal] > *{translate:none;transition-delay:0s}
   .soc:hover svg{animation:none}
   .screen img{transition:none}

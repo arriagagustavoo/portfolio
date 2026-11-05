@@ -6,7 +6,7 @@ import { Icon, Mark } from './bits'
 import { href, swapLang, type Lang } from '@/lib/i18n'
 import type { Dict } from '@/lib/content/site'
 
-const NAV = ['work', 'services', 'about', 'dev', 'contact'] as const
+const NAV = ['work', 'services', 'about', 'dev', 'faq', 'contact'] as const
 
 export default function Header({ lang, nav }: { lang: Lang; nav: Dict['nav'] }) {
   const path = usePathname() || '/'
@@ -63,7 +63,7 @@ export default function Header({ lang, nav }: { lang: Lang; nav: Dict['nav'] }) 
       </header>
       {open && (
         <div className="mnav" id="mnav">
-          {(['home', ...NAV, 'faq'] as const).map((k, i) => {
+          {(['home', ...NAV] as const).map((k, i) => {
             const to = k === 'home' ? href(lang, '/') : href(lang, '/' + k)
             return <Link className="m" key={k} href={to} style={{ animationDelay: i * 40 + 'ms' }} aria-current={path === to ? 'page' : undefined}>{nav[k]}</Link>
           })}

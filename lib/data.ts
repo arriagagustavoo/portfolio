@@ -47,10 +47,10 @@ export const projects: Project[] = [
 export const lead: Record<Project['key'], number> = { clientportal: 9, documents: 2, queuesmart: 8 }
 
 export const devProjects = [
-  { cover: '/images/projects/rideshare/RideShare-cover.webp', skills: ['PostgreSQL', 'Express', 'JavaScript', 'HTML', 'CSS'], repo: 'https://github.com/arriagagustavoo/rideshare' },
-  { cover: '/images/projects/mazegame/Labyrinth-cover.webp', skills: ['Python', 'OpenGL'], repo: 'https://github.com/arriagagustavoo/Interactive-Maze-Game' },
-  { cover: '/images/projects/unitygame/Faceoff-cover.webp', skills: ['Unity', 'Clip Studio Paint'], repo: '' },
-  { cover: '/images/projects/mriScanner/MRI-cover.webp', skills: ['MATLAB'], repo: '' },
+  { cover: '/images/projects/rideshare/RideShare-cover.webp', shots: ['/images/projects/rideshare/RideShare-cover.webp', '/images/projects/rideshare/Page-empty.webp', '/images/projects/rideshare/Page-filled.webp'], skills: ['PostgreSQL', 'Express', 'JavaScript', 'HTML', 'CSS'], repo: 'https://github.com/arriagagustavoo/rideshare' },
+  { cover: '/images/projects/mazegame/Labyrinth-cover.webp', shots: ['/images/projects/mazegame/Labyrinth-cover.webp', '/images/projects/mazegame/maze-start.png', '/images/projects/mazegame/blue-power.gif', '/images/projects/mazegame/green-power.gif', '/images/projects/mazegame/pink-trap.gif', '/images/projects/mazegame/red-trap.gif'], skills: ['Python', 'OpenGL'], repo: 'https://github.com/arriagagustavoo/Interactive-Maze-Game' },
+  { cover: '/images/projects/unitygame/Faceoff-cover.webp', shots: ['/images/projects/unitygame/Faceoff-cover.webp', '/images/projects/unitygame/ingame.gif', '/images/projects/unitygame/Scene.png', '/images/projects/unitygame/Arriaga_Gustavo_MC_I.gif', '/images/projects/unitygame/Arriaga_Gustavo_MC_A.gif', '/images/projects/unitygame/Arriaga_Gustavo_MC_M.gif', '/images/projects/unitygame/Arriaga_Gustavo_EC_I.gif', '/images/projects/unitygame/Arriaga_Gustavo_EC_A.gif', '/images/projects/unitygame/Arriaga_Gustavo_EC_M.gif'], skills: ['Unity', 'Clip Studio Paint'], repo: '' },
+  { cover: '/images/projects/mriScanner/MRI-cover.webp', shots: ['/images/projects/mriScanner/MRI-cover.webp', '/images/projects/mriScanner/home-rectangle.png', '/images/projects/mriScanner/rectangle-cartesian.png', '/images/projects/mriScanner/home-circle.png', '/images/projects/mriScanner/circle-radial.png'], skills: ['MATLAB'], repo: '' },
 ]
 
 export const skillGroups = [

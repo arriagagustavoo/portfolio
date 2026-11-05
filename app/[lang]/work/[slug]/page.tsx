@@ -75,7 +75,7 @@ export default async function Case({ params }: P) {
             <div className="chap" data-reveal style={{ boxShadow: 'none', paddingBottom: 0 }}><h2>{it.linked.heading}</h2><div><p>{it.linked.body}</p></div></div>
             <div className={'shots2'} data-reveal style={linked.length === 3 ? { gridTemplateColumns: 'repeat(3,minmax(0,1fr))' } : undefined}>
               {linked.map((s, i) => (
-                <figure key={s.src} className="browser" style={{ margin: 0 }}>
+                <figure key={s.src} className="browser" style={{ margin: 0 }} data-reveal="wipe">
                   <div className="chrome"><span className="lights"><i /><i /><i /></span><span className="url">{it.linked!.labels[i]}</span></div>
                   <div className={'screen' + (p.doc ? ' doc' : '')} style={p.doc ? { aspectRatio: '3 / 4' } : undefined}><Image src={s.src} alt={it.linked!.labels[i]} fill sizes="(max-width: 56rem) 92vw, 42vw" style={{ objectFit: p.doc ? 'contain' : 'cover', objectPosition: 'top left' }} /></div>
                 </figure>

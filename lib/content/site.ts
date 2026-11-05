@@ -92,10 +92,10 @@ const en = {
   caseStudy: { crumb: 'Work', prev: 'Previous', next: 'Next', all: 'All work', role: 'Role', type: 'Type', languages: 'Languages', more: 'more', learned: 'What I learned', learnedPh: 'Coming soon.', cta: 'Interested in something like this?', ctaBtn: 'Send me a message', shot: 'Screenshot' },
   servicesPage: {
     title: 'Services', intro: 'Websites and software for businesses around Houston. Approximate prices below; your exact price comes in the free estimate, and a written quote before anything starts.',
-    estimateSub: 'Six questions, about a minute.', addonsTitle: 'Add-ons', addonsNote: 'Add-ons are priced in your written quote.', faqTitle: 'Good to know', allQuestions: 'All questions', orMessage: 'Or message me',
+    estimateSub: 'Six questions, about a minute.', addonsTitle: 'Add-ons', addonsNote: 'Other add-ons are priced in your written quote.', faqTitle: 'Good to know', allQuestions: 'All questions', orMessage: 'Or message me',
     addons: [
-      ['Extra pages', 'More room for your menu, services or gallery'], ['Spanish version', 'The whole site in both languages, really translated'], ['Google setup', 'Business Profile, Maps and the basics'],
-      ['Google care', 'Keeping you there, with a monthly report'], ['Review stands', 'NFC stands and QR codes for your counter'], ['Edit it yourself', 'Change your own text and photos'],
+      ['Extra pages', 'More room for your menu, services or gallery'], ['Spanish version', 'The whole site in both languages, really translated'], ['Google setup', 'Business Profile, Maps and the basics', 'from $250'],
+      ['Google care', 'Keeping you there, with a monthly report', '$75/mo'], ['Review stands', 'NFC stands and QR codes for your counter'], ['Edit it yourself', 'Change your own text and photos'],
       ['Logo cleanup', 'Sharper, and ready for the web'], ['Custom design', 'A full custom look, or heavy custom motion'], ['3D models and prints', 'Signs, stands, small parts. A side thing I love'],
     ],
   },
@@ -131,7 +131,7 @@ const en = {
   },
   dev: {
     title: legacy.en.dev.title, bio: legacy.en.dev.bio[0], linkedin: 'Connect on LinkedIn', github: 'GitHub',
-    skills: 'Skills', outside: 'Outside of client work', outsideSub: "Personal and coursework projects I'm proud of.", repo: 'GitHub repo',
+    skills: 'Skills', outside: 'Outside of client work', outsideSub: "Personal and coursework projects I'm proud of. Tap one to see it run.", repo: 'GitHub repo', view: 'See the screens', close: 'Close', images: 'images',
     education: 'Education', habits: 'What every build gets', outro: 'Have a project in mind?', servicesBtn: 'See my services',
     habitsList: [
       ['Finished HTML for every page', 'Next.js renders it, so Google and link previews see the real thing.'], ['Fast on a cheap phone', 'Images sized right, nothing heavy blocking the first paint.'],
@@ -247,10 +247,10 @@ const es: Dict = {
   caseStudy: { crumb: 'Trabajo', prev: 'Anterior', next: 'Siguiente', all: 'Todo el trabajo', role: 'Rol', type: 'Tipo', languages: 'Idiomas', more: 'más', learned: 'Lo que aprendí', learnedPh: 'Muy pronto.', cta: '¿Te interesa algo así?', ctaBtn: 'Mándame un mensaje', shot: 'Captura' },
   servicesPage: {
     title: 'Servicios', intro: 'Sitios web y software para negocios del área de Houston. Precios aproximados abajo; tu precio exacto viene en la cotización gratis, y por escrito antes de empezar.',
-    estimateSub: 'Seis preguntas, como un minuto.', addonsTitle: 'Extras', addonsNote: 'Los extras se cotizan por escrito.', faqTitle: 'Bueno saber', allQuestions: 'Todas las preguntas', orMessage: 'O mándame un mensaje',
+    estimateSub: 'Seis preguntas, como un minuto.', addonsTitle: 'Extras', addonsNote: 'Los demás extras se cotizan por escrito.', faqTitle: 'Bueno saber', allQuestions: 'Todas las preguntas', orMessage: 'O mándame un mensaje',
     addons: [
-      ['Páginas extra', 'Más espacio para tu menú, servicios o galería'], ['Versión en español', 'Todo el sitio en los dos idiomas, bien traducido'], ['Configuración de Google', 'Perfil de negocio, Maps y lo básico'],
-      ['Cuidado de Google', 'Mantenerte ahí, con un reporte mensual'], ['Bases para reseñas', 'Bases NFC y códigos QR para tu mostrador'], ['Edítalo tú', 'Cambia tus propios textos y fotos'],
+      ['Páginas extra', 'Más espacio para tu menú, servicios o galería'], ['Versión en español', 'Todo el sitio en los dos idiomas, bien traducido'], ['Configuración de Google', 'Perfil de negocio, Maps y lo básico', 'desde $250'],
+      ['Cuidado de Google', 'Mantenerte ahí, con un reporte mensual', '$75/mes'], ['Bases para reseñas', 'Bases NFC y códigos QR para tu mostrador'], ['Edítalo tú', 'Cambia tus propios textos y fotos'],
       ['Limpieza de logo', 'Más nítido y listo para la web'], ['Diseño a la medida', 'Un look completamente propio, o animación pesada'], ['Modelos e impresión 3D', 'Letreros, bases, piezas pequeñas. Algo que me encanta'],
     ],
   },
@@ -286,7 +286,7 @@ const es: Dict = {
   },
   dev: {
     title: legacy.es.dev.title, bio: legacy.es.dev.bio[0], linkedin: 'Conectar en LinkedIn', github: 'GitHub',
-    skills: 'Habilidades', outside: 'Fuera del trabajo con clientes', outsideSub: 'Proyectos personales y de la escuela de los que estoy orgulloso.', repo: 'Repositorio en GitHub',
+    skills: 'Habilidades', outside: 'Fuera del trabajo con clientes', outsideSub: 'Proyectos personales y de la escuela de los que estoy orgulloso. Tócalos para verlos en acción.', repo: 'Repositorio en GitHub', view: 'Ver las pantallas', close: 'Cerrar', images: 'imágenes',
     education: 'Educación', habits: 'Lo que lleva cada proyecto', outro: '¿Tienes un proyecto en mente?', servicesBtn: 'Ver mis servicios',
     habitsList: [
       ['HTML terminado en cada página', 'Next.js lo genera, así Google y las vistas previas ven lo real.'], ['Rápido en un teléfono barato', 'Imágenes del tamaño correcto, nada pesado que frene la carga.'],

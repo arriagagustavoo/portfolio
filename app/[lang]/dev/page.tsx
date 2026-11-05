@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { DevProjects } from '@/components/DevProjects'
 import Image from 'next/image'
 import type { Metadata } from 'next'
 import { Chips, Icon } from '@/components/bits'
@@ -39,17 +40,7 @@ export default async function Dev({ params }: P) {
       </section>
       <section className="wrap sec" aria-labelledby="outside">
         <div className="sec-h" data-reveal><div><h2 className="h2" id="outside">{d.outside}</h2><p className="lede">{d.outsideSub}</p></div></div>
-        <div className="dgrid cols">
-          {devProjects.map((p, k) => (
-            <article className="dcard" key={p.cover} data-reveal style={{ transitionDelay: k * 70 + 'ms' }}>
-              <div className="dimg"><Image src={p.cover} alt={d.projects[k].title} fill sizes="(max-width: 56rem) 92vw, 22vw" /></div>
-              <h3 style={{ margin: 0 }}><b>{d.projects[k].title}</b></h3>
-              <p>{d.projects[k].text}</p>
-              <Chips names={p.skills} />
-              {p.repo && <a className="lnk" href={p.repo} {...ext}>{d.repo}</a>}
-            </article>
-          ))}
-        </div>
+        <DevProjects items={devProjects.map((p, k) => ({ ...p, title: d.projects[k].title, text: d.projects[k].text }))} w={{ repo: d.repo, view: d.view, close: d.close, of: d.images, prev: t.caseStudy.prev, next: t.caseStudy.next }} />
       </section>
       <section className="wrap sec" aria-labelledby="edu">
         <div className="sec-h" data-reveal><h2 className="h2" id="edu">{d.education}</h2><p className="lede" style={{ margin: 0 }}>{L.about.degree} · {L.about.school}</p></div>
