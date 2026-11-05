@@ -11,8 +11,8 @@ export function LongLogo() {
   return <span className="lglogo" translate="no"><Mark /><span>arriagagustav<b>oo</b></span></span>
 }
 
-export function Icon({ name }: { name: IconName }) {
-  return <span className="ic" style={{ display: 'contents' }} dangerouslySetInnerHTML={{ __html: icons[name] }} />
+export function Icon({ name, className }: { name: IconName; className?: string }) {
+  return <span className={'ic' + (className ? ' ' + className : '')} style={{ display: 'contents' }} dangerouslySetInnerHTML={{ __html: icons[name] }} />
 }
 
 export function Html({ html, as: Tag = 'span', className }: { html: string; as?: 'span' | 'p' | 'b' | 'div' | 'small' | 'figcaption'; className?: string }) {

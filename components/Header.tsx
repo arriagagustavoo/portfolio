@@ -56,7 +56,7 @@ export default function Header({ lang, nav }: { lang: Lang; nav: Dict['nav'] }) 
               <Link href={swapLang(path, 'en')} hrefLang="en" lang="en" aria-current={lang === 'en' ? 'true' : undefined} onClick={() => switchTo('en')}>EN</Link>
               <Link href={swapLang(path, 'es')} hrefLang="es" lang="es" aria-current={lang === 'es' ? 'true' : undefined} onClick={() => switchTo('es')}>ES</Link>
             </span>
-            <button className="icon-b theme" type="button" onClick={theme} aria-label={nav.theme}><Icon name="moon" /></button>
+            <button className="icon-b theme" type="button" onClick={theme} aria-label={nav.theme}><Icon name="moon" className="i-moon" /><Icon name="sun" className="i-sun" /></button>
             <button className="icon-b menu-b" type="button" aria-expanded={open} aria-label={open ? nav.close : nav.menu} onClick={() => setOpen(o => !o)}><i /><i /></button>
           </div>
         </div>
@@ -68,7 +68,7 @@ export default function Header({ lang, nav }: { lang: Lang; nav: Dict['nav'] }) 
             return <Link className="m" key={k} href={to} style={{ animationDelay: i * 40 + 'ms' }} aria-current={path === to ? 'page' : undefined}>{nav[k]}</Link>
           })}
           <Link className="btn" href={href(lang, '/') + '#estimate'}>{nav.estimate}</Link>
-          <button className="icon-b" type="button" onClick={theme} aria-label={nav.theme} style={{ marginTop: '1rem' }}><Icon name="moon" /></button>
+          <button className="icon-b theme" type="button" onClick={theme} aria-label={nav.theme} style={{ marginTop: '1rem' }}><Icon name="moon" className="i-moon" /><Icon name="sun" className="i-sun" /></button>
           <p>832-453-4158 · gus@arriagagustavoo.com</p>
         </div>
       )}

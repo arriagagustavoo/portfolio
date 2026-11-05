@@ -20,10 +20,12 @@ export function Backdrop() {
   useEffect(() => {
     const el = ref.current!
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches
+    const lit = [...el.querySelectorAll<HTMLElement>('.light, .logs')]
     let tx = 30, ty = 25, cx = 30, cy = 25, raf = 0
     const loop = () => {
       cx += (tx - cx) * 0.12; cy += (ty - cy) * 0.12
-      el.style.setProperty('--mx', cx.toFixed(2) + '%'); el.style.setProperty('--my', cy.toFixed(2) + '%')
+      // set on the two lit layers, not the parent, so a pointer move restyles two elements instead of every log row
+      for (const l of lit) { l.style.setProperty('--mx', cx.toFixed(2) + '%'); l.style.setProperty('--my', cy.toFixed(2) + '%') }
       raf = Math.abs(tx - cx) + Math.abs(ty - cy) > 0.1 ? requestAnimationFrame(loop) : 0
     }
     let lastMove = 0

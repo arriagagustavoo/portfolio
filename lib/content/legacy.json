@@ -15,7 +15,7 @@
    "degree": "B.S. Computer Science, Software Design",
    "quote": {
     "text": "As long as I'm alive, I have infinite chances.",
-    "source": "— Monkey D. Luffy, One Piece"
+    "source": "Monkey D. Luffy, One Piece"
    },
    "reasons": [
     {
@@ -164,7 +164,7 @@
    "items": {
     "documents": {
      "meta": {
-      "title": "Bracketed — Case study — Gustavo Arriaga",
+      "title": "Bracketed | Case study | Gustavo Arriaga",
       "description": "Bracketed is the proposal, contract and invoice I send clients: fill-in-the-blank templates in plain HTML that print to clean PDFs."
      },
      "linked": {
@@ -216,7 +216,7 @@
     },
     "queuesmart": {
      "meta": {
-      "title": "QueueSmart — Case study — Gustavo Arriaga",
+      "title": "QueueSmart | Case study | Gustavo Arriaga",
       "description": "A queue management web app built by a team of four for a Software Design course. I built the admin side: the dashboard, queue management and service management."
      },
      "linked": {
@@ -269,7 +269,7 @@
     },
     "clientportal": {
      "meta": {
-      "title": "Client Portal — Case study — Gustavo Arriaga",
+      "title": "Client Portal | Case study | Gustavo Arriaga",
       "description": "A client portal built to run my own freelance practice: proposals, contracts, invoices, progress and files in one place, on Next.js and Supabase."
      },
      "linked": {
@@ -364,19 +364,19 @@
   },
   "meta": {
    "home": {
-    "title": "Gustavo Arriaga — Web Developer & Designer in Houston",
+    "title": "Gustavo Arriaga | Web Developer & Designer in Houston",
     "description": "Houston freelance web developer and designer. Websites, custom software, branding and local SEO, and 3D modeling and printing for small businesses."
    },
    "dev": {
-    "title": "Dev — Gustavo Arriaga",
+    "title": "Dev | Gustavo Arriaga",
     "description": "The engineering side: the full stack I build with, plus the coursework and personal projects behind the client work."
    },
    "privacy": {
-    "title": "Privacy Policy — Gustavo Arriaga",
+    "title": "Privacy Policy | Gustavo Arriaga",
     "description": "What this site collects, who handles it, and how long it is kept."
    },
    "notFound": {
-    "title": "Page not found — Gustavo Arriaga",
+    "title": "Page not found | Gustavo Arriaga",
     "description": "This page doesn't exist."
    }
   },
@@ -423,7 +423,7 @@
    "degree": "Lic. en Ciencias de la Computación, Diseño de Software",
    "quote": {
     "text": "Mientras esté vivo, tengo infinitas oportunidades.",
-    "source": "— Monkey D. Luffy, One Piece"
+    "source": "Monkey D. Luffy, One Piece"
    },
    "reasons": [
     {
@@ -572,7 +572,7 @@
    "items": {
     "documents": {
      "meta": {
-      "title": "Bracketed — Caso de estudio — Gustavo Arriaga",
+      "title": "Bracketed | Caso de estudio | Gustavo Arriaga",
       "description": "Bracketed es la propuesta, el contrato y la factura que envío a mis clientes: plantillas para llenar en HTML simple que se imprimen como PDF limpios."
      },
      "linked": {
@@ -624,7 +624,7 @@
     },
     "queuesmart": {
      "meta": {
-      "title": "QueueSmart — Caso de estudio — Gustavo Arriaga",
+      "title": "QueueSmart | Caso de estudio | Gustavo Arriaga",
       "description": "Una aplicación web de gestión de filas construida por un equipo de cuatro para un curso de Diseño de Software. Yo construí el lado administrativo: el panel, la gestión de filas y la de servicios."
      },
      "linked": {
@@ -677,7 +677,7 @@
     },
     "clientportal": {
      "meta": {
-      "title": "Client Portal — Caso de estudio — Gustavo Arriaga",
+      "title": "Client Portal | Caso de estudio | Gustavo Arriaga",
       "description": "Un portal de clientes construido para operar mi propio negocio freelance: propuestas, contratos, facturas, avance y archivos en un solo lugar, sobre Next.js y Supabase."
      },
      "linked": {
@@ -772,19 +772,19 @@
   },
   "meta": {
    "home": {
-    "title": "Gustavo Arriaga — Desarrollador y diseñador web en Houston",
+    "title": "Gustavo Arriaga | Desarrollador y diseñador web en Houston",
     "description": "Desarrollador y diseñador web freelance en Houston. Sitios web, software a medida, branding y SEO local, y modelado e impresión 3D para pequeños negocios."
    },
    "dev": {
-    "title": "Dev — Gustavo Arriaga",
+    "title": "Dev | Gustavo Arriaga",
     "description": "El lado técnico: el stack completo con el que construyo, más los proyectos de escuela y personales detrás del trabajo con clientes."
    },
    "privacy": {
-    "title": "Política de Privacidad — Gustavo Arriaga",
+    "title": "Política de Privacidad | Gustavo Arriaga",
     "description": "Qué recopila este sitio, quién lo maneja y por cuánto tiempo se guarda."
    },
    "notFound": {
-    "title": "Página no encontrada — Gustavo Arriaga",
+    "title": "Página no encontrada | Gustavo Arriaga",
     "description": "Esta página no existe."
    }
   },

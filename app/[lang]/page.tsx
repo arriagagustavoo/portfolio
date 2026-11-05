@@ -52,7 +52,7 @@ export default async function Home({ params }: P) {
         <div className="devlink"><Link href={href(lang, '/dev')}>{t.hero.dev}</Link></div>
       </section>
 
-      <section className="wrap sec" aria-label={t.steps.map(s => s.word).join(', ')}>
+      <section className="wrap sec steps-sec" aria-label={t.steps.map(s => s.word).join(', ')}>
         <div className="steps cols">
           {t.steps.map((s, k) => (
             <div className="stp" key={s.word} data-reveal style={{ transitionDelay: k * 90 + 'ms' }}>

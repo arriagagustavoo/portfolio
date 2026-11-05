@@ -103,9 +103,9 @@ export function Gallery({ shots, url, doc, alts, more, label, vt }: { shots: str
         <div className="chrome">
           <span className="lights"><i /><i /><i /></span><span className="url">{url}</span>
           <span className="sw" style={{ display: 'flex', alignItems: 'center', gap: 2, fontFamily: 'var(--mono)', fontSize: '.72rem', color: 'var(--fg-3)' }}>
-            <button className="icon-b" style={{ width: '1.75rem', height: '1.5rem' }} type="button" aria-label={label + " −1"} onClick={() => go(i - 1)}><Chevron dir="left" className="chv" /></button>
+            <button className="icon-b sm" type="button" aria-label={label + " −1"} onClick={() => go(i - 1)}><Chevron dir="left" className="chv" /></button>
             <span>{i + 1}/{shots.length}</span>
-            <button className="icon-b" style={{ width: '1.75rem', height: '1.5rem' }} type="button" aria-label={label + " +1"} onClick={() => go(i + 1)}><Chevron className="chv" /></button>
+            <button className="icon-b sm" type="button" aria-label={label + " +1"} onClick={() => go(i + 1)}><Chevron className="chv" /></button>
           </span>
         </div>
         <div className={'screen' + (doc ? ' doc' : '')} ref={view} style={doc ? { aspectRatio: '4 / 3' } : undefined}>
