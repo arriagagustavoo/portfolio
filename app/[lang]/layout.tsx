@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   authors: [{ name: 'Gustavo Arriaga', url: SITE }],
   creator: 'Gustavo Arriaga',
 }
-export const viewport: Viewport = { themeColor: [{ media: '(prefers-color-scheme: dark)', color: '#181816' }, { media: '(prefers-color-scheme: light)', color: '#e3e0d8' }], colorScheme: 'dark light' }
+export const viewport: Viewport = { themeColor: '#181816', colorScheme: 'dark light' }
 
 export default async function Layout({ children, params }: { children: React.ReactNode; params: Promise<{ lang: string }> }) {
   const { lang: l } = await params
@@ -39,7 +39,7 @@ export default async function Layout({ children, params }: { children: React.Rea
   return (
     <html lang={lang} data-theme="dark" suppressHydrationWarning className={`${geist.variable} ${pixel.variable} ${mono.variable} ${hand.variable}`}>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js');try{if(localStorage.getItem('theme')==='light')document.documentElement.dataset.theme='light'}catch(e){}" }} />
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js');try{if(localStorage.getItem('theme')==='light'){document.documentElement.dataset.theme='light';var m=document.querySelector('meta[name=theme-color]');if(m)m.setAttribute('content','#e3e0d8')}}catch(e){}" }} />
         <JsonLd data={siteGraph(lang)} />
       </head>
       <body>

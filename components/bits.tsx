@@ -7,7 +7,7 @@ export function Mark({ className }: { className?: string }) {
 }
 
 export function LongLogo() {
-  return <span className="lglogo"><Mark /><span>arriagagustav<b>oo</b></span></span>
+  return <span className="lglogo" translate="no"><Mark /><span>arriagagustav<b>oo</b></span></span>
 }
 
 export function Icon({ name }: { name: IconName }) {

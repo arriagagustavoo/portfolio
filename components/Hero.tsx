@@ -61,8 +61,12 @@ export function Headline({ lines, words }: { lines: string[]; words: string[] })
     const onR = () => { clearTimeout(rz); rz = window.setTimeout(fit, 120) }
     addEventListener('resize', onR)
     let i = 0, iv = 0
-    if (!reduced()) iv = window.setInterval(() => { i = (i + 1) % words.length; if (w.current) decode(w.current, words[i], 420) }, 2600)
-    return () => { removeEventListener('resize', onR); clearInterval(iv) }
+    // the word pauses while you hover or focus the headline, and when the tab is hidden
+    let paused = false
+    const hold = () => { paused = true }, go = () => { paused = false }
+    el.addEventListener('pointerenter', hold); el.addEventListener('pointerleave', go)
+    if (!reduced()) iv = window.setInterval(() => { if (paused || document.hidden) return; i = (i + 1) % words.length; if (w.current) decode(w.current, words[i], 420) }, 2600)
+    return () => { removeEventListener('resize', onR); clearInterval(iv); el.removeEventListener('pointerenter', hold); el.removeEventListener('pointerleave', go) }
   }, [words])
   return (
     <h1 className="hl" ref={h}>

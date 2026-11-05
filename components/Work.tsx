@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Chips } from './bits'
 
 type P = { title: string; url: string; href: string; doc?: boolean; text: string; skills: string[]; shots: string[] }
@@ -44,7 +44,7 @@ export function FeaturedStack({ items, words }: { items: P[]; words: { read: str
                   </span>
                 </div>
                 <Link className={'screen' + (p.doc ? ' doc' : '')} href={p.href} tabIndex={pos === 0 ? 0 : -1} aria-label={`${words.open}: ${p.title}`} onClick={ev => { if (pos !== 0) ev.preventDefault() }}>
-                  <Image src={p.shots[shot[k]]} alt="" fill sizes="(max-width: 900px) 92vw, 900px" style={{ objectFit: p.doc ? 'contain' : 'cover', objectPosition: p.doc ? 'center' : 'top left' }} priority={k === 0} />
+                  <Image src={p.shots[shot[k]]} alt="" fill sizes="(max-width: 900px) 92vw, 900px" style={{ objectFit: p.doc ? 'contain' : 'cover', objectPosition: p.doc ? 'center' : 'top left' }} />
                   <span className="open">{words.read} ↗</span>
                 </Link>
               </div>
@@ -61,7 +61,9 @@ export function FeaturedStack({ items, words }: { items: P[]; words: { read: str
 export function WorkGrid({ filters, kinds, empty, children }: { filters: [string, string][]; kinds: string[]; empty: string; children: React.ReactNode }) {
   const [f, setF] = useState('all')
   const grid = useRef<HTMLDivElement>(null)
+  useEffect(() => { const q = new URLSearchParams(location.search).get('type'); if (q && filters.some(([k]) => k === q)) setF(q) }, []) // eslint-disable-line react-hooks/exhaustive-deps
   const pick = (k: string) => {
+    const u = new URL(location.href); if (k === 'all') u.searchParams.delete('type'); else u.searchParams.set('type', k); history.replaceState(history.state, '', u)
     const cards = [...(grid.current?.querySelectorAll<HTMLElement>('.wcard') ?? [])]
     const first = new Map(cards.map(c => [c, c.getBoundingClientRect()]))
     setF(k)

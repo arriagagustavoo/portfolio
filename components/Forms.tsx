@@ -27,7 +27,7 @@ export function QuickForm({ t, estimateHref, toastSent }: { t: Dict['close']; es
     const f = new FormData(ev.currentTarget)
     if (f.get('botcheck')) return
     const name = String(f.get('name') || '').trim(), reach = String(f.get('reach') || '').trim(), need = String(f.get('need') || '').trim()
-    if (!name || !reach) { setErr(true); return }
+    if (!name || !reach) { setErr(true); (ev.currentTarget.elements.namedItem(name ? 'reach' : 'name') as HTMLInputElement | null)?.focus(); return }
     // optimistic: say thanks right away, take it back if the send fails
     const first = name.split(' ')[0]
     resize(() => setDone(first)); toast(toastSent)
@@ -39,7 +39,7 @@ export function QuickForm({ t, estimateHref, toastSent }: { t: Dict['close']; es
     <div className="cl3-r" ref={box}>
       {!open ? (
         <div className="qz-btns">
-          <button className="btn" type="button" aria-expanded={false} onClick={() => resize(() => setOpen(true))}>{t.send} <span className="ar" aria-hidden="true">→</span></button>
+          <button className="btn" type="button" aria-expanded={false} onClick={() => { resize(() => setOpen(true)); if (matchMedia('(pointer: fine)').matches) setTimeout(() => box.current?.querySelector<HTMLInputElement>('input[name=name]')?.focus(), 260) }}>{t.send} <span className="ar" aria-hidden="true">→</span></button>
           <Link className="btn ghost" href={estimateHref}>{t.estimate}</Link>
         </div>
       ) : done ? (
@@ -48,8 +48,8 @@ export function QuickForm({ t, estimateHref, toastSent }: { t: Dict['close']; es
         <form className="qform in" onSubmit={submit} noValidate>
           <input className="hp" type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off" aria-hidden="true" />
           <div className="qf-row">
-            <label className="field">{t.name}<input name="name" autoComplete="given-name" placeholder={t.namePh} autoFocus /></label>
-            <label className="field">{t.contact}<input name="reach" autoComplete="email" placeholder={t.contactPh} /></label>
+            <label className="field">{t.name}<input name="name" autoComplete="given-name" placeholder={t.namePh} /></label>
+            <label className="field">{t.contact}<input name="reach" autoComplete="email" spellCheck={false} placeholder={t.contactPh} /></label>
           </div>
           <label className="field"><span>{t.need} <i>{t.optional}</i></span><input name="need" placeholder={t.needPh} /></label>
           <div className="fact">
@@ -75,7 +75,7 @@ export function ContactForm({ t, errText, toastSent, failed }: { t: Dict['contac
     const f = new FormData(ev.currentTarget)
     if (f.get('botcheck')) return
     const name = String(f.get('name') || '').trim(), reach = String(f.get('reach') || '').trim()
-    if (!name || !reach) { setErr(true); return }
+    if (!name || !reach) { setErr(true); (ev.currentTarget.elements.namedItem(name ? 'reach' : 'name') as HTMLInputElement | null)?.focus(); return }
     setDone(t.done.replace('{n}', name.split(' ')[0]).replace('{how}', t.back[how] ?? '')); toast(toastSent)
     document.querySelector('.ct2 .pkc')?.dispatchEvent(new CustomEvent('cole', { detail: { big: true, happy: true } }))
     const ok = await sendForm({ subject: 'Website inquiry from ' + name, name, [email ? 'email' : 'phone']: reach, preferred: how, needs: picks.join(', ') || '(none picked)', message: String(f.get('more') || '') })
@@ -95,7 +95,7 @@ export function ContactForm({ t, errText, toastSent, failed }: { t: Dict['contac
       <div className="field">
         <span id="reach">{t.reach}</span>
         <div className="how" role="group" aria-labelledby="reach">{t.how.map(h => <button key={h} type="button" aria-pressed={how === h} onClick={() => setHow(h)}>{h}</button>)}</div>
-        <input name="reach" aria-labelledby="reach" type={email ? 'email' : 'tel'} inputMode={email ? 'email' : 'tel'} autoComplete={email ? 'email' : 'tel'} placeholder={email ? t.emailPh : t.phonePh} />
+        <input name="reach" aria-labelledby="reach" type={email ? 'email' : 'tel'} inputMode={email ? 'email' : 'tel'} autoComplete={email ? 'email' : 'tel'} spellCheck={false} placeholder={email ? t.emailPh : t.phonePh} />
       </div>
       <label className="field"><span>{t.more} <i>(optional)</i></span><textarea name="more" rows={3} placeholder={t.morePh} /></label>
       <div className="fact">

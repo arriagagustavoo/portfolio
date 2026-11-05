@@ -131,7 +131,7 @@ export default function EstimateCard({ t, e, work }: { t: Dict['card']; e: Dict[
                     <input className="hp" type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off" aria-hidden="true" />
                     <div className="qf-row">
                       <label className="field">{e.name}<input name="name" autoComplete="given-name" required /></label>
-                      <label className="field">{e.contact}<input name="reach" autoComplete="email" required /></label>
+                      <label className="field">{e.contact}<input name="reach" autoComplete="email" spellCheck={false} placeholder="832-555-0100…" required /></label>
                     </div>
                     <div className="fact"><button className="btn" type="submit">{e.sendBtn}</button></div>
                   </form>

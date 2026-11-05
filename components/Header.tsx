@@ -36,6 +36,7 @@ export default function Header({ lang, nav }: { lang: Lang; nav: Dict['nav'] }) 
     const el = document.documentElement
     const next = el.dataset.theme === 'light' ? 'dark' : 'light'
     el.dataset.theme = next
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', next === 'light' ? '#e3e0d8' : '#181816')
     try { localStorage.setItem('theme', next) } catch {}
   }
   const switchTo = (to: Lang) => { try { sessionStorage.setItem('langToast', to) } catch {} }
@@ -44,7 +45,7 @@ export default function Header({ lang, nav }: { lang: Lang; nav: Dict['nav'] }) 
     <>
       <header className={'site-h' + (scrolled ? ' scrolled' : '') + (hidden && !open ? ' hide' : '')}>
         <div className="wrap bar">
-          <Link className="brand" href={href(lang, '/')} aria-label="arriagagustavoo, home">
+          <Link className="brand" href={href(lang, '/')} aria-label="arriagagustavoo, home" translate="no">
             <Mark /><span>arriagagustav<b>oo</b></span>
           </Link>
           <nav className="links" aria-label="Main">
