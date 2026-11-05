@@ -1,0 +1,818 @@
+{
+ "en": {
+  "about": {
+   "bioLines": [
+    "I build custom websites & software for businesses based in the Houston area.",
+    "I work with clients anywhere. I take pride in being able to provide my work in English and Spanish, remotely.",
+    "Throughout university I enjoyed hands-on projects that mirrored how things are done in the real world, but I never liked that I was only chasing a grade and the work never got used.",
+    "So I started building things people would actually use, and built my own client portal, contracts and invoicing to run it properly.",
+    "What I care about is that it works, and that you're not paying someone else to fix it later.",
+    "Whether it's digital or physical, tell me what your business needs and I'll tell you how I'd build it."
+   ],
+   "freelancing": "Freelancing since 2026",
+   "location": "Houston, Texas",
+   "school": "University of Houston",
+   "degree": "B.S. Computer Science, Software Design",
+   "quote": {
+    "text": "As long as I'm alive, I have infinite chances.",
+    "source": "— Monkey D. Luffy, One Piece"
+   },
+   "reasons": [
+    {
+     "title": "One person, start to finish",
+     "body": "The work stays between you and me. No need to worry about other parties."
+    },
+    {
+     "title": "I use my own software",
+     "body": "Built my own secure client portal and custom documents to use with my business."
+    },
+    {
+     "title": "Fully custom work",
+     "body": "Tailored work for your business. Built from scratch to meet your needs."
+    },
+    {
+     "title": "Bilingual",
+     "body": "I understand the audience and can tailor to both English and Spanish users."
+    }
+   ]
+  },
+  "projects": {
+   "clientportal": {
+    "pitch": "Proposals, contracts, invoices and progress in one place, with every document drawn from a single project brief.",
+    "points": [
+     "Clients approve proposals and sign contracts with a typed name",
+     "Progress updates with photos, files and messages in one place",
+     "An admin side for projects, payments and the books",
+     "The client side reads in English or Spanish"
+    ],
+    "description": "A portal my freelance clients sign into. They approve proposals, sign contracts, pay invoices, watch the build and send files in one place, and the admin side behind it runs the projects, documents, payments and books.",
+    "alts": [
+     "Client sign in screen asking for the email the project was shared with",
+     "Client dashboard with the project stage, amounts paid and due, documents, progress and messages",
+     "Proposal as the client reads it, with the approve and request changes controls",
+     "Signed service agreement showing both parties and the approval record",
+     "Progress feed of build screenshots, each with a reaction and a comment box",
+     "Message thread between the client and me",
+     "Files the client has sent, against the checklist items they answer",
+     "Launch checklist showing what is done and what is still waiting",
+     "Maintenance page with the monthly plan and its invoice history",
+     "Admin dashboard of every active project, recent activity and what needs a reply",
+     "Admin overview of a single project",
+     "Every document on a project with its status and version",
+     "Proposal editor beside a live preview of the document it renders",
+     "Contract editor beside its live preview",
+     "Posting a progress update with several photos attached",
+     "Admin side of the message thread",
+     "Files the client uploaded, from the admin side",
+     "Payments, invoices, expenses and recurring costs on one project",
+     "Launch checklist and handover preparation on the admin side",
+     "Books across every project, with money in and money out",
+     "Audit log of every action taken on every project",
+     "The form that creates a new project and its client access"
+    ],
+    "coverAlt": "Client Portal title card reading 'Makes running a business easy.'"
+   },
+   "queuesmart": {
+    "pitch": "A queue management web app built by a team of four. I built the admin side: the dashboard, queues and services.",
+    "description": "Fullstack website. Fully fleshed out functionality for both users and admins. Authentication, real-time interations and database storage.",
+    "alts": [
+     "Login screen with email and password fields",
+     "Account registration form",
+     "Unauthorized access screen for a blocked route",
+     "User dashboard showing current queue, notifications, and active services",
+     "Joining a queue from the list of available services",
+     "Live queue status with position and estimated wait",
+     "User history of past queue visits",
+     "User feedback form with a star rating",
+     "Admin dashboard overview of queue activity",
+     "Queue management table with people waiting, estimated wait, and priority",
+     "Editing a queue entry from the management table",
+     "Service management list of all bookable services",
+     "Creating a new service",
+     "Editing an existing service",
+     "Reports view of queue activity",
+     "Report exported to CSV and opened in a spreadsheet",
+     "Report exported as a PDF document",
+     "Admin feedback view with all submissions and average rating"
+    ],
+    "coverAlt": "QueueSmart title card reading 'smarter way to wait in line'"
+   },
+   "documents": {
+    "pitch": "The proposal, contract and invoice I send clients, as fill-in-the-blank pages that print to clean PDFs.",
+    "description": "Proposal, contract, and invoice templates that share one dataset. Client details and amounts are typed once and carry across all three, with autosave and print-ready PDF output.",
+    "alts": [
+     "Document portal home menu, page 1",
+     "Document portal home menu, page 2",
+     "Project proposal, page 1",
+     "Project proposal, page 2",
+     "Client contract, page 1",
+     "Client contract, page 2",
+     "Invoice, page 1",
+     "Invoice, page 2"
+    ],
+    "coverAlt": "Bracketed title card reading 'Fill the brackets. Skip the paperwork.'"
+   },
+   "rideshare": {
+    "description": "Fullstack GUI to simulate Relational SQL Database use through transactions and bookings",
+    "alts": [
+     "Booking page before any rides have been entered",
+     "Booking page populated with ride and transaction data"
+    ],
+    "coverAlt": "RideShare title card reading 'Reliable booking. Safe travels.'"
+   },
+   "maze": {
+    "description": "Fully 3D interactive game built using python openGL. Custom algorithm used for randomly generated mazes.",
+    "alts": [
+     "Starting view of a randomly generated 3D maze",
+     "Blue speed boost power-up increasing player movement",
+     "Green high jump power-up giving a birds-eye view of the maze",
+     "Red slow trap reducing player movement",
+     "Pink spin trap rotating the camera to disorient the player"
+    ],
+    "coverAlt": "Labyrinth title card reading 'Lost in space. Try and escape the labyrinth.'"
+   },
+   "unity": {
+    "description": "Original characters and custom assets. Animations drawn frame-by-frame and put into Unity Game engine and uses keyboard controls.",
+    "alts": [
+     "Level scene laid out in the Unity editor",
+     "In-game footage of the player moving through the level",
+     "Main character idle animation, drawn frame by frame",
+     "Main character walk cycle",
+     "Main character attack animation",
+     "Enemy character idle animation",
+     "Enemy character movement animation",
+     "Enemy character attack animation"
+    ],
+    "coverAlt": "Faceoff title card reading 'frame-by-frame', with the two characters facing off"
+   },
+   "mri": {
+    "description": "Matlab GUI to simulate a digital MRI through unique parameters and values",
+    "alts": [
+     "Scanner GUI with the rectangle phantom and Cartesian acquisition set up",
+     "Rectangle phantom, Cartesian reconstruction, and difference map with signal profiles",
+     "Scanner GUI with the circle phantom and radial acquisition set up",
+     "Circle phantom, radial reconstruction, and difference map with signal profiles"
+    ],
+    "coverAlt": "MRI Scanner title card reading 'Matlab GUI. Custom data. Accurate results.'"
+   }
+  },
+  "caseStudy": {
+   "galleryNote": "Screenshots use fictional demo businesses, not real client data.",
+   "ctaText": "Interested in something like this?",
+   "ctaLabel": "Start a project",
+   "stackHeading": "Built with",
+   "items": {
+    "documents": {
+     "meta": {
+      "title": "Bracketed — Case study — Gustavo Arriaga",
+      "description": "Bracketed is the proposal, contract and invoice I send clients: fill-in-the-blank templates in plain HTML that print to clean PDFs."
+     },
+     "linked": {
+      "heading": "Fill the brackets",
+      "body": "The proposal, contract and invoice as they start out. Every [ bracket ] is a field you click and type over. The ones that mean the same thing on all three, like the client's name and the price, are tagged so they fill in from a saved file.",
+      "labels": [
+       "Proposal",
+       "Contract",
+       "Invoice"
+      ]
+     },
+     "summary": [
+      "Bracketed is the proposal, contract and invoice I send to clients. Each one is a fill-in-the-blank page: click a [ bracket ] and type over it, add or remove line items, then print to a letter size PDF. I designed it in Figma and built it to match.",
+      "It's also where the idea behind my client portal started. The three documents share fields, so the client's details and the price get typed once, saved to a file and loaded into the next document. The portal later made that automatic. I built this on my own, it's for my own use, and it isn't hosted anywhere."
+     ],
+     "sections": [
+      {
+       "heading": "Why I built it",
+       "body": "Every client needs the same three documents. I wanted them to look like my work, take minutes to fill in, and come out as a clean PDF every time."
+      },
+      {
+       "heading": "How it's used",
+       "body": "There's nothing to install. It opens in a browser.",
+       "points": [
+        "Open a document and click any [ bracket ] to type over it",
+        "Add or remove line items with the on-screen buttons",
+        "Save the client's details, then load them into the next document",
+        "Print to PDF and send it to the client"
+       ]
+      },
+      {
+       "heading": "What's inside",
+       "body": "Three documents and a home menu that links to them, plus a few things that make it practical.",
+       "points": [
+        "Autosave, so a refresh doesn't wipe the form",
+        "Fixed wording, like contract terms and bank details, editable in place and saved back to the file",
+        "Letter pages or one long page when printing"
+       ]
+      },
+      {
+       "heading": "What it means for you",
+       "body": "Your paperwork looks the same every time and arrives as a clean PDF. The numbers on your proposal and your invoice match, because they came from the same place."
+      },
+      {
+       "heading": "How it's built",
+       "body": "Plain HTML, CSS and JavaScript. No framework, no build step, no install. One shared script of about 800 lines handles the editing, saving and printing. Sizes are in points so the layout matches the Figma design one to one. The print layout is built on a table so the header and footer repeat on every page and never cover text."
+      }
+     ]
+    },
+    "queuesmart": {
+     "meta": {
+      "title": "QueueSmart — Case study — Gustavo Arriaga",
+      "description": "A queue management web app built by a team of four for a Software Design course. I built the admin side: the dashboard, queue management and service management."
+     },
+     "linked": {
+      "heading": "The admin side",
+      "body": "The dashboard and the queue management table, which are the parts I built. From here an admin can open, pause or close a queue, serve the next person, or manage someone who's already waiting.",
+      "labels": [
+       "Dashboard",
+       "Queue management"
+      ]
+     },
+     "summary": [
+      "A queue management web app from my Software Design course at the University of Houston, built by a team of four. People join a queue for a service, see their position and estimated wait, and get notified. Admins run the queues behind it.",
+      "I built the admin side: the dashboard, queue management and service management, the API behind them, the demo data, and most of the tests for the queue and service routes. My teammates built the accounts, the user side, the wait time estimate and most of the styling. It's coursework, not client work, and it isn't deployed."
+     ],
+     "sections": [
+      {
+       "heading": "The assignment",
+       "body": "We were given a queue app to build and told to make it fully functional with real technologies, not a mockup. So it has real accounts, a real database, a real API and a test suite behind it."
+      },
+      {
+       "heading": "What users do",
+       "body": "Anyone can register and sign in, then use the queue like a customer would.",
+       "points": [
+        "Join a queue for any available service",
+        "See their position and estimated wait, refreshed every 5 seconds",
+        "Get notifications from the admin",
+        "Leave the queue if they need to",
+        "Rate their visit afterward, and look back at their history"
+       ]
+      },
+      {
+       "heading": "What admins do",
+       "body": "This is the side I worked on.",
+       "points": [
+        "Watch every queue from one dashboard",
+        "Serve the next person, move someone up or down, or remove them",
+        "Open, pause or close a queue",
+        "Create, edit and delete the services people can queue for"
+       ]
+      },
+      {
+       "heading": "Why it's on this page",
+       "body": "It isn't client work and I won't pretend it is. It does show what most small business tools need: accounts, an admin who can change live data safely, and tests so a change doesn't break what already works."
+      },
+      {
+       "heading": "How it's built",
+       "body": "React and Vite on the front end. Node and Express with MongoDB behind it. Accounts use JWT and bcrypt, and the API checks a user's role before every route, so admin actions are admin only. Jest and Supertest run 63 tests against an in-memory database."
+      }
+     ]
+    },
+    "clientportal": {
+     "meta": {
+      "title": "Client Portal — Case study — Gustavo Arriaga",
+      "description": "A client portal built to run my own freelance practice: proposals, contracts, invoices, progress and files in one place, on Next.js and Supabase."
+     },
+     "linked": {
+      "heading": "One brief, every document",
+      "body": "A demo project, shown on two documents. The client, the $2,800 build price, the $1,200 deposit and the $150 monthly plan were entered once, on the project. The proposal and the contract both pulled them in.",
+      "labels": [
+       "Proposal",
+       "Contract"
+      ]
+     },
+     "summary": [
+      "The software I built to run my freelance business. Clients sign in to approve proposals and contracts, follow their project and see what's been paid. The admin side handles the projects, documents, payments and books.",
+      "The important part is that everything is connected. Each project has one brief, and the proposal, contract, invoice and handover document all pull from it. Type a price, a date or the client's details once and it fills in everywhere. Change it on one document and every unsent draft updates to match. Once a document is sent it's saved as a version, so nothing the client has already seen changes behind their back."
+     ],
+     "sections": [
+      {
+       "heading": "Why I built it",
+       "body": "Running a business means paperwork. Proposals, contracts, invoices, files, updates. Handling all of that over email gets messy fast, and the client is left guessing where their project is. Typing the same price into three different documents is also how mistakes happen. I wanted one place for all of it, so I built one."
+      },
+      {
+       "heading": "What a client sees",
+       "body": "They sign in with an email code, so there's no password to remember, and everything for their project is on one dashboard.",
+       "points": [
+        "A step by step project track, and what's paid against what's due",
+        "Proposals and contracts to approve with a typed name, or send back with changes",
+        "Invoices, and a signed PDF of everything they approve",
+        "Progress updates with photos, and a place to upload files",
+        "Messages kept with the project",
+        "The whole portal in English or Spanish, their choice"
+       ]
+      },
+      {
+       "heading": "What it means for you",
+       "body": "You always know where your project is, and you're not digging through email for a contract or an invoice. Your details are entered once, so the numbers on your proposal, contract and invoice always match. It's also the clearest proof I can show of what I can build."
+      },
+      {
+       "heading": "How it's built",
+       "body": "Next.js and TypeScript on Supabase and Postgres. JWT sessions, Zod validation on every input, signed PDFs generated with Puppeteer, and 43 end to end Playwright tests over both sides. About forty routes between the client side and the admin side."
+      }
+     ]
+    }
+   }
+  },
+  "dev": {
+   "title": "Full-stack software developer",
+   "bio": [
+    "I'm a computer science senior at the University of Houston, focused on full-stack web development. I build web applications with React, Next.js and Node, backed by PostgreSQL, MongoDB or Supabase. Outside the web I have written Python, C++, C# and Swift.",
+    "Below are my coursework and personal projects, the tools I use, and the classes behind them, from algorithms and operating systems to graphics and medical imaging."
+   ]
+  },
+  "coursework": {
+   "groups": {
+    "theory": "Theory",
+    "math": "Math",
+    "systems": "Systems and software",
+    "graphics": "Graphics and imaging"
+   },
+   "courses": {
+    "theory": [
+     "Algorithms and Data Structures",
+     "Automata and Computability",
+     "Programming Languages and Paradigms"
+    ],
+    "math": [
+     "Discrete Mathematics",
+     "Linear Algebra",
+     "Statistics"
+    ],
+    "systems": [
+     "Operating Systems",
+     "Database Systems",
+     "Computer Organization and Architecture",
+     "Software Engineering",
+     "Software Design",
+     "Ubiquitous Computing (iOS App Development)"
+    ],
+    "graphics": [
+     "Interactive Computer Graphics",
+     "Digital Image Processing",
+     "Medical Imaging",
+     "Gaming Art and Animation"
+    ]
+   }
+  },
+  "skills": {
+   "categories": {
+    "languages": "Languages",
+    "web": "Web Dev",
+    "creative": "Creative Work",
+    "tools": "Tools & Libraries"
+   }
+  },
+  "meta": {
+   "home": {
+    "title": "Gustavo Arriaga — Web Developer & Designer in Houston",
+    "description": "Houston freelance web developer and designer. Websites, custom software, branding and local SEO, and 3D modeling and printing for small businesses."
+   },
+   "dev": {
+    "title": "Dev — Gustavo Arriaga",
+    "description": "The engineering side: the full stack I build with, plus the coursework and personal projects behind the client work."
+   },
+   "privacy": {
+    "title": "Privacy Policy — Gustavo Arriaga",
+    "description": "What this site collects, who handles it, and how long it is kept."
+   },
+   "notFound": {
+    "title": "Page not found — Gustavo Arriaga",
+    "description": "This page doesn't exist."
+   }
+  },
+  "privacy": {
+   "title": "Privacy Policy",
+   "updated": "Last updated August 14, 2026",
+   "intro": "This site is a personal portfolio run by Gustavo Arriaga in Houston, Texas. It collects as little as possible, and nothing at all unless you choose to send it.",
+   "formHeading": "What the contact form collects",
+   "formIntro": "If you submit the contact form, it sends whatever you typed into these fields:",
+   "formFields": [
+    "Your name",
+    "Your email address",
+    "Your phone number, only if you choose to fill it in",
+    "The project type you selected",
+    "Your message"
+   ],
+   "formUse": "That goes to my inbox so I can reply. I use it to answer you and to discuss the work you asked about. I do not sell it, rent it, or add it to any mailing list, and there is no newsletter to be signed up for.",
+   "processorsHeading": "Who else handles it",
+   "processors": "The form is delivered by Web3Forms, which processes the submission and forwards it to me by email. The site itself is hosted by Vercel, and the domain runs through Cloudflare. Each of those handles the data in transit under its own privacy terms.",
+   "analyticsHeading": "Analytics and cookies",
+   "analytics": "This site uses Vercel Analytics and Vercel Speed Insights to count page views and measure loading performance. Both are cookieless and do not build a profile of you or follow you to other sites. There is no Google Analytics, no advertising pixel, and no tracking cookie, which is why you were never asked to accept one.",
+   "storage": "The only thing stored in your browser is your light or dark theme choice, kept in local storage so the site remembers it on your next visit. It never leaves your device. Clearing your browser data removes it.",
+   "retentionHeading": "How long it is kept",
+   "retention": "Form submissions stay in my email until they are no longer useful. If you want yours deleted, ask and I will remove it.",
+   "questionsHeading": "Questions",
+   "questions": "Email gus@arriagagustavoo.com and I will answer.",
+   "governing": "",
+   "back": "Back to the site"
+  }
+ },
+ "es": {
+  "about": {
+   "bioLines": [
+    "Construyo sitios web y software a la medida para negocios del área de Houston.",
+    "Trabajo con clientes donde sea. Me enorgullece poder entregar mi trabajo en inglés y español, a distancia.",
+    "En la universidad disfrutaba los proyectos prácticos que se parecían a cómo se hacen las cosas en el mundo real, pero nunca me gustó que solo estaba persiguiendo una calificación y que el trabajo nunca se usara.",
+    "Así que empecé a construir cosas que la gente sí usara, y construí mi propio portal de clientes, contratos y facturación para operar en forma.",
+    "Lo que me importa es que funcione, y que no acabes pagándole a alguien más para arreglarlo después.",
+    "Sea digital o físico, dime qué necesita tu negocio y te digo cómo lo construiría."
+   ],
+   "freelancing": "Freelance desde 2026",
+   "location": "Houston, Texas",
+   "school": "Universidad de Houston",
+   "degree": "Lic. en Ciencias de la Computación, Diseño de Software",
+   "quote": {
+    "text": "Mientras esté vivo, tengo infinitas oportunidades.",
+    "source": "— Monkey D. Luffy, One Piece"
+   },
+   "reasons": [
+    {
+     "title": "Una sola persona, de principio a fin",
+     "body": "El trabajo se queda entre tú y yo. No tienes que preocuparte por terceros."
+    },
+    {
+     "title": "Uso mi propio software",
+     "body": "Construí mi propio portal de clientes seguro y mis documentos personalizados para usarlos en mi negocio."
+    },
+    {
+     "title": "Trabajo totalmente a la medida",
+     "body": "Trabajo hecho para tu negocio. Construido desde cero para lo que necesitas."
+    },
+    {
+     "title": "Bilingüe",
+     "body": "Entiendo al público y puedo adaptar todo para usuarios en inglés y español."
+    }
+   ]
+  },
+  "projects": {
+   "clientportal": {
+    "pitch": "Propuestas, contratos, facturas y avances en un solo lugar, con cada documento tomado de una sola ficha de proyecto.",
+    "points": [
+     "Los clientes aprueban propuestas y firman contratos con su nombre escrito",
+     "Avances con fotos, archivos y mensajes en un solo lugar",
+     "Un lado administrativo para proyectos, pagos y las cuentas",
+     "El lado del cliente se lee en inglés o español"
+    ],
+    "description": "Un portal donde entran mis clientes de freelance. Aprueban propuestas, firman contratos, pagan facturas, ven el avance y envían archivos en un solo lugar, y el lado de administración detrás lleva los proyectos, los documentos, los pagos y la contabilidad.",
+    "alts": [
+     "Pantalla de acceso del cliente que pide el correo con el que se compartió el proyecto",
+     "Panel del cliente con la etapa del proyecto, lo pagado y lo pendiente, documentos, avance y mensajes",
+     "La propuesta como la lee el cliente, con los controles para aprobar o pedir cambios",
+     "Contrato de servicio firmado que muestra a ambas partes y el registro de la aprobación",
+     "Historial de avance con capturas del sitio, cada una con una reacción y un campo de comentario",
+     "Hilo de mensajes entre el cliente y yo",
+     "Archivos que el cliente ha enviado, junto a los puntos de la lista que responden",
+     "Lista de lanzamiento con lo que ya está hecho y lo que sigue pendiente",
+     "Página de mantenimiento con el plan mensual y su historial de facturas",
+     "Panel de administración con todos los proyectos activos, la actividad reciente y lo que necesita respuesta",
+     "Resumen de administración de un solo proyecto",
+     "Todos los documentos de un proyecto con su estado y su versión",
+     "Editor de propuestas junto a una vista previa en vivo del documento que genera",
+     "Editor de contratos junto a su vista previa en vivo",
+     "Publicando una actualización de avance con varias fotos adjuntas",
+     "El hilo de mensajes desde el lado de administración",
+     "Archivos que subió el cliente, desde el lado de administración",
+     "Pagos, facturas, gastos y costos recurrentes de un proyecto",
+     "Lista de lanzamiento y preparación de la entrega desde administración",
+     "Contabilidad de todos los proyectos, con el dinero que entra y el que sale",
+     "Registro de auditoría de cada acción tomada en cada proyecto",
+     "El formulario que crea un proyecto nuevo y el acceso de su cliente"
+    ],
+    "coverAlt": "Portada de Client Portal que dice 'Makes running a business easy.'"
+   },
+   "queuesmart": {
+    "pitch": "Una aplicación web de gestión de filas hecha por un equipo de cuatro. Yo construí el lado administrativo: el panel, las filas y los servicios.",
+    "description": "Sitio web fullstack. Funcionalidad completa tanto para usuarios como para administradores. Autenticación, interacciones en tiempo real y almacenamiento en base de datos.",
+    "alts": [
+     "Pantalla de inicio de sesión con campos de correo y contraseña",
+     "Formulario de registro de cuenta",
+     "Pantalla de acceso no autorizado para una ruta bloqueada",
+     "Panel del usuario con la fila actual, notificaciones y servicios activos",
+     "Uniéndose a una fila desde la lista de servicios disponibles",
+     "Estado de la fila en vivo con posición y espera estimada",
+     "Historial del usuario de visitas anteriores",
+     "Formulario de comentarios del usuario con calificación por estrellas",
+     "Panel del administrador con un resumen de la actividad de las filas",
+     "Tabla de gestión de filas con personas esperando, espera estimada y prioridad",
+     "Editando una entrada de la fila desde la tabla de gestión",
+     "Lista de gestión de todos los servicios reservables",
+     "Creando un servicio nuevo",
+     "Editando un servicio existente",
+     "Vista de reportes de la actividad de las filas",
+     "Reporte exportado a CSV y abierto en una hoja de cálculo",
+     "Reporte exportado como documento PDF",
+     "Vista de comentarios del administrador con todos los envíos y la calificación promedio"
+    ],
+    "coverAlt": "Portada de QueueSmart que dice 'smarter way to wait in line'"
+   },
+   "documents": {
+    "pitch": "La propuesta, el contrato y la factura que envío a mis clientes, como páginas para llenar que se imprimen como PDF limpios.",
+    "description": "Plantillas de propuesta, contrato y factura que comparten un solo conjunto de datos. Los datos del cliente y los montos se escriben una vez y se llevan a las tres, con autoguardado y salida en PDF lista para imprimir.",
+    "alts": [
+     "Menú principal del portal de documentos, página 1",
+     "Menú principal del portal de documentos, página 2",
+     "Propuesta de proyecto, página 1",
+     "Propuesta de proyecto, página 2",
+     "Contrato del cliente, página 1",
+     "Contrato del cliente, página 2",
+     "Factura, página 1",
+     "Factura, página 2"
+    ],
+    "coverAlt": "Portada de Bracketed que dice 'Fill the brackets. Skip the paperwork.'"
+   },
+   "rideshare": {
+    "description": "Interfaz fullstack para simular el uso de una base de datos SQL relacional a través de transacciones y reservaciones",
+    "alts": [
+     "Página de reservaciones antes de registrar cualquier viaje",
+     "Página de reservaciones con datos de viajes y transacciones"
+    ],
+    "coverAlt": "Portada de RideShare que dice 'Reliable booking. Safe travels.'"
+   },
+   "maze": {
+    "description": "Juego interactivo totalmente en 3D hecho con Python y OpenGL. Algoritmo propio para generar laberintos al azar.",
+    "alts": [
+     "Vista inicial de un laberinto 3D generado al azar",
+     "Mejora azul de velocidad que aumenta el movimiento del jugador",
+     "Mejora verde de salto alto que da una vista aérea del laberinto",
+     "Trampa roja que reduce el movimiento del jugador",
+     "Trampa rosa que gira la cámara para desorientar al jugador"
+    ],
+    "coverAlt": "Portada de Labyrinth que dice 'Lost in space. Try and escape the labyrinth.'"
+   },
+   "unity": {
+    "description": "Personajes originales y recursos propios. Animaciones dibujadas cuadro por cuadro, integradas en el motor Unity y con controles de teclado.",
+    "alts": [
+     "Escena del nivel armada en el editor de Unity",
+     "Video del juego con el jugador avanzando por el nivel",
+     "Animación del personaje principal en reposo, dibujada cuadro por cuadro",
+     "Ciclo de caminata del personaje principal",
+     "Animación de ataque del personaje principal",
+     "Animación del enemigo en reposo",
+     "Animación de movimiento del enemigo",
+     "Animación de ataque del enemigo"
+    ],
+    "coverAlt": "Portada de Faceoff que dice 'frame-by-frame', con los dos personajes enfrentados"
+   },
+   "mri": {
+    "description": "Interfaz en Matlab para simular una resonancia magnética digital con parámetros y valores propios",
+    "alts": [
+     "Interfaz del escáner con el fantoma rectangular y adquisición cartesiana configurada",
+     "Fantoma rectangular, reconstrucción cartesiana y mapa de diferencias con perfiles de señal",
+     "Interfaz del escáner con el fantoma circular y adquisición radial configurada",
+     "Fantoma circular, reconstrucción radial y mapa de diferencias con perfiles de señal"
+    ],
+    "coverAlt": "Portada de MRI Scanner que dice 'Matlab GUI. Custom data. Accurate results.'"
+   }
+  },
+  "caseStudy": {
+   "galleryNote": "Las capturas usan negocios ficticios de demostración, no datos de clientes reales.",
+   "ctaText": "¿Te interesa algo así?",
+   "ctaLabel": "Empezar un proyecto",
+   "stackHeading": "Construido con",
+   "items": {
+    "documents": {
+     "meta": {
+      "title": "Bracketed — Caso de estudio — Gustavo Arriaga",
+      "description": "Bracketed es la propuesta, el contrato y la factura que envío a mis clientes: plantillas para llenar en HTML simple que se imprimen como PDF limpios."
+     },
+     "linked": {
+      "heading": "Llena los corchetes",
+      "body": "La propuesta, el contrato y la factura como empiezan. Cada [ corchete ] es un campo donde haces clic y escribes encima. Los que significan lo mismo en los tres, como el nombre del cliente y el precio, están marcados para llenarse desde un archivo guardado.",
+      "labels": [
+       "Propuesta",
+       "Contrato",
+       "Factura"
+      ]
+     },
+     "summary": [
+      "Bracketed es la propuesta, el contrato y la factura que envío a mis clientes. Cada uno es una página para llenar: haces clic en un [ corchete ] y escribes encima, agregas o quitas líneas, y lo imprimes como PDF tamaño carta. Lo diseñé en Figma y lo construí para que coincida.",
+      "También es donde empezó la idea detrás de mi portal de clientes. Los tres documentos comparten campos, así que los datos del cliente y el precio se escriben una vez, se guardan en un archivo y se cargan en el siguiente documento. El portal después lo hizo automático. Lo construí yo solo, es para mi propio uso y no está publicado en ningún lado."
+     ],
+     "sections": [
+      {
+       "heading": "Por qué lo construí",
+       "body": "Todo cliente necesita los mismos tres documentos. Quería que se vieran como mi trabajo, que llenarlos tomara minutos, y que salieran como un PDF limpio cada vez."
+      },
+      {
+       "heading": "Cómo se usa",
+       "body": "No hay nada que instalar. Se abre en un navegador.",
+       "points": [
+        "Abres un documento y haces clic en cualquier [ corchete ] para escribir encima",
+        "Agregas o quitas líneas con los botones en pantalla",
+        "Guardas los datos del cliente y los cargas en el siguiente documento",
+        "Imprimes a PDF y se lo envías al cliente"
+       ]
+      },
+      {
+       "heading": "Lo que trae",
+       "body": "Tres documentos y un menú de inicio que los enlaza, más algunas cosas que lo hacen práctico.",
+       "points": [
+        "Autoguardado, para que recargar la página no borre el formulario",
+        "El texto fijo, como los términos del contrato y los datos bancarios, se edita ahí mismo y se guarda de vuelta en el archivo",
+        "Páginas tamaño carta o una sola página larga al imprimir"
+       ]
+      },
+      {
+       "heading": "Qué significa para ti",
+       "body": "Tus documentos se ven igual cada vez y llegan como un PDF limpio. Los números de tu propuesta y de tu factura coinciden, porque salieron del mismo lugar."
+      },
+      {
+       "heading": "Cómo está construido",
+       "body": "HTML, CSS y JavaScript simples. Sin framework, sin paso de compilación, sin instalar nada. Un script compartido de unas 800 líneas maneja la edición, el guardado y la impresión. Los tamaños están en puntos para que el diseño coincida uno a uno con el de Figma. El diseño de impresión usa una tabla para que el encabezado y el pie se repitan en cada página y nunca tapen texto."
+      }
+     ]
+    },
+    "queuesmart": {
+     "meta": {
+      "title": "QueueSmart — Caso de estudio — Gustavo Arriaga",
+      "description": "Una aplicación web de gestión de filas construida por un equipo de cuatro para un curso de Diseño de Software. Yo construí el lado administrativo: el panel, la gestión de filas y la de servicios."
+     },
+     "linked": {
+      "heading": "El lado administrativo",
+      "body": "El panel y la tabla de gestión de filas, que son las partes que construí. Desde aquí un administrador puede abrir, pausar o cerrar una fila, atender a la siguiente persona, o gestionar a alguien que ya está esperando.",
+      "labels": [
+       "Panel",
+       "Gestión de filas"
+      ]
+     },
+     "summary": [
+      "Una aplicación web de gestión de filas de mi curso de Diseño de Software en la Universidad de Houston, construida por un equipo de cuatro. Las personas se forman en una fila para un servicio, ven su posición y el tiempo estimado de espera, y reciben avisos. Los administradores manejan las filas detrás.",
+      "Yo construí el lado administrativo: el panel, la gestión de filas y la de servicios, la API detrás de ellos, los datos de demostración y la mayoría de las pruebas de las rutas de filas y servicios. Mis compañeros construyeron las cuentas, el lado del usuario, el cálculo del tiempo de espera y la mayor parte del diseño visual. Es un trabajo de la escuela, no de un cliente, y no está publicado."
+     ],
+     "sections": [
+      {
+       "heading": "La tarea",
+       "body": "Nos dieron una aplicación de filas para construir y nos pidieron que funcionara por completo con tecnologías reales, no una maqueta. Así que tiene cuentas reales, una base de datos real, una API real y un conjunto de pruebas detrás."
+      },
+      {
+       "heading": "Lo que hacen los usuarios",
+       "body": "Cualquiera puede registrarse e iniciar sesión, y usar la fila como lo haría un cliente.",
+       "points": [
+        "Formarse en una fila para cualquier servicio disponible",
+        "Ver su posición y el tiempo estimado de espera, actualizado cada 5 segundos",
+        "Recibir avisos del administrador",
+        "Salirse de la fila si lo necesitan",
+        "Calificar su visita después, y revisar su historial"
+       ]
+      },
+      {
+       "heading": "Lo que hacen los administradores",
+       "body": "Este es el lado en el que trabajé.",
+       "points": [
+        "Vigilar todas las filas desde un solo panel",
+        "Atender a la siguiente persona, subir o bajar a alguien, o quitarlo",
+        "Abrir, pausar o cerrar una fila",
+        "Crear, editar y borrar los servicios para los que la gente se forma"
+       ]
+      },
+      {
+       "heading": "Por qué está en esta página",
+       "body": "No es trabajo de un cliente y no voy a fingir que lo es. Sí muestra lo que necesitan la mayoría de las herramientas de un negocio pequeño: cuentas, un administrador que puede cambiar datos en vivo con seguridad, y pruebas para que un cambio no rompa lo que ya funciona."
+      },
+      {
+       "heading": "Cómo está construido",
+       "body": "React y Vite en el front end. Node y Express con MongoDB detrás. Las cuentas usan JWT y bcrypt, y la API revisa el rol del usuario antes de cada ruta, así que las acciones de administrador son solo para administradores. Jest y Supertest corren 63 pruebas contra una base de datos en memoria."
+      }
+     ]
+    },
+    "clientportal": {
+     "meta": {
+      "title": "Client Portal — Caso de estudio — Gustavo Arriaga",
+      "description": "Un portal de clientes construido para operar mi propio negocio freelance: propuestas, contratos, facturas, avance y archivos en un solo lugar, sobre Next.js y Supabase."
+     },
+     "linked": {
+      "heading": "Una ficha, todos los documentos",
+      "body": "Un proyecto de demostración, visto en dos documentos. El cliente, el precio de $2,800, el anticipo de $1,200 y el plan mensual de $150 se escribieron una sola vez, en el proyecto. La propuesta y el contrato los tomaron de ahí.",
+      "labels": [
+       "Propuesta",
+       "Contrato"
+      ]
+     },
+     "summary": [
+      "El software que construí para operar mi negocio freelance. Los clientes entran para aprobar propuestas y contratos, seguir su proyecto y ver lo que llevan pagado. El lado administrativo maneja los proyectos, los documentos, los pagos y las cuentas.",
+      "Lo importante es que todo está conectado. Cada proyecto tiene una sola ficha, y la propuesta, el contrato, la factura y el documento de entrega toman sus datos de ahí. Escribes un precio, una fecha o los datos del cliente una vez y se llena en todos lados. Si lo cambias en un documento, todos los borradores sin enviar se actualizan. Cuando se envía un documento se guarda como versión, así que nada de lo que el cliente ya vio cambia a sus espaldas."
+     ],
+     "sections": [
+      {
+       "heading": "Por qué lo construí",
+       "body": "Tener un negocio significa papeleo. Propuestas, contratos, facturas, archivos, avances. Llevar todo eso por correo se vuelve un desorden rápido, y el cliente se queda adivinando en qué va su proyecto. Escribir el mismo precio en tres documentos distintos también es como se cometen errores. Quería un solo lugar para todo, así que lo construí."
+      },
+      {
+       "heading": "Lo que ve un cliente",
+       "body": "Entra con un código por correo, así que no hay contraseña que recordar, y todo lo de su proyecto está en un solo panel.",
+       "points": [
+        "Un recorrido del proyecto paso a paso, y lo pagado contra lo pendiente",
+        "Propuestas y contratos para aprobar con su nombre escrito, o devolver con cambios",
+        "Facturas, y un PDF firmado de todo lo que aprueba",
+        "Avances con fotos, y un lugar para subir archivos",
+        "Mensajes guardados junto al proyecto",
+        "Todo el portal en inglés o español, a su elección"
+       ]
+      },
+      {
+       "heading": "Qué significa para ti",
+       "body": "Siempre sabes en qué va tu proyecto, y no andas buscando un contrato o una factura en el correo. Tus datos se escriben una vez, así que los números de tu propuesta, contrato y factura siempre coinciden. También es la prueba más clara que te puedo mostrar de lo que sé construir."
+      },
+      {
+       "heading": "Cómo está construido",
+       "body": "Next.js y TypeScript sobre Supabase y Postgres. Sesiones con JWT, validación con Zod en cada entrada, PDFs firmados generados con Puppeteer, y 43 pruebas de punta a punta con Playwright sobre los dos lados. Alrededor de cuarenta rutas entre el lado del cliente y el administrativo."
+      }
+     ]
+    }
+   }
+  },
+  "dev": {
+   "title": "Desarrollador de software full-stack",
+   "bio": [
+    "Soy estudiante de último año de Ciencias de la Computación en la Universidad de Houston, con enfoque en desarrollo web full-stack. Construyo aplicaciones web con React, Next.js y Node, respaldadas por PostgreSQL, MongoDB o Supabase. Fuera de la web he escrito en Python, C++, C# y Swift.",
+    "Abajo están mis proyectos de escuela y personales, las herramientas que uso y las clases detrás de todo, desde algoritmos y sistemas operativos hasta gráficos e imágenes médicas."
+   ]
+  },
+  "coursework": {
+   "groups": {
+    "theory": "Teoría",
+    "math": "Matemáticas",
+    "systems": "Sistemas y software",
+    "graphics": "Gráficos e imágenes"
+   },
+   "courses": {
+    "theory": [
+     "Algoritmos y estructuras de datos",
+     "Autómatas y computabilidad",
+     "Lenguajes y paradigmas de programación"
+    ],
+    "math": [
+     "Matemáticas discretas",
+     "Álgebra lineal",
+     "Estadística"
+    ],
+    "systems": [
+     "Sistemas operativos",
+     "Bases de datos",
+     "Organización y arquitectura de computadoras",
+     "Ingeniería de software",
+     "Diseño de software",
+     "Cómputo ubicuo (desarrollo de apps para iOS)"
+    ],
+    "graphics": [
+     "Gráficos interactivos por computadora",
+     "Procesamiento digital de imágenes",
+     "Imágenes médicas",
+     "Arte y animación para videojuegos"
+    ]
+   }
+  },
+  "skills": {
+   "categories": {
+    "languages": "Lenguajes",
+    "web": "Desarrollo Web",
+    "creative": "Trabajo creativo",
+    "tools": "Herramientas"
+   }
+  },
+  "meta": {
+   "home": {
+    "title": "Gustavo Arriaga — Desarrollador y diseñador web en Houston",
+    "description": "Desarrollador y diseñador web freelance en Houston. Sitios web, software a medida, branding y SEO local, y modelado e impresión 3D para pequeños negocios."
+   },
+   "dev": {
+    "title": "Dev — Gustavo Arriaga",
+    "description": "El lado técnico: el stack completo con el que construyo, más los proyectos de escuela y personales detrás del trabajo con clientes."
+   },
+   "privacy": {
+    "title": "Política de Privacidad — Gustavo Arriaga",
+    "description": "Qué recopila este sitio, quién lo maneja y por cuánto tiempo se guarda."
+   },
+   "notFound": {
+    "title": "Página no encontrada — Gustavo Arriaga",
+    "description": "Esta página no existe."
+   }
+  },
+  "privacy": {
+   "title": "Política de Privacidad",
+   "updated": "Última actualización: 14 de agosto de 2026",
+   "intro": "Este sitio es un portafolio personal de Gustavo Arriaga en Houston, Texas. Recopila lo menos posible, y nada en absoluto a menos que tú decidas enviarlo.",
+   "formHeading": "Qué recopila el formulario de contacto",
+   "formIntro": "Si envías el formulario de contacto, se manda lo que hayas escrito en estos campos:",
+   "formFields": [
+    "Tu nombre",
+    "Tu dirección de correo",
+    "Tu teléfono, solo si decides ponerlo",
+    "El tipo de proyecto que seleccionaste",
+    "Tu mensaje"
+   ],
+   "formUse": "Eso llega a mi correo para poder responderte. Lo uso para contestarte y para hablar del trabajo que me pediste. No lo vendo, no lo rento ni lo agrego a ninguna lista de correos, y no hay boletín al que te puedan suscribir.",
+   "processorsHeading": "Quién más lo maneja",
+   "processors": "El formulario lo entrega Web3Forms, que procesa el envío y me lo reenvía por correo. El sitio está alojado en Vercel, y el dominio pasa por Cloudflare. Cada uno maneja los datos en tránsito bajo sus propios términos de privacidad.",
+   "analyticsHeading": "Analítica y cookies",
+   "analytics": "Este sitio usa Vercel Analytics y Vercel Speed Insights para contar visitas y medir el rendimiento de carga. Los dos funcionan sin cookies y no arman un perfil tuyo ni te siguen a otros sitios. No hay Google Analytics, ni píxel de publicidad, ni cookie de rastreo, y por eso nunca se te pidió aceptar una.",
+   "storage": "Lo único que se guarda en tu navegador es tu preferencia de tema claro u oscuro, en el almacenamiento local para que el sitio la recuerde en tu próxima visita. Nunca sale de tu dispositivo. Si borras los datos de tu navegador, se elimina.",
+   "retentionHeading": "Cuánto tiempo se guarda",
+   "retention": "Los envíos del formulario se quedan en mi correo hasta que ya no sirven. Si quieres que borre el tuyo, pídemelo y lo elimino.",
+   "questionsHeading": "Preguntas",
+   "questions": "Escribe a gus@arriagagustavoo.com y te respondo.",
+   "governing": "Esta es una traducción de cortesía. En caso de discrepancia, la versión en inglés es la que rige.",
+   "back": "Volver al sitio"
+  }
+ }
+}

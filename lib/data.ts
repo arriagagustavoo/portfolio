@@ -1,0 +1,72 @@
+// Projects, skills and contact links. Words live in lib/content; this is structure.
+const cp = (f: string) => `/images/projects/clientportal/${f}.webp`
+const qs = (f: string) => `/images/projects/queuesmart/${f}.webp`
+const dc = (f: string) => `/images/projects/documents/${f}.jpg`
+
+export type Shot = { src: string; w: number; h: number }
+export type Project = {
+  slug: string
+  key: 'clientportal' | 'queuesmart' | 'documents'
+  title: string
+  kind: 'software' | 'design' | 'websites'
+  url: string
+  doc?: boolean
+  cardSkills: string[]
+  skills: string[]
+  repo?: string
+  shots: Shot[]
+}
+
+const W = (src: string): Shot => ({ src, w: 2560, h: 1240 })
+const D = (src: string): Shot => ({ src, w: 1275, h: 1650 })
+
+export const projects: Project[] = [
+  {
+    slug: 'client-portal', key: 'clientportal', title: 'Client Portal', kind: 'software', url: 'arriagagustavoo.com/work/client-portal',
+    cardSkills: ['Next.js', 'TypeScript', 'React', 'Supabase'],
+    skills: ['Next.js', 'TypeScript', 'React', 'Supabase', 'PostgreSQL', 'JWT', 'Zod', 'Puppeteer', 'Playwright'],
+    shots: ['Client-SignIn', 'Client-Dashboard', 'Client-Proposal', 'Client-Contract', 'Client-Progress', 'Client-Messages', 'Client-Files', 'Client-Launch', 'Client-Maintenance',
+      'Admin-Dashboard', 'Admin-Project', 'Admin-Documents', 'Admin-Editor-Proposal', 'Admin-Editor-Contract', 'Admin-Progress', 'Admin-Messages', 'Admin-Files', 'Admin-Finances', 'Admin-Launch', 'Admin-Books', 'Admin-Audit', 'Admin-NewProject'].map(f => W(cp(f))),
+  },
+  {
+    slug: 'bracketed', key: 'documents', title: 'Bracketed', kind: 'design', url: 'arriagagustavoo.com/work/bracketed', doc: true,
+    cardSkills: ['Figma', 'JavaScript', 'HTML', 'CSS'],
+    skills: ['Figma', 'JavaScript', 'HTML', 'CSS', 'Git'],
+    shots: ['Portal_page-0001', 'Portal_page-0002', 'Proposal_page-0001', 'Proposal_page-0002', 'Contract_page-0001', 'Contract_page-0002', 'Invoice_page-0001', 'Invoice_page-0002'].map(f => D(dc(f))),
+  },
+  {
+    slug: 'queuesmart', key: 'queuesmart', title: 'QueueSmart', kind: 'software', url: 'arriagagustavoo.com/work/queuesmart', repo: 'https://github.com/Fifer-code/Software-Design',
+    cardSkills: ['React', 'Express', 'Node.js', 'MongoDB'],
+    skills: ['React', 'Vite', 'Express', 'Node.js', 'MongoDB', 'JWT', 'JavaScript', 'GitHub', 'npm'],
+    shots: ['Login', 'Register', 'Unauthorized', 'User-Dashboard', 'User-Join', 'User-Status', 'User-History', 'User-Feedback', 'Admin-Dashboard', 'Admin-QueueManagement', 'Admin-QueueManagementEdit',
+      'Admin-ServiceManagement', 'Admin-ServiceManagementCreate', 'Admin-ServiceManagementEdit', 'Admin-Reports', 'Admin-ReportsCSV', 'Admin-ReportsPDF', 'Admin-Feedback'].map(f => W(qs(f))),
+  },
+]
+
+/** the screenshot each project leads with (cards, the featured stack) */
+export const lead: Record<Project['key'], number> = { clientportal: 9, documents: 2, queuesmart: 8 }
+
+export const devProjects = [
+  { cover: '/images/projects/rideshare/RideShare-cover.webp', skills: ['PostgreSQL', 'Express', 'JavaScript', 'HTML', 'CSS'], repo: 'https://github.com/arriagagustavoo/rideshare' },
+  { cover: '/images/projects/mazegame/Labyrinth-cover.webp', skills: ['Python', 'OpenGL'], repo: 'https://github.com/arriagagustavoo/Interactive-Maze-Game' },
+  { cover: '/images/projects/unitygame/Faceoff-cover.webp', skills: ['Unity', 'Clip Studio Paint'], repo: '' },
+  { cover: '/images/projects/mriScanner/MRI-cover.webp', skills: ['MATLAB'], repo: '' },
+]
+
+export const skillGroups = [
+  { id: 'languages', skills: ['Python', 'C++', 'C#', 'Swift', 'JavaScript', 'TypeScript', 'HTML', 'CSS', 'MATLAB', 'R'] },
+  { id: 'web', skills: ['React', 'Next.js', 'Vite', 'Express', 'Node.js', 'MongoDB', 'PostgreSQL', 'Supabase', 'JWT', 'Zod'] },
+  { id: 'creative', skills: ['Autodesk Fusion', 'Figma', 'Unity', 'OpenGL', 'Clip Studio Paint'] },
+  { id: 'tools', skills: ['Git', 'GitHub', 'Jenkins', 'Ubuntu', 'VS Code', 'Claude', 'npm', 'OpenCV', 'NumPy', 'Playwright', 'Puppeteer', 'Vercel'] },
+] as const
+
+export const contact = {
+  phone: '832-453-4158', tel: '+18324534158', email: 'gus@arriagagustavoo.com',
+  instagram: { url: 'https://www.instagram.com/dev.arriagagustavoo/', handle: '@dev.arriagagustavoo' },
+  facebook: { url: 'https://www.facebook.com/arriagagustavoo/', handle: 'arriagagustavoo' },
+  linkedin: { url: 'https://www.linkedin.com/in/arriagagustavoo/', handle: 'in/arriagagustavoo' },
+  github: { url: 'https://github.com/arriagagustavoo', handle: 'arriagagustavoo' },
+}
+
+// Web3Forms keys are public by design (the form posts from the browser); same key as the old site
+export const WEB3FORMS_KEY = '0fc04ae8-b271-4e9f-a6a4-b89234a02aea'
