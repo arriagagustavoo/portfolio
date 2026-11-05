@@ -17,7 +17,7 @@
   --pixel:var(--font-pixel),var(--font-mono),ui-monospace,monospace;
   --hand:var(--font-hand),cursive;
   --chev:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 6 6 6-6 6'/%3E%3C/svg%3E");
-  --page:83.75rem; --gut:max(1.25rem,4vw);
+  --page:100rem; --gut:max(1.25rem,4vw);
   color-scheme:dark;
 }
 :root[data-theme="light"]{
@@ -29,9 +29,10 @@
 }
 
 *{box-sizing:border-box}
-/* Up to 1440 wide the root stays 16px (so browser zoom-in still grows text). Past that the whole layout scales with
-   the window, so a big monitor or a zoomed-out tab shows the same composition filling the screen, not a column in the middle. */
-html{font-size:clamp(100%,100vw / 90,200%);background:var(--bg);-webkit-text-size-adjust:100%;scroll-padding-top:5rem}
+/* Zoom is the visitor's control, so it always has to do something. The root stays 16px up to 1440 wide (zoom-in works
+   normally), then grows at about a third of the window's rate, capped at 20px. A big screen or a zoomed-out tab gets a
+   wider page and slightly larger type, but zooming out still shows smaller text and more of the page. */
+html{font-size:clamp(1rem,.68rem + .357vw,1.25rem);background:var(--bg);-webkit-text-size-adjust:100%;scroll-padding-top:5rem}
 html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth{scroll-behavior:auto!important}
 body{margin:0;background:transparent;color:var(--fg);font-family:var(--body);font-size:1.0625rem;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
