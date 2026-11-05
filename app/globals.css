@@ -7,7 +7,7 @@
   --fg:#ece9e3; --fg-2:#c4c1ba; --fg-3:#9b988f; --hair:#36332f;
   --green:#1e9e45; --green-h:#1a883b; --green-text:#34b85b; --pink:#ff2f6d; --on-green:#000;
   --btn2:#44403a; --btn2-h:#514c45;
-  --stripe:rgba(30,158,69,.035); --glow:rgba(30,158,69,.09);
+  --stripe:rgba(30,158,69,.045); --glow:rgba(30,158,69,.1);
   --pop:-5px 5px 0 var(--green);
   --slanted:polygon(.7rem 0,100% 0,calc(100% - .7rem) 100%,0 100%);
   --slant-s:polygon(.4rem 0,100% 0,calc(100% - .4rem) 100%,0 100%);
@@ -31,7 +31,7 @@
 html{background:var(--bg);-webkit-text-size-adjust:100%;scroll-padding-top:80px}
 html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth{scroll-behavior:auto!important}
-body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
+body{margin:0;background:transparent;color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
 a{color:inherit}
 button,input,textarea{font:inherit;color:inherit}
 img{max-width:100%;display:block}
