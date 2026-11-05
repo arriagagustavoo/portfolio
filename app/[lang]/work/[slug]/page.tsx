@@ -47,7 +47,7 @@ export default async function Case({ params }: P) {
       <JsonLd data={crumbs(lang, [[t.nav.home, '/'], [t.nav.work, '/work'], [p.title, '/work/' + slug]])} />
       <JsonLd data={{ '@context': 'https://schema.org', '@type': 'CreativeWork', name: p.title, description: it.meta.description, url: SITE + href(lang, '/work/' + slug), image: SITE + p.shots[0].src, creator: { '@id': SITE + '/#gustavo' }, inLanguage: lang, keywords: p.skills.join(', ') }} />
       <section className="wrap sec first">
-        <nav className="crumb" aria-label="Breadcrumb"><Link href={href(lang, '/work')}>{c.crumb}</Link><span aria-hidden="true">/</span><span aria-current="page">{p.title}</span></nav>
+        <nav className="crumb" aria-label="Breadcrumb"><Link href={href(lang, '/work')} transitionTypes={['nav-back']}>{c.crumb}</Link><span aria-hidden="true">/</span><span aria-current="page">{p.title}</span></nav>
         <div className="cs-top">
           <div>
             <h1 className="h1">{p.title}</h1>
@@ -60,7 +60,7 @@ export default async function Case({ params }: P) {
             <Chips names={p.skills} />
           </div>
           <div>
-            <Gallery shots={order.map(i => p.shots[i].src)} alts={order.map(i => alts[i] ?? p.title)} url={p.url} doc={p.doc} more={c.more} label={c.shot} />
+            <Gallery vt={'shot-' + p.slug} shots={order.map(i => p.shots[i].src)} alts={order.map(i => alts[i] ?? p.title)} url={p.url} doc={p.doc} more={c.more} label={c.shot} />
             {p.key === 'clientportal' && <p className="note">{t.legacy.caseStudy.galleryNote}</p>}
           </div>
         </div>
@@ -90,7 +90,7 @@ export default async function Case({ params }: P) {
         <div className="acts" data-reveal><span className="lede" style={{ margin: 0 }}>{c.cta}</span><Link className="btn" href={href(lang, '/contact')}>{c.ctaBtn}</Link></div>
         <nav className="pn" aria-label={c.all}>
           <Link className="pn-p" href={href(lang, '/work/' + prev.slug)} rel="prev"><span>{c.prev}</span><b>{prev.title}</b></Link>
-          <Link className="pn-all" href={href(lang, '/work')}>{c.all}</Link>
+          <Link className="pn-all" href={href(lang, '/work')} transitionTypes={['nav-back']}>{c.all}</Link>
           <Link className="pn-n" href={href(lang, '/work/' + next.slug)} rel="next"><span>{c.next}</span><b>{next.title}</b></Link>
         </nav>
       </section>

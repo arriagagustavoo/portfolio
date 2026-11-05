@@ -3,7 +3,8 @@ import { icons, skillIcons, type IconName } from '@/lib/icons'
 export const MARK_PATHS = '<path fill="var(--fg)" d="M120 136a16 16 0 1 1-32 0a16 16 0 0 1 32 0Z"/><path fill="var(--fg)" d="M120 72a16 16 0 1 1-32 0a16 16 0 0 1 32 0Z"/><path fill="#1e9e45" d="M57.8 116.3L41.7 176.5H104v32H0l26.9-100.5l30.9 8.3Z"/><path fill="#1e9e45" d="M181.1 100.5l-30.9-8.3L166.3 32H104V0h104l-26.9 100.5Z"/>'
 
 export function Mark({ className }: { className?: string }) {
-  return <svg className={className} viewBox="0 0 209 209" aria-hidden="true" dangerouslySetInnerHTML={{ __html: MARK_PATHS }} />
+  const html = className?.includes('lock') ? MARK_PATHS.replace(/<path fill="var\(--fg\)"/g, '<path class="d" fill="var(--fg)"').replace('<path fill="#1e9e45" d="M57', '<path class="b1" fill="#1e9e45" d="M57').replace('<path fill="#1e9e45" d="M181', '<path class="b2" fill="#1e9e45" d="M181') : MARK_PATHS
+  return <svg className={className} viewBox="0 0 209 209" aria-hidden="true" dangerouslySetInnerHTML={{ __html: html }} />
 }
 
 export function LongLogo() {

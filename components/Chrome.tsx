@@ -24,14 +24,16 @@ export function Backdrop() {
       el.style.setProperty('--mx', cx.toFixed(2) + '%'); el.style.setProperty('--my', cy.toFixed(2) + '%')
       raf = Math.abs(tx - cx) + Math.abs(ty - cy) > 0.1 ? requestAnimationFrame(loop) : 0
     }
-    const move = (e: PointerEvent) => { tx = (e.clientX / innerWidth) * 100; ty = (e.clientY / innerHeight) * 100; if (!raf) raf = requestAnimationFrame(loop) }
+    let lastMove = 0
+    const move = (e: PointerEvent) => { lastMove = performance.now(); tx = (e.clientX / innerWidth) * 100; ty = (e.clientY / innerHeight) * 100; if (!raf) raf = requestAnimationFrame(loop) }
     addEventListener('pointermove', move, { passive: true })
     const rows = [...el.querySelectorAll<HTMLElement>('.logs div')]
     let drift = 0
     if (!reduce && matchMedia('(hover: hover) and (min-width: 901px)').matches) {
-      const t0 = performance.now()
+      let s = 0, prev = performance.now()
       const step = (t: number) => {
-        const s = (t - t0) / 1000
+        if (t - lastMove < 4000 && !document.hidden && !matchMedia('(prefers-reduced-motion: reduce)').matches) s += (t - prev) / 1000
+        prev = t
         rows.forEach((r, k) => { const d = k % 2 ? 1 : -1; r.style.transform = `translate3d(${((d * s * (9 + (k % 3) * 3)) % 600) - (d > 0 ? 600 : 0)}px,0,0)` })
         drift = requestAnimationFrame(step)
       }
@@ -100,14 +102,22 @@ export function Toasts({ lang, words }: { lang: Lang; words: { es: string; en: s
 export function Motion() {
   const path = usePathname()
   useEffect(() => {
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    let lenis: { raf: (t: number) => void; destroy: () => void } | null = null, raf = 0
-    import('lenis').then(({ default: Lenis }) => {
-      lenis = new Lenis({ lerp: 0.11, smoothWheel: true }) as unknown as typeof lenis
-      const loop = (t: number) => { lenis?.raf(t); raf = requestAnimationFrame(loop) }
-      raf = requestAnimationFrame(loop)
-    })
-    return () => { cancelAnimationFrame(raf); lenis?.destroy() }
+    // smooth scrolling is a vestibular trigger: never started under reduced motion, and torn down if the setting changes
+    const mq = matchMedia('(prefers-reduced-motion: reduce)')
+    let lenis: { raf: (t: number) => void; destroy: () => void } | null = null, raf = 0, alive = true
+    const start = () => {
+      if (mq.matches || lenis) return
+      import('lenis').then(({ default: Lenis }) => {
+        if (!alive || mq.matches || lenis) return
+        lenis = new Lenis({ lerp: 0.11, smoothWheel: true }) as unknown as typeof lenis
+        const loop = (t: number) => { lenis?.raf(t); raf = requestAnimationFrame(loop) }
+        raf = requestAnimationFrame(loop)
+      })
+    }
+    const stop = () => { cancelAnimationFrame(raf); lenis?.destroy(); lenis = null }
+    const change = () => (mq.matches ? stop() : start())
+    start(); mq.addEventListener('change', change)
+    return () => { alive = false; mq.removeEventListener('change', change); stop() }
   }, [])
   useEffect(() => {
     const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target) } }), { rootMargin: '0px 0px -8% 0px' })

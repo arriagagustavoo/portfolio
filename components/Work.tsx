@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, ViewTransition } from 'react'
 import { Chevron, Chips } from './bits'
 
 type P = { title: string; url: string; href: string; doc?: boolean; text: string; skills: string[]; shots: string[] }
@@ -25,7 +25,7 @@ export function FeaturedStack({ items, words }: { items: P[]; words: { read: str
         <div className="pdet" aria-live="polite">
           <p>{cur.text}</p>
           <Chips names={cur.skills} />
-          <Link className="lnk" href={cur.href}>{words.read}</Link>
+          <Link className="lnk" href={cur.href} transitionTypes={['nav-forward']}>{words.read}</Link>
           <Link className="lnk" href={words.seeAllHref}>{words.seeAll}</Link>
         </div>
       </div>
@@ -34,7 +34,8 @@ export function FeaturedStack({ items, words }: { items: P[]; words: { read: str
           {items.map((p, k) => {
             const pos = order.indexOf(k)
             return (
-              <div key={p.title} ref={el => { wins.current[k] = el }} className="win browser" data-p={pos} onClick={() => pos !== 0 && toFront(k)} aria-hidden={pos !== 0}>
+              <ViewTransition key={p.title} name={'shot-' + p.href.split('/').pop()} share="morph" default="none">
+              <div ref={el => { wins.current[k] = el }} className="win browser" data-p={pos} onClick={() => pos !== 0 && toFront(k)} aria-hidden={pos !== 0}>
                 <div className="chrome">
                   <span className="lights"><i /><i /><i /></span><span className="url">{p.url}</span>
                   <span className="sw">
@@ -43,11 +44,12 @@ export function FeaturedStack({ items, words }: { items: P[]; words: { read: str
                     <button type="button" aria-label={words.next} tabIndex={pos === 0 ? 0 : -1} onClick={ev => { ev.stopPropagation(); flip(k, 1) }}><Chevron className="chv" /></button>
                   </span>
                 </div>
-                <Link className={'screen' + (p.doc ? ' doc' : '')} href={p.href} tabIndex={pos === 0 ? 0 : -1} aria-label={`${words.open}: ${p.title}`} onClick={ev => { if (pos !== 0) ev.preventDefault() }}>
+                <Link className={'screen' + (p.doc ? ' doc' : '')} href={p.href} transitionTypes={['nav-forward']} tabIndex={pos === 0 ? 0 : -1} aria-label={`${words.open}: ${p.title}`} onClick={ev => { if (pos !== 0) ev.preventDefault() }}>
                   <Image src={p.shots[shot[k]]} alt="" fill sizes="(max-width: 900px) 92vw, 900px" style={{ objectFit: p.doc ? 'contain' : 'cover', objectPosition: p.doc ? 'center' : 'top left' }} />
                   <span className="open">{words.read}</span>
                 </Link>
               </div>
+              </ViewTransition>
             )
           })}
         </div>
@@ -89,13 +91,14 @@ export function WorkGrid({ filters, kinds, empty, children }: { filters: [string
 }
 
 /** case study gallery: the arrows in the title bar, five thumbnails and a "+N" tile for the rest */
-export function Gallery({ shots, url, doc, alts, more, label }: { shots: string[]; url: string; doc?: boolean; alts: string[]; more: string; label: string }) {
+export function Gallery({ shots, url, doc, alts, more, label, vt }: { shots: string[]; url: string; doc?: boolean; alts: string[]; more: string; label: string; vt: string }) {
   const [i, setI] = useState(0)
   const view = useRef<HTMLDivElement>(null)
   const go = (n: number) => { setI((n + shots.length) % shots.length); flash(view.current) }
   const rest = shots.length - 5
   return (
     <div>
+      <ViewTransition name={vt} share="morph" default="none">
       <div className="browser">
         <div className="chrome">
           <span className="lights"><i /><i /><i /></span><span className="url">{url}</span>
@@ -109,6 +112,7 @@ export function Gallery({ shots, url, doc, alts, more, label }: { shots: string[
           <Image src={shots[i]} alt={alts[i] ?? ''} fill sizes="(max-width: 900px) 92vw, 760px" style={{ objectFit: doc ? 'contain' : 'cover', objectPosition: doc ? 'center' : 'top left' }} priority />
         </div>
       </div>
+      </ViewTransition>
       <div className="gal-t">
         {shots.slice(0, 5).map((s, k) => (
           <button key={s} type="button" aria-label={`${label} ${k + 1}`} aria-current={i === k} onClick={() => go(k)} style={doc ? { aspectRatio: '4 / 3' } : undefined}>

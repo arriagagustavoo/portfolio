@@ -150,9 +150,46 @@ a.sch:hover{background:var(--raised)}
 /* scroll reveals: rise once, quietly */
 .js [data-reveal]{opacity:0;translate:0 18px;transition:opacity .7s var(--ease-out),translate .7s var(--ease-out)}
 .js [data-reveal].in{opacity:1;translate:0 0}
-.page-in{animation:pagein .45s var(--ease-out) both}
-@keyframes pagein{from{opacity:0;translate:0 10px}}
 @keyframes rise{from{opacity:0;translate:0 12px}}
+
+/* view transitions: the project window morphs into its case study; pages change quietly */
+::view-transition-group(.morph){animation-duration:460ms;animation-timing-function:cubic-bezier(.77,0,.175,1)}
+::view-transition-image-pair(.morph){animation-name:via-blur}
+@keyframes via-blur{30%{filter:blur(3px)}}
+::view-transition-old(.page-out){animation:140ms ease-out both vt-out}
+::view-transition-new(.page-in){animation:300ms var(--ease-out) 80ms both vt-in}
+::view-transition-old(.nav-out){animation:240ms cubic-bezier(.4,0,1,1) both vt-up-out}
+::view-transition-new(.nav-in){animation:380ms var(--ease-out) 60ms both vt-up-in}
+::view-transition-old(.nav-back-out){animation:240ms cubic-bezier(.4,0,1,1) both vt-down-out}
+::view-transition-new(.nav-back-in){animation:380ms var(--ease-out) 60ms both vt-down-in}
+@keyframes vt-out{to{opacity:0}}
+@keyframes vt-in{from{opacity:0;translate:0 8px}}
+@keyframes vt-up-out{to{opacity:0;translate:0 -28px}}
+@keyframes vt-up-in{from{opacity:0;translate:0 40px}}
+@keyframes vt-down-out{to{opacity:0;translate:0 28px}}
+@keyframes vt-down-in{from{opacity:0;translate:0 -40px}}
+@media (prefers-reduced-motion:reduce){
+  ::view-transition-group(*){animation-duration:0s!important}
+  ::view-transition-old(*){animation:150ms ease both vt-out!important}
+  ::view-transition-new(*){animation:150ms ease both vt-fade!important}
+}
+@keyframes vt-fade{from{opacity:0}}
+
+/* each section arrives its own way instead of one shared rise */
+.js [data-reveal="wipe"]{opacity:1;translate:none;clip-path:inset(0 0 100% 0);transition:clip-path 1s var(--ease-io)}
+.js [data-reveal="wipe"].in{clip-path:inset(0 0 0 0)}
+.js [data-reveal="depth"]{translate:none;scale:.965;filter:blur(6px);transition:opacity .8s var(--ease-out),scale .9s var(--ease-out),filter .8s var(--ease-out)}
+.js [data-reveal="depth"].in{scale:1;filter:none}
+.js [data-reveal="rows"]{opacity:1;translate:none}
+.js [data-reveal="rows"] > *{opacity:0;translate:-14px 0;transition:opacity .6s var(--ease-out),translate .6s var(--ease-out)}
+.js [data-reveal="rows"].in > *{opacity:1;translate:0 0}
+.js [data-reveal="rows"].in > :nth-child(2){transition-delay:.07s}.js [data-reveal="rows"].in > :nth-child(3){transition-delay:.14s}.js [data-reveal="rows"].in > :nth-child(4){transition-delay:.21s}.js [data-reveal="rows"].in > :nth-child(5){transition-delay:.28s}.js [data-reveal="rows"].in > :nth-child(6){transition-delay:.35s}
+/* the close: the [:] mark locks together, like the old site and the Reels */
+.js .lock .b1{translate:-46px 46px;opacity:0}.js .lock .b2{translate:46px -46px;opacity:0}.js .lock .d{scale:.2;opacity:0;transform-box:fill-box;transform-origin:center}
+.js .lock .b1,.js .lock .b2{transition:translate .9s var(--ease-out),opacity .5s ease}
+.js .lock .d{transition:scale .45s cubic-bezier(.34,1.4,.64,1),opacity .2s ease}
+.js .in .lock .b1,.js .in .lock .b2{translate:0 0;opacity:1}
+.js .in .lock .d{scale:1;opacity:1}.js .in .lock .d:last-of-type{transition-delay:.62s}.js .in .lock .d:first-of-type{transition-delay:.74s}
 
 /* ---------------- home ---------------- */
 .hero{padding-top:clamp(18px,4vh,44px);padding-bottom:clamp(24px,4vh,48px)}
@@ -604,7 +641,11 @@ p,li{text-wrap:pretty}
   .sec{padding-block:clamp(30px,5vh,52px)}
 }
 @media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
-  [data-reveal]{opacity:1;translate:none}
-  .cos .drop,.cos .lift{transform:none;opacity:1}
+  /* tier 1 removed, tier 2 softened to short fades, tier 3 (color, focus, opacity feedback) kept */
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;animation-delay:0s!important;transition-duration:150ms!important;transition-delay:0s!important;scroll-behavior:auto!important}
+  .js [data-reveal],.js [data-reveal] > *{translate:none!important;scale:none!important;filter:none!important;clip-path:none!important}
+  .js .lock path{translate:none!important;scale:none!important}
+  .site-h,.pkc .back,.choice,.tier,.wcard,.soc,.win,.dcard img{translate:none!important}
+  .wcard:hover,.soc:hover,.choice:hover{transform:none!important}
+  .cos .drop,.cos .lift{transform:none!important;opacity:1!important}
 }

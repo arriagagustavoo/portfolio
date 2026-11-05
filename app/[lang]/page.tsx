@@ -66,7 +66,7 @@ export default async function Home({ params }: P) {
 
       <section className="wrap sec" aria-labelledby="featured">
         <div className="sec-h" data-reveal><h2 className="h2" id="featured">{t.featured.title}</h2><Link className="lnk" href={href(lang, '/work')}>{t.featured.seeAll}</Link></div>
-        <div data-reveal>
+        <div data-reveal="depth">
           <FeaturedStack items={work} words={{ read: t.featured.read, seeAll: t.featured.seeAll, seeAllHref: href(lang, '/work'), hint: t.featured.hint, prev: t.caseStudy.prev, next: t.caseStudy.next, open: t.card.open }} />
         </div>
       </section>
@@ -76,7 +76,7 @@ export default async function Home({ params }: P) {
           <div><h2 className="h2" id="pricing">{t.pricing.title}</h2><p className="lede">{t.pricing.sub}</p></div>
           <Link className="lnk" href={href(lang, '/services')}>{t.pricing.all}</Link>
         </div>
-        <div className="tiers" data-reveal>
+        <div className="tiers" data-reveal="rows">
           {t.pricing.tiers.map((x, k) => (
             <Link key={x.name} className={'tier' + (k === 0 ? ' hot' : '')} href={href(lang, '/services')}>
               <span className="t-n">{x.name}</span>
@@ -91,13 +91,13 @@ export default async function Home({ params }: P) {
 
       <section className="wrap sec" aria-labelledby="why">
         <div className="why">
-          <div data-reveal>
+          <div data-reveal="wipe">
             <div className="pk photo-pk"><ColePeek /><div className="photo"><Image src="/images/gus.webp" alt={t.about.photoAlt} fill sizes="(max-width: 900px) 300px, 380px" /></div></div>
             <figure className="quote"><blockquote>&ldquo;{t.quote.text}&rdquo;</blockquote><Html as="figcaption" html={t.quote.source} /></figure>
           </div>
           <div data-reveal>
             <h2 className="h2" id="why">{t.why.title}</h2>
-            <div className="rlist">{t.why.reasons.map(r => <div key={r.title}><b>{r.title}</b><p>{r.body}</p></div>)}</div>
+            <div className="rlist" data-reveal="rows">{t.why.reasons.map(r => <div key={r.title}><b>{r.title}</b><p>{r.body}</p></div>)}</div>
             <div className="acts"><Link className="btn ghost" href={href(lang, '/about')}>{t.why.more}</Link></div>
           </div>
         </div>
@@ -105,7 +105,7 @@ export default async function Home({ params }: P) {
 
       <section className="wrap sec close" aria-labelledby="build">
         <div className="cl3-h" data-reveal>
-          <Mark className="bm" />
+          <Mark className="bm lock" />
           <div><h2 className="cl-h gl" id="build">{t.close.title}</h2><p className="cl-p">{t.close.text}</p></div>
           <QuickForm t={t.close} estimateHref={href(lang, '/') + '#estimate'} toastSent={t.toast.sent} />
         </div>
