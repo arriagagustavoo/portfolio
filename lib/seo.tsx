@@ -37,7 +37,7 @@ export function siteGraph(lang: Lang) {
       },
       {
         '@type': 'ProfessionalService', '@id': SITE + '/#studio', name: 'arriagagustavoo', alternateName: 'Gustavo Arriaga, web design and development',
-        url: SITE + '/', image: SITE + '/og-image.png', logo: SITE + '/favicon.svg', email: contact.email, telephone: contact.tel,
+        url: SITE + '/', image: SITE + '/og-image.png', logo: SITE + '/icon-512.png', email: contact.email, telephone: contact.tel,
         description: getDict(lang).meta.home.description, priceRange: '$$', founder: { '@id': SITE + '/#gustavo' },
         areaServed: [{ '@type': 'City', name: 'Houston' }, { '@type': 'City', name: 'Pasadena' }, { '@type': 'State', name: 'Texas' }],
         address: { '@type': 'PostalAddress', addressLocality: 'Houston', addressRegion: 'TX', addressCountry: 'US' },

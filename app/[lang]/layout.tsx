@@ -25,7 +25,7 @@ export function generateStaticParams() { return locales.map(lang => ({ lang })) 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
   title: { default: 'arriagagustavoo', template: '%s' },
-  icons: { icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }, { url: '/favicon.ico' }], apple: '/apple-touch-icon.png' },
+  icons: { icon: [{ url: '/favicon.ico', sizes: '16x16 32x32 48x48' }, { url: '/favicon.svg', type: 'image/svg+xml' }, { url: '/icon-192.png', sizes: '192x192', type: 'image/png' }], apple: { url: '/apple-touch-icon.png', sizes: '180x180' } },
   formatDetection: { telephone: false },
   authors: [{ name: 'Gustavo Arriaga', url: SITE }],
   creator: 'Gustavo Arriaga',
