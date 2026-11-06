@@ -3,6 +3,9 @@ import { alternates, href, SITE, type Lang } from './i18n'
 import { getDict } from './content/site'
 import { contact } from './data'
 
+// the Google Business Profile, so search engines tie the site and the map listing together
+const GBP = 'https://maps.google.com/?cid=12568473080583635988'
+
 type Key = keyof ReturnType<typeof getDict>['meta']
 
 export function pageMeta(lang: Lang, key: Key, path: string, override?: { title: string; description: string; image?: string }): Metadata {
@@ -42,7 +45,7 @@ export function siteGraph(lang: Lang) {
         description: getDict(lang).meta.home.description, priceRange: '$$', founder: { '@id': SITE + '/#gustavo' },
         areaServed: [{ '@type': 'City', name: 'Houston' }, { '@type': 'City', name: 'Pasadena' }, { '@type': 'State', name: 'Texas' }],
         address: { '@type': 'PostalAddress', addressLocality: 'Houston', addressRegion: 'TX', addressCountry: 'US' },
-        availableLanguage: ['English', 'Spanish'], sameAs: [contact.instagram.url, contact.facebook.url, contact.linkedin.url],
+        availableLanguage: ['English', 'Spanish'], hasMap: GBP, sameAs: [GBP, contact.instagram.url, contact.facebook.url, contact.linkedin.url],
         makesOffer: ['Website design and development', 'Custom software and client portals', 'Graphic design and logos', 'Local SEO and Google Business Profile setup', 'Monthly website care', '3D modeling and printing']
           .map(name => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name } })),
       },

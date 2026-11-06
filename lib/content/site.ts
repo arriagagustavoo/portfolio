@@ -19,7 +19,7 @@ const en = {
     eyebrow: "// hey, I'm Gus",
     lines: ['I design and', 'build websites', 'for'],
     words: ['barbershops.', 'taquerías.', 'gyms.', 'contractors.', 'salons.'],
-    studio: 'I run a one-person design / code studio:',
+    studio: 'I run a one-person design / code studio in Houston:',
     services: [
       { icon: 'web', title: 'Websites', sub: 'Designed and coded by me' },
       { icon: 'code', title: 'Custom software', sub: 'Portals, dashboards, tools' },
@@ -174,7 +174,7 @@ const es: Dict = {
     eyebrow: '// hola, soy Gus',
     lines: ['Diseño y programo', 'sitios web', 'para'],
     words: ['barberías.', 'taquerías.', 'gimnasios.', 'contratistas.', 'salones.'],
-    studio: 'Tengo un estudio de diseño y código de una sola persona:',
+    studio: 'Tengo un estudio de diseño y código de una sola persona en Houston:',
     services: [
       { icon: 'web', title: 'Sitios web', sub: 'Diseñados y programados por mí' },
       { icon: 'code', title: 'Software a la medida', sub: 'Portales, paneles, herramientas' },
