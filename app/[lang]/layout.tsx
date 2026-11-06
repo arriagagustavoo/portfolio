@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import localFont from 'next/font/local'
 import Script from 'next/script'
-import { Caveat, Geist_Mono } from 'next/font/google'
 import { notFound } from 'next/navigation'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
@@ -16,8 +15,9 @@ import '../globals.css'
 // vendored like the client portal, so the build never depends on Google being reachable for the brand fonts
 const geist = localFont({ src: '../fonts/Geist-Variable.woff2', variable: '--font-geist', weight: '100 900', display: 'swap' })
 const pixel = localFont({ src: '../fonts/GeistPixel-Regular.woff2', variable: '--font-pixel', display: 'swap' })
-const mono = Geist_Mono({ subsets: ['latin'], variable: '--font-mono', display: 'swap' })
-const hand = Caveat({ subsets: ['latin'], weight: ['500', '600'], variable: '--font-hand', display: 'swap' })
+// all fonts ship with the site (no Google Fonts download at build time, which once failed a production build)
+const mono = localFont({ src: '../fonts/GeistMono-Variable.woff2', variable: '--font-mono', weight: '100 900', display: 'swap' })
+const hand = localFont({ src: [{ path: '../fonts/Caveat-500.woff2', weight: '500' }, { path: '../fonts/Caveat-600.woff2', weight: '600' }], variable: '--font-hand', display: 'swap' })
 
 export const dynamicParams = false
 export function generateStaticParams() { return locales.map(lang => ({ lang })) }
