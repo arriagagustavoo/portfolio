@@ -25,6 +25,8 @@ const nextConfig: NextConfig = {
     return [
       { source: '/en', destination: '/', permanent: true },
       { source: '/en/:path*', destination: '/:path*', permanent: true },
+      // links shared before Nov 5, 2026 point at the old PNG preview image
+      { source: '/og-image.png', destination: '/og-image.jpg', permanent: true },
     ]
   },
   async headers() {

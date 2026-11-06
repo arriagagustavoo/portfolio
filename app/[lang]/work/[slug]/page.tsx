@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: P): Promise<Metadata> {
   const { lang, slug } = await params
   const p = projects.find(x => x.slug === slug); if (!p) return {}
   const it = (getDict(lang).legacy.caseStudy.items as Record<string, Item>)[p.key]
-  return pageMeta(lang, 'work', '/work/' + slug, { title: it.meta.title.replace(/ — /g, ' | '), description: it.meta.description, image: p.shots[lead[p.key]].src })
+  return pageMeta(lang, 'work', '/work/' + slug, { title: it.meta.title.replace(/ — /g, ' | '), description: it.meta.description, image: `/og/work-${slug}${lang === 'es' ? '-es' : ''}.jpg` })
 }
 
 export default async function Case({ params }: P) {

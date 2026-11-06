@@ -7,7 +7,8 @@ type Key = keyof ReturnType<typeof getDict>['meta']
 
 export function pageMeta(lang: Lang, key: Key, path: string, override?: { title: string; description: string; image?: string }): Metadata {
   const m = override ?? getDict(lang).meta[key]
-  const image = override?.image ?? '/og-image.png'
+  // link previews: each case study shows itself; everything else shows the home hero, in the page's language
+  const image = override?.image ?? (lang === 'es' ? '/og-image-es.jpg' : '/og-image.jpg')
   return {
     title: m.title,
     description: m.description,
@@ -15,7 +16,7 @@ export function pageMeta(lang: Lang, key: Key, path: string, override?: { title:
     openGraph: {
       type: 'website', siteName: 'arriagagustavoo', title: m.title, description: m.description, url: SITE + href(lang, path),
       locale: lang === 'es' ? 'es_US' : 'en_US', alternateLocale: lang === 'es' ? 'en_US' : 'es_US',
-      images: [{ url: image, width: 1200, height: 630, alt: 'arriagagustavoo' }],
+      images: [{ url: image, width: 1200, height: 630, alt: m.title }],
     },
     twitter: { card: 'summary_large_image', title: m.title, description: m.description, images: [image] },
   }
@@ -37,7 +38,7 @@ export function siteGraph(lang: Lang) {
       },
       {
         '@type': 'ProfessionalService', '@id': SITE + '/#studio', name: 'arriagagustavoo', alternateName: 'Gustavo Arriaga, web design and development',
-        url: SITE + '/', image: SITE + '/og-image.png', logo: SITE + '/icon-512.png', email: contact.email, telephone: contact.tel,
+        url: SITE + '/', image: SITE + '/og-image.jpg', logo: SITE + '/icon-512.png', email: contact.email, telephone: contact.tel,
         description: getDict(lang).meta.home.description, priceRange: '$$', founder: { '@id': SITE + '/#gustavo' },
         areaServed: [{ '@type': 'City', name: 'Houston' }, { '@type': 'City', name: 'Pasadena' }, { '@type': 'State', name: 'Texas' }],
         address: { '@type': 'PostalAddress', addressLocality: 'Houston', addressRegion: 'TX', addressCountry: 'US' },
