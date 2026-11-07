@@ -646,7 +646,7 @@ a.sch:hover{background:var(--raised)}
 /* controls are not text: a long press shouldn't select a label */
 button,.btn,.lang a,.filt button,.choice{-webkit-user-select:none;user-select:none}
 /* bigger targets where fingers are the pointer */
-@media (pointer:coarse){.icon-b{width:2.75rem;height:2.75rem}.lang a{padding-block:.6rem}.icon-b.sm{width:2.5rem;height:2.25rem}}
+@media (pointer:coarse){.icon-b{width:2.75rem;height:2.75rem}.lang a{padding-block:.6rem}}
 .icon-b.sm{width:1.75rem;height:1.5rem}
 /* theme toggle: the icon shows the current theme and cross-fades when it flips */
 .icon-b.theme{position:relative}
@@ -916,4 +916,9 @@ button.dimg{display:block;width:100%;padding:0;border:0;cursor:zoom-in}
   .stack .deck-cap,.stack .win .open{display:none}
   .stack .pdet{order:4}
   .stack .pall{order:5;margin-bottom:0}
+}
+/* the screenshot arrows in a browser title bar stay small, but on touch screens their tap area reaches about 44px */
+@media (pointer:coarse){
+  .win .sw button,.browser .sw .icon-b.sm{position:relative}
+  .win .sw button::after,.browser .sw .icon-b.sm::after{content:"";position:absolute;inset:-.65rem -.35rem}
 }
