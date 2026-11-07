@@ -920,3 +920,34 @@ button.dimg{display:block;width:100%;padding:0;border:0;cursor:zoom-in}
   .win .sw button,.browser .sw .icon-b.sm{position:relative}
   .win .sw button::after,.browser .sw .icon-b.sm::after{content:"";position:absolute;inset:-.65rem -.35rem}
 }
+
+/* case study gallery: the client side's phone hangs off the window's bottom right corner, over a thin strip of it */
+.gal-stage{position:relative;container-type:inline-size}
+.gal-stage.has-phone{padding-bottom:3cqw}
+.gal-stage.has-phone>.browser{width:88%}
+.gal-stage>.iphone{position:absolute;right:0;bottom:0;width:15cqw}
+@media (prefers-reduced-motion:no-preference){.gal-stage>.iphone{animation:phone-in .45s var(--ease-out) both}}
+@keyframes phone-in{from{opacity:0;translate:0 5%}}
+
+/* an iphone 15 in css: titanium edge, black bezel, rounded screen, dynamic island, side buttons. sizes in the phone's own width */
+.iphone{container-type:inline-size;flex:none}
+.iphone-body{position:relative;padding:.9cqw;border-radius:16.5cqw;background:linear-gradient(145deg,#9a9aa0,#3d3d40 16%,#1d1d1f 50%,#3d3d40 84%,#9a9aa0);box-shadow:0 7cqw 14cqw -5cqw rgba(0,0,0,.6),0 2cqw 4cqw -1cqw rgba(0,0,0,.35)}
+.iphone-body::before,.iphone-body::after{content:"";position:absolute;width:1cqw;border-radius:.5cqw}
+.iphone-body::before{left:-.8cqw;top:17%;height:27%;background:linear-gradient(#56565a 0 18%,transparent 18% 32%,#56565a 32% 62%,transparent 62% 70%,#56565a 70%)}
+.iphone-body::after{right:-.8cqw;top:28%;height:15%;background:#56565a}
+.iphone-scr{position:relative;overflow:hidden;border:2.6cqw solid #050505;border-radius:15.6cqw;background:#e3e0d8;color:#181816}
+.iphone-scr img{display:block;width:100%;height:auto}
+.iphone-bar{position:relative;aspect-ratio:393/54;display:flex;align-items:center;justify-content:space-between;padding:0 6.5cqw 0 10cqw;font:600 4.3cqw/1 -apple-system,"SF Pro Text",system-ui,sans-serif;letter-spacing:-.01em}
+.iphone-bar svg{width:17cqw;height:auto;fill:currentColor}
+.iphone-di{position:absolute;left:50%;top:20%;translate:-50% 0;width:30cqw;height:8.8cqw;border-radius:5cqw;background:#000}
+
+/* every screen in a dialog: the window and, for the client side, its phone beside it */
+.gal-dlg .dlg-top{flex-wrap:wrap;row-gap:.5rem}
+.gal-tabs{display:flex;gap:.25rem}
+.gal-tabs button{border:0;padding:.375rem .75rem;background:var(--card);color:var(--fg-2);font:inherit;font-size:.8125rem;cursor:pointer}
+.gal-tabs button small{font-family:var(--mono);font-size:.75rem;opacity:.7;margin-left:.25rem}
+.gal-tabs button[aria-selected="true"]{background:var(--green);color:var(--on-green)}
+.gal-view{aspect-ratio:auto;max-height:none;display:flex;align-items:center;justify-content:center;gap:clamp(.75rem,3%,2rem);padding:1rem 3.25rem}
+.gal-desk{position:relative;flex:1 1 0;min-width:0;max-height:62dvh;background:var(--sunk)}
+.gal-view>.iphone{width:clamp(4.5rem,15%,10rem)}
+@media (hover:hover) and (pointer:fine){.gal-tabs button:not([aria-selected="true"]):hover{color:var(--fg)}}

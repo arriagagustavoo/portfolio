@@ -12,7 +12,9 @@ import { crumbs, JsonLd, pageMeta } from '@/lib/seo'
 type P = { params: Promise<{ lang: Lang; slug: string }> }
 type Section = { heading: string; body: string; points?: string[] }
 type Item = { meta: { title: string; description: string }; summary: string[]; sections: Section[]; linked?: { heading: string; body: string; labels: string[] } }
-const LINKED: Record<string, number[]> = { clientportal: [2, 3], queuesmart: [8, 9], documents: [2, 4, 6] }
+const LINKED: Record<string, number[]> = { clientportal: [35, 36], queuesmart: [8, 9], documents: [2, 4, 6] }
+// the portal leads with its best five: admin dashboard, client dashboard, proposal editor, client progress, sites
+const FIRST: Record<string, number[]> = { clientportal: [0, 29, 14, 30, 24] }
 const PULL: Record<string, Record<Lang, [string, string]>> = {
   clientportal: { en: ["Type a price, a date or the client's details once, and it fills in ", 'everywhere.'], es: ['Escribe un precio, una fecha o los datos del cliente una vez, y se llena en ', 'todos lados.'] },
   documents: { en: ['Fill the brackets. ', 'Skip the paperwork.'], es: ['Llena los corchetes. ', 'Olvídate del papeleo.'] },
@@ -37,7 +39,8 @@ export default async function Case({ params }: P) {
   const it = (t.legacy.caseStudy.items as Record<string, Item>)[p.key]
   const alts = (t.legacy.projects as Record<string, { alts: string[] }>)[p.key].alts
   const prev = projects[(k + projects.length - 1) % projects.length], next = projects[(k + 1) % projects.length]
-  const order = p.key === 'clientportal' ? [1, 9, 2, 4, 5, 12, ...p.shots.map((_, i) => i).filter(i => ![1, 9, 2, 4, 5, 12].includes(i))] : p.shots.map((_, i) => i)
+  const top = FIRST[p.key] ?? []
+  const order = [...top, ...p.shots.map((_, i) => i).filter(i => !top.includes(i))]
   const linked = LINKED[p.key].map(i => p.shots[i])
   const roleText = p.key === 'queuesmart' ? (lang === 'es' ? 'El lado de administración, en un equipo de cuatro' : 'The admin side, in a team of four') : (lang === 'es' ? 'Diseño y código, yo solo' : 'Design and code, solo')
   const typeText = { clientportal: lang === 'es' ? 'Mi propio software, de uso diario' : 'My own software, used every day', documents: lang === 'es' ? 'Documentos para mi negocio' : 'Documents for my business', queuesmart: lang === 'es' ? 'Proyecto de curso, UH' : 'Coursework, UH' }[p.key]
@@ -61,7 +64,7 @@ export default async function Case({ params }: P) {
             <Chips names={p.skills} />
           </div>
           <div>
-            <Gallery vt={'shot-' + p.slug} shots={order.map(i => p.shots[i].src)} alts={order.map(i => alts[i] ?? p.title)} url={p.url} doc={p.doc} more={c.more} label={c.shot} />
+            <Gallery vt={'shot-' + p.slug} shots={order.map(i => ({ ...p.shots[i], alt: alts[i] ?? p.title }))} url={p.url} doc={p.doc} title={p.title} w={{ more: c.more, shot: c.shot, close: c.close, screens: c.screens, groups: c.groups, phone: c.phone, prev: c.prev, next: c.next }} />
             {p.key === 'clientportal' && <p className="note">{t.legacy.caseStudy.galleryNote}</p>}
           </div>
         </div>
@@ -77,7 +80,7 @@ export default async function Case({ params }: P) {
               {linked.map((s, i) => (
                 <figure key={s.src} className="browser" style={{ margin: 0 }} data-reveal="wipe">
                   <div className="chrome"><span className="lights"><i /><i /><i /></span><span className="url">{it.linked!.labels[i]}</span></div>
-                  <div className={'screen' + (p.doc ? ' doc' : '')} style={p.doc ? { aspectRatio: '3 / 4' } : undefined}><Image src={s.src} alt={it.linked!.labels[i]} fill sizes="(max-width: 56rem) 92vw, 42vw" style={{ objectFit: p.doc ? 'contain' : 'cover', objectPosition: 'top left' }} /></div>
+                  <div className={'screen' + (p.doc ? ' doc' : '')} style={{ aspectRatio: p.doc ? '3 / 4' : `${s.w} / ${s.h}` }}><Image src={s.src} alt={it.linked!.labels[i]} fill sizes="(max-width: 56rem) 92vw, 42vw" style={{ objectFit: p.doc ? 'contain' : 'cover', objectPosition: 'top left' }} /></div>
                 </figure>
               ))}
             </div>

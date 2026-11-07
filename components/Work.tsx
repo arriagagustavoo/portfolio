@@ -97,37 +97,107 @@ export function WorkGrid({ filters, kinds, empty, children }: { filters: [string
   )
 }
 
-/** case study gallery: the arrows in the title bar, five thumbnails and a "+N" tile for the rest */
-export function Gallery({ shots, url, doc, alts, more, label, vt }: { shots: string[]; url: string; doc?: boolean; alts: string[]; more: string; label: string; vt: string }) {
+export type GShot = { src: string; alt: string; w: number; h: number; phone?: string; group?: string }
+type GWords = { more: string; shot: string; close: string; screens: string; groups: Record<string, string>; phone: string; prev: string; next: string }
+
+/** an iphone drawn in css around a phone screenshot, with the status bar the home screen app sits under */
+function Phone({ src, alt }: { src: string; alt: string }) {
+  return (
+    <div className="iphone">
+      <div className="iphone-body">
+      <div className="iphone-scr">
+        <div className="iphone-bar" aria-hidden="true">
+          <b>9:41</b><i className="iphone-di" />
+          <svg viewBox="0 0 66 12"><path d="M1 9h3v3H1zM6 6h3v6H6zM11 3h3v9h-3zM16 0h3v12h-3z" /><path d="M31 3.6a10 10 0 0 1 13 0l-1.5 1.6a7.8 7.8 0 0 0-10 0zM34 6.8a5.6 5.6 0 0 1 7 0L37.5 10.5z" /><rect x="48.5" y=".5" width="15" height="11" rx="3" fill="none" stroke="currentColor" opacity=".45" /><rect x="50" y="2" width="11" height="8" rx="1.8" /><path d="M64.8 4.2v3.6a1.9 1.9 0 0 0 0-3.6z" opacity=".45" /></svg>
+        </div>
+        <Image src={src} alt={alt} width={1179} height={2394} sizes="(max-width: 56rem) 16vw, 9vw" />
+      </div>
+      </div>
+    </div>
+  )
+}
+
+/** case study gallery: the arrows in the title bar, five thumbnails, and a "+N" tile that opens every screen in a dialog, by group when there are groups */
+export function Gallery({ shots, url, doc, vt, title, w }: { shots: GShot[]; url: string; doc?: boolean; vt: string; title: string; w: GWords }) {
   const [i, setI] = useState(0)
   const view = useRef<HTMLDivElement>(null)
+  const dlg = useRef<HTMLDialogElement>(null)
+  const [d, setD] = useState(0)
   const go = (n: number) => { setI((n + shots.length) % shots.length); flash(view.current) }
   const rest = shots.length - 5
+  const phones = shots.some(s => s.phone)
+  const groups = [...new Set(shots.map(s => s.group).filter(Boolean))] as string[]
+  const inGroup = shots.map((s, k) => k).filter(k => !groups.length || shots[k].group === shots[d].group)
+  const open = (k: number) => { setD(k); dlg.current?.showModal(); document.documentElement.style.overflow = 'hidden' }
+  const step = (by: number) => setD(v => inGroup[(inGroup.indexOf(v) + by + inGroup.length) % inGroup.length])
+  useEffect(() => {
+    const el = dlg.current!
+    const onClose = () => { document.documentElement.style.overflow = '' }
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'ArrowRight') step(1); if (e.key === 'ArrowLeft') step(-1) }
+    el.addEventListener('close', onClose); el.addEventListener('keydown', onKey)
+    return () => { el.removeEventListener('close', onClose); el.removeEventListener('keydown', onKey) }
+  })
+  const s = shots[i], o = shots[d]
   return (
     <div>
-      <ViewTransition name={vt} share="morph" default="none">
-      <div className="browser">
-        <div className="chrome">
-          <span className="lights"><i /><i /><i /></span><span className="url">{url}</span>
-          <span className="sw" style={{ display: 'flex', alignItems: 'center', gap: 2, fontFamily: 'var(--mono)', fontSize: '.72rem', color: 'var(--fg-3)' }}>
-            <button className="icon-b sm" type="button" aria-label={label + " −1"} onClick={() => go(i - 1)}><Chevron dir="left" className="chv" /></button>
-            <span>{i + 1}/{shots.length}</span>
-            <button className="icon-b sm" type="button" aria-label={label + " +1"} onClick={() => go(i + 1)}><Chevron className="chv" /></button>
-          </span>
+      <div className={'gal-stage' + (phones ? ' has-phone' : '')}>
+        <ViewTransition name={vt} share="morph" default="none">
+        <div className="browser">
+          <div className="chrome">
+            <span className="lights"><i /><i /><i /></span><span className="url">{url}</span>
+            <span className="sw" style={{ display: 'flex', alignItems: 'center', gap: 2, fontFamily: 'var(--mono)', fontSize: '.72rem', color: 'var(--fg-3)' }}>
+              <button className="icon-b sm" type="button" aria-label={w.shot + " −1"} onClick={() => go(i - 1)}><Chevron dir="left" className="chv" /></button>
+              <span>{i + 1}/{shots.length}</span>
+              <button className="icon-b sm" type="button" aria-label={w.shot + " +1"} onClick={() => go(i + 1)}><Chevron className="chv" /></button>
+            </span>
+          </div>
+          <div className={'screen' + (doc ? ' doc' : '')} ref={view} style={{ aspectRatio: doc ? '4 / 3' : `${s.w} / ${s.h}` }}>
+            <Image src={s.src} alt={s.alt} fill sizes="(max-width: 56rem) 92vw, 53vw" style={{ objectFit: doc ? 'contain' : 'cover', objectPosition: doc ? 'center' : 'top left' }} priority />
+          </div>
         </div>
-        <div className={'screen' + (doc ? ' doc' : '')} ref={view} style={doc ? { aspectRatio: '4 / 3' } : undefined}>
-          <Image src={shots[i]} alt={alts[i] ?? ''} fill sizes="(max-width: 56rem) 92vw, 53vw" style={{ objectFit: doc ? 'contain' : 'cover', objectPosition: doc ? 'center' : 'top left' }} priority />
-        </div>
+        </ViewTransition>
+        {s.phone && <Phone key={s.phone} src={s.phone} alt={`${s.alt}, ${w.phone}`} />}
       </div>
-      </ViewTransition>
       <div className="gal-t cols">
-        {shots.slice(0, 5).map((s, k) => (
-          <button key={s} type="button" aria-label={`${label} ${k + 1}`} aria-current={i === k} onClick={() => go(k)} style={doc ? { aspectRatio: '4 / 3' } : undefined}>
-            <Image src={s} alt="" width={200} height={doc ? 150 : 97} style={{ objectFit: doc ? 'contain' : 'cover' }} />
+        {shots.slice(0, 5).map((t, k) => (
+          <button key={t.src} type="button" aria-label={`${w.shot} ${k + 1}`} aria-current={i === k} onClick={() => go(k)} style={{ aspectRatio: doc ? '4 / 3' : `${t.w} / ${t.h}` }}>
+            <Image src={t.src} alt="" width={200} height={doc ? 150 : Math.round(200 * t.h / t.w)} style={{ objectFit: doc ? 'contain' : 'cover' }} />
           </button>
         ))}
-        {rest > 0 && <button type="button" className="more" aria-label={`+${rest} ${more}`} onClick={() => go(5)} style={doc ? { aspectRatio: '4 / 3' } : undefined}>+{rest}</button>}
+        {rest > 0 && <button type="button" className="more" aria-label={`+${rest} ${w.more}`} aria-haspopup="dialog" onClick={() => open(5)} style={{ aspectRatio: doc ? '4 / 3' : `${shots[5].w} / ${shots[5].h}` }}>+{rest}</button>}
       </div>
+      <dialog ref={dlg} className="dlg gal-dlg" aria-label={title} data-lenis-prevent onClick={e => { if (e.target === dlg.current) dlg.current?.close() }}>
+        <div className="dlg-in">
+          <div className="dlg-top">
+            <b>{title}</b>
+            {groups.length > 1 && (
+              <span className="gal-tabs" role="tablist">
+                {groups.map(g => {
+                  const first = shots.findIndex(x => x.group === g)
+                  return <button key={g} type="button" role="tab" aria-selected={o.group === g} onClick={() => setD(first)}>{w.groups[g] ?? g} <small>{shots.filter(x => x.group === g).length}</small></button>
+                })}
+              </span>
+            )}
+            <span className="dlg-n">{inGroup.indexOf(d) + 1} / {inGroup.length}</span>
+            <button type="button" className="icon-b" onClick={() => dlg.current?.close()} aria-label={w.close}><i className="x" aria-hidden="true" /></button>
+          </div>
+          <div className={'dlg-view gal-view' + (o.phone ? ' pair' : '')}>
+            <div className="gal-desk" style={doc ? { aspectRatio: '3 / 4', flex: 'none', height: '62dvh' } : { aspectRatio: `${o.w} / ${o.h}` }}>
+              <Image key={o.src} className="swapin" src={o.src} alt={o.alt} fill sizes="(max-width: 56rem) 96vw, 62vw" style={{ objectFit: 'contain' }} />
+            </div>
+            {o.phone && <Phone key={o.phone} src={o.phone} alt={`${o.alt}, ${w.phone}`} />}
+            <button type="button" className="icon-b dlg-prev" onClick={() => step(-1)} aria-label={w.prev}><Chevron dir="left" className="chv" /></button>
+            <button type="button" className="icon-b dlg-next" onClick={() => step(1)} aria-label={w.next}><Chevron className="chv" /></button>
+          </div>
+          <div className="dlg-thumbs">
+            {inGroup.map(k => (
+              <button key={shots[k].src} type="button" aria-label={shots[k].alt} aria-current={k === d} onClick={() => setD(k)}>
+                <Image src={shots[k].src} alt="" fill sizes="6rem" style={{ objectFit: 'cover', objectPosition: 'top left' }} />
+              </button>
+            ))}
+          </div>
+        </div>
+      </dialog>
     </div>
   )
 }

@@ -89,7 +89,7 @@ const en = {
     next: { title: 'Your business could be next.', text: 'Client sites launch here first.' }, empty: 'Nothing here yet. Client websites are on the way.',
     kinds: { software: 'Software', design: 'Design', websites: 'Websites' }, read: 'Read case study',
   },
-  caseStudy: { crumb: 'Work', prev: 'Previous', next: 'Next', all: 'All work', role: 'Role', type: 'Type', languages: 'Languages', more: 'more', learned: 'What I learned', learnedPh: 'Coming soon.', cta: 'Interested in something like this?', ctaBtn: 'Send me a message', shot: 'Screenshot' },
+  caseStudy: { crumb: 'Work', prev: 'Previous', next: 'Next', all: 'All work', role: 'Role', type: 'Type', languages: 'Languages', more: 'more', learned: 'What I learned', learnedPh: 'Coming soon.', cta: 'Interested in something like this?', ctaBtn: 'Send me a message', shot: 'Screenshot', close: 'Close', screens: 'screens', groups: { admin: 'My side', client: "The client's side" } as Record<string, string>, phone: 'on a phone' },
   servicesPage: {
     title: 'Services', intro: 'Websites and software for businesses around Houston. Approximate prices below; your exact price comes in the free estimate, and a written quote before anything starts.',
     estimateSub: 'Six questions, about a minute.', addonsTitle: 'Add-ons', addonsNote: 'Other add-ons are priced in your written quote.', faqTitle: 'Good to know', allQuestions: 'All questions', orMessage: 'Or message me',
@@ -244,7 +244,7 @@ const es: Dict = {
     next: { title: 'Tu negocio puede ser el siguiente.', text: 'Los sitios de clientes se estrenan aquí.' }, empty: 'Todavía nada aquí. Los sitios de clientes vienen en camino.',
     kinds: { software: 'Software', design: 'Diseño', websites: 'Sitios web' }, read: 'Leer el caso',
   },
-  caseStudy: { crumb: 'Trabajo', prev: 'Anterior', next: 'Siguiente', all: 'Todo el trabajo', role: 'Rol', type: 'Tipo', languages: 'Idiomas', more: 'más', learned: 'Lo que aprendí', learnedPh: 'Muy pronto.', cta: '¿Te interesa algo así?', ctaBtn: 'Mándame un mensaje', shot: 'Captura' },
+  caseStudy: { crumb: 'Trabajo', prev: 'Anterior', next: 'Siguiente', all: 'Todo el trabajo', role: 'Rol', type: 'Tipo', languages: 'Idiomas', more: 'más', learned: 'Lo que aprendí', learnedPh: 'Muy pronto.', cta: '¿Te interesa algo así?', ctaBtn: 'Mándame un mensaje', shot: 'Captura', close: 'Cerrar', screens: 'pantallas', groups: { admin: 'Mi lado', client: 'El lado del cliente' } as Record<string, string>, phone: 'en el celular' },
   servicesPage: {
     title: 'Servicios', intro: 'Sitios web y software para negocios del área de Houston. Precios aproximados abajo; tu precio exacto viene en la cotización gratis, y por escrito antes de empezar.',
     estimateSub: 'Seis preguntas, como un minuto.', addonsTitle: 'Extras', addonsNote: 'Los demás extras se cotizan por escrito.', faqTitle: 'Bueno saber', allQuestions: 'Todas las preguntas', orMessage: 'O mándame un mensaje',

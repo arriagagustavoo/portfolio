@@ -3,7 +3,8 @@ const cp = (f: string) => `/images/projects/clientportal/${f}.webp`
 const qs = (f: string) => `/images/projects/queuesmart/${f}.webp`
 const dc = (f: string) => `/images/projects/documents/${f}.jpg`
 
-export type Shot = { src: string; w: number; h: number }
+/** phone: the same screen on a phone, drawn in an iphone frame beside the window. group: a tab in the full gallery */
+export type Shot = { src: string; w: number; h: number; phone?: string; group?: 'admin' | 'client' }
 export type Project = {
   slug: string
   key: 'clientportal' | 'queuesmart' | 'documents'
@@ -19,14 +20,21 @@ export type Project = {
 
 const W = (src: string): Shot => ({ src, w: 2560, h: 1240 })
 const D = (src: string): Shot => ({ src, w: 1275, h: 1650 })
+// the portal, shot on portal-test with made-up businesses at Gus's 27" (2048x1024 at 1.25x); the client side also on a phone
+const PA = (f: string): Shot => ({ src: cp('Admin-' + f), w: 2560, h: 1280, group: 'admin' })
+const PC = (f: string): Shot => ({ src: cp('Client-' + f), w: 2560, h: 1280, phone: cp('Client-' + f + '-phone'), group: 'client' })
 
 export const projects: Project[] = [
   {
     slug: 'client-portal', key: 'clientportal', title: 'Client Portal', kind: 'software', url: 'arriagagustavoo.com/work/client-portal',
     cardSkills: ['Next.js', 'TypeScript', 'React', 'Supabase'],
     skills: ['Next.js', 'TypeScript', 'React', 'Supabase', 'PostgreSQL', 'JWT', 'Zod', 'Puppeteer', 'Playwright'],
-    shots: ['Client-SignIn', 'Client-Dashboard', 'Client-Proposal', 'Client-Contract', 'Client-Progress', 'Client-Messages', 'Client-Files', 'Client-Launch', 'Client-Maintenance',
-      'Admin-Dashboard', 'Admin-Project', 'Admin-Documents', 'Admin-Editor-Proposal', 'Admin-Editor-Contract', 'Admin-Progress', 'Admin-Messages', 'Admin-Files', 'Admin-Finances', 'Admin-Launch', 'Admin-Books', 'Admin-Audit', 'Admin-NewProject'].map(f => W(cp(f))),
+    // indexes matter: lead (0), the case study's LINKED (35, 36) and its gallery order
+    shots: [
+      ...['Dashboard', 'Search', 'Sidebar', 'Inbox', 'Activity', 'Calendar', 'Leads', 'Clients', 'Projects', 'NewProject', 'ContentList', 'Project', 'Details', 'Documents',
+        'Editor-Proposal', 'Editor-Contract', 'Editor-Invoice', 'Content', 'Progress', 'Messages', 'Files', 'Finances', 'Launch', 'ProjectActivity', 'Sites', 'Books', 'Calculator', 'Audit', 'Settings'].map(PA),
+      ...['Dashboard', 'Progress', 'Content', 'Messages', 'Files', 'Documents', 'Proposal', 'Contract', 'Invoice', 'Launch', 'Maintenance', 'Activity'].map(PC),
+    ],
   },
   {
     slug: 'bracketed', key: 'documents', title: 'Bracketed', kind: 'design', url: 'arriagagustavoo.com/work/bracketed', doc: true,
@@ -44,7 +52,7 @@ export const projects: Project[] = [
 ]
 
 /** the screenshot each project leads with (cards, the featured stack) */
-export const lead: Record<Project['key'], number> = { clientportal: 9, documents: 2, queuesmart: 8 }
+export const lead: Record<Project['key'], number> = { clientportal: 0, documents: 2, queuesmart: 8 }
 
 export const devProjects = [
   { cover: '/images/projects/rideshare/RideShare-cover.webp', shots: ['/images/projects/rideshare/RideShare-cover.webp', '/images/projects/rideshare/Page-empty.webp', '/images/projects/rideshare/Page-filled.webp'], skills: ['PostgreSQL', 'Express', 'JavaScript', 'HTML', 'CSS'], repo: 'https://github.com/arriagagustavoo/rideshare' },
