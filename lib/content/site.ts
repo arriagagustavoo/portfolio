@@ -5,9 +5,9 @@ const en = {
   lang: 'en',
   nav: { home: 'Home', work: 'Work', services: 'Services', about: 'About', dev: 'Dev', contact: 'Contact', faq: 'FAQ', privacy: 'Privacy', menu: 'Menu', close: 'Close menu', estimate: 'Get my free estimate', theme: 'Switch light and dark', skip: 'Skip to content', language: 'Language' },
   meta: {
-    home: { title: 'Gustavo Arriaga | Web Designer and Developer in Houston, TX', description: 'One-person design and code studio in Houston. Custom websites, software and local SEO for small businesses, in English and Spanish. Free design first.' },
+    home: { title: 'Gustavo Arriaga | Web Designer and Developer in Houston, TX', description: 'One-person design and code studio in Houston. Custom websites, software and local SEO for small businesses, in English and Spanish. Free demo first.' },
     work: { title: 'Work | Websites and Software by Gustavo Arriaga', description: 'Websites, software and design projects by Gustavo Arriaga, a web designer and developer in Houston, each with the story behind it.' },
-    services: { title: 'Services and Prices | Web Design in Houston', description: 'Website packages from $600 with design and motion included, custom software, graphic design and local SEO for Houston businesses. Free design and estimate.' },
+    services: { title: 'Services and Prices | Web Design in Houston', description: 'Website packages from $600 with design and motion included, custom software, graphic design and local SEO for Houston businesses. Free demo and estimate.' },
     faq: { title: 'Questions | Working with Gustavo Arriaga', description: 'Straight answers about prices, payments, contracts, ownership, Spanish sites and what happens after your website launches.' },
     about: { title: 'About Gustavo Arriaga | Houston Web Designer', description: 'Gustavo Arriaga runs a one-person design and code studio in Houston, building websites and software in English and Spanish. UH computer science senior.' },
     dev: { title: 'Dev | Full-stack Developer Gustavo Arriaga', description: 'The technical side: skills, school and personal projects, and coursework of Gustavo Arriaga, a full-stack developer and UH computer science senior.' },
@@ -56,7 +56,7 @@ const en = {
     ],
   },
   steps: [
-    { word: 'Design', free: true, text: '<b>We talk about your business, and I make you a <em>free</em> design.</b> You see your site before you pay for anything.' },
+    { word: 'Design', free: 'FREE DEMO', text: '<b>We talk about your business, and I make you a <em>free</em> demo.</b> You see your site before you pay for anything.' },
     { word: 'Build', text: '<b>I <em>build</em> it.</b> You follow along in your own <em>portal</em>: progress, files, messages, payments.' },
     { word: 'Ship', text: '<b>It goes live.</b> Hosting, fixes and small changes every month. No lock-in.' },
   ],
@@ -104,7 +104,7 @@ const en = {
     groups: [
       { title: 'Working with me', items: [
         ['Who will I be working with?', 'Me, the whole way. I design it, code it, launch it and maintain it, so you deal with one person who knows your whole site.'],
-        ['Do you really make a free design first?', 'Yes. We talk about your business, I design your site, and you see it before you pay for anything.'],
+        ['Do you really make a free demo first?', 'Yes. We talk about your business, I make a demo of your site, and you see it before you pay for anything. The full design is part of your package once you sign on.'],
         ['Do you work outside Houston?', 'Yes. I work with businesses around Houston first, and anywhere remotely.'],
         ['Can we talk in Spanish?', 'Sí. I work with clients in English and Spanish.'],
       ] },
@@ -160,9 +160,9 @@ const es: Dict = {
   lang: 'es',
   nav: { home: 'Inicio', work: 'Trabajo', services: 'Servicios', about: 'Sobre mí', dev: 'Dev', contact: 'Contacto', faq: 'Preguntas', privacy: 'Privacidad', menu: 'Menú', close: 'Cerrar menú', estimate: 'Mi cotización gratis', theme: 'Cambiar claro y oscuro', skip: 'Ir al contenido', language: 'Idioma' },
   meta: {
-    home: { title: 'Gustavo Arriaga | Diseñador y desarrollador web en Houston, TX', description: 'Estudio de diseño y código en Houston. Sitios web, software a la medida y SEO local para pequeños negocios, en inglés y español. Diseño gratis primero.' },
+    home: { title: 'Gustavo Arriaga | Diseñador y desarrollador web en Houston, TX', description: 'Estudio de diseño y código en Houston. Sitios web, software a la medida y SEO local para pequeños negocios, en inglés y español. Demo gratis primero.' },
     work: { title: 'Trabajo | Sitios web y software de Gustavo Arriaga', description: 'Proyectos de sitios web, software y diseño de Gustavo Arriaga, diseñador y desarrollador web en Houston, cada uno con su historia.' },
-    services: { title: 'Servicios y precios | Diseño web en Houston', description: 'Sitios web desde $600 con diseño y animación incluidos, software a la medida y SEO local para negocios de Houston. Diseño y cotización gratis.' },
+    services: { title: 'Servicios y precios | Diseño web en Houston', description: 'Sitios web desde $600 con diseño y animación incluidos, software a la medida y SEO local para negocios de Houston. Demo y cotización gratis.' },
     faq: { title: 'Preguntas | Trabajar con Gustavo Arriaga', description: 'Respuestas claras sobre precios, pagos, contratos, propiedad, sitios en español y qué pasa después de lanzar tu sitio.' },
     about: { title: 'Sobre Gustavo Arriaga | Diseñador web en Houston', description: 'Gustavo Arriaga tiene un estudio de diseño y código en Houston. Hace sitios web y software en inglés y español. Estudiante de computación en UH.' },
     dev: { title: 'Dev | Desarrollador full-stack Gustavo Arriaga', description: 'El lado técnico: habilidades, proyectos de escuela y personales, y cursos de Gustavo Arriaga, desarrollador full-stack.' },
@@ -211,7 +211,7 @@ const es: Dict = {
     ],
   },
   steps: [
-    { word: 'Diseño', free: true, text: '<b>Hablamos de tu negocio y te hago un diseño <em>gratis</em>.</b> Ves tu sitio antes de pagar nada.' },
+    { word: 'Diseño', free: 'DEMO GRATIS', text: '<b>Hablamos de tu negocio y te hago un demo <em>gratis</em>.</b> Ves tu sitio antes de pagar nada.' },
     { word: 'Construyo', text: '<b>Lo <em>construyo</em>.</b> Lo sigues en tu propio <em>portal</em>: avances, archivos, mensajes, pagos.' },
     { word: 'Lanzo', text: '<b>Sale en vivo.</b> Hosting, arreglos y cambios pequeños cada mes. Sin amarres.' },
   ],
@@ -259,7 +259,7 @@ const es: Dict = {
     groups: [
       { title: 'Trabajar conmigo', items: [
         ['¿Con quién voy a trabajar?', 'Conmigo, todo el camino. Lo diseño, lo programo, lo lanzo y lo mantengo, así que tratas con una persona que conoce todo tu sitio.'],
-        ['¿De verdad haces un diseño gratis primero?', 'Sí. Hablamos de tu negocio, diseño tu sitio y lo ves antes de pagar nada.'],
+        ['¿De verdad haces un demo gratis primero?', 'Sí. Hablamos de tu negocio, hago un demo de tu sitio y lo ves antes de pagar nada. El diseño completo va incluido en tu paquete cuando decides seguir.'],
         ['¿Trabajas fuera de Houston?', 'Sí. Trabajo primero con negocios del área de Houston, y con cualquiera a distancia.'],
         ['¿Podemos hablar en español?', 'Claro. Trabajo con clientes en inglés y español.'],
       ] },

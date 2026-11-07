@@ -40,12 +40,20 @@ export default function Header({ lang, nav }: { lang: Lang; nav: Dict['nav'] }) 
     try { localStorage.setItem('theme', next) } catch {}
   }
   const switchTo = (to: Lang) => { try { sessionStorage.setItem('langToast', to) } catch {} }
+  // a Link to the page you're already on doesn't move, so the logo and Home scroll back to the top themselves
+  const home = href(lang, '/')
+  const toTop = (e: React.MouseEvent) => {
+    if (path !== home || e.metaKey || e.ctrlKey || e.shiftKey) return
+    e.preventDefault(); setOpen(false)
+    if (location.hash) history.replaceState(history.state, '', home)
+    requestAnimationFrame(() => scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }))
+  }
 
   return (
     <>
       <header className={'site-h' + (scrolled ? ' scrolled' : '') + (hidden && !open ? ' hide' : '')}>
         <div className="wrap bar">
-          <Link className="brand" href={href(lang, '/')} aria-label="arriagagustavoo, home" translate="no">
+          <Link className="brand" href={home} onClick={toTop} aria-label="arriagagustavoo, home" translate="no">
             <Mark /><span>arriagagustav<b>oo</b></span>
           </Link>
           <nav className="links" aria-label="Main">
@@ -64,8 +72,8 @@ export default function Header({ lang, nav }: { lang: Lang; nav: Dict['nav'] }) 
       {open && (
         <div className="mnav" id="mnav">
           {(['home', ...NAV] as const).map((k, i) => {
-            const to = k === 'home' ? href(lang, '/') : href(lang, '/' + k)
-            return <Link className="m" key={k} href={to} style={{ animationDelay: i * 40 + 'ms' }} aria-current={path === to ? 'page' : undefined}>{nav[k]}</Link>
+            const to = k === 'home' ? home : href(lang, '/' + k)
+            return <Link className="m" key={k} href={to} onClick={k === 'home' ? toTop : undefined} style={{ animationDelay: i * 40 + 'ms' }} aria-current={path === to ? 'page' : undefined}>{nav[k]}</Link>
           })}
           <Link className="btn" href={href(lang, '/') + '#estimate'}>{nav.estimate}</Link>
           <button className="icon-b theme" type="button" onClick={theme} aria-label={nav.theme} style={{ marginTop: '1rem' }}><Icon name="moon" className="i-moon" /><Icon name="sun" className="i-sun" /></button>

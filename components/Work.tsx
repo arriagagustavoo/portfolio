@@ -17,7 +17,7 @@ export function FeaturedStack({ head, items, words }: { head?: React.ReactNode; 
   const flip = (k: number, d: number) => { setShot(s => s.map((v, j) => (j === k ? (v + d + items[k].shots.length) % items[k].shots.length : v))); flash(wins.current[k]?.querySelector('.screen') ?? null) }
   const cur = items[front]
   return (
-    <div className="stack">
+    <div className="stack-c"><div className="stack">
       <div>
         {head}
         <div className="plist" role="group" aria-labelledby="featured">
@@ -56,7 +56,7 @@ export function FeaturedStack({ head, items, words }: { head?: React.ReactNode; 
         </div>
         <p className="deck-cap">{words.hint}</p>
       </div>
-    </div>
+    </div></div>
   )
 }
 

@@ -57,7 +57,7 @@ export default async function Home({ params }: P) {
           {t.steps.map((s, k) => (
             <div className="stp" key={s.word} data-reveal style={{ '--i': k } as React.CSSProperties}>
               <CostumeCole kind={(['design', 'build', 'ship'] as const)[k]} delay={k * 0.25} />
-              <div className="w-row"><h2 className="w">{s.word}<i>.</i></h2>{s.free && <span className="freetag">{t.card.free}</span>}</div>
+              <div className="w-row"><h2 className="w">{s.word}<i>.</i></h2>{s.free && <span className="freetag">{s.free}</span>}</div>
               <Html as="p" html={s.text} />
             </div>
           ))}

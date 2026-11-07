@@ -8,7 +8,7 @@ Spanish version of the site: https://arriagagustavoo.com/es (summary in https://
 
 ## How it works
 
-1. Design: a talk about the business, then a free design the owner sees before paying anything.
+1. Design: a talk about the business, then a free demo of the site the owner sees before paying anything (the full design is part of the package once they sign on).
 2. Build: the site is coded; the client follows progress, files, messages and payments in their own portal.
 3. Ship: it goes live; hosting, fixes and small changes every month, no lock-in (30 days' notice either way).
 
