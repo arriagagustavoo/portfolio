@@ -13,7 +13,13 @@ export function FeaturedStack({ head, items, words }: { head?: React.ReactNode; 
   const [shot, setShot] = useState(items.map(() => 0))
   const wins = useRef<(HTMLDivElement | null)[]>([])
   const front = order[0]
-  const toFront = (k: number) => { if (k === front) return; setOrder([k, ...order.filter(x => x !== k)]); setTimeout(() => flash(wins.current[k]), 380) }
+  const toFront = (k: number) => {
+    if (k === front) return
+    setOrder([k, ...order.filter(x => x !== k)]); setTimeout(() => flash(wins.current[k]), 380)
+    // on phones the rows sit under the window, so bring the window back into view if it scrolled away
+    const deck = wins.current[k]?.parentElement, top = deck?.getBoundingClientRect().top ?? 0
+    if (top < 0 && deck && getComputedStyle(deck.closest('.stack')!).flexDirection === 'column') scrollBy({ top: top - 88, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })
+  }
   const flip = (k: number, d: number) => { setShot(s => s.map((v, j) => (j === k ? (v + d + items[k].shots.length) % items[k].shots.length : v))); flash(wins.current[k]?.querySelector('.screen') ?? null) }
   const cur = items[front]
   return (

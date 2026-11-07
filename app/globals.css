@@ -902,20 +902,18 @@ button.dimg{display:block;width:100%;padding:0;border:0;cursor:zoom-in}
 
 /* ---------------- round 13 (Nov 6) ---------------- */
 /* featured work on narrow screens: one column read top to bottom.
-   Heading, the projects as tabs, the window, what it is, then See all work */
+   Heading, the window, what it is, then the same project rows as desktop to pick another, then See all work */
 .stack-c{container:stack / inline-size}
 @container stack (max-width:47rem){
   .stack{flex-direction:column;flex-wrap:nowrap;align-items:stretch;gap:1rem}
   .stack > :first-child{display:contents}
   .stack > :first-child > .h2{order:1;margin:0}
-  .stack .plist{order:2;flex-direction:row;gap:.375rem;margin:0}
-  .stack .plist button{width:auto;margin:0;flex:1 1 auto;justify-content:center;padding:.6rem .55rem;font-size:.875rem;white-space:nowrap;background:color-mix(in srgb,var(--card) 45%,transparent);clip-path:var(--slant-s)}
-  .stack .plist button::after{display:none}
-  .stack .plist button[aria-pressed="true"]{background:var(--green);color:#000}
-  .stack > :last-child{order:3;flex:none}
+  .stack > :last-child{order:2;flex:none}
   .stack .deck-cap,.stack .win .open{display:none}
-  .stack .pdet{order:4}
-  .stack .pall{order:5;margin-bottom:0}
+  .stack .pdet{order:3}
+  .stack .pdet .lnk{margin-bottom:.25rem}
+  .stack .plist{order:4;margin:0;padding-top:.5rem;border-top:1px solid var(--hair)}
+  .stack .pall{order:5;margin-top:-.5rem;margin-bottom:0}
 }
 /* the screenshot arrows in a browser title bar stay small, but on touch screens their tap area reaches about 44px */
 @media (pointer:coarse){
