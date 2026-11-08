@@ -53,7 +53,7 @@ export default async function Dev({ params }: P) {
       <section className="wrap sec" aria-labelledby="habits">
         <div className="sec-h" data-reveal><h2 className="h2" id="habits">{d.habits}</h2></div>
         <div className="rlist two cols" data-reveal>{d.habitsList.map(([h, b]) => <div key={h}><b>{h}</b><p>{b}</p></div>)}</div>
-        <div className="acts"><span className="lede" style={{ margin: 0 }}>{d.outro}</span><Link className="btn ghost" href={href(lang, '/services')}>{d.servicesBtn}</Link></div>
+        <div className="acts end"><span className="lede" style={{ margin: 0 }}>{d.outro}</span><Link className="btn ghost" href={href(lang, '/services')}>{d.servicesBtn}</Link></div>
       </section>
     </>
   )

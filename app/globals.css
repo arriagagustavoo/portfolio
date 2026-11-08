@@ -951,3 +951,17 @@ button.dimg{display:block;width:100%;padding:0;border:0;cursor:zoom-in}
 .gal-desk{position:relative;flex:1 1 0;min-width:0;max-height:62dvh;background:var(--sunk)}
 .gal-view>.iphone{width:clamp(4.5rem,15%,10rem)}
 @media (hover:hover) and (pointer:fine){.gal-tabs button:not([aria-selected="true"]):hover{color:var(--fg)}}
+
+/* ---------------- round 14 (Nov 8) ---------------- */
+/* text spans its column instead of stopping at ~65 characters and leaving the right side empty.
+   ponytail: 90ch keeps very wide screens readable; drop the cap if Gus wants it edge to edge */
+.chap p,.faq details p,.prose{max-width:90ch}
+.head2 .lede,.cs-top .lede{max-width:none}
+.pull{max-width:none}
+.story .lead{max-width:48ch}
+/* case study head: the left side ends with a big call to action, and sits centered against the gallery */
+.cs-top > :first-child{align-self:center}
+.cs-cta{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.75rem}
+.cs-cta .btn{font-size:1.0625rem;padding-block:.95rem}
+/* the closing "want something like this?" rows sit centered, not stuck to the left edge */
+.acts.end{justify-content:center;align-items:center;text-align:center;padding-block:1rem}

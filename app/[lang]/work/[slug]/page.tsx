@@ -63,7 +63,12 @@ export default async function Case({ params }: P) {
               {p.key === 'clientportal' && <div><dt>{c.languages}</dt><dd>{lang === 'es' ? 'Inglés y español' : 'English and Spanish'}</dd></div>}
             </dl>
             <Chips names={p.skills} />
-            {p.live && <p style={{ marginTop: '1rem' }}><a className="lnk" href={p.live} target="_blank" rel="noopener">{lang === 'es' ? 'Ver la página en vivo' : 'See the live site'}</a></p>}
+            <div className="cs-cta">
+              {p.live
+                ? <a className="btn" href={p.live} target="_blank" rel="noopener">{lang === 'es' ? 'Ver la página en vivo' : 'Check out the live site'}</a>
+                : <Link className="btn" href={href(lang, '/contact')}>{c.ctaBtn}</Link>}
+              {p.example && <Link className="btn ghost" href={href(lang, '/') + '#estimate'}>{t.nav.estimate}</Link>}
+            </div>
           </div>
           <div>
             <Gallery vt={'shot-' + p.slug} shots={order.map(i => ({ ...p.shots[i], alt: alts[i] ?? p.title }))} url={p.url} doc={p.doc} title={p.title} w={{ more: c.more, shot: c.shot, close: c.close, screens: c.screens, groups: c.groups, phone: c.phone, prev: c.prev, next: c.next }} />
@@ -93,7 +98,7 @@ export default async function Case({ params }: P) {
           <div className="chap" key={s.heading} data-reveal><h2>{s.heading}</h2><div><p>{s.body}</p>{s.points && <ul className="chk">{s.points.map(x => <li key={x}>{x}</li>)}</ul>}</div></div>
         ))}
         {p.repo && <p className="note"><a className="lnk" href={p.repo} target="_blank" rel="noopener noreferrer">GitHub</a></p>}
-        <div className="acts" data-reveal><span className="lede" style={{ margin: 0 }}>{c.cta}</span><Link className="btn" href={href(lang, '/contact')}>{c.ctaBtn}</Link></div>
+        <div className="acts end" data-reveal><span className="lede" style={{ margin: 0 }}>{c.cta}</span><Link className="btn" href={href(lang, '/contact')}>{c.ctaBtn}</Link></div>
         <nav className="pn" aria-label={c.all}>
           <Link className="pn-p" href={href(lang, '/work/' + prev.slug)} rel="prev"><span>{c.prev}</span><b>{prev.title}</b></Link>
           <Link className="pn-all" href={href(lang, '/work')} transitionTypes={['nav-back']}>{c.all}</Link>
