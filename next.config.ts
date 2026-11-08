@@ -27,8 +27,6 @@ const nextConfig: NextConfig = {
       { source: '/en/:path*', destination: '/:path*', permanent: true },
       // links shared before Nov 5, 2026 point at the old PNG preview image
       { source: '/og-image.png', destination: '/og-image.jpg', permanent: true },
-      // the Instagram bio link: a short address that lands on home tagged as Instagram in Vercel Analytics
-      { source: '/ig', destination: '/?utm_source=instagram&utm_medium=social&utm_campaign=bio', permanent: false },
     ]
   },
   async headers() {
