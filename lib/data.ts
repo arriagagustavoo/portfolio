@@ -57,8 +57,8 @@ export const projects: Project[] = [
       'Admin-ServiceManagement', 'Admin-ServiceManagementCreate', 'Admin-ServiceManagementEdit', 'Admin-Reports', 'Admin-ReportsCSV', 'Admin-ReportsPDF', 'Admin-Feedback'].map(f => W(qs(f))),
   },
   {
-    // ponytail: live stays empty until the example is deployed; the live links show up once it's set
-    slug: 'fadeaway', key: 'fadeaway', title: 'Fadeaway', kind: 'websites', url: 'starter.arriagagustavoo.com', example: true, live: '',
+    // live: the deployed demo (swap to starter.arriagagustavoo.com if that domain gets set up)
+    slug: 'fadeaway', key: 'fadeaway', title: 'Fadeaway', kind: 'websites', url: 'fadeaway-starter.vercel.app', example: true, live: 'https://fadeaway-starter.vercel.app',
     cardSkills: ['Next.js', 'TypeScript', 'GSAP', 'CSS'],
     skills: ['Next.js', 'TypeScript', 'React', 'GSAP', 'CSS', 'Playwright'],
     shots: [FA('hero', true), FA('tidy', true), FA('panel'), FA('hours', true), FA('barbers'), FA('picked', true), FA('reviews', true), FA('review-open'), FA('about'), FA('faq'), FA('contact', true)],

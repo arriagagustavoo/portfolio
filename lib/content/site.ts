@@ -44,7 +44,7 @@ const en = {
     monthly: 'then <b>{m}</b> a month, design and motion included',
     quote: 'Written quote before anything starts',
     send: 'Send me this estimate', sendTitle: 'Where should I send it?', name: 'Your name', contact: 'Phone or email', sendBtn: 'Send it to Gus', sent: "Got it, {n}. I'll get back to you soon.", failed: "That didn't send. Try again, or text me at 832-453-4158.",
-    lines: { starter: 'Starter site', accounts: 'Site with accounts', pages: 'Extra pages', google: 'Google setup', care: 'Google care', es: 'Spanish version' },
+    lines: { starter: 'Starter site', accounts: 'Site with accounts', pages: 'Extra pages', google: 'SEO: Google setup and optimization', care: 'Google care', es: 'Spanish version' },
     nouns: { shop: 'shop', restaurant: 'restaurant', gym: 'gym', business: 'business', store: 'store' },
     q: [
       { q: 'What kind of business do you run?', a: ['Barbershop or salon', 'Restaurant or food truck', 'Gym or trainer', 'Contractor or trades', 'Store or boutique', 'Something else'] },
@@ -94,8 +94,8 @@ const en = {
     title: 'Services', intro: 'Websites and software for businesses around Houston. Approximate prices below; your exact price comes in the free estimate, and a written quote before anything starts.',
     estimateSub: 'Six questions, about a minute.', addonsTitle: 'Add-ons', addonsNote: 'Other add-ons are priced in your written quote.', faqTitle: 'Good to know', allQuestions: 'All questions', orMessage: 'Or message me',
     addons: [
-      ['Extra pages', 'More room for your menu, services or gallery'], ['Spanish version', 'The whole site in both languages, really translated'], ['Google setup', 'Business Profile, Maps and the basics', 'from $250'],
-      ['Google care', 'Keeping you there, with a monthly report', '$75/mo'], ['Review stands', 'NFC stands and QR codes for your counter'], ['Edit it yourself', 'Change your own text and photos'],
+      ['Extra pages', 'More room for your menu, services or gallery'], ['Spanish version', 'The whole site in both languages, really translated'], ['SEO: Google setup and optimization', 'Business Profile, Maps and the basics', 'from $250'],
+      ['Google care', 'Keeping you there, with a monthly report', '$75/mo'], ['Tap stands for reviews and socials', 'Custom NFC tap and QR stands for your counter'], ['Edit it yourself', 'Change your own text and photos'],
       ['Logo cleanup', 'Sharper, and ready for the web'], ['Custom design', 'A full custom look, or heavy custom motion'], ['3D models and prints', 'Signs, stands, small parts. A side thing I love'],
     ],
   },
@@ -199,7 +199,7 @@ const es: Dict = {
     monthly: 'luego <b>{m}</b> al mes, diseño y animación incluidos',
     quote: 'Cotización por escrito antes de empezar',
     send: 'Mándame esta cotización', sendTitle: '¿A dónde te la mando?', name: 'Tu nombre', contact: 'Teléfono o correo', sendBtn: 'Mandársela a Gus', sent: 'Listo, {n}. Te contacto pronto.', failed: 'No se envió. Inténtalo otra vez, o mándame texto al 832-453-4158.',
-    lines: { starter: 'Sitio Starter', accounts: 'Sitio con cuentas', pages: 'Páginas extra', google: 'Configuración de Google', care: 'Cuidado de Google', es: 'Versión en español' },
+    lines: { starter: 'Sitio Starter', accounts: 'Sitio con cuentas', pages: 'Páginas extra', google: 'SEO: configuración y optimización en Google', care: 'Cuidado de Google', es: 'Versión en español' },
     nouns: { shop: 'negocio', restaurant: 'restaurante', gym: 'gimnasio', business: 'negocio', store: 'tienda' },
     q: [
       { q: '¿Qué tipo de negocio tienes?', a: ['Barbería o salón', 'Restaurante o food truck', 'Gimnasio o entrenador', 'Contratista u oficios', 'Tienda o boutique', 'Otra cosa'] },
@@ -249,8 +249,8 @@ const es: Dict = {
     title: 'Servicios', intro: 'Sitios web y software para negocios del área de Houston. Precios aproximados abajo; tu precio exacto viene en la cotización gratis, y por escrito antes de empezar.',
     estimateSub: 'Seis preguntas, como un minuto.', addonsTitle: 'Extras', addonsNote: 'Los demás extras se cotizan por escrito.', faqTitle: 'Bueno saber', allQuestions: 'Todas las preguntas', orMessage: 'O mándame un mensaje',
     addons: [
-      ['Páginas extra', 'Más espacio para tu menú, servicios o galería'], ['Versión en español', 'Todo el sitio en los dos idiomas, bien traducido'], ['Configuración de Google', 'Perfil de negocio, Maps y lo básico', 'desde $250'],
-      ['Cuidado de Google', 'Mantenerte ahí, con un reporte mensual', '$75/mes'], ['Bases para reseñas', 'Bases NFC y códigos QR para tu mostrador'], ['Edítalo tú', 'Cambia tus propios textos y fotos'],
+      ['Páginas extra', 'Más espacio para tu menú, servicios o galería'], ['Versión en español', 'Todo el sitio en los dos idiomas, bien traducido'], ['SEO: configuración y optimización en Google', 'Perfil de negocio, Maps y lo básico', 'desde $250'],
+      ['Cuidado de Google', 'Mantenerte ahí, con un reporte mensual', '$75/mes'], ['Bases para reseñas y redes', 'Bases NFC y QR a tu medida para tu mostrador'], ['Edítalo tú', 'Cambia tus propios textos y fotos'],
       ['Limpieza de logo', 'Más nítido y listo para la web'], ['Diseño a la medida', 'Un look completamente propio, o animación pesada'], ['Modelos e impresión 3D', 'Letreros, bases, piezas pequeñas. Algo que me encanta'],
     ],
   },
