@@ -67,12 +67,7 @@ export default async function Case({ params }: P) {
             <div className="cs-cta">
               {p.live && <a className="btn" href={p.live} target="_blank" rel="noopener">{lang === 'es' ? 'Ve el demo en vivo' : 'Check out the live demo'}<Chevron className="chv" /></a>}
               {!p.live && !p.example && <Link className="btn" href={href(lang, '/contact')}>{c.ctaBtn}</Link>}
-              {(p.live || p.example) && (
-                <span className="cs-sec">
-                  <Link className="lnk" href={href(lang, '/contact')}>{c.ctaBtn}</Link>
-                  {p.example && <Link className="lnk" href={href(lang, '/') + '#estimate'}>{t.nav.estimate}</Link>}
-                </span>
-              )}
+              {p.example && <Link className="btn ghost" href={href(lang, '/') + '#estimate'}>{t.nav.estimate}</Link>}
             </div>
           </div>
           <div>

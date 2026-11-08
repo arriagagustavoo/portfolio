@@ -957,9 +957,7 @@ button.dimg{display:block;width:100%;padding:0;border:0;cursor:zoom-in}
 /* case study: the demo button leads; message and estimate are quiet text links beside it */
 .cs-cta{align-items:center;gap:1rem 1.75rem}
 .cs-cta .btn .chv{width:1rem;height:1rem;transition:translate .25s var(--ease-out)}
-.cs-sec{display:flex;flex-wrap:wrap;gap:.6rem 1.5rem}
-.cs-sec .lnk{color:var(--fg-2);font-weight:600}
-@media (hover:hover) and (pointer:fine){.cs-cta .btn:hover .chv{translate:.25rem 0}.cs-sec .lnk:hover{color:var(--fg)}}
+@media (hover:hover) and (pointer:fine){.cs-cta .btn:hover .chv{translate:.25rem 0}}
 
 /* ---------------- gallery v2 (Nov 8) ----------------
    on the page: big slanted arrows on the window's edges, a caption, every screen in a strip, click to go full screen.
@@ -1076,3 +1074,7 @@ section:has(>.cs-top){container:cstop / inline-size}
 @media (max-width:40rem){.gal-label{min-height:0}}
 /* the phone's bottom lines up with the window's bottom instead of hanging below it, so the controls sit right under the screenshot */
 .gal-stage.has-phone{padding-bottom:0}
+/* the caption hugs the top of the screenshot: its two-line box stays (so the window never moves), but the text sits at the bottom of it */
+.gal-label{display:flex;align-items:flex-end;height:3em;margin-bottom:.5rem;-webkit-line-clamp:unset;line-clamp:unset}
+.gal-label{overflow:hidden}
+.gal-label>span{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;overflow:hidden}

@@ -5,9 +5,6 @@ import { Faq } from '@/components/Faq'
 import { getDict } from '@/lib/content/site'
 import { href, type Lang } from '@/lib/i18n'
 import { crumbs, JsonLd, pageMeta } from '@/lib/seo'
-import { projects } from '@/lib/data'
-
-const starter = projects.find(p => p.slug === 'fadeaway')
 import type { IconName } from '@/lib/icons'
 
 type P = { params: Promise<{ lang: Lang }> }
@@ -33,7 +30,6 @@ export default async function Services({ params }: P) {
               <ul className="chk">{x.list.map(i => <li key={i}>{i}</li>)}</ul>
               <em>{pr.great}: {x.great}</em>
               <Link className="lnk" href={href(lang, k === 0 ? '/work/fadeaway' : '/work')}>{pr.example}</Link>
-              {k === 0 && starter?.live && <a className="lnk" href={starter.live} target="_blank" rel="noopener">{lang === 'es' ? 'Ve el demo en vivo' : 'Open the live demo'}</a>}
             </div>
           ))}
         </div>

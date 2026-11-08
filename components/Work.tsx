@@ -180,7 +180,7 @@ export function Gallery({ shots, url, doc, vt, title, w }: { shots: GShot[]; url
   const ratio = (x: GShot) => (doc ? '4 / 3' : `${x.w} / ${x.h}`)
   return (
     <div className="gal">
-      <p className="gal-label" aria-live="polite">{s.alt}</p>
+      <p className="gal-label" aria-live="polite"><span>{s.alt}</span></p>
       <div className={'gal-stage' + (phones ? ' has-phone' : '')}>
         <div className="gal-win">
           <ViewTransition name={vt} share="morph" default="none">
