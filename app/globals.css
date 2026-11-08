@@ -966,18 +966,11 @@ button.dimg{display:block;width:100%;padding:0;border:0;cursor:zoom-in}
    full screen: one at a time (arrows in the margins) or every screen as a grid. Always dark, like a photo viewer. */
 .gal-win{position:relative}
 .gal-stage.has-phone>.gal-win{width:88%}
-.gal-n{margin-left:auto;flex:none;font-family:var(--mono);font-size:.75rem;color:var(--fg-3)}
 .gal-open{display:block;width:100%;padding:0;border:0;cursor:zoom-in;text-align:left}
 .gal-exp{position:absolute;right:.6rem;top:.6rem;display:inline-flex;align-items:center;gap:.4rem;padding:.35rem .65rem;font-size:.75rem;font-weight:650;background:color-mix(in srgb,var(--bg) 88%,transparent);color:var(--fg);opacity:0;transition:opacity .2s ease}
 .gal-exp .chv{width:.85rem;height:.85rem}
 .gal-open:focus-visible .gal-exp{opacity:1}
 @media (hover:none){.gal-exp{opacity:1}}
-.gal-arw{position:absolute;top:50%;translate:0 -50%;z-index:3;width:2.75rem;height:3.5rem;display:grid;place-items:center;border:0;padding:0;cursor:pointer;background:color-mix(in srgb,var(--bg) 92%,transparent);color:var(--green-text);clip-path:var(--slanted);transition:background .15s ease,color .15s ease,scale .15s var(--ease-out)}
-.gal-arw .chv{width:1.4rem;height:1.4rem}
-.gal-arw.l{left:-.75rem}.gal-arw.r{right:-.75rem}
-.gal-stage.has-phone .gal-arw{top:40%}
-.gal-arw:active{scale:.94}
-.gal-arw:focus-visible{outline:0;box-shadow:inset 0 0 0 2px var(--green)}
 .gal-cap{display:flex;align-items:center;justify-content:space-between;gap:.5rem 1rem;flex-wrap:wrap;margin:.85rem 0 .55rem}
 .gal-cap p{margin:0;flex:1 1 14rem;font-size:.9375rem;color:var(--fg-2)}
 .gal-all{display:inline-flex;align-items:center;gap:.45rem;flex:none;border:0;background:var(--btn2);color:var(--fg);font:inherit;font-size:.8125rem;font-weight:650;padding:.5rem .9rem;cursor:pointer;clip-path:var(--slant-s);transition:background .15s ease,color .15s ease}
@@ -988,7 +981,6 @@ button.dimg{display:block;width:100%;padding:0;border:0;cursor:zoom-in}
 .gal-strip button[aria-current="true"]{opacity:1;box-shadow:0 0 0 2px var(--green)}
 @media (hover:hover) and (pointer:fine){
   .gal-open:hover .gal-exp{opacity:1}
-  .gal-arw:hover{background:var(--green);color:var(--on-green)}
   .gal-all:hover{background:var(--green);color:var(--on-green)}.gal-all:hover small{color:inherit}
   .gal-strip button:hover{opacity:1}
   .gd-tiles button:hover .gd-img{box-shadow:0 0 0 2px var(--green)}.gd-tiles button:hover .gd-lab{color:var(--fg)}
@@ -1000,12 +992,8 @@ button.dimg{display:block;width:100%;padding:0;border:0;cursor:zoom-in}
 .gal-dlg::backdrop{background:#000}
 .gd-top{display:flex;align-items:center;gap:.6rem 1rem;flex-wrap:wrap}
 .gd-top>b{font-size:1.125rem}
-.gd-cap{flex:1 1 12rem;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.9375rem;color:var(--fg-2)}
 .gd-r{margin-left:auto;display:flex;align-items:center;gap:.6rem}
-.gd-r .gal-n{margin:0}
-.gd-pv,.gd-cap2{display:none}
 .gd-view{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;gap:clamp(.75rem,2vw,1.75rem)}
-.gd-view .gal-arw{position:static;translate:none;flex:none}
 .gd-desk{position:relative;height:100%;max-width:calc(100% - 7.5rem);min-width:0;background:var(--sunk)}
 .gd-view.pair .gd-desk{max-width:calc(100% - 7.5rem - clamp(5rem,12vw,11rem))}
 .gd-view>.iphone{width:clamp(5rem,12vw,11rem)}
@@ -1020,19 +1008,15 @@ button.dimg{display:block;width:100%;padding:0;border:0;cursor:zoom-in}
 .gd-img{position:relative;display:block;background:var(--sunk);box-shadow:0 0 0 1px var(--hair);overflow:hidden;transition:box-shadow .2s ease}
 .gd-lab{font-size:.8125rem;line-height:1.35;color:var(--fg-2);transition:color .2s ease}
 @media (max-width:40rem){
-  .gd-top>b,.gd-cap{display:none}
+  .gd-top>b{display:none}
   .gd-r{margin-left:0;width:100%;justify-content:space-between}
   .gd-pv{display:inline-flex;align-self:center;background:var(--btn2)}
   .gd-pv button{border:0;background:none;color:var(--fg-2);font:inherit;font-size:.8125rem;font-weight:650;padding:.45rem .9rem;cursor:pointer}
   .gd-pv button[aria-pressed="true"]{background:var(--green);color:var(--on-green)}
-  .gd-view{position:relative}
-  .gd-view .gal-arw{position:absolute;top:50%;translate:0 -50%;width:2.5rem;height:3.25rem}
-  .gd-view .gal-arw:first-child{left:-.4rem}.gd-view .gal-arw:last-child{right:-.4rem}
   .gd-desk,.gd-view.pair .gd-desk{height:auto;width:100%;max-width:100%}
   .gd-view>.iphone{width:min(58vw,15rem)}
   .gal-dlg[data-pv="d"] .gd-view.pair>.iphone{display:none}
   .gal-dlg[data-pv="p"] .gd-view.pair>.gd-desk{display:none}
-  .gd-cap2{display:block;margin:0;font-size:.9375rem;color:var(--fg-2)}
   .gd-strip{justify-content:flex-start}
 }
 /* case study head on phones: title, what it is, the screens, the call to action, then the details */
@@ -1046,18 +1030,33 @@ section:has(>.cs-top){container:cstop / inline-size}
   .cs-top .meta{order:5;margin:0}.cs-top .chips{order:6}
 }
 /* the arrows have to read as buttons on any screenshot: solid green, black chevron, a lift underneath */
-.gal-arw{background:var(--green);color:var(--on-green);filter:drop-shadow(0 .35rem .6rem rgba(0,0,0,.5))}
-@media (hover:hover) and (pointer:fine){.gal-arw:hover{background:var(--green-h);color:var(--on-green);scale:1.06}}
-.gal-arw:focus-visible{box-shadow:inset 0 0 0 2px #000}
 .gal-dlg .x{position:relative;width:1rem;height:1rem}.gal-dlg .x::before,.gal-dlg .x::after{content:"";position:absolute;left:0;right:0;top:50%;height:2px;background:currentColor;rotate:45deg}.gal-dlg .x::after{rotate:-45deg}
 .gal-dlg .icon-b{color:var(--fg);background:var(--btn2)}
 @media (max-width:40rem){.gd-tiles{grid-template-columns:repeat(2,minmax(0,1fr));gap:.9rem .6rem}.gd-lab{font-size:.75rem}}
 /* the viewer's arrows are pinned to the screen's edges, so they never move when a screen has a phone or a different shape */
-.gd-view{position:relative;padding-inline:clamp(3.25rem,5vw,4.5rem)}
-.gd-view .gal-arw{position:absolute;top:50%;translate:0 -50%}
-.gd-view .gal-arw:first-child{left:0}.gd-view .gal-arw:last-child{right:0}
 .gd-desk,.gd-view.pair .gd-desk{max-width:100%}
 .gd-view.pair .gd-desk{max-width:calc(100% - clamp(5rem,12vw,11rem) - clamp(.75rem,2vw,1.75rem))}
 /* "Expand" sits in the bottom corner as a small tag, so it doesn't cover the screenshot's own header */
 .gal-exp{top:auto;bottom:.6rem}
 @media (max-width:40rem){.gd-view{padding-inline:0}}
+/* the controls live in one bar under the window (and under the image in the viewer): ‹ 2 / 11 ›, the caption, View all */
+.gd-pv{display:none}
+.gal-nav{display:inline-flex;align-items:center;gap:.25rem;flex:none}
+.gal-nav>span{min-width:4.25rem;text-align:center;font-family:var(--mono);font-size:.8125rem;color:var(--fg-2)}
+.gal-nav button{width:2.75rem;height:2.5rem;display:grid;place-items:center;border:0;padding:0;cursor:pointer;background:var(--btn2);color:var(--fg);clip-path:var(--slant-s);transition:background .15s ease,color .15s ease,scale .15s var(--ease-out)}
+.gal-nav button .chv{width:1.15rem;height:1.15rem}
+.gal-nav button:active{scale:.94}
+.gal-nav button:focus-visible{outline:0;box-shadow:inset 0 0 0 2px var(--green)}
+@media (hover:hover) and (pointer:fine){.gal-nav button:hover{background:var(--green);color:var(--on-green)}}
+@media (pointer:coarse){.gal-nav button{width:3rem;height:2.75rem}}
+.gal-cap{gap:.6rem 1rem;flex-wrap:nowrap}
+.gal-cap p{min-width:0}
+.gd-ctl{flex:none;margin:0;justify-content:center}
+.gd-ctl p{flex:0 1 auto}
+.gd-view{padding-inline:0}
+@media (max-width:40rem){
+  .gal-cap{flex-wrap:wrap}.gal-cap p{flex-basis:100%;order:3}
+  .gd-ctl{justify-content:space-between}
+  .gd-pv{display:inline-flex;align-self:center}
+  .gd-desk,.gd-view.pair .gd-desk{width:100%;max-width:100%;height:auto}
+}

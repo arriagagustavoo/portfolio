@@ -129,6 +129,17 @@ function useSwipe(on: (dir: number) => void) {
   }
 }
 
+/** ‹ 2 / 11 ›: the one place the arrows live, under the window and in the viewer, so they never move */
+function Nav({ at, of, prev, next, w }: { at: number; of: number; prev: () => void; next: () => void; w: { prev: string; next: string } }) {
+  return (
+    <span className="gal-nav">
+      <button type="button" aria-label={w.prev} onClick={prev}><Chevron dir="left" className="chv" /></button>
+      <span aria-live="polite">{at} / {of}</span>
+      <button type="button" aria-label={w.next} onClick={next}><Chevron className="chv" /></button>
+    </span>
+  )
+}
+
 const Grid = () => <svg className="chv" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z" /></svg>
 const Expand = () => <svg className="chv" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7" /></svg>
 
@@ -173,7 +184,7 @@ export function Gallery({ shots, url, doc, vt, title, w }: { shots: GShot[]; url
         <div className="gal-win">
           <ViewTransition name={vt} share="morph" default="none">
           <div className="browser">
-            <div className="chrome"><span className="lights"><i /><i /><i /></span><span className="url">{url}</span><span className="gal-n">{i + 1} / {n}</span></div>
+            <div className="chrome"><span className="lights"><i /><i /><i /></span><span className="url">{url}</span></div>
             <button type="button" className={'screen gal-open' + (doc ? ' doc' : '')} ref={view} style={{ aspectRatio: ratio(s) }} aria-label={`${w.expand}: ${s.alt}`} aria-haspopup="dialog"
               onClick={() => { if (!page.swiped.current) open(i, 'one') }} {...page.h}>
               <Image src={s.src} alt={s.alt} fill sizes="(max-width: 56rem) 92vw, 53vw" style={{ objectFit: doc ? 'contain' : 'cover', objectPosition: doc ? 'center' : 'top left' }} priority />
@@ -181,13 +192,12 @@ export function Gallery({ shots, url, doc, vt, title, w }: { shots: GShot[]; url
             </button>
           </div>
           </ViewTransition>
-          <button type="button" className="gal-arw l" aria-label={w.prev} onClick={() => go(i - 1)}><Chevron dir="left" className="chv" /></button>
-          <button type="button" className="gal-arw r" aria-label={w.next} onClick={() => go(i + 1)}><Chevron className="chv" /></button>
         </div>
         {s.phone && <Phone key={s.phone} src={s.phone} alt={`${s.alt}, ${w.phone}`} />}
       </div>
       <div className="gal-cap">
-        <p aria-live="polite">{s.alt}</p>
+        <Nav at={i + 1} of={n} prev={() => go(i - 1)} next={() => go(i + 1)} w={w} />
+        <p>{s.alt}</p>
         <button type="button" className="gal-all" aria-haspopup="dialog" onClick={() => open(i, 'grid')}><Grid />{w.all} <small>{n}</small></button>
       </div>
       <div className="gal-strip" ref={strip}>
@@ -201,14 +211,12 @@ export function Gallery({ shots, url, doc, vt, title, w }: { shots: GShot[]; url
       <dialog ref={dlg} className="gal-dlg" aria-label={title} data-lenis-prevent data-mode={mode} data-pv={pv}>
         <div className="gd-top">
           <b>{title}</b>
-          {mode === 'one' && <span className="gd-cap">{o.alt}</span>}
           {mode === 'one' && groups.length > 1 && (
             <span className="gal-tabs" role="tablist">
               {groups.map(g => <button key={g} type="button" role="tab" aria-selected={o.group === g} onClick={() => setD(shots.findIndex(x => x.group === g))}>{w.groups[g] ?? g} <small>{shots.filter(x => x.group === g).length}</small></button>)}
             </span>
           )}
           <span className="gd-r">
-            {mode === 'one' && <span className="gal-n">{inGroup.indexOf(d) + 1} / {inGroup.length}</span>}
             <button type="button" className="gal-all" onClick={() => setMode(m => (m === 'one' ? 'grid' : 'one'))}>{mode === 'one' ? <><Grid />{w.all}</> : <><Expand />{w.one}</>}</button>
             <button type="button" className="icon-b" onClick={() => dlg.current?.close()} aria-label={w.close}><i className="x" aria-hidden="true" /></button>
           </span>
@@ -223,14 +231,12 @@ export function Gallery({ shots, url, doc, vt, title, w }: { shots: GShot[]; url
               </span>
             )}
             <div className={'gd-view' + (o.phone ? ' pair' : '')} {...big.h}>
-              <button type="button" className="gal-arw" aria-label={w.prev} onClick={() => step(-1)}><Chevron dir="left" className="chv" /></button>
               <div className="gd-desk" style={{ aspectRatio: ratio(o) }}>
                 <Image key={o.src} className="swapin" src={o.src} alt={o.alt} fill sizes="90vw" style={{ objectFit: 'contain' }} />
               </div>
               {o.phone && <Phone key={o.phone} src={o.phone} alt={`${o.alt}, ${w.phone}`} />}
-              <button type="button" className="gal-arw" aria-label={w.next} onClick={() => step(1)}><Chevron className="chv" /></button>
             </div>
-            <p className="gd-cap2">{o.alt}</p>
+            <div className="gal-cap gd-ctl"><Nav at={inGroup.indexOf(d) + 1} of={inGroup.length} prev={() => step(-1)} next={() => step(1)} w={w} /><p>{o.alt}</p></div>
             <div className="gal-strip gd-strip">
               {inGroup.map(k => (
                 <button key={shots[k].src} type="button" aria-label={shots[k].alt} aria-current={k === d} onClick={() => setD(k)} style={{ aspectRatio: ratio(shots[k]) }}>
