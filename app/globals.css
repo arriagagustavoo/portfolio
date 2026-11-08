@@ -1078,3 +1078,7 @@ section:has(>.cs-top){container:cstop / inline-size}
 .gal-label{display:flex;align-items:flex-end;height:3em;margin-bottom:.5rem;-webkit-line-clamp:unset;line-clamp:unset}
 .gal-label{overflow:hidden}
 .gal-label>span{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;overflow:hidden}
+/* "Get my free estimate" links: when the card sits beside the headline, land at the top so the whole hero shows;
+   when it stacks under the intro (phones), land on the card itself, clear of the header */
+#estimate{scroll-margin-top:1rem}
+@container hero (min-width:52.01rem){#estimate{scroll-margin-top:100vh}}
