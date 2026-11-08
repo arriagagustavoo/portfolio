@@ -457,11 +457,6 @@ a.sch{transition:background .15s ease}
 .meta div{display:grid;grid-template-columns:6.25rem minmax(0,1fr);gap:0.75rem;align-items:baseline;padding-bottom:0.75rem;border-bottom:1px solid var(--hair)}
 .meta dt{font-family:var(--pixel);font-size:0.8125rem;color:var(--fg-3)}
 .meta dd{margin:0;font-weight:600}
-.gal-t{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0.375rem;margin-top:0.5rem}
-.gal-t button{border:0;padding:0;cursor:pointer;aspect-ratio:2560/1240;overflow:hidden;background:var(--sunk);opacity:.55;box-shadow:0 0 0 1px var(--hair);transition:opacity .2s ease,box-shadow .2s ease}
-.gal-t button img{width:100%;height:100%;object-fit:cover;object-position:top left}
-.gal-t button[aria-current="true"]{opacity:1;box-shadow:0 0 0 2px var(--green)}
-.gal-t button.more{display:grid;place-items:center;opacity:1;background:var(--card);font-family:var(--pixel);font-size:0.9375rem;color:var(--fg)}
 .chap{display:grid;grid-template-columns:minmax(0,15rem) minmax(0,1fr);gap:0.5rem 2.5rem;padding:1.625rem 0;border-bottom:1px solid var(--hair)}
 .chap h2{margin:0;font-size:1.3125rem;font-weight:750;letter-spacing:-.02em;position:sticky;top:5.25rem;align-self:start}
 .chap p{margin:0 0 0.75rem;font-size:1.0938rem;line-height:1.7;color:var(--fg-2);max-width:66ch}
@@ -631,7 +626,7 @@ a.sch:hover{background:var(--raised)}
 .wcard:hover .wc-t b{color:var(--green-text)}
 .wcard:hover .go .ar{transform:translateX(0.25rem)}
 .wcard.next:hover .nx{background:color-mix(in srgb,var(--green) 6%,transparent)}
-.gal-t button:hover{opacity:1;box-shadow:0 0 0 2px var(--green)}
+
 .pn a:hover b{color:var(--green-text)}
 .faq details:hover{background:var(--card)}
 .faq details:hover summary{color:var(--green-text)}
@@ -685,7 +680,6 @@ body{font-size:clamp(1rem,.96rem + .2vw,1.0625rem)}
 .rlist.two{--n1:2;--b1:40rem;--g:3rem}
 .shots2{--n1:2;--b1:36rem;--g:1.25rem}
 .qf-row{--n1:2;--b1:26rem;--g:.75rem}
-.gal-t{--n1:6;--b1:24rem;--n2:3;--b2:0rem;--g:.375rem}
 .stp + .stp::before{display:none}
 
 /* two-sided sections that wrap only when both sides stop fitting */
@@ -924,7 +918,6 @@ button.dimg{display:block;width:100%;padding:0;border:0;cursor:zoom-in}
 /* case study gallery: the client side's phone hangs off the window's bottom right corner, over a thin strip of it */
 .gal-stage{position:relative;container-type:inline-size}
 .gal-stage.has-phone{padding-bottom:3cqw}
-.gal-stage.has-phone>.browser{width:88%}
 .gal-stage>.iphone{position:absolute;right:0;bottom:0;width:15cqw}
 @media (prefers-reduced-motion:no-preference){.gal-stage>.iphone{animation:phone-in .45s var(--ease-out) both}}
 @keyframes phone-in{from{opacity:0;translate:0 5%}}
@@ -942,14 +935,10 @@ button.dimg{display:block;width:100%;padding:0;border:0;cursor:zoom-in}
 .iphone-di{position:absolute;left:50%;top:20%;translate:-50% 0;width:30cqw;height:8.8cqw;border-radius:5cqw;background:#000}
 
 /* every screen in a dialog: the window and, for the client side, its phone beside it */
-.gal-dlg .dlg-top{flex-wrap:wrap;row-gap:.5rem}
 .gal-tabs{display:flex;gap:.25rem}
 .gal-tabs button{border:0;padding:.375rem .75rem;background:var(--card);color:var(--fg-2);font:inherit;font-size:.8125rem;cursor:pointer}
 .gal-tabs button small{font-family:var(--mono);font-size:.75rem;opacity:.7;margin-left:.25rem}
 .gal-tabs button[aria-selected="true"]{background:var(--green);color:var(--on-green)}
-.gal-view{aspect-ratio:auto;max-height:none;display:flex;align-items:center;justify-content:center;gap:clamp(.75rem,3%,2rem);padding:1rem 3.25rem}
-.gal-desk{position:relative;flex:1 1 0;min-width:0;max-height:62dvh;background:var(--sunk)}
-.gal-view>.iphone{width:clamp(4.5rem,15%,10rem)}
 @media (hover:hover) and (pointer:fine){.gal-tabs button:not([aria-selected="true"]):hover{color:var(--fg)}}
 
 /* ---------------- round 14 (Nov 8) ---------------- */
@@ -971,3 +960,95 @@ button.dimg{display:block;width:100%;padding:0;border:0;cursor:zoom-in}
 .cs-sec{display:flex;flex-wrap:wrap;gap:.6rem 1.5rem}
 .cs-sec .lnk{color:var(--fg-2);font-weight:600}
 @media (hover:hover) and (pointer:fine){.cs-cta .btn:hover .chv{translate:.25rem 0}.cs-sec .lnk:hover{color:var(--fg)}}
+
+/* ---------------- gallery v2 (Nov 8) ----------------
+   on the page: big slanted arrows on the window's edges, a caption, every screen in a strip, click to go full screen.
+   full screen: one at a time (arrows in the margins) or every screen as a grid. Always dark, like a photo viewer. */
+.gal-win{position:relative}
+.gal-stage.has-phone>.gal-win{width:88%}
+.gal-n{margin-left:auto;flex:none;font-family:var(--mono);font-size:.75rem;color:var(--fg-3)}
+.gal-open{display:block;width:100%;padding:0;border:0;cursor:zoom-in;text-align:left}
+.gal-exp{position:absolute;right:.6rem;top:.6rem;display:inline-flex;align-items:center;gap:.4rem;padding:.35rem .65rem;font-size:.75rem;font-weight:650;background:color-mix(in srgb,var(--bg) 88%,transparent);color:var(--fg);opacity:0;transition:opacity .2s ease}
+.gal-exp .chv{width:.85rem;height:.85rem}
+.gal-open:focus-visible .gal-exp{opacity:1}
+@media (hover:none){.gal-exp{opacity:1}}
+.gal-arw{position:absolute;top:50%;translate:0 -50%;z-index:3;width:2.75rem;height:3.5rem;display:grid;place-items:center;border:0;padding:0;cursor:pointer;background:color-mix(in srgb,var(--bg) 92%,transparent);color:var(--green-text);clip-path:var(--slanted);transition:background .15s ease,color .15s ease,scale .15s var(--ease-out)}
+.gal-arw .chv{width:1.4rem;height:1.4rem}
+.gal-arw.l{left:-.75rem}.gal-arw.r{right:-.75rem}
+.gal-stage.has-phone .gal-arw{top:40%}
+.gal-arw:active{scale:.94}
+.gal-arw:focus-visible{outline:0;box-shadow:inset 0 0 0 2px var(--green)}
+.gal-cap{display:flex;align-items:center;justify-content:space-between;gap:.5rem 1rem;flex-wrap:wrap;margin:.85rem 0 .55rem}
+.gal-cap p{margin:0;flex:1 1 14rem;font-size:.9375rem;color:var(--fg-2)}
+.gal-all{display:inline-flex;align-items:center;gap:.45rem;flex:none;border:0;background:var(--btn2);color:var(--fg);font:inherit;font-size:.8125rem;font-weight:650;padding:.5rem .9rem;cursor:pointer;clip-path:var(--slant-s);transition:background .15s ease,color .15s ease}
+.gal-all .chv{width:.9rem;height:.9rem}
+.gal-all small{font-family:var(--mono);font-size:.75rem;color:var(--fg-3)}
+.gal-strip{display:flex;gap:.4rem;overflow-x:auto;padding:2px 2px .45rem;overscroll-behavior-x:contain;scrollbar-width:thin}
+.gal-strip button{position:relative;flex:none;width:clamp(5rem,4rem + 3vw,7rem);padding:0;border:0;cursor:pointer;background:var(--sunk);opacity:.55;box-shadow:0 0 0 1px var(--hair);transition:opacity .2s ease,box-shadow .2s ease}
+.gal-strip button[aria-current="true"]{opacity:1;box-shadow:0 0 0 2px var(--green)}
+@media (hover:hover) and (pointer:fine){
+  .gal-open:hover .gal-exp{opacity:1}
+  .gal-arw:hover{background:var(--green);color:var(--on-green)}
+  .gal-all:hover{background:var(--green);color:var(--on-green)}.gal-all:hover small{color:inherit}
+  .gal-strip button:hover{opacity:1}
+  .gd-tiles button:hover .gd-img{box-shadow:0 0 0 2px var(--green)}.gd-tiles button:hover .gd-lab{color:var(--fg)}
+}
+.gal-dlg{--fg:#ece9e3;--fg-2:#c4c1ba;--fg-3:#9b988f;--bg:#181816;--card:#262522;--btn2:#2b2a26;--sunk:#141413;--hair:#36332f;--green-text:#34b85b;
+  position:fixed;inset:0;width:100vw;height:100dvh;max-width:none;max-height:none;margin:0;padding:clamp(.75rem,2vw,1.5rem);border:0;background:#0d0d0c;color:var(--fg);flex-direction:column;gap:.85rem;overflow:hidden}
+.gal-dlg[open]{display:flex}
+@media (prefers-reduced-motion:no-preference){.gal-dlg[open]{animation:dlg-in .25s var(--ease-out)}}
+.gal-dlg::backdrop{background:#000}
+.gd-top{display:flex;align-items:center;gap:.6rem 1rem;flex-wrap:wrap}
+.gd-top>b{font-size:1.125rem}
+.gd-cap{flex:1 1 12rem;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.9375rem;color:var(--fg-2)}
+.gd-r{margin-left:auto;display:flex;align-items:center;gap:.6rem}
+.gd-r .gal-n{margin:0}
+.gd-pv,.gd-cap2{display:none}
+.gd-view{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;gap:clamp(.75rem,2vw,1.75rem)}
+.gd-view .gal-arw{position:static;translate:none;flex:none}
+.gd-desk{position:relative;height:100%;max-width:calc(100% - 7.5rem);min-width:0;background:var(--sunk)}
+.gd-view.pair .gd-desk{max-width:calc(100% - 7.5rem - clamp(5rem,12vw,11rem))}
+.gd-view>.iphone{width:clamp(5rem,12vw,11rem)}
+.gd-strip{flex:none;justify-content:safe center}
+.gd-strip button{width:clamp(4.25rem,3.5rem + 2vw,6rem)}
+.gd-grid{flex:1;min-height:0;overflow-y:auto;padding:.25rem .25rem 1rem 0}
+.gd-grid h3{margin:1.25rem 0 .7rem;font-size:1rem}.gd-grid h3 small{font-family:var(--mono);font-size:.8rem;color:var(--fg-3);margin-left:.3rem}
+.gd-grid section:first-child h3{margin-top:0}
+.gd-tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,15rem),1fr));gap:1.1rem .9rem}
+.gd-tiles button{all:unset;cursor:pointer;display:flex;flex-direction:column;gap:.45rem}
+.gd-tiles button:focus-visible .gd-img{box-shadow:0 0 0 2px var(--green)}
+.gd-img{position:relative;display:block;background:var(--sunk);box-shadow:0 0 0 1px var(--hair);overflow:hidden;transition:box-shadow .2s ease}
+.gd-lab{font-size:.8125rem;line-height:1.35;color:var(--fg-2);transition:color .2s ease}
+@media (max-width:40rem){
+  .gd-top>b,.gd-cap{display:none}
+  .gd-r{margin-left:0;width:100%;justify-content:space-between}
+  .gd-pv{display:inline-flex;align-self:center;background:var(--btn2)}
+  .gd-pv button{border:0;background:none;color:var(--fg-2);font:inherit;font-size:.8125rem;font-weight:650;padding:.45rem .9rem;cursor:pointer}
+  .gd-pv button[aria-pressed="true"]{background:var(--green);color:var(--on-green)}
+  .gd-view{position:relative}
+  .gd-view .gal-arw{position:absolute;top:50%;translate:0 -50%;width:2.5rem;height:3.25rem}
+  .gd-view .gal-arw:first-child{left:-.4rem}.gd-view .gal-arw:last-child{right:-.4rem}
+  .gd-desk,.gd-view.pair .gd-desk{height:auto;width:100%;max-width:100%}
+  .gd-view>.iphone{width:min(58vw,15rem)}
+  .gal-dlg[data-pv="d"] .gd-view.pair>.iphone{display:none}
+  .gal-dlg[data-pv="p"] .gd-view.pair>.gd-desk{display:none}
+  .gd-cap2{display:block;margin:0;font-size:.9375rem;color:var(--fg-2)}
+  .gd-strip{justify-content:flex-start}
+}
+/* case study head on phones: title, what it is, the screens, the call to action, then the details */
+section:has(>.cs-top){container:cstop / inline-size}
+@container cstop (max-width:47rem){
+  .cs-top{flex-direction:column;flex-wrap:nowrap;align-items:stretch;gap:1rem}
+  .cs-top>:first-child{display:contents}
+  .cs-top .h1{order:1;margin-bottom:0}.cs-top .cs-sum{order:2;margin:0}
+  .cs-top>:last-child{order:3;flex:none}
+  .cs-top .cs-cta{order:4;margin-top:.25rem}
+  .cs-top .meta{order:5;margin:0}.cs-top .chips{order:6}
+}
+/* the arrows have to read as buttons on any screenshot: solid green, black chevron, a lift underneath */
+.gal-arw{background:var(--green);color:var(--on-green);filter:drop-shadow(0 .35rem .6rem rgba(0,0,0,.5))}
+@media (hover:hover) and (pointer:fine){.gal-arw:hover{background:var(--green-h);color:var(--on-green);scale:1.06}}
+.gal-arw:focus-visible{box-shadow:inset 0 0 0 2px #000}
+.gal-dlg .x{position:relative;width:1rem;height:1rem}.gal-dlg .x::before,.gal-dlg .x::after{content:"";position:absolute;left:0;right:0;top:50%;height:2px;background:currentColor;rotate:45deg}.gal-dlg .x::after{rotate:-45deg}
+.gal-dlg .icon-b{color:var(--fg);background:var(--btn2)}
+@media (max-width:40rem){.gd-tiles{grid-template-columns:repeat(2,minmax(0,1fr));gap:.9rem .6rem}.gd-lab{font-size:.75rem}}

@@ -59,8 +59,8 @@ export const projects: Project[] = [
   {
     // ponytail: live stays empty until the example is deployed; the live links show up once it's set
     slug: 'fadeaway', key: 'fadeaway', title: 'Fadeaway', kind: 'websites', url: 'starter.arriagagustavoo.com', example: true, live: '',
-    cardSkills: ['Next.js', 'TypeScript', 'React', 'CSS'],
-    skills: ['Next.js', 'TypeScript', 'React', 'CSS', 'Playwright'],
+    cardSkills: ['Next.js', 'TypeScript', 'GSAP', 'CSS'],
+    skills: ['Next.js', 'TypeScript', 'React', 'GSAP', 'CSS', 'Playwright'],
     shots: [FA('hero', true), FA('tidy', true), FA('panel'), FA('hours', true), FA('barbers'), FA('picked', true), FA('reviews', true), FA('review-open'), FA('about'), FA('faq'), FA('contact', true)],
   },
 ]

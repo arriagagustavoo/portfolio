@@ -76,7 +76,7 @@ export default async function Case({ params }: P) {
             </div>
           </div>
           <div>
-            <Gallery vt={'shot-' + p.slug} shots={order.map(i => ({ ...p.shots[i], alt: alts[i] ?? p.title }))} url={p.url} doc={p.doc} title={p.title} w={{ more: c.more, shot: c.shot, close: c.close, screens: c.screens, groups: c.groups, phone: c.phone, prev: c.prev, next: c.next }} />
+            <Gallery vt={'shot-' + p.slug} shots={order.map(i => ({ ...p.shots[i], alt: alts[i] ?? p.title }))} url={p.url} doc={p.doc} title={p.title} w={{ more: c.more, shot: c.shot, close: c.close, screens: c.screens, groups: c.groups, phone: c.phone, prev: c.prev, next: c.next, expand: c.expand, all: c.viewAll, one: c.oneByOne, desk: c.desk, phoneTab: c.phoneTab }} />
             {p.key === 'clientportal' && <p className="note">{t.legacy.caseStudy.galleryNote}</p>}
           </div>
         </div>
