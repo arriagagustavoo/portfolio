@@ -1,6 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { useRef, useState } from 'react'
+import { trackEvent } from '@/lib/track'
 import { Icon } from './bits'
 import { coleReact } from '@/lib/cole'
 import { sendForm } from '@/lib/send'
@@ -34,13 +35,14 @@ export function QuickForm({ t, estimateHref, toastSent }: { t: Dict['close']; es
     document.querySelector('.close .pkc')?.dispatchEvent(new CustomEvent('cole', { detail: { big: true, happy: true } }))
     const ok = await sendForm({ subject: 'Website message from ' + name, name, contact: reach, message: need || '(no details)' })
     if (!ok) { setDone(null); setErr(false); toast(t.failed, { icon: '!' }) }
+    else trackEvent('Message sent', { form: 'home' })
   }
   return (
     <div className="cl3-r" ref={box}>
       {!open ? (
         <div className="qz-btns">
           <button className="btn" type="button" aria-expanded={false} onClick={() => { resize(() => setOpen(true)); if (matchMedia('(pointer: fine)').matches) setTimeout(() => box.current?.querySelector<HTMLInputElement>('input[name=name]')?.focus(), 260) }}>{t.send}</button>
-          <Link className="btn ghost" href={estimateHref}>{t.estimate}</Link>
+          <Link className="btn ghost" href={estimateHref} data-ev="Estimate link clicked" data-ev-from="home close">{t.estimate}</Link>
         </div>
       ) : done ? (
         <div className="done swapin"><h3>{t.done.replace('{n}', done)}</h3><p>{t.doneText}</p></div>
@@ -80,6 +82,7 @@ export function ContactForm({ t, errText, toastSent, failed }: { t: Dict['contac
     document.querySelector('.ct2 .pkc')?.dispatchEvent(new CustomEvent('cole', { detail: { big: true, happy: true } }))
     const ok = await sendForm({ subject: 'Website inquiry from ' + name, name, [email ? 'email' : 'phone']: reach, preferred: how, needs: picks.join(', ') || '(none picked)', message: String(f.get('more') || '') })
     if (!ok) { setDone(null); toast(failed, { icon: '!' }) }
+    else trackEvent('Message sent', { form: 'contact', how })
   }
   if (done) return <div className="cform"><div className="done swapin"><h3>{done}</h3></div></div>
   return (
@@ -111,7 +114,7 @@ export function ContactForm({ t, errText, toastSent, failed }: { t: Dict['contac
 /** copy the email on click (and still open the mail app), with a toast */
 export function EmailLink({ className, children, copied }: { className?: string; children: React.ReactNode; copied: string }) {
   return (
-    <a className={className} href={'mailto:' + contact.email} onClick={() => { try { navigator.clipboard?.writeText(contact.email) } catch {} toast(copied + ': ' + contact.email) }}>
+    <a className={className} href={'mailto:' + contact.email} data-ev="Contact clicked" data-ev-way="email" onClick={() => { navigator.clipboard?.writeText(contact.email).catch(() => {}); toast(copied + ': ' + contact.email) }}>
       {children}
     </a>
   )

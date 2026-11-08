@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from 'react'
 import type { ToastOpts } from '@/lib/toast'
 import { swapLang, type Lang } from '@/lib/i18n'
 import { decode } from './Hero'
+import { trackEvent } from '@/lib/track'
 
 const LOG = [
   ['09:41:02', 'deploy', 'site ready on vercel  38s'], ['09:41:07', 'estimate', 'type=barbershop pages=3 es=true'], ['09:42:15', 'lighthouse', 'perf 99  a11y 100  seo 100'],
@@ -126,6 +127,16 @@ export function Motion() {
     try {
       if (localStorage.getItem('theme') === 'light') { el.dataset.theme = 'light'; document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#e3e0d8') }
     } catch {}
+  }, [])
+  useEffect(() => {
+    const on = (e: MouseEvent) => {
+      const a = (e.target as Element | null)?.closest<HTMLElement>('[data-ev]'); if (!a) return
+      const props: Record<string, string> = {}
+      for (const [k, v] of Object.entries(a.dataset)) if (k.startsWith('ev') && k !== 'ev' && v) props[k.slice(2).toLowerCase()] = v
+      trackEvent(a.dataset.ev!, props)
+    }
+    addEventListener('click', on, true)
+    return () => removeEventListener('click', on, true)
   }, [])
   useEffect(() => {
     // smooth scrolling is a vestibular trigger: never started under reduced motion, and torn down if the setting changes

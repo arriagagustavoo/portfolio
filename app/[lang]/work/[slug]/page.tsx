@@ -65,9 +65,9 @@ export default async function Case({ params }: P) {
             <Chips names={p.skills} />
             {/* the demo is the one green button when there is one; messaging and the estimate step back to text links */}
             <div className="cs-cta">
-              {p.live && <a className="btn" href={p.live} target="_blank" rel="noopener">{lang === 'es' ? 'Ve el demo en vivo' : 'Check out the live demo'}<Chevron className="chv" /></a>}
+              {p.live && <a className="btn" href={p.live} target="_blank" rel="noopener" data-ev="Live demo opened" data-ev-project={p.slug}>{lang === 'es' ? 'Ve el demo en vivo' : 'Check out the live demo'}<Chevron className="chv" /></a>}
               {!p.live && !p.example && <Link className="btn" href={href(lang, '/contact')}>{c.ctaBtn}</Link>}
-              {p.example && <Link className="btn ghost" href={href(lang, '/') + '#estimate'}>{t.nav.estimate}</Link>}
+              {p.example && <Link className="btn ghost" href={href(lang, '/') + '#estimate'} data-ev="Estimate link clicked" data-ev-from="case study">{t.nav.estimate}</Link>}
             </div>
           </div>
           <div>

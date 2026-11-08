@@ -61,8 +61,8 @@ export default function Header({ lang, nav }: { lang: Lang; nav: Dict['nav'] }) 
           </nav>
           <div className="utils">
             <span className="lang" role="group" aria-label={nav.language}>
-              <Link href={swapLang(path, 'en')} hrefLang="en" lang="en" aria-current={lang === 'en' ? 'true' : undefined} onClick={() => switchTo('en')}>EN</Link>
-              <Link href={swapLang(path, 'es')} hrefLang="es" lang="es" aria-current={lang === 'es' ? 'true' : undefined} onClick={() => switchTo('es')}>ES</Link>
+              <Link href={swapLang(path, 'en')} hrefLang="en" lang="en" aria-current={lang === 'en' ? 'true' : undefined} onClick={() => switchTo('en')} data-ev="Language switched" data-ev-to="en">EN</Link>
+              <Link href={swapLang(path, 'es')} hrefLang="es" lang="es" aria-current={lang === 'es' ? 'true' : undefined} onClick={() => switchTo('es')} data-ev="Language switched" data-ev-to="es">ES</Link>
             </span>
             <button className="icon-b theme" type="button" onClick={theme} aria-label={nav.theme}><Icon name="moon" className="i-moon" /><Icon name="sun" className="i-sun" /></button>
             <button className="icon-b menu-b" type="button" aria-expanded={open} aria-label={open ? nav.close : nav.menu} onClick={() => setOpen(o => !o)}><i /><i /></button>

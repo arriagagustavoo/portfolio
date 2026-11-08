@@ -29,12 +29,12 @@ export default async function Services({ params }: P) {
               <p>{x.who}</p>
               <ul className="chk">{x.list.map(i => <li key={i}>{i}</li>)}</ul>
               <em>{pr.great}: {x.great}</em>
-              <Link className="lnk" href={href(lang, k === 0 ? '/work/fadeaway' : '/work')}>{pr.example}</Link>
+              <Link className="lnk" href={href(lang, k === 0 ? '/work/fadeaway' : '/work')} data-ev="Example opened" data-ev-tier={x.name}>{pr.example}</Link>
             </div>
           ))}
         </div>
         <p className="note">{pr.note}</p>
-        <div className="acts"><Link className="btn" href={href(lang, '/') + '#estimate'}>{t.nav.estimate}</Link><span className="lede" style={{ margin: 0 }}>{s.estimateSub}</span></div>
+        <div className="acts"><Link className="btn" href={href(lang, '/') + '#estimate'} data-ev="Estimate link clicked" data-ev-from="services">{t.nav.estimate}</Link><span className="lede" style={{ margin: 0 }}>{s.estimateSub}</span></div>
       </section>
       <section className="wrap sec" aria-labelledby="addons">
         <div className="sec-h" data-reveal><h2 className="h2" id="addons">{s.addonsTitle}</h2></div>

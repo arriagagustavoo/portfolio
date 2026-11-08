@@ -2,6 +2,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useLayoutEffect, useRef, useState } from 'react'
+import { trackEvent } from '@/lib/track'
 import { ColePeek } from './Cole'
 import { Chevron, Html } from './bits'
 import { decode } from './Hero'
@@ -58,13 +59,17 @@ export default function EstimateCard({ t, e, work }: { t: Dict['card']; e: Dict[
   }
   useLayoutEffect(() => { if (i >= e.q.length && bigRef.current) decode(bigRef.current, fmt(price().b), 650) }, [i]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const go = (p: typeof pane) => { remember(); setPane(p); coleReact(card.current, {}) }
+  const go = (p: typeof pane) => { remember(); setPane(p); coleReact(card.current, {}); if (p === 'price' && i === 0) trackEvent('Estimate started') }
   const answer = (k: number) => {
     setPicked(k); coleReact(card.current, {})
     setTimeout(() => {
       remember(); setS(v => ({ ...v, ...EFFECTS[i][k] })); setPicked(null)
       const n = i + 1; setI(n)
-      if (n >= e.q.length) coleReact(card.current, { big: true, happy: true })
+      if (n >= e.q.length) {
+        coleReact(card.current, { big: true, happy: true })
+        const f = { ...s, ...EFFECTS[i][k] }
+        trackEvent('Estimate finished', { tier: f.acct ? 'Standard' : 'Starter', pages: f.pages, google: f.google, spanish: !!f.es })
+      }
     }, matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 170)
   }
   const restart = () => { remember(); setI(0); setS(START); setSendOpen(false); setSent(null); coleReact(card.current, { happy: false }) }
@@ -78,6 +83,7 @@ export default function EstimateCard({ t, e, work }: { t: Dict['card']; e: Dict[
     remember(); setSent(name.split(' ')[0]); toast(e.sent.replace('{n}', name.split(' ')[0]))
     const ok = await sendForm({ subject: 'Free estimate from ' + name, name, contact: reach, estimate: p.L.map(l => l.join(': ')).join(', ') + ` | total ${fmt(p.b)} + ${fmt(p.m)}/mo`, business: e.nouns[s.noun] })
     if (!ok) { remember(); setSent(null); toast(e.failed, { icon: '!' }) }
+    else trackEvent('Estimate sent', { tier: s.acct ? 'Standard' : 'Starter', total: p.b })
   }
 
   const step = Math.min(i + 1, e.q.length)
