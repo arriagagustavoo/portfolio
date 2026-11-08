@@ -1074,3 +1074,5 @@ section:has(>.cs-top){container:cstop / inline-size}
 /* the caption always takes exactly two lines, so the window and the arrows below it never shift */
 .gal-label{white-space:normal;line-height:1.5;height:3em;min-height:0;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;overflow:hidden}
 @media (max-width:40rem){.gal-label{min-height:0}}
+/* the phone's bottom lines up with the window's bottom instead of hanging below it, so the controls sit right under the screenshot */
+.gal-stage.has-phone{padding-bottom:0}
