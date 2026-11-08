@@ -173,6 +173,23 @@
      "Circle phantom, radial reconstruction, and difference map with signal profiles"
     ],
     "coverAlt": "MRI Scanner title card reading 'Matlab GUI. Custom data. Accurate results.'"
+   },
+   "fadeaway": {
+    "pitch": "An example site for a made-up barbershop on the East End. What the $600 Starter looks like, start to finish.",
+    "description": "Example site for the Starter package.",
+    "alts": [
+     "Fadeaway hero: a wall of photo stickers, one per service, each with its price and time",
+     "The same stickers tidied into a taped paper price list",
+     "Gus's example bar opened: what the $600 Starter includes and what costs more",
+     "Hours with today highlighted, who's in today, and a map of the East End",
+     "Three barbers with their days, hours and Instagram",
+     "Lalo picked: the cuts grid moves his work to the front",
+     "Reviews wall beside a 4.9 Google score",
+     "A review opened to read in full",
+     "About the shop: on the East End since 2019",
+     "Questions we get at the counter, one open",
+     "Contact form showing the demo note"
+    ]
    }
   },
   "caseStudy": {
@@ -327,6 +344,55 @@
       {
        "heading": "How it's built",
        "body": "Next.js and TypeScript on Supabase and Postgres. JWT sessions, Zod validation on every input, signed PDFs generated with Puppeteer, and 43 end to end Playwright tests over both sides. About forty routes between the client side and the admin side."
+      }
+     ]
+    },
+    "fadeaway": {
+     "meta": {
+      "title": "Fadeaway | Starter example | Gustavo Arriaga",
+      "description": "An example $600 Starter site for a made-up Houston barbershop: one page, its own design, a sticker wall price list and a live open-now clock."
+     },
+     "summary": [
+      "An example site for a barbershop that doesn't exist. I built it to show what the $600 Starter actually gets you: one page, its own design, and everything a walk-in shop needs on it.",
+      "Fadeaway isn't a real shop. It's one page with services and prices, hours, barbers, reviews, the location, questions and a contact form. No booking, no accounts, no database, because that's the Standard. A bar across the top says it's an example and shows exactly what's included and what costs more."
+     ],
+     "linked": {
+      "heading": "A price list you can mess up",
+      "body": "The top of the page is a wall of photo stickers, one per service, each with its price and how long it takes. Drag them around, or hit Tidy up and they fly into a taped paper price list. Same info, two ways to read it. On a phone it starts as the list.",
+      "labels": [
+       "The sticker wall",
+       "Tidied into a price list"
+      ]
+     },
+     "sections": [
+      {
+       "heading": "Why a made-up shop",
+       "body": "Telling someone what a Starter includes only goes so far. So I built one, with the same rules a real client gets: its own look, real-feeling details, and nothing a $600 site doesn't include. Your site gets its own design, not this one. Fadeaway is just the proof."
+      },
+      {
+       "heading": "What's on the page",
+       "body": "Everything a walk-in shop gets asked about, on one page.",
+       "points": [
+        "Services and prices, with how long each one takes",
+        "Open or closed right now from a live Houston clock, plus who's in today",
+        "Three barbers. Pick one and the cuts below show his work first",
+        "Reviews you tap to read in full, and a slim bar with the hours and a Call button",
+        "Hours, parking and a map",
+        "Questions we get at the counter",
+        "A contact form. Here it says it's a demo; on a real site it emails the shop"
+       ]
+      },
+      {
+       "heading": "How I designed it",
+       "body": "Seven rounds. Nine rough directions, then real research, then six working pages, then seven complete ones, narrowing down until one won. Orange on a warm charcoal, with the sticker wall carrying down the whole page. A couple of the runners-up are saved for future sites."
+      },
+      {
+       "heading": "Try another time",
+       "body": "The page reads the time in Houston, so it changes through the day: open or closed, today's hours, who's working. A button in the example bar jumps to other times, like a Saturday morning or after closing, so you can see it without waiting."
+      },
+      {
+       "heading": "How it's built",
+       "body": "Next.js and TypeScript, plain CSS, GSAP for the Tidy up move and Lenis for the smooth scroll. One static page, so it loads fast. It's hidden from Google on purpose, since the shop isn't real. Photos are free Unsplash photos."
       }
      ]
     }
@@ -600,6 +666,23 @@
      "Fantoma circular, reconstrucción radial y mapa de diferencias con perfiles de señal"
     ],
     "coverAlt": "Portada de MRI Scanner que dice 'Matlab GUI. Custom data. Accurate results.'"
+   },
+   "fadeaway": {
+    "pitch": "Una página de ejemplo para una barbería inventada en el East End. Así se ve el Starter de $600, de principio a fin.",
+    "description": "Página de ejemplo del paquete Starter.",
+    "alts": [
+     "Portada de Fadeaway: una pared de fotos tipo sticker, una por servicio, cada una con su precio y tiempo",
+     "Los mismos stickers acomodados en una lista de precios de papel con cinta",
+     "La barra de ejemplo de Gus abierta: lo que incluye el Starter de $600 y lo que cuesta aparte",
+     "Horario con el día de hoy marcado, quién está hoy y un mapa del East End",
+     "Tres barberos con sus días, horarios e Instagram",
+     "Lalo elegido: sus cortes pasan al frente",
+     "Pared de reseñas junto a un 4.9 en Google",
+     "Una reseña abierta para leerla completa",
+     "Sobre la barbería: en el East End desde 2019",
+     "Preguntas que nos hacen en el mostrador, una abierta",
+     "Formulario de contacto con la nota de demo"
+    ]
    }
   },
   "caseStudy": {
@@ -754,6 +837,55 @@
       {
        "heading": "Cómo está construido",
        "body": "Next.js y TypeScript sobre Supabase y Postgres. Sesiones con JWT, validación con Zod en cada entrada, PDFs firmados generados con Puppeteer, y 43 pruebas de punta a punta con Playwright sobre los dos lados. Alrededor de cuarenta rutas entre el lado del cliente y el administrativo."
+      }
+     ]
+    },
+    "fadeaway": {
+     "meta": {
+      "title": "Fadeaway | Ejemplo Starter | Gustavo Arriaga",
+      "description": "Página de ejemplo del Starter de $600 para una barbería inventada en Houston: una página, su propio diseño, precios en stickers y un reloj de abierto en vivo."
+     },
+     "summary": [
+      "Una página de ejemplo para una barbería que no existe. La hice para que veas lo que de verdad te llevas con el Starter de $600: una página, su propio diseño y todo lo que una barbería necesita.",
+      "Fadeaway no es una barbería real. Es una página con servicios y precios, horario, barberos, reseñas, ubicación, preguntas y un formulario de contacto. Sin citas en línea, sin cuentas, sin base de datos, porque eso ya es el Standard. Una barra arriba dice que es un ejemplo y te enseña qué incluye y qué cuesta aparte."
+     ],
+     "linked": {
+      "heading": "Una lista de precios que puedes desacomodar",
+      "body": "Arriba hay una pared de fotos tipo sticker, una por servicio, cada una con su precio y cuánto tarda. Muévelas como quieras, o dale a Tidy up y se acomodan en una lista de precios de papel con cinta. La misma info, de dos formas. En el celular empieza como lista.",
+      "labels": [
+       "La pared de stickers",
+       "Acomodada en lista de precios"
+      ]
+     },
+     "sections": [
+      {
+       "heading": "Por qué una barbería inventada",
+       "body": "Contarte qué incluye un Starter no es lo mismo que enseñártelo. Así que hice uno, con las mismas reglas que un cliente real: su propio look, detalles que se sienten reales y nada que no entre en una página de $600. Tu página lleva su propio diseño, no este. Fadeaway es nomás la prueba."
+      },
+      {
+       "heading": "Qué trae la página",
+       "body": "Todo lo que le preguntan a una barbería, en una sola página.",
+       "points": [
+        "Servicios y precios, con cuánto tarda cada uno",
+        "Si está abierto ahorita, con un reloj de Houston en vivo, y quién está hoy",
+        "Tres barberos. Escoges uno y sus cortes pasan al frente",
+        "Reseñas que abres para leer completas, y una barra con el horario y un botón para llamar",
+        "Horario, estacionamiento y mapa",
+        "Preguntas que nos hacen en el mostrador",
+        "Un formulario de contacto. Aquí avisa que es demo; en una página real le llega a la barbería"
+       ]
+      },
+      {
+       "heading": "Cómo la diseñé",
+       "body": "Siete rondas. Nueve ideas rápidas, luego investigación de verdad, luego seis páginas funcionando, luego siete completas, y fui recortando hasta que ganó una. Naranja sobre un carbón cálido, con la pared de stickers bajando por toda la página. Un par de las que no ganaron las guardé para otros proyectos."
+      },
+      {
+       "heading": "Prueba otra hora",
+       "body": "La página checa la hora de Houston, así que cambia durante el día: si está abierto, el horario de hoy, quién está trabajando. Un botón en la barra de ejemplo salta a otras horas, como un sábado en la mañana o ya cerrado, para que lo veas sin esperar."
+      },
+      {
+       "heading": "Cómo está hecha",
+       "body": "Next.js y TypeScript, CSS normal, GSAP para el movimiento de Tidy up y Lenis para el scroll suave. Es una sola página estática, así que carga rápido. Está escondida de Google a propósito, porque la barbería no existe. Las fotos son de Unsplash, gratis."
       }
      ]
     }

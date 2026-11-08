@@ -29,7 +29,7 @@ export default async function Services({ params }: P) {
               <p>{x.who}</p>
               <ul className="chk">{x.list.map(i => <li key={i}>{i}</li>)}</ul>
               <em>{pr.great}: {x.great}</em>
-              <Link className="lnk" href={href(lang, '/work')}>{pr.example}</Link>
+              <Link className="lnk" href={href(lang, k === 0 ? '/work/fadeaway' : '/work')}>{pr.example}</Link>
             </div>
           ))}
         </div>

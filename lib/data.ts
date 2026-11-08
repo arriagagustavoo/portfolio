@@ -2,12 +2,13 @@
 const cp = (f: string) => `/images/projects/clientportal/${f}.webp`
 const qs = (f: string) => `/images/projects/queuesmart/${f}.webp`
 const dc = (f: string) => `/images/projects/documents/${f}.jpg`
+const fa = (f: string) => `/images/projects/fadeaway/${f}.webp`
 
 /** phone: the same screen on a phone, drawn in an iphone frame beside the window. group: a tab in the full gallery */
 export type Shot = { src: string; w: number; h: number; phone?: string; group?: 'admin' | 'client' }
 export type Project = {
   slug: string
-  key: 'clientportal' | 'queuesmart' | 'documents'
+  key: 'clientportal' | 'queuesmart' | 'documents' | 'fadeaway'
   title: string
   kind: 'software' | 'design' | 'websites'
   url: string
@@ -15,10 +16,16 @@ export type Project = {
   cardSkills: string[]
   skills: string[]
   repo?: string
+  /** a tier's example site (not client work): on Work and behind its tier, not in Featured work */
+  example?: boolean
+  /** the live site, once it's deployed */
+  live?: string
   shots: Shot[]
 }
 
 const W = (src: string): Shot => ({ src, w: 2560, h: 1240 })
+// Fadeaway, shot at 1440x900 (1.5x) and on a 393-wide phone (3x)
+const FA = (f: string, phone?: boolean): Shot => ({ src: fa(f), w: 2160, h: 1350, ...(phone ? { phone: fa(f + '-phone') } : {}) })
 const D = (src: string): Shot => ({ src, w: 1275, h: 1650 })
 // the portal, shot on portal-test with made-up businesses at Gus's 27" (2048x1024 at 1.25x); the client side also on a phone
 const PA = (f: string): Shot => ({ src: cp('Admin-' + f), w: 2560, h: 1280, group: 'admin' })
@@ -49,10 +56,17 @@ export const projects: Project[] = [
     shots: ['Login', 'Register', 'Unauthorized', 'User-Dashboard', 'User-Join', 'User-Status', 'User-History', 'User-Feedback', 'Admin-Dashboard', 'Admin-QueueManagement', 'Admin-QueueManagementEdit',
       'Admin-ServiceManagement', 'Admin-ServiceManagementCreate', 'Admin-ServiceManagementEdit', 'Admin-Reports', 'Admin-ReportsCSV', 'Admin-ReportsPDF', 'Admin-Feedback'].map(f => W(qs(f))),
   },
+  {
+    // ponytail: live stays empty until the example is deployed; the live links show up once it's set
+    slug: 'fadeaway', key: 'fadeaway', title: 'Fadeaway', kind: 'websites', url: 'starter.arriagagustavoo.com', example: true, live: '',
+    cardSkills: ['Next.js', 'TypeScript', 'React', 'CSS'],
+    skills: ['Next.js', 'TypeScript', 'React', 'CSS', 'Playwright'],
+    shots: [FA('hero', true), FA('tidy', true), FA('panel'), FA('hours', true), FA('barbers'), FA('picked', true), FA('reviews', true), FA('review-open'), FA('about'), FA('faq'), FA('contact', true)],
+  },
 ]
 
 /** the screenshot each project leads with (cards, the featured stack) */
-export const lead: Record<Project['key'], number> = { clientportal: 0, documents: 2, queuesmart: 8 }
+export const lead: Record<Project['key'], number> = { clientportal: 0, documents: 2, queuesmart: 8, fadeaway: 0 }
 
 export const devProjects = [
   { cover: '/images/projects/rideshare/RideShare-cover.webp', shots: ['/images/projects/rideshare/RideShare-cover.webp', '/images/projects/rideshare/Page-empty.webp', '/images/projects/rideshare/Page-filled.webp'], skills: ['PostgreSQL', 'Express', 'JavaScript', 'HTML', 'CSS'], repo: 'https://github.com/arriagagustavoo/rideshare' },

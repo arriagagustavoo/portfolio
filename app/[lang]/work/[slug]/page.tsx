@@ -12,13 +12,14 @@ import { crumbs, JsonLd, pageMeta } from '@/lib/seo'
 type P = { params: Promise<{ lang: Lang; slug: string }> }
 type Section = { heading: string; body: string; points?: string[] }
 type Item = { meta: { title: string; description: string }; summary: string[]; sections: Section[]; linked?: { heading: string; body: string; labels: string[] } }
-const LINKED: Record<string, number[]> = { clientportal: [35, 36], queuesmart: [8, 9], documents: [2, 4, 6] }
+const LINKED: Record<string, number[]> = { clientportal: [35, 36], queuesmart: [8, 9], documents: [2, 4, 6], fadeaway: [0, 1] }
 // the portal leads with its best five: admin dashboard, client dashboard, proposal editor, client progress, sites
 const FIRST: Record<string, number[]> = { clientportal: [0, 29, 14, 30, 24] }
 const PULL: Record<string, Record<Lang, [string, string]>> = {
   clientportal: { en: ["Type a price, a date or the client's details once, and it fills in ", 'everywhere.'], es: ['Escribe un precio, una fecha o los datos del cliente una vez, y se llena en ', 'todos lados.'] },
   documents: { en: ['Fill the brackets. ', 'Skip the paperwork.'], es: ['Llena los corchetes. ', 'Olvídate del papeleo.'] },
   queuesmart: { en: ['A smarter way to ', 'wait in line.'], es: ['Una forma más inteligente de ', 'hacer fila.'] },
+  fadeaway: { en: ['Drag the photos around. ', 'Prices are on every one.'], es: ['Mueve las fotos como quieras. ', 'Cada una trae su precio.'] },
 }
 
 export function generateStaticParams() { return locales.flatMap(lang => projects.map(p => ({ lang, slug: p.slug }))) }
@@ -43,7 +44,7 @@ export default async function Case({ params }: P) {
   const order = [...top, ...p.shots.map((_, i) => i).filter(i => !top.includes(i))]
   const linked = LINKED[p.key].map(i => p.shots[i])
   const roleText = p.key === 'queuesmart' ? (lang === 'es' ? 'El lado de administración, en un equipo de cuatro' : 'The admin side, in a team of four') : (lang === 'es' ? 'Diseño y código, yo solo' : 'Design and code, solo')
-  const typeText = { clientportal: lang === 'es' ? 'Mi propio software, de uso diario' : 'My own software, used every day', documents: lang === 'es' ? 'Documentos para mi negocio' : 'Documents for my business', queuesmart: lang === 'es' ? 'Proyecto de curso, UH' : 'Coursework, UH' }[p.key]
+  const typeText = { clientportal: lang === 'es' ? 'Mi propio software, de uso diario' : 'My own software, used every day', documents: lang === 'es' ? 'Documentos para mi negocio' : 'Documents for my business', queuesmart: lang === 'es' ? 'Proyecto de curso, UH' : 'Coursework, UH', fadeaway: lang === 'es' ? 'Ejemplo del paquete Starter' : 'Example site, Starter package' }[p.key]
   const [first, ...rest] = it.sections
   return (
     <>
@@ -62,6 +63,7 @@ export default async function Case({ params }: P) {
               {p.key === 'clientportal' && <div><dt>{c.languages}</dt><dd>{lang === 'es' ? 'Inglés y español' : 'English and Spanish'}</dd></div>}
             </dl>
             <Chips names={p.skills} />
+            {p.live && <p style={{ marginTop: '1rem' }}><a className="lnk" href={p.live} target="_blank" rel="noopener">{lang === 'es' ? 'Ver la página en vivo' : 'See the live site'}</a></p>}
           </div>
           <div>
             <Gallery vt={'shot-' + p.slug} shots={order.map(i => ({ ...p.shots[i], alt: alts[i] ?? p.title }))} url={p.url} doc={p.doc} title={p.title} w={{ more: c.more, shot: c.shot, close: c.close, screens: c.screens, groups: c.groups, phone: c.phone, prev: c.prev, next: c.next }} />

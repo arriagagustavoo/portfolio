@@ -20,7 +20,8 @@ export async function generateMetadata({ params }: P): Promise<Metadata> { const
 export default async function Home({ params }: P) {
   const { lang } = await params
   const t = getDict(lang)
-  const work = projects.map(p => ({
+  // examples (Fadeaway) live on Work and behind their tier, not in Featured work
+  const work = projects.filter(p => !p.example).map(p => ({
     title: p.title, url: p.url, href: href(lang, '/work/' + p.slug), doc: p.doc,
     text: t.legacy.projects[p.key].pitch, skills: p.cardSkills,
     shots: [p.shots[lead[p.key]].src, ...p.shots.filter((_, k) => k !== lead[p.key]).map(s => s.src)],
