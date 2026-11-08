@@ -236,7 +236,7 @@
     "queuesmart": {
      "meta": {
       "title": "QueueSmart | Case study | Gustavo Arriaga",
-      "description": "A queue management web app built by a team of four for a Software Design course. I built the admin side: the dashboard, queue management and service management."
+      "description": "A queue management web app built by a team of four for a Software Design course. I built the admin side: the dashboard, queues and services."
      },
      "linked": {
       "heading": "The admin side",
@@ -663,7 +663,7 @@
     "queuesmart": {
      "meta": {
       "title": "QueueSmart | Caso de estudio | Gustavo Arriaga",
-      "description": "Una aplicación web de gestión de filas construida por un equipo de cuatro para un curso de Diseño de Software. Yo construí el lado administrativo: el panel, la gestión de filas y la de servicios."
+      "description": "App web para manejar filas, hecha en equipo de cuatro para un curso de Diseño de Software. Yo hice el lado del admin: el panel, las filas y los servicios."
      },
      "linked": {
       "heading": "El lado administrativo",
@@ -716,7 +716,7 @@
     "clientportal": {
      "meta": {
       "title": "Client Portal | Caso de estudio | Gustavo Arriaga",
-      "description": "Un portal de clientes construido para operar mi propio negocio freelance: propuestas, contratos, facturas, avance y archivos en un solo lugar, sobre Next.js y Supabase."
+      "description": "Un portal para operar mi negocio freelance: propuestas, contratos, facturas, avance y archivos en un solo lugar, hecho con Next.js y Supabase."
      },
      "linked": {
       "heading": "Una ficha, todos los documentos",

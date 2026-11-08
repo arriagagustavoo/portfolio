@@ -5,6 +5,8 @@ import { contact } from './data'
 
 // the Google Business Profile, so search engines tie the site and the map listing together
 const GBP = 'https://maps.google.com/?cid=12568473080583635988'
+// Same cities as the Google Business Profile service area
+const SERVICE_AREA = ['Houston', 'Pasadena', 'Deer Park', 'La Porte', 'Pearland', 'Baytown', 'South Houston', 'League City']
 
 type Key = keyof ReturnType<typeof getDict>['meta']
 
@@ -43,7 +45,7 @@ export function siteGraph(lang: Lang) {
         '@type': 'ProfessionalService', '@id': SITE + '/#studio', name: 'arriagagustavoo', alternateName: 'Gustavo Arriaga, web design and development',
         url: SITE + '/', image: SITE + '/og-image.jpg', logo: SITE + '/icon-512.png', email: contact.email, telephone: contact.tel,
         description: getDict(lang).meta.home.description, priceRange: '$$', founder: { '@id': SITE + '/#gustavo' },
-        areaServed: [{ '@type': 'City', name: 'Houston' }, { '@type': 'City', name: 'Pasadena' }, { '@type': 'State', name: 'Texas' }],
+        areaServed: SERVICE_AREA.map(name => ({ '@type': 'City', name, containedInPlace: { '@type': 'State', name: 'Texas' } })),
         address: { '@type': 'PostalAddress', addressLocality: 'Houston', addressRegion: 'TX', addressCountry: 'US' },
         availableLanguage: ['English', 'Spanish'], hasMap: GBP, sameAs: [GBP, contact.instagram.url, contact.facebook.url, contact.linkedin.url],
         makesOffer: ['Website design and development', 'Custom software and client portals', 'Graphic design and logos', 'Local SEO and Google Business Profile setup', 'Monthly website care', '3D modeling and printing']
