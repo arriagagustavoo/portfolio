@@ -1060,3 +1060,17 @@ section:has(>.cs-top){container:cstop / inline-size}
   .gd-pv{display:inline-flex;align-self:center}
   .gd-desk,.gd-view.pair .gd-desk{width:100%;max-width:100%;height:auto}
 }
+/* the caption sits top left (above the window, or beside the title in the viewer); the arrows have a row to themselves, so changing screens never moves them */
+.gal-label{margin:0 0 .65rem;font-size:.9375rem;color:var(--fg-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gal-cap{justify-content:space-between;flex-wrap:nowrap}
+.gd-cap{flex:1 1 0;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:.9375rem;color:var(--fg-2)}
+.gd-ctl{display:flex;justify-content:center;flex:none}
+@media (max-width:40rem){
+  .gal-label{white-space:normal;min-height:calc(1.55em * 2)}
+  .gal-cap{flex-wrap:nowrap}
+  .gd-top>.gd-cap{order:3;flex:1 1 100%;white-space:normal;min-height:calc(1.55em * 2)}
+  .gd-ctl{justify-content:center}
+}
+/* the caption always takes exactly two lines, so the window and the arrows below it never shift */
+.gal-label{white-space:normal;line-height:1.5;height:3em;min-height:0;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;overflow:hidden}
+@media (max-width:40rem){.gal-label{min-height:0}}

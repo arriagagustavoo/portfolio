@@ -180,6 +180,7 @@ export function Gallery({ shots, url, doc, vt, title, w }: { shots: GShot[]; url
   const ratio = (x: GShot) => (doc ? '4 / 3' : `${x.w} / ${x.h}`)
   return (
     <div className="gal">
+      <p className="gal-label" aria-live="polite">{s.alt}</p>
       <div className={'gal-stage' + (phones ? ' has-phone' : '')}>
         <div className="gal-win">
           <ViewTransition name={vt} share="morph" default="none">
@@ -197,7 +198,6 @@ export function Gallery({ shots, url, doc, vt, title, w }: { shots: GShot[]; url
       </div>
       <div className="gal-cap">
         <Nav at={i + 1} of={n} prev={() => go(i - 1)} next={() => go(i + 1)} w={w} />
-        <p>{s.alt}</p>
         <button type="button" className="gal-all" aria-haspopup="dialog" onClick={() => open(i, 'grid')}><Grid />{w.all} <small>{n}</small></button>
       </div>
       <div className="gal-strip" ref={strip}>
@@ -211,6 +211,7 @@ export function Gallery({ shots, url, doc, vt, title, w }: { shots: GShot[]; url
       <dialog ref={dlg} className="gal-dlg" aria-label={title} data-lenis-prevent data-mode={mode} data-pv={pv}>
         <div className="gd-top">
           <b>{title}</b>
+          {mode === 'one' && <span className="gd-cap" aria-live="polite">{o.alt}</span>}
           {mode === 'one' && groups.length > 1 && (
             <span className="gal-tabs" role="tablist">
               {groups.map(g => <button key={g} type="button" role="tab" aria-selected={o.group === g} onClick={() => setD(shots.findIndex(x => x.group === g))}>{w.groups[g] ?? g} <small>{shots.filter(x => x.group === g).length}</small></button>)}
@@ -236,7 +237,7 @@ export function Gallery({ shots, url, doc, vt, title, w }: { shots: GShot[]; url
               </div>
               {o.phone && <Phone key={o.phone} src={o.phone} alt={`${o.alt}, ${w.phone}`} />}
             </div>
-            <div className="gal-cap gd-ctl"><Nav at={inGroup.indexOf(d) + 1} of={inGroup.length} prev={() => step(-1)} next={() => step(1)} w={w} /><p>{o.alt}</p></div>
+            <div className="gd-ctl"><Nav at={inGroup.indexOf(d) + 1} of={inGroup.length} prev={() => step(-1)} next={() => step(1)} w={w} /></div>
             <div className="gal-strip gd-strip">
               {inGroup.map(k => (
                 <button key={shots[k].src} type="button" aria-label={shots[k].alt} aria-current={k === d} onClick={() => setD(k)} style={{ aspectRatio: ratio(shots[k]) }}>
