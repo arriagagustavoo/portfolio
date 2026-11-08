@@ -16,12 +16,14 @@ export default function Header({ lang, nav }: { lang: Lang; nav: Dict['nav'] }) 
 
   // slim and sticky: a soft surface once you scroll, hides while reading down, back on the way up
   useEffect(() => {
+    // the header only flips after 10px of travel in one direction; tiny momentum steps on phones used to pop it back in mid-scroll
     let last = window.scrollY
     const on = () => {
       const y = window.scrollY
       setScrolled(y > 8)
-      setHidden(y > 240 && y > last + 4)
-      if (y < last - 4) setHidden(false)
+      if (y <= 240) { setHidden(false); last = y; return }
+      if (Math.abs(y - last) < 10) return
+      setHidden(y > last)
       last = y
     }
     on()
