@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { Chips } from '@/components/bits'
+import { Chevron, Chips } from '@/components/bits'
 import { Gallery } from '@/components/Work'
 import { getDict } from '@/lib/content/site'
 import { href, locales, SITE, type Lang } from '@/lib/i18n'
@@ -63,11 +63,16 @@ export default async function Case({ params }: P) {
               {p.key === 'clientportal' && <div><dt>{c.languages}</dt><dd>{lang === 'es' ? 'Inglés y español' : 'English and Spanish'}</dd></div>}
             </dl>
             <Chips names={p.skills} />
+            {/* the demo is the one green button when there is one; messaging and the estimate step back to text links */}
             <div className="cs-cta">
-              {p.live
-                ? <a className="btn" href={p.live} target="_blank" rel="noopener">{lang === 'es' ? 'Ver la página en vivo' : 'Check out the live site'}</a>
-                : <Link className="btn" href={href(lang, '/contact')}>{c.ctaBtn}</Link>}
-              {p.example && <Link className="btn ghost" href={href(lang, '/') + '#estimate'}>{t.nav.estimate}</Link>}
+              {p.live && <a className="btn" href={p.live} target="_blank" rel="noopener">{lang === 'es' ? 'Ve el demo en vivo' : 'Check out the live demo'}<Chevron className="chv" /></a>}
+              {!p.live && !p.example && <Link className="btn" href={href(lang, '/contact')}>{c.ctaBtn}</Link>}
+              {(p.live || p.example) && (
+                <span className="cs-sec">
+                  <Link className="lnk" href={href(lang, '/contact')}>{c.ctaBtn}</Link>
+                  {p.example && <Link className="lnk" href={href(lang, '/') + '#estimate'}>{t.nav.estimate}</Link>}
+                </span>
+              )}
             </div>
           </div>
           <div>

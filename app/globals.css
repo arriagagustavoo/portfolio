@@ -965,3 +965,9 @@ button.dimg{display:block;width:100%;padding:0;border:0;cursor:zoom-in}
 .cs-cta .btn{font-size:1.0625rem;padding-block:.95rem}
 /* the closing "want something like this?" rows sit centered, not stuck to the left edge */
 .acts.end{justify-content:center;align-items:center;text-align:center;padding-block:1rem}
+/* case study: the demo button leads; message and estimate are quiet text links beside it */
+.cs-cta{align-items:center;gap:1rem 1.75rem}
+.cs-cta .btn .chv{width:1rem;height:1rem;transition:translate .25s var(--ease-out)}
+.cs-sec{display:flex;flex-wrap:wrap;gap:.6rem 1.5rem}
+.cs-sec .lnk{color:var(--fg-2);font-weight:600}
+@media (hover:hover) and (pointer:fine){.cs-cta .btn:hover .chv{translate:.25rem 0}.cs-sec .lnk:hover{color:var(--fg)}}
