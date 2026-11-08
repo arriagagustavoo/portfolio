@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react'
 import type { ToastOpts } from '@/lib/toast'
 import { swapLang, type Lang } from '@/lib/i18n'
 import { decode } from './Hero'
-import { trackEvent } from '@/lib/track'
+import { inApp, trackEvent } from '@/lib/track'
 
 const LOG = [
   ['09:41:02', 'deploy', 'site ready on vercel  38s'], ['09:41:07', 'estimate', 'type=barbershop pages=3 es=true'], ['09:42:15', 'lighthouse', 'perf 99  a11y 100  seo 100'],
@@ -127,6 +127,20 @@ export function Motion() {
     try {
       if (localStorage.getItem('theme') === 'light') { el.dataset.theme = 'light'; document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#e3e0d8') }
     } catch {}
+  }, [])
+  useEffect(() => {
+    // one "Instagram visit" or "Facebook visit" per session when the site opens inside that app's browser
+    const app = inApp(); if (!app) return
+    try { if (sessionStorage.getItem('appVisit')) return } catch {}
+    // Vercel's tracker mounts inside a Suspense boundary after this effect; an event sent before window.va exists is dropped
+    let t = 0, n = 0
+    const send = () => {
+      if (!(window as unknown as { va?: unknown }).va) { if (n++ < 50) t = window.setTimeout(send, 100); return }
+      try { sessionStorage.setItem('appVisit', '1') } catch {}
+      trackEvent(app === 'instagram' ? 'Instagram visit' : 'Facebook visit', { page: location.pathname })
+    }
+    send()
+    return () => clearTimeout(t)
   }, [])
   useEffect(() => {
     const on = (e: MouseEvent) => {
