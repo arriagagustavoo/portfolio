@@ -59,8 +59,8 @@ export const projects: Project[] = [
   {
     // live: the deployed demo (swap to starter.arriagagustavoo.com if that domain gets set up)
     slug: 'fadeaway', key: 'fadeaway', title: 'Fadeaway', kind: 'websites', url: 'fadeaway-starter.vercel.app', example: true, live: 'https://fadeaway-starter.vercel.app',
-    cardSkills: ['Next.js', 'TypeScript', 'GSAP', 'CSS'],
-    skills: ['Next.js', 'TypeScript', 'React', 'GSAP', 'CSS', 'Playwright'],
+    cardSkills: ['Figma', 'Next.js', 'TypeScript', 'React'],
+    skills: ['Figma', 'Next.js', 'TypeScript', 'React', 'CSS', 'Playwright'],
     shots: [FA('hero', true), FA('tidy', true), FA('panel'), FA('hours', true), FA('barbers'), FA('picked', true), FA('reviews', true), FA('review-open'), FA('about'), FA('faq'), FA('contact', true)],
   },
 ]

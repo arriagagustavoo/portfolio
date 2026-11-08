@@ -178,17 +178,17 @@
     "pitch": "An example site for a made-up barbershop on the East End. What the $600 Starter looks like, start to finish.",
     "description": "Example site for the Starter package.",
     "alts": [
-     "Fadeaway hero: a wall of photo stickers, one per service, each with its price and time",
-     "The same stickers tidied into a taped paper price list",
-     "Gus's example bar opened: what the $600 Starter includes and what costs more",
-     "Hours with today highlighted, who's in today, and a map of the East End",
-     "Three barbers with their days, hours and Instagram",
-     "Lalo picked: the cuts grid moves his work to the front",
-     "Reviews wall beside a 4.9 Google score",
-     "A review opened to read in full",
-     "About the shop: on the East End since 2019",
-     "Questions we get at the counter, one open",
-     "Contact form showing the demo note"
+     "Every service as a photo sticker with its price and time",
+     "The same services as a price list, after Tidy up",
+     "What the $600 Starter includes, and what costs extra",
+     "Hours, who's working today, and a map",
+     "The three barbers, with their days and Instagram",
+     "Pick a barber and his cuts move to the front",
+     "Reviews next to the Google rating",
+     "A review opened in full",
+     "The shop's story",
+     "Questions customers ask, one opened",
+     "Contact form, with the phone number up front"
     ]
    }
   },
@@ -671,17 +671,17 @@
     "pitch": "Una página de ejemplo para una barbería inventada en el East End. Así se ve el Starter de $600, de principio a fin.",
     "description": "Página de ejemplo del paquete Starter.",
     "alts": [
-     "Portada de Fadeaway: una pared de fotos tipo sticker, una por servicio, cada una con su precio y tiempo",
-     "Los mismos stickers acomodados en una lista de precios de papel con cinta",
-     "La barra de ejemplo de Gus abierta: lo que incluye el Starter de $600 y lo que cuesta aparte",
-     "Horario con el día de hoy marcado, quién está hoy y un mapa del East End",
-     "Tres barberos con sus días, horarios e Instagram",
-     "Lalo elegido: sus cortes pasan al frente",
-     "Pared de reseñas junto a un 4.9 en Google",
-     "Una reseña abierta para leerla completa",
-     "Sobre la barbería: en el East End desde 2019",
-     "Preguntas que nos hacen en el mostrador, una abierta",
-     "Formulario de contacto con la nota de demo"
+     "Cada servicio como sticker con su precio y tiempo",
+     "Los mismos servicios como lista de precios, después de Tidy up",
+     "Qué incluye el Starter de $600 y qué cuesta aparte",
+     "Horario, quién trabaja hoy y un mapa",
+     "Los tres barberos, con sus días e Instagram",
+     "Escoges un barbero y sus cortes pasan al frente",
+     "Reseñas junto a la calificación de Google",
+     "Una reseña abierta completa",
+     "La historia de la barbería",
+     "Preguntas que hacen los clientes, una abierta",
+     "Formulario de contacto, con el teléfono a la vista"
     ]
    }
   },

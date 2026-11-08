@@ -154,7 +154,9 @@ export function Gallery({ shots, url, doc, vt, title, w }: { shots: GShot[]; url
   // keep the lit thumbnail in view inside its strip, without scrolling the page
   useEffect(() => {
     const s = strip.current, t = s?.children[i] as HTMLElement | undefined
-    if (s && t) s.scrollTo({ left: t.offsetLeft - s.clientWidth / 2 + t.clientWidth / 2, behavior: 'smooth' })
+    if (!s || !t) return
+    const sr = s.getBoundingClientRect(), tr = t.getBoundingClientRect()
+    s.scrollTo({ left: s.scrollLeft + tr.left - sr.left - (sr.width - tr.width) / 2, behavior: 'smooth' })
   }, [i])
   useEffect(() => {
     const el = dlg.current!

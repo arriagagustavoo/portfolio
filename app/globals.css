@@ -1052,3 +1052,12 @@ section:has(>.cs-top){container:cstop / inline-size}
 .gal-dlg .x{position:relative;width:1rem;height:1rem}.gal-dlg .x::before,.gal-dlg .x::after{content:"";position:absolute;left:0;right:0;top:50%;height:2px;background:currentColor;rotate:45deg}.gal-dlg .x::after{rotate:-45deg}
 .gal-dlg .icon-b{color:var(--fg);background:var(--btn2)}
 @media (max-width:40rem){.gd-tiles{grid-template-columns:repeat(2,minmax(0,1fr));gap:.9rem .6rem}.gd-lab{font-size:.75rem}}
+/* the viewer's arrows are pinned to the screen's edges, so they never move when a screen has a phone or a different shape */
+.gd-view{position:relative;padding-inline:clamp(3.25rem,5vw,4.5rem)}
+.gd-view .gal-arw{position:absolute;top:50%;translate:0 -50%}
+.gd-view .gal-arw:first-child{left:0}.gd-view .gal-arw:last-child{right:0}
+.gd-desk,.gd-view.pair .gd-desk{max-width:100%}
+.gd-view.pair .gd-desk{max-width:calc(100% - clamp(5rem,12vw,11rem) - clamp(.75rem,2vw,1.75rem))}
+/* "Expand" sits in the bottom corner as a small tag, so it doesn't cover the screenshot's own header */
+.gal-exp{top:auto;bottom:.6rem}
+@media (max-width:40rem){.gd-view{padding-inline:0}}
