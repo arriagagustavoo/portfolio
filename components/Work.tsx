@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useEffect, useRef, useState, ViewTransition } from 'react'
+import { useEffect, useImperativeHandle, useRef, useState, ViewTransition } from 'react'
 import { Chevron, Chips } from './bits'
 
 type P = { title: string; url: string; href: string; doc?: boolean; text: string; skills: string[]; shots: string[] }
@@ -97,8 +97,13 @@ export function WorkGrid({ filters, kinds, empty, children }: { filters: [string
   )
 }
 
-export type GShot = { src: string; alt: string; w: number; h: number; phone?: string; group?: string }
+export type GShot = { src: string; alt: string; w?: number; h?: number; phone?: string; group?: string }
 type GWords = { more: string; shot: string; close: string; screens: string; groups: Record<string, string>; phone: string; prev: string; next: string; expand: string; all: string; one: string; desk: string; phoneTab: string }
+export type VWords = Pick<GWords, 'close' | 'groups' | 'phone' | 'prev' | 'next' | 'all' | 'one' | 'desk' | 'phoneTab'>
+export type ViewerHandle = { open: (k: number, m?: 'one' | 'grid') => void }
+// GIFs (game footage) play as they are; the image optimizer would flatten them to one frame
+const gif = (src: string) => src.endsWith('.gif')
+const ratioOf = (x: GShot, doc?: boolean) => (doc ? '4 / 3' : x.w && x.h ? `${x.w} / ${x.h}` : '16 / 10')
 
 /** an iphone drawn in css around a phone screenshot, with the status bar the home screen app sits under */
 function Phone({ src, alt }: { src: string; alt: string }) {
@@ -149,19 +154,12 @@ export function Gallery({ shots, url, doc, vt, title, w }: { shots: GShot[]; url
   const [i, setI] = useState(0)
   const view = useRef<HTMLButtonElement>(null)
   const strip = useRef<HTMLDivElement>(null)
-  const dlg = useRef<HTMLDialogElement>(null)
-  const [d, setD] = useState(0)
-  const [mode, setMode] = useState<'one' | 'grid'>('one')
-  const [pv, setPv] = useState<'d' | 'p'>('d')
+  const viewer = useRef<ViewerHandle>(null)
   const n = shots.length
   const go = (k: number) => { setI((k + n) % n); flash(view.current) }
   const phones = shots.some(s => s.phone)
-  const groups = [...new Set(shots.map(s => s.group).filter(Boolean))] as string[]
-  const inGroup = shots.map((_, k) => k).filter(k => !groups.length || shots[k].group === shots[d].group)
-  const open = (k: number, m: 'one' | 'grid') => { setD(k); setMode(m); dlg.current?.showModal(); document.documentElement.style.overflow = 'hidden' }
-  const step = (by: number) => setD(v => inGroup[(inGroup.indexOf(v) + by + inGroup.length) % inGroup.length])
+  const open = (k: number, m: 'one' | 'grid') => viewer.current?.open(k, m)
   const page = useSwipe(by => go(i + by))
-  const big = useSwipe(by => step(by))
   // keep the lit thumbnail in view inside its strip, without scrolling the page
   useEffect(() => {
     const s = strip.current, t = s?.children[i] as HTMLElement | undefined
@@ -169,15 +167,8 @@ export function Gallery({ shots, url, doc, vt, title, w }: { shots: GShot[]; url
     const sr = s.getBoundingClientRect(), tr = t.getBoundingClientRect()
     s.scrollTo({ left: s.scrollLeft + tr.left - sr.left - (sr.width - tr.width) / 2, behavior: 'smooth' })
   }, [i])
-  useEffect(() => {
-    const el = dlg.current!
-    const onClose = () => { document.documentElement.style.overflow = '' }
-    const onKey = (e: KeyboardEvent) => { if (mode !== 'one') return; if (e.key === 'ArrowRight') step(1); if (e.key === 'ArrowLeft') step(-1) }
-    el.addEventListener('close', onClose); el.addEventListener('keydown', onKey)
-    return () => { el.removeEventListener('close', onClose); el.removeEventListener('keydown', onKey) }
-  })
-  const s = shots[i], o = shots[d]
-  const ratio = (x: GShot) => (doc ? '4 / 3' : `${x.w} / ${x.h}`)
+  const s = shots[i]
+  const ratio = (x: GShot) => ratioOf(x, doc)
   return (
     <div className="gal">
       <p className="gal-label" aria-live="polite"><span>{s.alt}</span></p>
@@ -208,62 +199,88 @@ export function Gallery({ shots, url, doc, vt, title, w }: { shots: GShot[]; url
         ))}
       </div>
 
-      <dialog ref={dlg} className="gal-dlg" aria-label={title} data-lenis-prevent data-mode={mode} data-pv={pv}>
-        <div className="gd-top">
-          <b>{title}</b>
-          {mode === 'one' && <span className="gd-cap" aria-live="polite">{o.alt}</span>}
-          {mode === 'one' && groups.length > 1 && (
-            <span className="gal-tabs" role="tablist">
-              {groups.map(g => <button key={g} type="button" role="tab" aria-selected={o.group === g} onClick={() => setD(shots.findIndex(x => x.group === g))}>{w.groups[g] ?? g} <small>{shots.filter(x => x.group === g).length}</small></button>)}
+      <Viewer ref={viewer} shots={shots} doc={doc} title={title} w={w} />
+    </div>
+  )
+}
+
+/** the full-screen viewer: one screen at a time (arrows under the image, never moving) or every screen as a grid.
+ *  Shared by case study galleries and the Dev page's projects; open it through its ref */
+export function Viewer({ ref, shots, doc, title, w }: { ref: React.Ref<ViewerHandle>; shots: GShot[]; doc?: boolean; title: string; w: VWords }) {
+  const dlg = useRef<HTMLDialogElement>(null)
+  const [d, setD] = useState(0)
+  const [mode, setMode] = useState<'one' | 'grid'>('one')
+  const [pv, setPv] = useState<'d' | 'p'>('d')
+  const groups = [...new Set(shots.map(s => s.group).filter(Boolean))] as string[]
+  const inGroup = shots.map((_, k) => k).filter(k => !groups.length || shots[k].group === shots[d].group)
+  const step = (by: number) => setD(v => inGroup[(inGroup.indexOf(v) + by + inGroup.length) % inGroup.length])
+  const big = useSwipe(by => step(by))
+  useImperativeHandle(ref, () => ({ open: (k, m = 'one') => { setD(k); setMode(m); dlg.current?.showModal(); document.documentElement.style.overflow = 'hidden' } }), [])
+  useEffect(() => {
+    const el = dlg.current!
+    const onClose = () => { document.documentElement.style.overflow = '' }
+    const onKey = (e: KeyboardEvent) => { if (mode !== 'one') return; if (e.key === 'ArrowRight') step(1); if (e.key === 'ArrowLeft') step(-1) }
+    el.addEventListener('close', onClose); el.addEventListener('keydown', onKey)
+    return () => { el.removeEventListener('close', onClose); el.removeEventListener('keydown', onKey) }
+  })
+  const o = shots[d] ?? shots[0]
+  const ratio = (x: GShot) => ratioOf(x, doc)
+  return (
+    <dialog ref={dlg} className="gal-dlg" aria-label={title} data-lenis-prevent data-mode={mode} data-pv={pv}>
+      <div className="gd-top">
+        <b>{title}</b>
+        {mode === 'one' && <span className="gd-cap" aria-live="polite">{o.alt}</span>}
+        {mode === 'one' && groups.length > 1 && (
+          <span className="gal-tabs" role="tablist">
+            {groups.map(g => <button key={g} type="button" role="tab" aria-selected={o.group === g} onClick={() => setD(shots.findIndex(x => x.group === g))}>{w.groups[g] ?? g} <small>{shots.filter(x => x.group === g).length}</small></button>)}
+          </span>
+        )}
+        <span className="gd-r">
+          <button type="button" className="gal-all" onClick={() => setMode(m => (m === 'one' ? 'grid' : 'one'))}>{mode === 'one' ? <><Grid />{w.all}</> : <><Expand />{w.one}</>}</button>
+          <button type="button" className="icon-b" onClick={() => dlg.current?.close()} aria-label={w.close}><i className="x" aria-hidden="true" /></button>
+        </span>
+      </div>
+
+      {mode === 'one' ? (
+        <>
+          {o.phone && (
+            <span className="gd-pv" role="group">
+              <button type="button" aria-pressed={pv === 'd'} onClick={() => setPv('d')}>{w.desk}</button>
+              <button type="button" aria-pressed={pv === 'p'} onClick={() => setPv('p')}>{w.phoneTab}</button>
             </span>
           )}
-          <span className="gd-r">
-            <button type="button" className="gal-all" onClick={() => setMode(m => (m === 'one' ? 'grid' : 'one'))}>{mode === 'one' ? <><Grid />{w.all}</> : <><Expand />{w.one}</>}</button>
-            <button type="button" className="icon-b" onClick={() => dlg.current?.close()} aria-label={w.close}><i className="x" aria-hidden="true" /></button>
-          </span>
-        </div>
-
-        {mode === 'one' ? (
-          <>
-            {o.phone && (
-              <span className="gd-pv" role="group">
-                <button type="button" aria-pressed={pv === 'd'} onClick={() => setPv('d')}>{w.desk}</button>
-                <button type="button" aria-pressed={pv === 'p'} onClick={() => setPv('p')}>{w.phoneTab}</button>
-              </span>
-            )}
-            <div className={'gd-view' + (o.phone ? ' pair' : '')} {...big.h}>
-              <div className="gd-desk" style={{ aspectRatio: ratio(o) }}>
-                <Image key={o.src} className="swapin" src={o.src} alt={o.alt} fill sizes="90vw" style={{ objectFit: 'contain' }} />
-              </div>
-              {o.phone && <Phone key={o.phone} src={o.phone} alt={`${o.alt}, ${w.phone}`} />}
+          <div className={'gd-view' + (o.phone ? ' pair' : '')} {...big.h}>
+            <div className="gd-desk" style={{ aspectRatio: ratio(o) }}>
+              <Image key={o.src} className="swapin" src={o.src} alt={o.alt} fill sizes="90vw" unoptimized={gif(o.src)} style={{ objectFit: 'contain' }} />
             </div>
-            <div className="gd-ctl"><Nav at={inGroup.indexOf(d) + 1} of={inGroup.length} prev={() => step(-1)} next={() => step(1)} w={w} /></div>
-            <div className="gal-strip gd-strip">
-              {inGroup.map(k => (
-                <button key={shots[k].src} type="button" aria-label={shots[k].alt} aria-current={k === d} onClick={() => setD(k)} style={{ aspectRatio: ratio(shots[k]) }}>
-                  <Image src={shots[k].src} alt="" fill sizes="7rem" style={{ objectFit: doc ? 'contain' : 'cover', objectPosition: 'top left' }} />
-                </button>
-              ))}
-            </div>
-          </>
-        ) : (
-          <div className="gd-grid">
-            {(groups.length ? groups : ['']).map(g => (
-              <section key={g || 'all'}>
-                {g && <h3>{w.groups[g] ?? g} <small>{shots.filter(x => x.group === g).length}</small></h3>}
-                <div className="gd-tiles">
-                  {shots.map((t, k) => (g && t.group !== g ? null : (
-                    <button key={t.src} type="button" onClick={() => { setD(k); setMode('one') }} aria-label={t.alt}>
-                      <span className="gd-img" style={{ aspectRatio: ratio(t) }}><Image src={t.src} alt="" fill sizes="(max-width: 40rem) 46vw, 22vw" style={{ objectFit: doc ? 'contain' : 'cover', objectPosition: 'top left' }} /></span>
-                      <span className="gd-lab">{t.alt}</span>
-                    </button>
-                  )))}
-                </div>
-              </section>
+            {o.phone && <Phone key={o.phone} src={o.phone} alt={`${o.alt}, ${w.phone}`} />}
+          </div>
+          <div className="gd-ctl"><Nav at={inGroup.indexOf(d) + 1} of={inGroup.length} prev={() => step(-1)} next={() => step(1)} w={w} /></div>
+          <div className="gal-strip gd-strip">
+            {inGroup.map(k => (
+              <button key={shots[k].src} type="button" aria-label={shots[k].alt} aria-current={k === d} onClick={() => setD(k)} style={{ aspectRatio: ratio(shots[k]) }}>
+                <Image src={shots[k].src} alt="" fill sizes="7rem" unoptimized={gif(shots[k].src)} style={{ objectFit: doc || !shots[k].w ? 'contain' : 'cover', objectPosition: shots[k].w ? 'top left' : 'center' }} />
+              </button>
             ))}
           </div>
-        )}
-      </dialog>
-    </div>
+        </>
+      ) : (
+        <div className="gd-grid">
+          {(groups.length ? groups : ['']).map(g => (
+            <section key={g || 'all'}>
+              {g && <h3>{w.groups[g] ?? g} <small>{shots.filter(x => x.group === g).length}</small></h3>}
+              <div className="gd-tiles">
+                {shots.map((t, k) => (g && t.group !== g ? null : (
+                  <button key={t.src} type="button" onClick={() => { setD(k); setMode('one') }} aria-label={t.alt}>
+                    <span className="gd-img" style={{ aspectRatio: ratio(t) }}><Image src={t.src} alt="" fill sizes="(max-width: 40rem) 46vw, 22vw" unoptimized={gif(t.src)} style={{ objectFit: doc || !t.w ? 'contain' : 'cover', objectPosition: t.w ? 'top left' : 'center' }} /></span>
+                    <span className="gd-lab">{t.alt}</span>
+                  </button>
+                )))}
+              </div>
+            </section>
+          ))}
+        </div>
+      )}
+    </dialog>
   )
 }

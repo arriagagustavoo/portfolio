@@ -134,45 +134,45 @@
    "rideshare": {
     "description": "Fullstack GUI to simulate Relational SQL Database use through transactions and bookings",
     "alts": [
-     "Booking page before any rides have been entered",
-     "Booking page populated with ride and transaction data"
+     "Booking page, before any rides",
+     "Booking page with rides and transactions"
     ],
-    "coverAlt": "RideShare title card reading 'Reliable booking. Safe travels.'"
+    "coverAlt": "RideShare title card"
    },
    "maze": {
     "description": "Fully 3D interactive game built using python openGL. Custom algorithm used for randomly generated mazes.",
     "alts": [
-     "Starting view of a randomly generated 3D maze",
-     "Blue speed boost power-up increasing player movement",
-     "Green high jump power-up giving a birds-eye view of the maze",
-     "Red slow trap reducing player movement",
-     "Pink spin trap rotating the camera to disorient the player"
+     "A new randomly generated maze",
+     "Blue power-up: speed boost",
+     "Green power-up: a high jump that shows the maze from above",
+     "Red trap: slows you down",
+     "Pink trap: spins the camera"
     ],
-    "coverAlt": "Labyrinth title card reading 'Lost in space. Try and escape the labyrinth.'"
+    "coverAlt": "Labyrinth title card"
    },
    "unity": {
     "description": "Original characters and custom assets. Animations drawn frame-by-frame and put into Unity Game engine and uses keyboard controls.",
     "alts": [
-     "Level scene laid out in the Unity editor",
-     "In-game footage of the player moving through the level",
-     "Main character idle animation, drawn frame by frame",
-     "Main character walk cycle",
-     "Main character attack animation",
-     "Enemy character idle animation",
-     "Enemy character movement animation",
-     "Enemy character attack animation"
+     "The level in the Unity editor",
+     "Gameplay",
+     "Main character idle, drawn frame by frame",
+     "Main character walking",
+     "Main character attacking",
+     "Enemy idle",
+     "Enemy moving",
+     "Enemy attacking"
     ],
-    "coverAlt": "Faceoff title card reading 'frame-by-frame', with the two characters facing off"
+    "coverAlt": "Faceoff title card"
    },
    "mri": {
     "description": "Matlab GUI to simulate a digital MRI through unique parameters and values",
     "alts": [
-     "Scanner GUI with the rectangle phantom and Cartesian acquisition set up",
-     "Rectangle phantom, Cartesian reconstruction, and difference map with signal profiles",
-     "Scanner GUI with the circle phantom and radial acquisition set up",
-     "Circle phantom, radial reconstruction, and difference map with signal profiles"
+     "Rectangle phantom, set up for a Cartesian scan",
+     "Rectangle: the reconstruction and the difference map",
+     "Circle phantom, set up for a radial scan",
+     "Circle: the reconstruction and the difference map"
     ],
-    "coverAlt": "MRI Scanner title card reading 'Matlab GUI. Custom data. Accurate results.'"
+    "coverAlt": "MRI Scanner title card"
    },
    "fadeaway": {
     "pitch": "An example site for a made-up barbershop on the East End. What the $600 Starter looks like, start to finish.",
@@ -627,45 +627,45 @@
    "rideshare": {
     "description": "Interfaz fullstack para simular el uso de una base de datos SQL relacional a través de transacciones y reservaciones",
     "alts": [
-     "Página de reservaciones antes de registrar cualquier viaje",
-     "Página de reservaciones con datos de viajes y transacciones"
+     "Página de reservas, todavía sin viajes",
+     "Página de reservas con viajes y transacciones"
     ],
-    "coverAlt": "Portada de RideShare que dice 'Reliable booking. Safe travels.'"
+    "coverAlt": "Portada de RideShare"
    },
    "maze": {
     "description": "Juego interactivo totalmente en 3D hecho con Python y OpenGL. Algoritmo propio para generar laberintos al azar.",
     "alts": [
-     "Vista inicial de un laberinto 3D generado al azar",
-     "Mejora azul de velocidad que aumenta el movimiento del jugador",
-     "Mejora verde de salto alto que da una vista aérea del laberinto",
-     "Trampa roja que reduce el movimiento del jugador",
-     "Trampa rosa que gira la cámara para desorientar al jugador"
+     "Un laberinto nuevo, generado al azar",
+     "Power-up azul: más velocidad",
+     "Power-up verde: un salto alto que enseña el laberinto desde arriba",
+     "Trampa roja: te frena",
+     "Trampa rosa: gira la cámara"
     ],
-    "coverAlt": "Portada de Labyrinth que dice 'Lost in space. Try and escape the labyrinth.'"
+    "coverAlt": "Portada de Labyrinth"
    },
    "unity": {
     "description": "Personajes originales y recursos propios. Animaciones dibujadas cuadro por cuadro, integradas en el motor Unity y con controles de teclado.",
     "alts": [
-     "Escena del nivel armada en el editor de Unity",
-     "Video del juego con el jugador avanzando por el nivel",
-     "Animación del personaje principal en reposo, dibujada cuadro por cuadro",
-     "Ciclo de caminata del personaje principal",
-     "Animación de ataque del personaje principal",
-     "Animación del enemigo en reposo",
-     "Animación de movimiento del enemigo",
-     "Animación de ataque del enemigo"
+     "El nivel en el editor de Unity",
+     "Así se juega",
+     "Personaje principal en reposo, dibujado cuadro por cuadro",
+     "Personaje principal caminando",
+     "Personaje principal atacando",
+     "Enemigo en reposo",
+     "Enemigo moviéndose",
+     "Enemigo atacando"
     ],
-    "coverAlt": "Portada de Faceoff que dice 'frame-by-frame', con los dos personajes enfrentados"
+    "coverAlt": "Portada de Faceoff"
    },
    "mri": {
     "description": "Interfaz en Matlab para simular una resonancia magnética digital con parámetros y valores propios",
     "alts": [
-     "Interfaz del escáner con el fantoma rectangular y adquisición cartesiana configurada",
-     "Fantoma rectangular, reconstrucción cartesiana y mapa de diferencias con perfiles de señal",
-     "Interfaz del escáner con el fantoma circular y adquisición radial configurada",
-     "Fantoma circular, reconstrucción radial y mapa de diferencias con perfiles de señal"
+     "Fantoma rectangular, listo para un escaneo cartesiano",
+     "Rectángulo: la reconstrucción y el mapa de diferencias",
+     "Fantoma circular, listo para un escaneo radial",
+     "Círculo: la reconstrucción y el mapa de diferencias"
     ],
-    "coverAlt": "Portada de MRI Scanner que dice 'Matlab GUI. Custom data. Accurate results.'"
+    "coverAlt": "Portada de MRI Scanner"
    },
    "fadeaway": {
     "pitch": "Una página de ejemplo para una barbería inventada en el East End. Así se ve el Starter de $600, de principio a fin.",

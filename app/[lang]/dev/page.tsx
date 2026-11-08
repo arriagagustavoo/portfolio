@@ -40,7 +40,7 @@ export default async function Dev({ params }: P) {
       </section>
       <section className="wrap sec" aria-labelledby="outside">
         <div className="sec-h" data-reveal><div><h2 className="h2" id="outside">{d.outside}</h2><p className="lede">{d.outsideSub}</p></div></div>
-        <DevProjects items={devProjects.map((p, k) => ({ ...p, title: d.projects[k].title, text: d.projects[k].text }))} w={{ repo: d.repo, view: d.view, close: d.close, of: d.images, prev: t.caseStudy.prev, next: t.caseStudy.next }} />
+        <DevProjects items={devProjects.map((p, k) => { const lp = (t.legacy.projects as unknown as Record<string, { alts: string[]; coverAlt: string }>)[p.key]; return { ...p, title: d.projects[k].title, text: d.projects[k].text, shots: p.shots.map((src, j) => ({ src, alt: p.caps[j] === -1 ? lp.coverAlt : lp.alts[p.caps[j]] })) } })} w={{ repo: d.repo, view: d.view, close: d.close, of: d.images, prev: t.caseStudy.prev, next: t.caseStudy.next, all: t.caseStudy.viewAll, one: t.caseStudy.oneByOne, desk: t.caseStudy.desk, phoneTab: t.caseStudy.phoneTab, phone: t.caseStudy.phone, groups: {} }} />
       </section>
       <section className="wrap sec" aria-labelledby="edu">
         <div className="sec-h" data-reveal><h2 className="h2" id="edu">{d.education}</h2><p className="lede" style={{ margin: 0 }}>{L.about.degree} · {L.about.school}</p></div>
