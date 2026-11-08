@@ -24,8 +24,8 @@ export default async function Dev({ params }: P) {
           <div>
             <h1 className="h1">{d.title}</h1>
             <div className="acts">
-              <a className="btn" href={contact.linkedin.url} {...ext}><Icon name="linkedin" />{d.linkedin}</a>
-              <a className="btn ghost" href={contact.github.url} {...ext}><Icon name="github" />{d.github}</a>
+              <a className="btn" href={contact.github.url} {...ext} data-ev="Contact clicked" data-ev-way="github" data-ev-from="dev"><Icon name="github" />{d.github}</a>
+              <a className="btn ghost" href={contact.linkedin.url} {...ext} data-ev="Contact clicked" data-ev-way="linkedin" data-ev-from="dev"><Icon name="linkedin" />{d.linkedin}</a>
               <EmailLink className="lnk" copied={t.toast.copied}>{contact.email}</EmailLink>
             </div>
           </div>
