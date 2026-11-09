@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { LongLogo } from './bits'
+import { FooterCta } from './FooterCta'
 import { href, type Lang } from '@/lib/i18n'
 import { contact, projects } from '@/lib/data'
 import type { Dict } from '@/lib/content/site'
@@ -14,7 +15,7 @@ export default function Footer({ lang, t }: { lang: Lang; t: Dict }) {
           <div className="fbrand">
             <Link href={href(lang, '/')} aria-label="arriagagustavoo, home" style={{ textDecoration: 'none' }}><LongLogo /></Link>
             <p>{t.footer.about}</p>
-            <Link className="btn" href={href(lang, '/') + '#estimate'}>{t.nav.estimate}</Link>
+            <FooterCta estimate={t.nav.estimate} work={t.contactCard.work} home={href(lang, '/')} workHref={href(lang, '/work')} />
           </div>
           <div className="fcols">
           <nav className="fcol" aria-label={t.footer.pages}><b>{t.footer.pages}</b>{pages.map(([p, l]) => <Link key={p} href={href(lang, p)}>{l}</Link>)}</nav>

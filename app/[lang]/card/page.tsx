@@ -23,7 +23,7 @@ export default async function Card({ params }: P) {
       </div>
       <div className="cardp-cta">
         <a className="btn" href="/gustavo-arriaga.vcf" download="Gustavo Arriaga.vcf" data-ev="Contact clicked" data-ev-way="vcard">{c.save}</a>
-        <a className="btn ghost" href={href(lang, '/work')}>{c.work}</a>
+        <a className="btn ghost" href={href(lang, '/') + '#estimate'}>{t.nav.estimate}</a>
       </div>
       <Socials t={t} two />
     </section>
