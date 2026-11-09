@@ -1070,3 +1070,11 @@ section:has(>.cs-top){container:cstop / inline-size}
    when it stacks under the intro (phones), land on the card itself, clear of the header */
 #estimate{scroll-margin-top:1rem}
 @container hero (min-width:52.01rem){#estimate{scroll-margin-top:100vh}}
+
+/* ===== /card, Nov 9 2026: the short contact page the business card, keychain and Wallet pass open ===== */
+.cardp{max-width:34rem;padding-bottom:3rem}
+.cardp-ph{display:block;width:5.5rem;height:5.5rem;object-fit:cover;margin-bottom:1rem;box-shadow:var(--pop)}
+.cardp .h1{margin-top:0.25rem}
+.cardp .lede{margin-top:0.625rem;font-size:1rem}
+.cardp-cta{display:flex;flex-wrap:wrap;gap:0.625rem;margin-top:1.5rem}
+.cardp-cta .btn{flex:1 1 13rem}

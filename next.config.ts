@@ -30,7 +30,11 @@ const nextConfig: NextConfig = {
     ]
   },
   async headers() {
-    return [{ source: '/:path*', headers: securityHeaders }]
+    return [
+      { source: '/:path*', headers: securityHeaders },
+      // /card's "Save my contact": phones open it straight into Add Contact
+      { source: '/gustavo-arriaga.vcf', headers: [{ key: 'Content-Type', value: 'text/vcard; charset=utf-8' }] },
+    ]
   },
 }
 
