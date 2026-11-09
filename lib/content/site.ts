@@ -230,7 +230,7 @@ const es: Dict = {
   why: { title: 'Por qué trabajar conmigo', more: 'Más sobre mí', reasons: legacy.es.about.reasons as { title: string; body: string }[] },
   quote: { text: 'Mientras esté vivo, tengo oportunidades infinitas.', source: 'Monkey D. Luffy, <i>One Piece</i>' },
   close: {
-    title: 'Platiquemos.', text: 'Cuéntame de tu negocio. Llama, manda texto, escríbeme o déjame un mensaje aquí. Yo mismo te contesto.',
+    title: 'Vamos a construir.', text: 'Cuéntame de tu negocio. Llama, manda texto, escríbeme o déjame un mensaje aquí. Yo mismo te contesto.',
     send: 'Mándame un mensaje', estimate: 'Mi cotización gratis',
     name: 'Tu nombre', namePh: 'María…', contact: 'Teléfono o correo', contactPh: '832-555-0100 o tu@correo.com…', need: '¿Qué necesitas?', optional: '(opcional)', needPh: 'Un sitio nuevo, rehacer el mío, no sé todavía…',
     submit: 'Mandárselo a Gus', cancel: 'Cancelar', error: 'Pon tu nombre y cómo contactarte.', sending: 'Enviando…', failed: 'No se envió. Inténtalo otra vez, o mándame texto al 832-453-4158.',
@@ -300,7 +300,7 @@ const es: Dict = {
       { title: 'Escáner de MRI', text: 'Interfaz en MATLAB que simula una resonancia digital con sus propios parámetros y valores.' },
     ],
   },
-  contact: { title: 'Platiquemos', intro: 'Cuéntame de tu negocio. Te contesto por texto, llamada o correo, lo que prefieras. Hablamos de lo que necesitas y recibes una cotización por escrito antes de empezar.', where: 'Houston, Texas, y a distancia donde sea.',
+  contact: { title: 'Vamos a construir', intro: 'Cuéntame de tu negocio. Te contesto por texto, llamada o correo, lo que prefieras. Hablamos de lo que necesitas y recibes una cotización por escrito antes de empezar.', where: 'Houston, Texas, y a distancia donde sea.',
     form: { needTitle: '¿Qué necesitas?', tap: 'elige los que sean', picks: ['Un sitio nuevo', 'Rehacer mi sitio', 'Software a la medida', 'Logo o gráficos', 'No sé todavía'], name: 'Tu nombre', reach: 'Mejor forma de contactarte', how: ['Texto', 'Llamada', 'Correo'], phonePh: '832-555-0100…', emailPh: 'tu@correo.com…', more: '¿Algo más?', morePh: 'Tu negocio, dónde estás, qué quieres que haga tu sitio…', submit: 'Mandárselo a Gus', trust: 'Tus datos solo me llegan a mí. Sin spam.', rather: '¿Prefieres texto?', back: { Texto: 'mando texto', Llamada: 'llamo', Correo: 'escribo' } as Record<string, string>, done: 'Listo, {n}. Te {how} pronto.' } },
   privacy: legacy.es.privacy as typeof legacy.en.privacy,
   notFound: { title: 'Esta página se perdió.', text: 'Cole buscó por todos lados. Prueba el inicio, o dime qué buscabas.', home: 'Volver al inicio', message: 'Mándame un mensaje' },
