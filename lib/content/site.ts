@@ -150,7 +150,7 @@ const en = {
     form: { needTitle: 'What do you need?', tap: 'tap any', picks: ['A new website', 'Redo my site', 'Custom software', 'Logo or graphics', 'Not sure yet'], name: 'Your name', reach: 'Best way to reach you', how: ['Text', 'Call', 'Email'], phonePh: '832-555-0100…', emailPh: 'you@email.com…', more: 'Anything else?', morePh: 'Your business, where you are, what you want the site to do…', submit: 'Send it to Gus', trust: 'Your info only goes to me. No spam.', rather: 'Rather text?', back: { Text: 'text', Call: 'call', Email: 'email' } as Record<string, string>, done: "Got it, {n}. I'll {how} you back soon." } },
   privacy: legacy.en.privacy,
   notFound: { title: 'This page wandered off.', text: 'Cole looked everywhere. Try the homepage, or tell me what you were looking for.', home: 'Back home', message: 'Message me' },
-  contactCard: { eyebrow: "// hey, I'm Gus", title: 'I design and build', word: 'websites.', sub: 'Gustavo Arriaga · Houston, TX', save: 'Save my contact', estimate: 'Get my free estimate', work: 'See my work' },
+  contactCard: { eyebrow: "// hey, I'm Gus", title: 'I design and build', word: 'websites.', sub: 'Gustavo Arriaga · Houston, TX', save: 'Save my contact', work: 'See my work' },
   toast: { es: 'Listo, ahora en español', en: 'Back to English', copied: 'Email copied', sent: 'Message sent. Talk soon!', estimate: 'Estimate sent to Gus', prefer: '¿Prefieres español?', change: 'Cambiar' },
   legacy: legacy.en,
 }
@@ -307,7 +307,7 @@ const es: Dict = {
     form: { needTitle: '¿Qué necesitas?', tap: 'elige los que sean', picks: ['Un sitio nuevo', 'Rehacer mi sitio', 'Software a la medida', 'Logo o gráficos', 'No sé todavía'], name: 'Tu nombre', reach: 'Mejor forma de contactarte', how: ['Texto', 'Llamada', 'Correo'], phonePh: '832-555-0100…', emailPh: 'tu@correo.com…', more: '¿Algo más?', morePh: 'Tu negocio, dónde estás, qué quieres que haga tu sitio…', submit: 'Mandárselo a Gus', trust: 'Tus datos solo me llegan a mí. Sin spam.', rather: '¿Prefieres texto?', back: { Texto: 'mando texto', Llamada: 'llamo', Correo: 'escribo' } as Record<string, string>, done: 'Listo, {n}. Te {how} pronto.' } },
   privacy: legacy.es.privacy as typeof legacy.en.privacy,
   notFound: { title: 'Esta página se perdió.', text: 'Cole buscó por todos lados. Prueba el inicio, o dime qué buscabas.', home: 'Volver al inicio', message: 'Mándame un mensaje' },
-  contactCard: { eyebrow: '// hola, soy Gus', title: 'Diseño y programo', word: 'páginas web.', sub: 'Gustavo Arriaga · Houston, TX', save: 'Guardar mi contacto', estimate: 'Mi cotización gratis', work: 'Ver mi trabajo' },
+  contactCard: { eyebrow: '// hola, soy Gus', title: 'Diseño y programo', word: 'páginas web.', sub: 'Gustavo Arriaga · Houston, TX', save: 'Guardar mi contacto', work: 'Ver mi trabajo' },
   toast: { es: 'Listo, ahora en español', en: 'Back to English', copied: 'Correo copiado', sent: 'Mensaje enviado. ¡Platicamos pronto!', estimate: 'Cotización enviada a Gus', prefer: '¿Prefieres español?', change: 'Cambiar' },
   legacy: legacy.es as typeof legacy.en,
 }

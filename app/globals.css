@@ -1072,8 +1072,9 @@ section:has(>.cs-top){container:cstop / inline-size}
 @container hero (min-width:52.01rem){#estimate{scroll-margin-top:100vh}}
 
 /* ===== /card, Nov 9 2026: the short contact page the business card, keychain and Wallet pass open ===== */
-.cardp{max-width:34rem;padding-bottom:3rem}
-.cardp-ph{display:block;width:5.5rem;height:5.5rem;object-fit:cover;margin-bottom:1rem;box-shadow:var(--pop)}
+.cardp{max-width:36rem;padding-bottom:3rem}
+.cardp-top{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1rem 1.25rem;align-items:start}
+.cardp-ph{display:block;width:clamp(5.5rem,22vw,7rem);height:auto;aspect-ratio:1;object-fit:cover;margin-top:0.375rem;box-shadow:var(--pop)}
 .cardp .h1{margin-top:0.25rem}
 .cardp .lede{margin-top:0.625rem;font-size:1rem}
 .cardp-cta{display:flex;flex-wrap:wrap;gap:0.625rem;margin-top:1.5rem}
